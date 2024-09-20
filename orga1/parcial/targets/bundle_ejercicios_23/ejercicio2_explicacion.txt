@@ -1,0 +1,8 @@
+Schenone Duarte Ariel Eduardo
+431/22
+
+Explicación Ejercicio 2:
+
+Lo primero que hago es cargar las direcciones de memoria del array fuente y destino en los registros a0 y a1 respectivamente y cargar el largo del array fuente al registro a2.
+Itero hasta que el largo del array sea 0, luego le resto 1 al largo de array fuente guardado en a2, cargo la primera palabra del array fuente al registro s0 y la primera palabra del array destino al registro s1. Teniando ya las dos palabras hago un xor entre s0 y s1 y guardo el resultado en s1, luego hago un store word que toma lo que hay en el registro s1 y lo guarda en la direccion de memoria del array destino guardada en a0.
+Termino sumandole 4 a las direcciones del array fuente y destino para que puedan tomar la siguiente palabra y salto hacia "loop_iterar" para seguir iterando con los demás elementos de las otras listas hasta que el largo del array sea 0, para luego salta a la etiqueta "imprimir".

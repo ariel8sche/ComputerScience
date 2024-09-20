@@ -1,0 +1,83 @@
+1) 
+    a)
+        La memoria es de 256 palabras de 8 bits
+
+    b)
+       8 bits
+
+    c)
+        El IR son dos registros de instrucciones(Low and High) y tienen un tamaño de 8 bits cada uno. Se ubican entre el Bus y el Decode
+    
+    d)
+        32(posibilidades de opcodes distintas) - 22(opcodes usados) = 10 opcodes disponibles(sin las reservadas)
+
+        10 * 2**11
+    
+    e)
+        formato A = 12 * 2**6
+        formato B = 2 * 2**3
+        formato C = 4 * 2**8
+        formato D = 3 * 2**11
+
+        2**16 - totalABCD 
+
+2)
+    a)
+        El inc es el incrementador del program counter
+
+    b) 
+        Indica si se deben escribir los flags
+
+    c) 
+        Los saltos condicionales se resuelven sobreescribiendo el microPC, solo si la señal load_microOp esta encendida
+
+    d) 
+        Habilita la entrada al bus de un valor inmediato
+
+4) 
+    MicroOrgaSmall
+    a) Si se corta el cable Flags que va desde la ALU al Control Unit, se romperia todo ya que el Cotrol Unit usa los Flags para hacer los saltos condicionales del microPC
+    b) Si los Flags estan siempre en 0, nunca va a hacer un salto condicionales
+    c) Si los Flags estan siempre en 1 siempre y cuando quieras hacer un salto condicional, va a saltar
+
+    Registers
+    a) Si se corta el cable se rompe todo y nunca se va a devolver ningun registro, ya que si o si necesita de una señal para devolver o no un registro
+    b) Si esta siempre en 1 en todo momento de devuelve un registro
+    c) Si esta siempre en 0 nunca te devuelve ningun registro
+
+    CP
+    a) Si se corta el cable Load no se visualiza el dato inData
+    b) Si siempre es 1 siempre te muestra el dato inData
+    c) Si siempre es 0 jamas de muestra el dato inData
+
+    ALU
+    a) Si se corta el cable OP no podes hacer ninguna operacion en la ALU
+    b) Si esta todo en 1 la ALU te devuelve una constante 0xFF
+    c) Si esta todo en 0 la ALU no hace ninguna operacion
+
+    Memory
+    a) Si se corta el cable Address se rompe todo
+    b) Si esta todo en 1 va siempre al ultimo registro
+    c) Si esta todo en 0 va siempre al primer registro
+
+    Decode
+    a) Si se corta el cable se rompe
+    b) Si esta todo en 1 te muestra el valor con todos 1
+    c) Idem b
+
+    ControlUnit
+    a) Si se corta el cable se rompe todo
+    b) Si esta todo en 1 se activa el codop 11111 que es el set
+    c) Si esta todo en 0 se activa el codop 0 que no existe
+
+5)
+    res=0
+    while n >= 0
+        res+=n
+        n--
+    return n
+
+    ADD R1, R0
+    DEC R0
+    JN FIN
+    JMP 0X0000

@@ -1,0 +1,6 @@
+          |00| SET R0 , 4
+sumatoria |02| ADD R1 , R0
+          |04| DEC R0
+          |06| JN fin
+          |08| JMP sumatoria
+      fin |0a| JMP fin

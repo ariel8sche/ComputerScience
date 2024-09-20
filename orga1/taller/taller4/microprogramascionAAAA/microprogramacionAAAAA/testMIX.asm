@@ -1,0 +1,3 @@
+SET R0, 0xAA
+SET R1, 0x55
+MIX R0, R1

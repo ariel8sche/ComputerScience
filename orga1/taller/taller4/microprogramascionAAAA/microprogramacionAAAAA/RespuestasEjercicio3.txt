@@ -1,0 +1,18 @@
+3-
+	a)primero salta hacia la etiqueta Seguir, hace R0 := 0xFF y luego R1 := 0x11.
+	Avanza hacia Siguiente y hace R0 := R0 + R1. Quedaria R0 := 0x10. Se activa el carry
+	por lo que se repite la operacion y finalmente queda R0 := 0x21.
+	El programa se queda en halt y nunca termina.
+	
+	b) 0x0000 JMP Seguir
+	0x0002 seguir: set R0, 0xFF 
+	0x0004 set R1, 0x11 
+	0x0006 siguiente: Add R0, R1
+	0x0008 JC siguiente
+	0x000a halt: JMP halt
+	c) 53. 
+	d) 9 microinstrucciones. 7 microinstrucciones para el salto de 0x0008
+	e) C=1/32=0,03125s. Tarda 2*C en ejecutar las instrucciones
+	0x0000, 0x0002, 0x0004, 0x000a
+	Tarda 5*C en ejecutar la instruccion 0x0006
+	Tarda 3*C en ejecutar la instruccion 0x0008 si el flag esta activado o 4*C si no

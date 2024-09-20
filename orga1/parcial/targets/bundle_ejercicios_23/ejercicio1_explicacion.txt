@@ -1,0 +1,12 @@
+Nombre: Schenone Duarte Ariel Eduardo
+LU: 431/22
+
+
+Explicacion del Ejercicio 1.
+
+Inicializo la función guardando en a0 la dirección del array y en a1 el largo del array. Luego para preservar las variables las muevo hacia s0 y s1 respectivamente, e inicializo la variable SUMA en el registro s2 con el valor de 0xffffffff. 
+Luego entro en el loop, donde miro si el largo del array es 0 para saltar a la etiqueta "exit", agarro el primer elemento del array usando un la instrucción lh(load halfword) que agarra media palabra, ya que cada elemento del array es media palabra. Muevo a a0 el largo del array para mirar si es una posición impar, pero antes le resto 1 al largo del array para seguir iterando mas adelante. 
+Miro si el índice es impar utilizando la instrucción andi a0, a0, 1, que mira si el bit menos significativo esta en 1 y si es impar a0 queda en 1 y si no en 0, si a0 es 1 uso la instruccion bgtz(branch if greater than zero) que salta hacia a la etiqueta "impar" si a0 es 0, en caso contrario no va hacia la etiqueta "impar" y salta hacia loop nuevamente para seguir iterando.
+La etiqueta "impar" lo unico que hace es la conjunción del elemento con índice impar que esta guardado previamente en el registro s3, con lo que antes estaba guardado en el registro s2(SUMA).
+Cuando el largo del array que estaba en s1 es 0 el programa salta hacia la etiqueta "exit", donde imprime y finaliza su ejecucion.
+
