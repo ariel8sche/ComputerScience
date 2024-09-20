@@ -1,0 +1,107 @@
+Ejercicio 1
+
+    a) x
+
+        Es válido
+
+        Es una expresión de términos
+
+    b) x x
+    
+        Es válido
+
+        Es una expresión de términos
+
+    c) M
+
+        No es válido
+
+    d) M M
+
+        No es válido
+                        
+    e) true false
+
+        Es válido
+
+        Es una expresión de términos
+
+    f ) true succ(false true)
+
+
+
+    g) λx.isZero(x)
+
+        No es válido
+                        Falta el tipo de x
+
+    h) λx: σ. succ(x)
+
+        No es válido
+                        σ no es un tipo válido
+
+    i) λx: Bool. succ(x)
+
+        Es válido
+
+        Es una expresión de términos
+
+    j) λx: if true then Bool else Nat. x
+
+        No es válido
+                        Falta el tipo de x
+
+    k) σ
+
+        No es válido
+                        σ no es un tipo válido
+
+    l) Bool
+
+        Es válido
+
+        Es una expresión de tipo
+
+    m) Bool →Bool
+
+        Es válido
+
+        Es una expresión de tipo
+
+    n) Bool →Bool →Nat
+
+        Es válido
+
+        Es una expresión de tipo
+
+    ñ) (Bool →Bool) →Nat
+
+        Es válido
+
+        Es una expresión de tipo
+
+    o) succ true
+
+        Es válido
+
+        Es una expresión de termino
+
+    p) λx: Bool. if 0 then true else 0 succ(true)
+
+        Es válido
+
+        Es una expresión de termino
+
+Ejercicio 3
+
+    a)
+        λx: Nat. succ((λx: Nat. x) x)
+
+        Tiene 2 ocurrencias en el lambda y 1 ocurrencia en la aplicación
+    
+    b)
+
+        x1 no tiene ocurrencias como subtermino de λx1 : Nat. succ(x2) ya que es una variable ligada
+    
+
+

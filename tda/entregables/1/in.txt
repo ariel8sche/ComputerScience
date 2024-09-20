@@ -1,0 +1,101 @@
+2
+emotionalblind 16 12
+jaan 17 86
+sameezahur 20 21
+sohelh 18 9
+tanaeem 20 97
+brokenarrow 16 16
+muntasir 13 4
+shadowcoder 12 9
+shamim 16 18
+sidky 16 36
+marcos 16 12
+aaron 17 86
+cristian 20 21
+ezequiel 18 9
+luca 20 97
+sergio 16 16
+lautaro 13 4
+miguel 12 9
+kevin 16 18
+dario 16 36
+
+
+[
+    [
+        ['emotionalblind', 16, 12], ['jaan', 17, 86], ['sameezahur', 20, 21], ['sohelh', 18, 9], ['tanaeem', 20, 97], ['brokenarrow', 16, 16], ['muntasir', 13, 4], ['shadowcoder', 12, 9], ['shamim', 16, 18], ['sidky', 16, 36], 
+        ['emotionalblind', 16, 12], ['jaan', 17, 86], ['sameezahur', 20, 21], ['sohelh', 18, 9], ['tanaeem', 20, 97], ['brokenarrow', 16, 16], ['muntasir', 13, 4], ['shadowcoder', 12, 9], ['shamim', 16, 18], ['sidky', 16, 36], 
+        ['emotionalblind', 16, 12], ['jaan', 17, 86], ['sameezahur', 20, 21], ['sohelh', 18, 9], ['tanaeem', 20, 97], ['brokenarrow', 16, 16], ['muntasir', 13, 4], ['shadowcoder', 12, 9], ['shamim', 16, 18], ['sidky', 16, 36]
+        
+    ]
+]
+
+[
+    [
+        ['emotionalblind', 16, 12], ['jaan', 17, 86], ['sameezahur', 20, 21], ['sohelh', 18, 9], ['tanaeem', 20, 97], ['brokenarrow', 16, 16], ['muntasir', 13, 4], ['shadowcoder', 12, 9], ['shamim', 16, 18], ['sidky', 16, 36], 
+        ['emotionalblind', 16, 12], ['jaan', 17, 86], ['sameezahur', 20, 21], ['sohelh', 18, 9], ['tanaeem', 20, 97], ['brokenarrow', 16, 16], ['muntasir', 13, 4], ['shadowcoder', 12, 9], ['shamim', 16, 18], ['sidky', 16, 36], 
+        ['marcos', 16, 12], ['aaron', 17, 86], ['cristian', 20, 21], ['ezequiel', 18, 9], ['luca', 20, 97], ['sergio', 16, 16], ['lautaro', 13, 4], ['miguel', 12, 9], ['kevin', 16, 18], ['dario', 16, 36]
+    ]
+]
+
+
+
+
+[
+    [
+        ['dario', 16, 36], ['kevin', 16, 18], ['miguel', 12, 9], ['lautaro', 13, 4], ['sergio', 16, 16], ['luca', 20, 97], ['ezequiel', 18, 9], ['cristian', 20, 21], ['aaron', 17, 86], ['marcos', 16, 12], 
+        ['sidky', 16, 36], ['shamim', 16, 18], ['shadowcoder', 12, 9], ['muntasir', 13, 4], ['brokenarrow', 16, 16], ['tanaeem', 20, 97], ['sohelh', 18, 9], ['sameezahur', 20, 21], ['jaan', 17, 86], ['emotionalblind', 16, 12]
+    ], 
+    [
+        ['dario', 16, 36], ['kevin', 16, 18], ['miguel', 12, 9], ['lautaro', 13, 4], ['sergio', 16, 16], ['luca', 20, 97], ['ezequiel', 18, 9], ['cristian', 20, 21], ['aaron', 17, 86], ['marcos', 16, 12], 
+        ['sidky', 16, 36], ['shamim', 16, 18], ['shadowcoder', 12, 9], ['muntasir', 13, 4], ['brokenarrow', 16, 16], ['tanaeem', 20, 97], ['sohelh', 18, 9], ['sameezahur', 20, 21], ['jaan', 17, 86], ['emotionalblind', 16, 12]
+    ]
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[[
+    ['dario', 16, 36], 
+    ['kevin', 16, 18], 
+    ['miguel', 12, 9], 
+    ['lautaro', 13, 4], 
+    ['sergio', 16, 16], 
+    ['luca', 20, 97], 
+    ['ezequiel', 18, 9], 
+    ['cristian', 20, 21], 
+    ['aaron', 17, 86], 
+    ['marcos', 16, 12]
+],[
+    ['sidky', 16, 36], 
+    ['shamim', 16, 18], 
+    ['shadowcoder', 12, 9], 
+    ['muntasir', 13, 4], 
+    ['brokenarrow', 16, 16], 
+    ['tanaeem', 20, 97], 
+    ['sohelh', 18, 9], 
+    ['sameezahur', 20, 21], 
+    ['jaan', 17, 86], 
+    ['emotionalblind', 16, 12]
+]]
+
+
+
+
+
+

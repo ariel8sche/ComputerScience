@@ -1,0 +1,62 @@
+Ej1.a.
+
+    Sea G grafo conexo
+
+        E(G) = {(r,a),(r,w),(r,z),(a,u),(a,v),(w,z)}
+    
+    Y sea T un árbol generador de G
+
+        E(T) = {(r,a),(r,w),(r,z),(a,u),(a,v)}
+
+    Sea (w,z) una arista que pertece a W (aristas con distancia impar de r) y tmb
+    (w,z) pertenece a  E(G) \ E(T) = {(w,z)}
+
+    Entonces suponemos que el unico ciclo en T U {(w,z)} es par
+
+    Tenemos dos casos en donde el ciclo pasa por r y el caso donde no
+
+    Caso donde pasa por r
+
+        Sabemos que la distancia entre w y r es impar y la distancia entre z y r tmb es impar
+        Si sumas esas distancias nos da un numero par y ahora si le agremos la arista (w,z)
+        eso nos terminaria dando un ciclo impar
+
+        Pero nuestro ciclo era par
+
+        Absurdo
+
+    Caso donde no pasa por r
+
+        No importa donde se crucen ya que ambas estan a distancia impar de r, ambas llegan a una arista
+        en comun con una distan par o impar, es decir una arista k comun entre las dos distancia entre (w,k) 
+        es impar y la distancia (z,k) es impar, o la distancia entre (w,k) es par y la distancia (z,k) es par
+        De las dos formas si sumanos esas distancias nos da un numero par y si le agregamos la arista (w,z) 
+        eso nos da un ciclo impar
+
+        Pero nuestro ciclo era par
+
+        Absurdo
+
+    Idem para el caso donde (w,z) esten a distancia par de r
+
+Ej1.b.
+
+    Sea G grafo conexo
+
+        E(G) = {(r,a),(r,w),(r,z),(a,u),(a,v),(v,w)}
+    
+    Y sea T un árbol generador de G
+
+        E(T) = {(r,a),(r,w),(r,z),(a,u),(a,v)}
+
+    Y sea (v,w) una arista con v pertenece V y w pertenece a w
+
+    Si sumamos la distancia entre v a r y w a r eso nos da un numero impar
+    y si a eso le suamos la arista (v,w) nos genera un ciclo par
+    Entonces podemos decir que al tener solo ciclos pares, es bipartito
+
+Ej1.c
+
+    
+
+

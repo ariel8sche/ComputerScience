@@ -1,0 +1,262 @@
+Teorema maestro
+
+    T(n) = aT(n / b) + f(n)
+
+    n es el tamaño del problema.
+    a es el número de subproblemas en la recursión.
+    n/b es el tamaño de cada subproblema. (Todos los subproblemas tienen el mismo tamaño.)
+    f(n) es el costo del trabajo realizado fuera de las llamadas recursivas, que incluye el costo de la división del problema y el costo de la unión de las soluciones de los subproblemas.
+
+
+    Si f(n) es O(n^c), donde c < log_b(a), entonces el tiempo de ejecución es Θ(n^log_b(a)).
+    Si f(n) es Θ(n^log_b(a)), entonces el tiempo de ejecución es Θ(n^log_b(a) log n).
+    Si f(n) es Ω(n^c), donde c > log_b(a), si a f(n/b) ≤ k f(n) para alguna constante k < 1 y suficientemente grandes n, entonces el tiempo de ejecución es Θ(f(n)).
+
+Ejercicio 1
+
+    Complejidad
+
+    T(n) = aT(n / b) + f(n)
+    
+    a = 2, pq cada llamada recursiva se divide en 2
+
+    b = 2, Cada sub problema es la mitad del problema original
+
+    f(n) = n, pq se necesita tiempo lineal para recorrer la lista y sumar todos sus elementos
+
+    Por el teorema maestro podemos decir que la complejidad es:
+
+        Θ(n^log_b(a)) = Θ(n^log2(2)) = Θ(n^1) = Θ(n)
+        f(n) = n 
+        n = Θ(n)
+    
+    Por lo tanto la complejidad queda
+    
+        Θ(n log n)
+
+Ejercicio 2 (IndiceEspejo) ⋆
+
+    La complejidad es 
+
+    T(n) = aT(n / b) + f(n)
+    
+    a = 1
+    
+    b = 2
+    
+    f(n) = O(1)
+    
+    T(n) = 1T(n / 2) + f(n)
+    
+    Comparando esto con la forma general del Teorema Maestro, podemos ver que 
+    
+        f(n) = O(n^log_b(a) * log^k(n)) para k = 0, 
+        ya que log_b(a) = log_2(1) = 0 y 
+        f(n) = O(1) = O(n^0) = O(n^log_b(a)).
+        
+    Por lo tanto la complejidad de la funcion es
+    
+        Θ(log n)    
+    
+    Que es menor que Θ(n) que es lo que me pedian
+
+Ejercicio 3
+
+    a^b = a^c * a^d -> b = c + d
+
+                        | 1                 si b=0
+    PotenciaLog(a, b)   | a                 si b=1
+                        | 
+
+Ejercicio 4
+
+    1. T(n) = T(n - 2) + 5
+        
+        T(n) = aT(n / b) + f(n)
+
+        T(n) = T(n - 2) + 5
+        T(n) = T(n - 4) + 5 + 5
+        T(n) = T(n - 6) + 5 + 5 + 5
+        T(n) = T(n - 6) + 5 + 5 + 5
+        T(n) = T(n - 2k) + 5k
+        n-2k=0
+        k=n/2
+        T(n) = T(n - 2(n/2)) + 5(n/2)
+        T(n) = T(n - n) + 5(n/2)
+        T(n) = T(0) + (n/2) * 5
+        T(n) = 2.5n
+        T(n) = O(n)
+
+    2. T(n) = T(n - 1) + n
+
+        T(n) = aT(n / b) + f(n)
+
+        T(n) = T(n - 1) + n
+        T(n) = T(n - 2) + (n-1) + n
+        T(n) = T(n - 3) + (n-2) + (n-1) + n
+        T(n) = (n*(n+1))/2
+        T(n) = (n^2 + n)/2
+        T(n) = n^2/2
+        T(n) = O(n^2)
+
+    3. T(n) = T(n - 1) + √n
+    4. T(n) = T(n - 1) + n^2
+    5. T(n) = 2T(n - 1)
+    6. T(n) = T(n/2) + n
+
+        T(n) = aT(n / b) + f(n)
+
+        T(n) = T(n/2) + O(n)
+
+        a=1
+        b=2
+        f(n) = O(n)
+
+        log_b(a) = log2(1) = 0
+        n^log_b(a)= n^0 = 1
+        n > 1
+
+        Caso 3
+
+        Ahora tenemos que ver si se cumple que
+
+            af(n/2) = kf(n) k < 1
+
+            f(n/2) = 1/2 * f(n)
+
+            f(n/2) = f(n/2)
+
+        Entonces la complejidad es
+
+            T(n)= Θ(n)
+
+    7. T(n) = T(n/2) + √n
+
+        teorema maestro 1
+
+        a=1
+        b=2
+        f(n)=√n
+
+        f(n) es O(n^log_b(a))
+        √n es O(n^log_2(1))
+        √n es O(n^0)
+        √n es Ω(1)
+
+         a f(n/b) ≤ k f(n)
+         1 n/2 ≤ k √n
+         n/2 ≤ k √n
+
+         no sale
+
+        sustitución
+
+        T(n/2) + √n
+        T(n/4) + √n/2 + √n
+        T(n/8) + √n/4 + √n/2 + √n
+
+        sumatoria desde i=0 hasta k de √n/2^i
+
+        
+
+    8. T(n) = T(n/2) + n^2
+
+        a=1
+        b=2
+        f(n)=n^2
+
+        n^2 es O(n^k) con k = 2
+
+        1 < 2^2
+
+        por lo tanto
+
+        O(n^2)
+
+
+
+    9. T(n) = 2T(n - 4)
+
+        2T(n - 4)
+        2*2T(n - 8)
+        2^2*2T(n - 12)
+        2^3*2T(n - 16)
+            .
+            .
+            .
+            .
+        2^(n/4)*T(0)
+
+        O(1)
+
+    10. T(n) = 2T(n/2) + log n
+
+        a=2
+        b=2
+        f(n) = log n
+        
+        f(n) = n^log_b(a)
+
+        log_2(2) = 1
+
+        log n = O(n^1)
+        log n = O(n)
+
+        Caso 1
+
+            O(n)
+
+        log n O(n^k)
+
+        
+    11. T(n) = 3T(n/4)
+
+        a=3
+        b=4
+        f(n) = 0
+        
+        f(n) = n^c con c < log_b(a)
+
+        c < log_4(3) = 0,73
+
+        c=0
+
+        0 = n^0
+
+        Caso 2
+
+            O(n^log_4(3) log n)
+
+    12. T(n) = 3T(n/4) + n
+
+        T(n) = aT(n / b) + f(n)
+
+        T(n) = 3T(n/4) + n
+
+        a= 3
+        n/b = n/4
+        f(n)= n
+
+        f(n) < n^log_b(a)
+        n < n^log4(3)
+        
+        Caso 1
+
+            Θ(n^log4(3))
+
+
+Ejercicio 5
+
+
+
+Ejercicio 6
+
+
+
+Ejercicio 7
+
+
+
+Ejercicio 8
+
+

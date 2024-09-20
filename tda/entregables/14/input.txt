@@ -1,0 +1,88 @@
+3 4 2
+*~~#
+...@
+.~.*
+
+3 5 1
+~~*~~
+#.@.#
+~~*~~
+
+1 4 2
+**#~
+
+s -> p1_in : 1
+s -> p2_in : 1
+p1_in -> p1_out : 1
+p1_out -> h5_in : 1
+m1 -> t : 2
+m1 -> i1_in : 1
+h1_in -> h1_out : 1
+h1_out -> p2_in : 1
+h1_out -> h5_in : 1
+h2_in -> h2_out : 1
+h2_out -> h5_in : 1
+h3_in -> h3_out : 1
+h3_out -> h5_in : 1
+h3_out -> i1_in : 1
+i1_in -> i1_out : 2
+i1_out -> m1 : 1
+i1_out -> h5_in : 1
+i1_out -> m1_in : 1
+i1_out -> p2_in : 1
+i1_out -> h3_in : 1
+h4_in -> h4_out : 1
+h4_out -> h5_in : 1
+h5_in -> h5_out : 1
+h5_out -> p1_in : 1
+h5_out -> h4_in : 1
+h5_out -> h2_in : 1
+h5_out -> h1_in : 1
+h5_out -> h3_in : 1
+h5_out -> h5_in : 1
+h5_out -> i1_in : 1
+h5_out -> p2_in : 1
+p2_in -> p2_out : 1
+p2_out -> h1_in : 1
+p2_out -> i1_in : 1
+p2_out -> h5_in : 1
+m1_out -> i1_in : 1
+
+
+s -> p1_in : 1
+s -> p2_in : 1
+p1_in -> p1_out : 1
+p1_out -> i1_in : 1
+m1 -> t : 1
+h1_in -> h1_out : 1
+h1_out -> m2 : 1
+h1_out -> i1_in : 1
+i1_in -> i1_out : 2
+i1_out -> p2_in : 1
+i1_out -> h2_in : 1
+i1_out -> p1_in : 1
+i1_out -> h1_in : 1
+h2_in -> h2_out : 1
+h2_out -> m1_in : 1
+h2_out -> i1_in : 1
+h2_out -> m2_in : 1
+h2_out -> m2 : 1
+m2 -> t : 1
+m2 -> h1_in : 1
+m2 -> h2_in : 1
+p2_in -> p2_out : 1
+p2_out -> i1_in : 1
+m1_out -> h2_in : 1
+m2_out -> h2_in : 1
+s -> p1_in : 1
+s -> p2_in : 1
+p1_in -> p1_out : 1
+p1_out -> p2_in : 1
+p2_in -> p2_out : 1
+p2_out -> p2_in : 1
+p2_out -> p1_in : 1
+p2_out -> m1_in : 1
+p2_out -> m1 : 1
+m1 -> t : 2
+m1 -> p2_in : 1
+m1_out -> p2_in : 1

@@ -1,0 +1,1165 @@
+Ejercicio 1
+
+    - intercambiar (x,y) = (y,x)
+    - espejar (Left x) = Right x
+      espejar (Right x) = Left x
+    - asociarI (x,(y,z)) = ((x,y),z)
+    - asociarD ((x,y),z) = (x,(y,z))
+    - flip f x y = f y x
+    - curry f x y = f (x,y)
+    - uncurry f (x,y) = f x y
+
+    i. ∀ p::(a,b) .intercambiar (intercambiar p) = p
+
+                        intercambiar (intercambiar p) = p
+        por Ext. Pares
+                        intercambiar (intercambiar (x,y)) = (x,y)
+        por def int.
+                        intercambiar (y,x) = (x,y)
+        por def int.
+                        (x,y) = (x,y)
+
+    ii. ∀ p::(a,(b,c)) .asociarD (asociarI p) = p
+
+                            asociarD (asociarI p) = p
+        por Ext. Pares
+                            asociarD (asociarI (x,(y,z))) = (x,(y,z))
+        por def asociarI
+                            asociarD ((x,y),z) = (x,(y,z))
+        por def asociarD
+                            (x,(y,z)) = (x,(y,z))
+
+    iii. ∀ p::Either a b .espejar (espejar p) = p
+
+        Caso (Right x)                       
+                                espejar (espejar p) = p
+            por ??
+                                espejar (espejar (Right x)) = (Right x)
+            por def espejar
+                                espejar (Left x) = (Right x)
+            por def espejar
+                                (Right x) = (Right x)
+
+        Caso (Left x)
+                                espejar (espejar p) = p
+            por ??
+                                espejar (espejar (Left x)) = (Left x)
+            por def espejar
+                                espejar (Right x) = (Left x)
+            por def espejar
+                                (Left x) = (Left x)
+
+    iv. ∀ f::a->b->c .∀ x::a .∀ y::b .flip (flip f) x y = f x y
+
+                        flip (flip f) x y = f x y
+        por def flip
+                        flip f y x = f x y
+        por def flip
+                        f x y = f x y
+
+    v. ∀ f::a->b->c .∀ x::a .∀ y::b .curry (uncurry f) x y = f x y
+
+
+                        curry (uncurry f) x y = f x y
+        por def curry
+                        uncurry f (x, y) = f x y
+        por def uncurry
+                        f x y = f x y
+
+Ejercicio 2
+
+    i. flip . flip = id
+
+        por Ext. Funcional
+                            ∀p :: (a, b). (flip . flip) p = id p
+        por Ext. Pares
+                            ∀x :: a. ∀y :: b. (flip . flip) f x y = id f x y
+        por def comp.
+                            flip (flip f) x y = id x y
+        por def flip 
+                            flip f y x = id f x y
+        por def flip
+                            f x y = id f x y
+        por def id
+                            f x y = f x y
+
+    ii. ∀ f::(a,b)->c .uncurry (curry f) = f
+
+        por Ext. Funcional
+                        ∀x :: a, ∀y :: b. uncurry (curry f ) (x, y) = f (x, y)
+        por def uncurry
+                        curry f x y = f (x, y)
+        por def curry
+                        f (x, y) = f (x, y)
+
+    iii. flip const = const id
+
+                            flip const = const id
+        por Ext. Funcional
+                            flip (const) x y = const id x
+        por def flip
+                            const y x = const id x
+        por def id
+                            y = const x
+        por def const
+                            y = x
+
+    iv. ∀ f::a->b .∀ g::b->c .∀ h::c->d .((h . g) . f) = (h . (g . f))
+    con la definición usual de la composición: (.) f g x = f (g x).
+
+                        ((h . g) . f) = (h . (g . f))
+        por def comp
+                        ((h . g) (f)) = (h . (g (f)))
+        por def comp
+                        ((h (g)) (f)) = (h (g (f x)))
+
+Ejercicio 3
+
+    length :: [a] -> Int
+    {L0} length [] = 0
+    {L1} length (x:xs) = 1 + length xs
+
+    duplicar :: [a] -> [a]
+    {D0} duplicar [] = []
+    {D1} duplicar (x:xs) = x : x : duplicar xs
+
+    append :: [a] -> [a] -> [a]
+    {A0} append [] ys = ys
+    {A1} append (x:xs) ys = x : append xs ys
+
+    (++) :: [a] -> [a] -> [a]
+    {++} xs ++ ys = foldr (:) ys xs
+
+    ponerAlFinal :: a -> [a] -> [a]
+    {P0} ponerAlFinal x = foldr (:) (x:[])
+
+    reverse :: [a] -> [a]
+    {R0} reverse = foldl (flip (:)) []
+
+    elem' :: (Eq a) => a -> [a] -> Bool
+    {E0} elem' _ [] = False
+    {E1} elem' e (x:xs)
+    | e == x    = True
+    | otherwise = elem' e xs
+
+    filter :: (a -> Bool) -> [a] -> [a]
+    {F0} filter _ [] = []
+    {F0} filter p (x:xs)
+    | p x       = x : filter p xs
+    | otherwise = filter p xs
+
+    i. ∀ xs::[a] .length (duplicar xs) = 2 * length xs
+
+        Caso Base:
+                    xs = []
+
+                                length (duplicar []) = 2 * length []
+                    por {D0}
+                                length [] = 2 * length []
+                    por {L0}
+                                0 = 2 * 0
+
+                                0 = 0
+
+        Caso Inductivo:
+
+            ∀x :: a. ∀xs :: [a]. (P(xs) ⇒ P(x : xs))
+
+            HI: 
+                length (duplicar xs) = 2 * length xs
+
+                                length (duplicar (x:xs)) = 2 * length (x:xs)
+            por {D1}
+                                length (x : x : duplicar xs) = 2 * length (x:xs)
+            por {L1}
+                                length (x : x : duplicar xs) = 2 * (1 + length xs)
+            por {L1}
+                                1 + length (x : duplicar xs) = 2 * (1 + length xs)
+            por {L1}
+                                2 + length (duplicar xs) = 2 + 2 * length xs
+
+                                2 - 2 + length (duplicar xs) = 2 * length xs
+            
+                                length (duplicar xs) = 2 * length xs 
+            por HI
+                                2 * length xs = 2 * length xs
+
+    ii. ∀ xs::[a] .∀ ys::[a] .length (append xs ys) = length xs + length ys
+
+        Caso Base:
+                    xs = []
+
+                                length (append [] ys) = length [] + length ys
+                    Por {A0}
+                                length  ys = length  + length ys
+                    Por {L0}
+                                length ys = 0 + length ys
+        
+        Caso Inductivo:
+
+                    ∀x :: a. ∀xs :: [a]. (P(xs) ⇒ P(x : xs))
+
+                    HI:
+                        length (append xs ys) = length xs + length ys
+
+                                length (append (x:xs) ys) = length (x:xs) + length ys
+                    Por {A1}
+                                length (x : append xs ys) = length (x:xs) + length ys
+                    Por {L1}
+                                1 + length (append xs ys) = 1 + length (xs) + length ys
+                    
+                                1 - 1 + length (append xs ys) = length (xs) + length ys
+
+                                length (append xs ys) = length (xs) + length ys
+                    Por HI
+                                length xs + length ys = length xs + length ys
+
+
+    iii. ∀ xs::[a] .∀ f::(a->b) .length (map f xs) = length xs
+
+        Caso Base:
+                    xs = []
+
+                                length (map f []) = length []
+                    Por {M0}
+                                length [] = length []
+                    Por {L0}
+                                0 = 0
+                                
+        Caso Inductivo:
+                    
+                    ∀x :: a. ∀xs :: [a]. (P(xs) ⇒ P(x : xs))
+
+                    HI: length (map f xs) = length xs
+
+                                length (map f (x:xs)) = length (x:xs)
+                    Por {M1}
+                                length (f x : map f xs) = length (x:xs)
+                    Por {L1}
+                                1 + length (map f xs) = 1 + length (xs)
+
+                                1 - 1 + length (map f xs) = 1 + length (xs)
+
+                                length (map f xs) = length (xs)
+                    Por HI
+                                length xs = length xs
+
+    iv. ∀ xs::[a] .∀ p::a->Bool .∀ e::a .(elem e (filter p xs) = True) ⇒ (elem e xs = True)
+    (asumiendo Eq a)
+
+        Caso Base:
+                    xs = []
+
+                                (elem e (filter p []) = True) ⇒ (elem e [] = True)
+                    Por {F0}
+                                (elem e [] = True) ⇒ (elem e [] = True)
+
+        Caso Inductivo:
+
+                    HI: 
+                                (elem e (filter p xs) = True) ⇒ (elem e xs = True)
+
+                    ∀x :: a. ∀xs :: [a]. (P(xs) ⇒ P(x : xs))
+
+                                (elem e (filter p (x:xs)) = True) ⇒ (elem e (x:xs) = True)
+
+            Caso donde p x = True
+
+                    Por {F1}
+                                (elem e (x : filter p xs) = True) ⇒ (elem e (x:xs) = True)
+                    
+                Caso donde e != x
+
+                    Por {E1}
+                                (elem e (filter p xs) = True) ⇒ (elem e (xs) = True)
+                    Por HI
+                                (elem e xs = True) ⇒ (elem e xs = True)
+
+                Caso donde e == x
+
+                    Por {E1}
+                                (True = True) ⇒ (True = True)
+            
+            Caso donde p x = False
+                    Por {F1}
+                                (elem e (filter p xs) = True) ⇒ (elem e (x:xs) = True)
+
+                Caso donde e != x
+
+                    Por {E1}
+                                (elem e (filter p xs) = True) ⇒ (elem e xs = True)
+                    Por HI
+                                (elem e xs = True) ⇒ (elem e xs = True)
+
+                Caso donde e == x
+
+                    Por {E1}
+                                (elem e (filter p xs) = True) ⇒ (True = True)
+
+                                (elem e (filter p xs) = True) ⇒ True
+
+                    elem e xs = False
+
+                                False = True ⇒ True
+
+                                False ⇒ True
+
+                                True
+
+    v. ∀ xs::[a] .∀ x::a .length (ponerAlFinal x xs) = 1 + length xs
+
+        foldr :: (a -> b -> b) -> b -> [a] -> b
+        foldr f z [] = z
+        foldr f z (x:xs) = f x (Main.foldr f z xs)
+
+        Caso Base:
+
+                    xs = []
+
+                                length (ponerAlFinal x []) = 1 + length []
+                    Por {P0}
+                                length (foldr (:) (x:[]) []) = 1 + length []
+                    Por def foldr
+                                length (x:[]) = 1 + length []
+                    Por {L1}
+                                1 + length [] = 1 + length []
+                    Por {L0}
+                                1 + 0 = 1 + 0
+
+                                1 = 1
+
+        Caso Inductivo:
+
+                    HI:
+                                length (ponerAlFinal x xs) = 1 + length xs
+
+                    ∀x :: a. ∀xs :: [a]. (P(xs) ⇒ P(x : xs))
+
+                                length (ponerAlFinal x (x:xs)) = 1 + length (x:xs)
+                    Por {P0}
+                                length (foldr (:) (x:[]) (x:xs)) = 1 + length (x:xs)
+                    Por foldr
+                                length ((:) x [] (foldr (:) (x:[]) xs)) = 1 + length (x:xs)
+                    Por {P0}
+                                length ((:) x [] ponerAlFinal x xs) = 1 + length (x:xs)
+                    Por {L1}
+                                1 + length (ponerAlFinal x xs) = 1 + length (x:xs)
+                    Por HI
+                                1 + length (ponerAlFinal x xs) = 1 + length (ponerAlFinal x xs)
+
+    vi. ∀ xs::[a] .∀ x::a .head (reverse (ponerAlFinal x xs)) = x
+
+            foldl :: (b -> a -> b) -> b -> [a] -> b
+            foldl f acc []     = acc
+            foldl f acc (x:xs) = foldl f (f acc x) xs
+
+        Caso Base:
+
+                    xs = []
+
+                            head (reverse (ponerAlFinal x [])) = x
+                    Por {P0}
+                            head (reverse (foldr (:) (x:[]) [] )) = x
+                    Por foldr
+                            head (reverse (x:[]) ) = x
+                    Por {R0}
+                            head (foldl (flip (:)) [] (x:[]) ) = x
+                    Por foldl1
+                            head (foldl (flip (:)) (flip (:) [] x ) []) = x
+                    Por flip1
+                            head (foldl (flip (:)) ((:) x []) []) = x 
+                    Por (:)
+                            head (foldl (flip (:)) (x:[]) []) = x 
+                    Por foldl0
+                            head (x:[]) = x
+                    Por {H1}
+                            x = x
+
+        Caso Inductivo:
+
+                    HI:
+                            head (reverse (ponerAlFinal x xs)) = x
+
+                    ∀y :: a. ∀xs :: [a]. (P(xs) ⇒ P(y : xs))
+
+                            head (reverse (ponerAlFinal x (y:xs))) = x
+
+                            head (reverse (foldr (:) (x:[]) (y:xs))) = x
+
+                            head (reverse ( (:) y (foldr (:) (x:[]) xs) ) ) = x
+
+                            head (reverse ( (:) y ponerAlFinal x xs ) ) = x
+
+                           
+Ejercicio 5 
+
+        zip :: [a] -> [b] -> [(a,b)]
+   {Z0} zip = foldr (\x rec ys -> if null ys then [] else (x, head ys) : rec (tail ys)) (const [])
+
+        zip' :: [a] -> [b] -> [(a,b)]
+  {Z'0} zip' [] ys = []
+  {Z'1} zip' (x:xs) ys = if null ys then [] else (x, head ys):zip' xs (tail ys)
+
+        foldr :: (a -> b -> b) -> b -> [a] -> b
+  {FR0} foldr f z [] = z
+  {FR1} foldr f z (x:xs) = f x (foldr f z xs)
+
+        Demostrar zip = zip´
+
+        Por Principio de Extensionalidad Funcional
+
+                (∀xs ::[a], ∀ys ::[b], zip xs ys = zip´ xs ys)
+
+                Caso Base
+                        
+                        Caso donde xs = []
+
+                                                zip [] ys = zip´ [] ys 
+                                Por {Z0}
+                                                foldr (\x rec ys -> if null ys then [] else (x, head ys) : rec (tail ys)) (const []) [] ys = zip´ [] ys
+                                Por {FR0}             
+                                                const [] = zip´ [] ys
+                                Por {Z'0}
+                                                const [] = []
+                                Por const
+                                                [] = []
+
+                        Caso donde ys = []
+
+                                                zip xs [] = zip´ xs [] 
+                                Por {Z0}
+                                                foldr (\x rec [] -> if null [] then [] else (x, head []) : rec (tail [])) (const []) xs [] = zip' xs []
+                                Por {FR1}
+                                                foldr (\x rec [] -> if null [] then [] else (x, head []) : rec (tail [])) (const []) xs [] = zip' xs []
+
+                                                [] = zip' xs []
+                                Por {Z'1}
+                                                [] = if null [] then [] else (x, head []):zip' xs (tail [])
+                                
+                                                [] = []
+
+                Caso Inductivo
+
+                        Por Extensionalidad Funcional sobre listas
+
+                                (∀x ::a, ∀xs ::[a], ∀ys ::[b], zip (x:xs) (ys) = zip´ (x:xs) (ys))
+
+                                HI
+                                        zip xs ys = zip´ xs ys
+
+                                Si P(xs, ys) entonces P((x:xs), (ys))
+
+                                                zip (x:xs) (ys) = zip´ (x:xs) (ys)
+                                Por {Z0}
+                                                foldr (\x rec ys -> if null ys then [] else (x, head ys) : rec (tail ys)) (const []) (x:xs) (ys) = zip´ (x:xs) (ys)
+                                Por {FR1}
+                                                (x, head ys) : foldr (\x rec ys -> if null ys then [] else (x, head ys) : rec (tail ys)) (const []) (xs) (tail ys) = zip´ (x:xs) (ys)
+
+                                                (x, head ys) : zip (xs) (tail ys) = zip´ (x:xs) (ys)
+
+                                                (x, head ys) : zip (xs) (tail ys) = if null ys then [] else (x, head ys):zip' xs (tail ys)
+
+                                                (x, head ys) : zip (xs) (tail ys) = (x, head ys) : zip' xs (tail ys)
+                
+
+Ejercicio 6
+
+             nub :: Eq a => [a] -> [a]
+        {N0} nub [] = []
+        {N1} nub (x:xs) = x : nub (filter (\y -> x /= y) xs)
+
+             union :: Eq a => [a] -> [a] -> [a]
+        {U0} union xs ys = nub (xs++ys)
+
+             intersect :: Eq a => [a] -> [a] -> [a]
+        {I0} intersect xs ys = filter (\e -> elem e ys) xs
+
+
+        I. Eq a => ∀ xs::[a] .∀ e::a .∀ p::a -> Bool .elem e xs && p e = elem e (filter p xs)
+
+        II. Eq a => ∀ xs::[a] .∀ e::a .elem e xs = elem e (nub xs)
+
+                Caso Base
+
+                        Caso donde xs = []
+
+                                        elem e [] = elem e (nub [])
+                                {N0}
+                                        elem e [] = elem e []
+
+                                        True
+                
+                Caso Inductivo
+                        
+                        HI 
+                                elem e xs = elem e (nub xs)
+
+                        QPQ
+                                Eq a => ∀ xs::a, ∀ xs::[a] .∀ e::a .elem e (x:xs) = elem e (nub (x:xs))
+
+                                elem e (x:xs) = elem e (nub (x:xs))
+
+                        
+                                                elem e (x:xs) = elem e (nub (x:xs))
+                                        {N1}
+                                                elem e (x:xs) = elem e (x : nub (filter (\y -> x /= y) xs))
+                                        {E1}
+                                                e == x || elem e (xs) = e == x || elem e (nub (filter (\y -> x /= y) xs))
+
+                                                Caso donde e != x
+
+                                                                        False || elem e (xs) = False || elem e (nub (filter (\y -> x /= y) xs))
+                                                        False || _ = _
+                                                                        elem e (xs) = elem e (nub (filter (\y -> x /= y) xs))
+                                                        Por HI
+                                                                        elem e (nub xs) = elem e (nub (filter (\y -> x /= y) xs))
+                                                        {N1}
+                                                                        elem e (nub xs) = elem e (nub xs)
+
+                                                                        True
+                                                
+                                                Caso donde e = x
+
+                                                                        True || elem e (xs) = True || elem e (nub (filter (\y -> x /= y) xs))
+
+                                                                        True = True
+
+                                                                        True
+
+        III. Eq a => ∀ xs::[a] .∀ ys::[a] .∀ e::a .elem e (union xs ys) = (elem e xs) || (elem e ys)
+
+                Caso Base
+
+                                Caso donde xs = [] e ys = []
+                        
+                                elem e (union [] []) = (elem e []) || (elem e [])
+                        {E0}
+                                elem e (union [] []) = False || False
+                        {U0}
+                                elem e (nub([]++[])) = False
+
+                                elem e (nub([])) = False
+                        {E0}
+                                elem e [] = False
+                        
+                                False = False
+
+                        True
+
+                Caso Inductivo
+
+                        Eq a => ∀x::a .∀ xs::[a] .∀ ys::[a] .∀ e::a .elem e (union (x:xs) ys) = (elem e (x:xs)) || (elem e ys)
+
+                        HI = elem e (union xs ys) = (elem e xs) || (elem e ys)
+
+                                elem e (union (x:xs) ys) = (elem e (x:xs)) || (elem e ys)
+
+                                elem e (union (x:xs) ys) = (e = x || elem e xs) || (elem e ys)
+
+                                Caso donde e=x
+
+                                                elem e (union (x:xs) ys) = (True || elem e xs) || (elem e ys)
+
+                                                elem e (union (x:xs) ys) = True || (elem e ys)
+
+                                                elem e (union (x:xs) ys) = True
+
+                                                elem e (nub ((x:xs)++ys)) = True
+                                                
+                                                elem e (nub ((x:xs:ys))) = True
+
+                                                elem e (x : nub ((xs:ys))) = True
+
+                                                e = x || elem e (nub ((x:xs:ys))) = True
+
+                                                True = True
+
+                                                True
+
+                                Caso donde e != x 
+
+                                                elem e (union (x:xs) ys) = (False || elem e xs) || (elem e ys)
+
+                                                elem e (union (x:xs) ys) = elem e xs || (elem e ys)
+
+                                                elem e (union xs ys) = elem e xs || (elem e ys)
+                                        Por HI
+                                                True
+
+                La propiedad es Verdadera
+
+        IV. Eq a => ∀ xs::[a] .∀ ys::[a] .∀ e::a .elem e (intersect xs ys) = (elem e xs) && (elem e ys)
+
+                Caso Base
+
+                        xs = []
+
+                        elem e (intersect [] ys) = (elem e []) && (elem e ys)
+                {E0}
+                        elem e (intersect [] ys) = False && (elem e ys)
+                False && _ = False
+                        elem e (intersect [] ys) = False
+                Siempre ∅ ∩ ys = [∅]
+                        elem e [] = False
+                {E0}
+                        False = False
+
+                        True
+
+                Caso Inductivo
+
+                        HI: elem e (intersect xs ys) = (elem e xs) && (elem e ys)
+
+                        elem e (intersect (x:xs) ys) = (elem e (x:xs)) && (elem e ys)
+
+                        elem e (intersect (x:xs) ys) = (e = x || (elem e xs)) && (elem e ys)
+
+                        elem e (filter (\e -> elem e ys) (x:xs)) = (e = x || (elem e xs)) && (elem e ys)
+
+                        Caso donde x pertenece a xs y a ys
+
+                                e == x || elem e (filter (\e -> elem e ys) xs) = (e == x || (elem e xs)) && (elem e ys)
+
+                                Caso donde e = x
+
+                                       True || elem e (filter (\e -> elem e ys) xs) = (True || (elem e xs)) && (elem e ys)
+
+                                       True = True
+
+                                       True
+
+                                Caso donde e != x
+
+                                        False || elem e (filter (\e -> elem e ys) xs) = (False || (elem e xs)) && (elem e ys)
+
+                                        elem e (filter (\e -> elem e ys) xs) = elem e xs && (elem e ys)
+
+                                        elem e intersect xs ys = (elem e xs) && (elem e ys)
+                                Por HI
+                                        True
+
+                        Caso donde x solo pertenece a xs
+
+                                elem e (filter (\e -> elem e ys) xs) = (e = x || (elem e xs)) && (elem e ys)
+
+                                elem e intersect xs ys = (e = x || (elem e xs)) && (elem e ys)
+
+                                Caso donde e = x 
+
+                                                elem e intersect xs ys = (True || (elem e xs)) && (elem e ys)
+                                        
+                                                elem e intersect xs ys = True && (elem e ys)
+                                        x ∉ {xs ∩ ys}
+                                                False = True && (elem e ys)
+                                        pero e = x y x ∉ ys
+                                                False = True && False
+
+                                                False = False
+
+                                                True
+
+                                Caso donde e != x
+
+                                                elem e intersect xs ys = (False || (elem e xs)) && (elem e ys)
+
+                                                elem e intersect xs ys = (elem e xs) && (elem e ys)
+                                        Por HI
+                                                True
+                        
+                La propiedad es Verdadera
+
+
+        V. Eq a => ∀ xs::[a] .∀ ys::[a] .length (union xs ys) = length xs + length ys
+
+                Caso Base
+
+                        xs = []
+                        
+                                length (union [] ys) = length [] + length ys
+                        {L0}
+                                length (union [] ys) = 0 + length ys
+
+                                length (union [] ys) = length ys
+                        {U0}
+                                length (nub ([]++ys)) = length ys
+                                
+                                length (nub (ys)) = length ys
+
+                                Supongamos que ys no tenga repetidos
+
+                                        length ys = length ys
+
+                                        True
+
+                                Supongamos que ys tiene repetidos, llamase ws al resultado de sacarle los repetidos a ys
+
+                                        ws = nub (ys)
+
+                                        length ws = length (nub ys) < length ys
+
+                                        Ahora reemplazamos
+
+                                                length ws = length ys
+
+                                                Pero length ws < length ys
+
+                                                False
+
+        VI. Eq a => ∀ xs::[a] .∀ ys::[a] .length (union xs ys) ≤ length xs + length ys
+
+                Caso Base
+
+                        xs = []
+
+                                length (union [] ys) ≤ length [] + length ys
+                        {L0}
+                                length (union [] ys) ≤ 0 + length ys
+
+                                length (nub ([]++ys)) ≤ length ys
+
+                                length (nub (ys)) ≤ length ys
+
+                                Si ys no tiene repetidos 
+                        
+                                        length ys = length (nub ys)
+
+                                        True
+
+                                Si ys tiene repetidos
+
+                                        length ys < length (nub ys)
+
+                                        True
+
+                Caso Inductivo
+
+                        Eq a => ∀ x::a .∀ xs::[a] .∀ ys::[a] .length (union xs ys) ≤ length xs + length ys
+
+                        HI: length (union xs ys) ≤ length xs + length ys
+
+                        QPQ
+
+                                length (union (x:xs) ys) ≤ length (x:xs) + length ys
+
+                                length (nub ((x:xs)+ys)) ≤ length (x:xs) + length ys
+
+                                length (nub ((x:xs)+ys)) ≤ 1 + length (xs) + length ys
+
+                                Si suponemos que x no esta en ys
+
+                                        length (x : nub (xs++ys)) ≤ 1 + length (xs) + length ys
+
+                                        length (x : nub (xs++ys)) ≤ 1 + length (xs) + length ys
+
+                                        1 + length (nub (xs++ys)) ≤ 1 + length (xs) + length ys
+                
+                                        length (nub (xs++ys)) ≤ length (xs) + length ys
+                                Por HI
+                                        length (union xs ys) ≤ length (xs) + length ys
+
+Ejercicio 9
+
+        foldAB ::  (b -> a -> b -> b) -> b -> AB a -> b
+ {FAB0} foldAB f z Nil = z
+ {FAB1} foldAB f z (Bin i r d) = f (foldAB f z i) r (foldAB f z d)
+
+        cantNodos :: AB a -> Int
+        cantNodos Nil = 0
+   {C0} cantNodos _ =  1 + (cantNodos i) + (cantNodos d)
+
+        altura :: AB a -> Int
+   {A0} altura Nil = 0
+   {A1} altura _ = 1 + max (altura izq) (altura der)
+
+        ∀ x::AB a .altura x ≤ cantNodos x
+
+        Caso Base P(Nil)
+        Caso Inductivo ∀i::AB a. ∀r::a. ∀d::AB a.
+
+                       HI             T.I.
+                ((P(i) ∧ P(d)) ⇒ P(Bin i r d))
+        
+        Entonces ∀x ::AB a.P(x)
+
+        Caso Base
+
+                x = Nil
+
+                        altura Nil ≤ cantNodos Nil
+                {A0}
+                        0 ≤ cantNodos Nil
+                {C0}        
+                        0 ≤ foldAB (\iz _ der -> 1 + iz + der) 0 Nil 
+                {FAB0}
+                        0 ≤ 0 
+
+                        True
+
+        Caso Inductivo
+
+                ∀i::AB a. ∀r::a. ∀d::AB a.
+
+                HI 
+                        (altura i ≤ cantNodos i) ∧ (altura d ≤ cantNodos d)
+
+                QPQ
+
+                        altura (Bin i r d) ≤ cantNodos (Bin i r d)
+
+                        1 + max (altura i) (altura d) ≤ 1 + (cantNodos i) + (cantNodos d)
+
+                        max (altura i) (altura d) ≤ (cantNodos i) + (cantNodos d)
+
+                        Si altura i es max
+
+                                altura i ≤ (cantNodos i) + (cantNodos d)
+
+                                Por HI
+                                        altura i ≤ cantNodos i
+
+                                True
+
+                        Si altura d es max
+
+                                altura d ≤ (cantNodos i) + (cantNodos d)
+
+                                Por HI
+                                        altura d ≤ cantNodos d
+
+                                True
+
+Ejercicio 11
+
+        inorder :: AB a -> [a]
+  {I0}  inorder = foldAB [] (\ri x rd -> ri ++ (x:rd))
+
+        elemAB :: Eq a => a -> AB a -> Bool
+  {A0}  elemAB e = foldAB False (\ri x rd -> (e == x) || ri || rd)
+
+        elem :: Eq a => [a] -> Bool
+  {E0}  elem e = foldr (\x rec -> (e == x) || rec) False
+
+        foldAB ::  (b -> a -> b -> b) -> b -> AB a -> b
+ {FAB0} foldAB f z Nil = z
+ {FAB1} foldAB f z (Bin i r d) = f (foldAB f z i) r (foldAB f z d)
+
+        Eq a => ∀ e::a .elemAB e = elem e . inorder
+
+        Caso Base
+
+                P(Nil)
+
+                                                elemAB e = elem e . inorder
+                        Por ext funcional
+                                                elemAB e Nil = elem e . inorder Nil
+                        Por (.)
+                                                elemAB e Nil = elem e (inorder Nil)
+                        Por {A0}
+                                                False = elem e (inorder Nil)
+                        Por {I0}
+                                                False = elem e []
+                        Por {E0}
+                                                False = False
+
+                                                True
+
+        Caso Inductivo
+
+                ∀ i::AB a. ∀ r::a. ∀ d::AB a.
+
+                HI
+                        P(i) ∧ P(d)
+
+                                                elemAB e = elem e . inorder
+                        Por ext funcional
+                                                (elemAB e i = elem e (inorder i)) ∧ (elemAB e d = elem e (inorder d))
+                        
+                QVQ
+
+                        P(Bin i r d)
+                                                elemAB e (bin i r d) = elem e (inorder (Bin i r d))        
+                        Por {A0}
+                                                foldAB False (\i r d -> (e == r) || i || d) (bin i r d) = elem e (inorder (Bin i r d))
+
+                                                (e == r) || foldAB False (\i r d -> (e == r) || i || r) i || foldAB False (\i r d -> (e == r) || i || d) d = elem e (inorder (Bin i r d))
+
+                                Caso donde r == e
+
+                                                True || foldAB False (\i r d -> (e == r) || i || r) i || foldAB False (\i r d -> (e == r) || i || d) d = elem e (inorder (Bin i r d))
+
+                                                True = elem e (foldAB [] (\i r d -> i ++ (r:d)) (Bin i r d))
+
+                                                True = elem e (foldAB [] (\i r d -> i ++ (r:d)) (Bin i r d))
+
+                                                True = elem e (inorder i ++ (r : inorder d))
+
+                                        Lema
+
+                                                elem e xs++ys = elem e xs || elem e ys
+
+                                                Caso Base 
+
+                                                        P([])
+
+                                                        elem e []++ys = elem e [] || elem e ys
+
+                                                        elem e ys = False || elem e ys
+
+                                                        elem e ys = elem e ys
+
+                                                        True
+
+                                                Caso Inductivo
+
+                                                        (P(xs) => P(x:xs))
+
+                                                        HI
+                                                                elem e xs++ys = elem e xs || elem e ys
+
+                                                        QPQ
+
+                                                                                elem e (x:xs)++ys = elem e (x:xs) || elem e ys
+
+                                                                                elem e (x:xs)++ys = (e == r || elem e xs) || elem e ys
+
+                                                                Caso e==r
+
+                                                                                elem e (x:xs)++ys = (True || elem e xs) || elem e ys
+
+                                                                                elem e (x:xs)++ys = True || elem e ys
+                                                                                
+                                                                                elem e (x:xs)++ys = True
+
+                                                                                elem e (x:(xs++ys)) = True
+
+                                                                                e == r || elem e (xs++ys) = True
+
+                                                                                True || elem e (xs++ys) = True
+
+                                                                                True = True
+
+                                                                                True
+
+                                                                Caso e!=r
+
+                                                                                elem e (x:xs)++ys = (False || elem e xs) || elem e ys
+
+                                                                                elem e (x:xs)++ys = elem e xs || elem e ys
+                                                                                
+                                                                                elem e (x:xs)++ys = elem e xs++ys
+
+                                                                                elem e (x:(xs++ys)) = elem e xs++ys
+
+                                                                                e == r || elem e (xs++ys) = elem e xs++ys
+
+                                                                                False || elem e (xs++ys) = elem e xs++ys
+
+                                                                                elem e xs++ys = elem e xs++ys
+
+                                                                                True
+
+                                                True = elem e inorder i || elem e (r : inorder d)
+
+                                                True = elem e (inorder i) || (e == r || elem e(inorder d))
+
+                                                True = elem e (inorder i) || (True || elem e(inorder d))
+
+                                                True = elem e (inorder i) || True
+
+                                                True = True
+
+                                                True
+
+                                Caso r!=e
+
+                                         False || foldAB False (\i r d -> (e == r) || i || r) i || foldAB False (\i r d -> (e == r) || i || d) d = elem e (inorder (Bin i r d))  
+
+                                         elemAB i || elemAB d = elem e (inorder (Bin i r d))
+                                         
+                                         elemAB i || elemAB d = elem e (foldAB [] (\i r d -> i ++ (r:d)) (Bin i r d))
+
+                                         elemAB i || elemAB d = elem e (inorder i ++ (r : inorder d))
+
+                                         elemAB i || elemAB d = elem e (inorder i) || elem  e (r : inorder d)
+
+                                         elemAB i || elemAB d = elem e (inorder i) || (e== r || elem  e (inorder d))
+
+                                         elemAB i || elemAB d = elem e (inorder i) || (False || elem  e (inorder d))
+
+                                         elemAB i || elemAB d = elem e (inorder i) || elem e (inorder d)
+
+                                        Caso donde e esta en el subarbol i
+
+                                                True || elemAB d = True || elem e (inorder d)
+
+                                                True = True
+
+                                                True
+
+                                        Caso donde e esta en el subarbol d
+
+                                                elemAB i || True = elem e (inorder i) || True
+
+                                                True = True
+
+                                                True
+
+                                        
+
+
+
+        (++) :: [a] -> [a] -> [a]
+        [] ++ ys = ys
+        (x:xs) ++ ys = x : (xs ++ ys)
+
+        foldr :: (a -> b -> b) -> b -> [a] -> b
+        foldr f z [] = z
+        foldr f z (x:xs) = f x (Main.foldr f z xs)
+
+        foldAB ::  b -> (b -> a -> b -> b) -> AB a -> b
+ {FAB0} foldAB z f Nil = z
+ {FAB1} foldAB z f (Bin i r d) = f (foldAB z f i) r (foldAB z f d)
+
+
+Ejercicio 12
+
+        data Polinomio a = X
+                        | Cte a
+                        | Suma (Polinomio a) (Polinomio a)
+                        | Prod (Polinomio a) (Polinomio a)
+
+        derivado :: Num a => Polinomio a -> Polinomio a
+        derivado poli = case poli of
+                X -> Cte 1
+                Cte _ -> Cte 0
+                Suma p q -> Suma (derivado p) (derivado q)
+                Prod p q -> Suma (Prod (derivado p) q) (Prod (derivado q) p)
+
+        sinConstantesNegativas :: Num a => Polinomio a -> Polinomio a
+        sinConstantesNegativas = foldPoli True (>=0) (&&) (&&)
+
+        esRaiz :: Num a => a -> Polinomio a -> Bool
+        esRaiz n p = evaluar n p == 0
+
+        evaluar :: Num a => a -> Polinomio a -> a
+        evaluar n poli = case poli of
+                        X -> n
+                        Cte k -> k
+                        Suma p q -> evaluar n p + evaluar n q
+                        Prod p q -> evaluar n p * evaluar n q
+
+
+        evaluar :: Num a => a -> Polinomio a -> a
+        evaluar n X = n
+        evaluar _ (Cte k) = k
+        evaluar n (Suma p q) = evaluar n p + evaluar n q
+        evaluar n (Prod p q) = evaluar n p * evaluar n q
+
+        I. Num a => ∀ p::Polinomio a .∀ q::Polinomio a .∀ r::a .esRaiz r p ⇒ esRaiz r (Prod p q)
+
+                esRaiz r p ⇒ esRaiz r (Prod p q)
+
+                evaluar r p == 0 ⇒ evaluar r (Prod p q) == 0
+
+                Casos Base
+
+                        p = Cte k
+
+                                        esRaiz r Cte k ⇒ esRaiz r (Prod Cte k q)
+                                {ER0}
+                                        evaluar r Cte k == 0 ⇒ esRaiz r (Prod Cte k q)
+                                {EV1}
+                                        k == 0 ⇒ esRaiz r (Prod Cte k q)
+
+                                        Caso donde k != 0
+
+                                                False ⇒ esRaiz r (Prod Cte k q)
+
+                                                True
+
+                                        Caso donde k = 0
+
+                                                True ⇒ esRaiz r (Prod 0 q)
+
+                                                esRaiz r (Prod 0 q)
+
+                                                evaluar r (Prod 0 q) == 0
+
+                                                evaluar r 0 * evaluar r q == 0
+
+                                                0 * evaluar r q == 0
+
+                                                0 == 0
+
+                                                True
+
+                        p = X
+
+                                        esRaiz r X ⇒ esRaiz r (Prod X q)  
+                                {ER0}
+                                        evaluar r X == 0 ⇒ esRaiz r (Prod Cte k q)
+                                {EV0}
+                                        r == 0 ⇒ esRaiz r (Prod Cte k q)
+
+                                        Caso donde r != 0
+
+                                                False ⇒ esRaiz r (Prod Cte k q)
+
+                                                True
+                                        
+                                        caso donde r = 0 
+
+                                                True ⇒ esRaiz 0 (Prod Cte k q)
+
+                                                esRaiz 0 (Prod X q) == 0
+
+                                                evaluar 0 (Prod X q) == 0
+
+                                                evaluar 0 X * evaluar 0 q == 0
+
+                                                0 * evaluar 0 q == 0
+
+                                                0 == 0
+
+                                                True
+
+                Caso Inductivo
+
+                        ∀p ::Poli a.∀q ::Poli a.
+
+                        HI
+
+                                esRaiz r p ⇒ esRaiz r (Prod p q) ∧ esRaiz r q ⇒ esRaiz r (Prod q p)
+
+                        QPQ
+
+                                esRaiz r (Suma p q) ⇒ esRaiz r (Prod (Suma p q) q)
+
+                                evaluar r (Suma p q) == 0 ⇒ esRaiz r (Prod (Suma p q) q)
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ esRaiz r (Prod (Suma p q) q)
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ evaluar r (Prod (Suma p q) q) == 0
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ (evaluar r (Suma p q) * evaluar r q) == 0
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ ((evaluar r p + evaluar r q) * evaluar r q) == 0
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ ((evaluar r p * evaluar r q) + (evaluar r q * evaluar r q)) == 0
+
+                                (evaluar r p + evaluar r q) == 0 ⇒ ((evaluar r (Prod p q)) + (evaluar r Prod q q)) == 0
+
+                                (evaluar r Suma p q) == 0 ⇒ ((evaluar r (Prod p q)) + (evaluar r Prod q q)) == 0
+
+                                esRaiz r (Suma p q) ⇒ evaluar r (Suma (Prod p q) (Prod q q)) == 0
+
+                                esRaiz r (Suma p q) ⇒ esRaiz r (Suma (Prod p q) (Prod q q))
+
+        II. Num a => ∀ p::Polinomio a .∀ k::a .∀ e::a .
+                evaluar e (derivado (Prod (Cte k) p)) = evaluar e (Prod (Cte k) (derivado p))
+
+
+
+        III. Num a => ∀p::Polinomio a .sinConstantesNegativas p ⇒sinConstantesNegativas (derivado p)
+
+
