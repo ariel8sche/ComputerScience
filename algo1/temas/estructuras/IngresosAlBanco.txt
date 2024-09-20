@@ -1,0 +1,51 @@
+10.
+
+a.
+
+Modulo IngresosAlBancoImpl implementa IngresosAlBanco
+
+    var totales: Vector<int>
+    var dia: int
+    dia := 0
+    proc nuevoIngresos(): IngresosAlBancoImpl {
+        // Complejidad O(1)
+
+        res.totales := vectorVacio() // O(1)
+    }
+
+    proc registrarNuevoDia(ingresosB: IngresosAlBancoImpl, cant: int) {
+        // Complejidad O(f(n) + cp(cant))
+
+        ingresosB.dia := ingresosB.dia + 1 // O(1)
+        if (ingresosB.dia == 1) { // O(1) 
+            ingresosB.totales.agregarAtras(cant) // O(f(n) + cp(cant))    
+        } else {
+            ingresosB.totales.agregarAtras(ingresosB.totales.obtener(ingresosB.dia - 1) + cant) // O(f(n) + cp(cant))
+        }
+    }
+
+    proc cantDias(ingresosB: IngresosAlBancoImpl): int {
+        // Complejidad O(1)
+
+        var dias: int
+        dias := ingresosB.dia
+        return dias
+    }
+
+    proc cantPersonas(ingresosB: IngresosAlBancoImpl, desde: int, hasta: int) {
+        // Complejidad O(1)
+
+        var personas: int
+        personas := ingresosB.totales.obtener(hasta) - ingresosB.totales.obtener(desde) // O(1)
+        return personas
+    }
+
+b.
+
+    El tamaño de la estructura crece O(2^n).
+
+c.
+
+    Cuando queres agregar un elemento en el array y ese array esta completo, se crea uno mas grande,
+    entonces podemos decir que cuando este completo se cree un array de 1 mas de tamaño y eso seria O(n)
+    y sigue cumpliendo cantPersonas en O(1).

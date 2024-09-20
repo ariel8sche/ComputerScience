@@ -1,0 +1,19 @@
+localidad: String
+vehiculo: String
+camara: int
+monto: int
+multa: tupla<vehiculo, camara, monto>
+
+Modulo MULT.AR 
+    var localidades: DiccionarioDigital<localidad, tupla<vehiculos: ConjuntoLog<vehiculo>, camaras: ConjuntoLog<int> >>
+    var vehiculos: DiccionarioDigital<vehiculo, localidad>
+
+    proc estadoVehiculo(s: sistema, v: vehiculo):tupla<localidad, multas:ConjuntoLog<multa>> {
+        return s.vehiculos.obtener(v) //O(1)
+    }
+
+    proc multar(s: sistema, c: camara, v: vehiculo, m: monto) {
+        s.vehiculos.obtener(v)[1].agregarRapido(tupla<v, c, m>) //O(log )
+    }
+
+No se puede hacer

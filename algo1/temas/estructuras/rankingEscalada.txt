@@ -1,0 +1,12 @@
+Arreglo de tuplas(nombre, puntaje, intentos) de tamaño n
+Se quiere el top k del Arreglo
+Si tienen el mismi puntaje se desempata por quien tenga la minima cantidad de intentos
+Se quiere complejidad O(n + k log n)
+
+    proc tablaKPosiciones(a: array<tupla<nombre, puntaje, intentos>>, k: int): array<tupla<nombre, puntaje, intentos>> {
+        var res: array<tupla(k)<nombre, puntaje, intentos>>
+        HeapSort(a)             // O(n log n)
+        for i=0 to k-1          // O(k)
+            res[i] := a[i]
+        return res
+    } Complejidad Total es O(n log n + k)

@@ -1,0 +1,93 @@
+Ejercicio 2
+
+    Concatenar 2 secuencias(s´ s´´)
+    s´ es secuencia ordenada
+    s´´ secuencia no ordenada
+
+    Hago merge sort sobre s´´ O(n log(n))
+    Como ya tengo las dos listas ordenadas
+    Hago merge entre las dos listas O(n)
+
+    Total de complejidad O(n log (n))
+
+    proc concatenar(s´:array, s´´:array): array {
+        var res: array
+        s´´ := MergeSort(s´´) O(n log n)
+        res := Merge(s´, s´´) O(n)
+        return res
+    }
+
+    Totaliddad de la complejidad O(n log n)
+
+Ejercicio 3
+
+    Tengo un array s
+    Quiero encontrar los k elementos mas chicos del arreglo s
+    Ordeno con un merge sort el arreglo s 
+    Luego itero k veces y voy tomando i desde 0 hasta k - 1 y los pongo en un nuevo arreglo 
+
+    proc kMasChicos(s: array, k:int): array {
+        var res: array
+        s := MergeSort(s) O(n log n)
+        for i=0 ....... k-1 O(k)
+            res[i] := s[i]
+        return res
+    }
+
+    Total de la complejidad O(k + n log n)
+
+Ejercicio 9
+
+    Generos: 1=M 0=F
+    Alumnos(Nombre:string, Genero:int, nota:int)
+    Tenemos un arreglo de alumnos
+    Ordenar de forma que las mujeres aparezcan primero con sus notas en forma creciente
+
+    Como generos es un numero acotado 2
+    Y nota tmb es acotado 10
+
+    Hago Bucket sort de generos eso seria O(n) pq la cantidad de buckets es acotada a 2 //O(n)
+    Luego ordeno cada bucket con otro bucket sort de notas que tmb es acotado a 10      //O(n)
+    Y luego concateno los buckets de notas                                              //O(n)
+    Y luego concateno los buckets de generos                                            //O(n)
+
+    proc ordenarPlanilla(p:Planilla){
+
+    }
+
+Ejercicio 13
+
+    Un arreglo de largo n de T elementos, T es una tupla de <c1:nat y c2:String[l]>, el string es de largo l
+    Comparar naturales es O(1) y comparar string es O(l)
+    Ordenar por la segunda componente y luego por la primera componente
+    Se quiere una complejidad de O(nl + n log n)
+
+    Para ordener la segunda componente voy a usar Radix Sort O(l(n + k))
+    l seria la cantidad de digitos del string, mientras que n seria la cantidad de elementos del arreglo y k es el largo del alfabeto, 
+    string usa caracteres ascii, k = 256, por lo tanto esta acotado
+    Entonces la complejidad para ordenar la segunda componente seria O(ln)
+
+    Ahora tengo que ordenar por la primer componente, para ello utilizo Merge Sort
+    Como merge sort es estable no me preocupo de mantener el primer ordenamiento
+    Y eso seria complejidad O(n log n)
+
+    Sumando todo me quedaria O(ln + n log n) en peor caso
+
+Ejercicio 14
+
+    Se tiene un arreglo A de n numeros naturales
+    Un entero k
+    Se quiere un arreglo B de tamaño n*k que contenga todos los elementos de A multiplicado por cada numero entre 1 y k
+
+    proc ordenarMultiplos(in A:array<nat>, in k:nat): array<nat> {
+        var n: int
+        n := A.length
+        var B: array(k)<array(n)<nat>> // O(k) 
+        var res: array(n*k)<nat>
+        MergeSort(A)             // O(n log n)
+        for i=1 ....... k        // O(k * n)
+            for j=0 ...... n-1
+                B[i][j] := a[j] * k
+        res := Merge(B)          // O(log k)
+        return res
+    }

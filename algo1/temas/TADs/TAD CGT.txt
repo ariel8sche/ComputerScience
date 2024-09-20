@@ -1,0 +1,52 @@
+TAD Persona es tupla<Nombre, seq<Ventanilla> >
+TAD Ventanilla es NAT
+
+TAD CGT {
+
+    obs numeros: dict< ventanilla, dict< numero: NAT, persona>>
+    obs filasVentanillas dict < ventanilla, seq<Personas> >
+    obs registroAtendidos dict < ventanilla, atendidos: NAT >
+
+    proc abrirCGT(in ventanillas: conj<ventanilla>): CGT {
+        asegura res.numeros == {}
+        asegura res.historial == {}
+        asegura (forall v : ventanilla :: v in CGT.filasVentanillas ==> v in res.filasVentanillas && res.filasVentanillas[v] == [])
+    }
+ 
+    proc sacarNumero(inout CGT: CGT, in p: Persona, in v: Ventanilla): NAT {
+
+        requiere p[1] > 0
+        requiere v in CGT.ventanillas
+        requiere v in p[1]
+        requiere (forall : ven: Ventanilla ::  ven in CGT.filasVentanillas ==> !(p in filasVentanillas[ven]) )
+
+        asegura CGT.numeros[ventanilla][res] == persona
+        asegura (forall : ven: Ventanilla ::  (ven != v && ven in CGT.filasVentanillas) ==> !(p in CGT.filasVentanillas[ven]) )
+        asegura CGT.historial == old(CGT).historial
+
+    }
+
+    proc atiendeVentanilla(inout CGT: CGT, in v: Ventanilla) {
+
+        requiere v in CGT.filasVentanillas
+        requiere CGT.filasVentanillas[v] > 0
+
+        asegura CGT.filasVentanillas[v] == tail(old(CGT).filasVentanillas[v])
+        asegura !(v in head(old(CGT).filasVentanillas[v])[1])
+        asegura CGT.registroAtendidos = setKey(old(CGT).registroAtendidos, v, old(CGT).registroAtendidos[v]+1) 
+        asegura CGT.historial == old(CGT).historial
+
+    }
+
+    proc devolverFila(in CGT: CGT, in v: ventanilla): seq<ventanilla> {
+
+        asegura res == CGT.filasVentanillas[v]
+
+    }
+
+    proc mejorVentanilla(in CGT: CGT): NAT {
+        asegura (forall v: Ventanilla :: v in CGT.registroAtendidos ==> CGT.registroAtendidos[v] <= CGT.registroAtendidos[res] )
+    
+    }
+
+}

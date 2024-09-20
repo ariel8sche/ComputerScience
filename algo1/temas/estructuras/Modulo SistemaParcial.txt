@@ -1,0 +1,3 @@
+Modulo Sistema
+
+    var d DiccionarioDigital 

@@ -1,0 +1,19 @@
+participante: tupla<nombre:string, tiempo:int>
+
+proc Primeros(p:int, tandas: array<array<participante>>): array<participante> {
+    var res: array<participante>[p]
+    var aux: array<participantes>
+    HeapifyMinHeap(tandas)                   // O(t)
+    for i=0 to p-1                           // O(p)
+        aux = tandas.desencolar()            // O(log t)
+        res[i] = aux[0]
+
+        tandas.encolar(aux)                  // O(log t)
+}
+
+proc Primeros(p:int, tandas: array<array<participante>>): array<participante> {
+    var res: array<tuplas<nombre,tiempo,indice>>[t]
+    for i=0 yo t-1                        // O(t)
+        res[i] = (tandas[i][0][0],tandas[i][0][1] ,0)
+
+}

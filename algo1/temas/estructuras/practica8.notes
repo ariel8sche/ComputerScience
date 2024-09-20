@@ -1,0 +1,9 @@
+Ejercicio 4
+
+    def crear(filas, columnas){ 
+        matriz = []
+        for i in columnas {
+            matriz.append
+        }
+    }
+    

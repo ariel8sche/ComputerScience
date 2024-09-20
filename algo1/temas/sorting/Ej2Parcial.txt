@@ -1,0 +1,6 @@
+proc masPrioritarios(Q: array(colaPrior(n))): array(int) {
+    var res: array()
+    var elem: int
+    heapifyminheap(Q)
+    s
+}

@@ -1,0 +1,59 @@
+TAD Persona: Struct<Ciudad: String, Vacunado: Bool>
+
+TAD Sistema de Vacunacion (SV) {
+    obs: registroInscripciones: dict<DNI: NAT, Persona>
+    obs: Ciudades: dict<Ciudad: String, Struct<dosisDisponibles: NAT, dosisAplicadas: NAT, fila: conj<Persona>>>
+
+    proc ciudadMasVacunada(in Ciudades): String {
+        asegura: forall ciudad : String :: ciudad in Ciudades ==>L Ciudades[ciudad].dosisAplicadas <= Ciudades[res].dosisAplicadas
+    }
+
+    proc ciudadConMasDosisDisponibles(in Ciudades): String {
+        asegura: forall ciudad : String :: ciudad in Ciudades ==>L Ciudades[ciudad].dosisDisponibles <= Ciudades[res].dosisDisponibles
+    }
+
+    proc recibirDosis(inout Ciudades, in ciudad: String, in dosis: NAT): {
+        asegura: Ciuadades = setKey(old(Ciudades), ciudad, <Ciudades[Persona.Ciuadad].dosisDisponibles + dosis, Ciudades[Persona.Ciuadad].dosisAplicadas, Ciudades[Persona.Ciudad].fila>)
+    }
+
+    proc inscribirse(inout registroInscripciones, in DNI: NAT, in Persona): {
+        requiere: !(DNI in registroInscripciones)
+        requiere: Persona.Vacunado == False
+        requiere: !(Persona in Ciudades[ciudad].fila) 
+
+        asegura: registroInscripciones = setKey(old(registroInscripciones), DNI, Persona)
+        asegura: Ciudades[ciudad].dosisAplicadas = old(Ciudades)[ciudad].dosisAplicadas
+        asegura: Ciudades[ciudad].dosisDisponibles = old(Ciudades)[ciudad].dosisDisponibles
+        asegura: Ciudades[ciudad].fila = old(Ciudades)[ciudad].fila + [Persona] 
+        asegura: forall otrasCiudades: String :: (otrasCiudades in Ciudades && otrasCiudades != ciudad) ==>  Ciudades[otrasCiudades].fila == old(Ciudades)[otrasCiudades].fila
+    }
+
+    proc vacunar(inout Ciuadades, in registroInscripciones, in ciudad, in p1,p2,p3,p4,p5: tupla(DNI: NAT, Persona)) {
+        
+        requiere: p1[1] in Ciudades[ciudad].fila
+        requiere: p2[1] in Ciudades[ciudad].fila
+        requiere: p3[1] in Ciudades[ciudad].fila
+        requiere: p4[1] in Ciudades[ciudad].fila
+        requiere: p5[1] in Ciudades[ciudad].fila
+        requiere: p1[0] in registroInscripciones
+        requiere: p2[0] in registroInscripciones
+        requiere: p3[0] in registroInscripciones
+        requiere: p4[0] in registroInscripciones
+        requiere: p5[0] in registroInscripciones
+        requiere: p1[1].Vacunado == False
+        requiere: p2[1].Vacunado == False
+        requiere: p3[1].Vacunado == False
+        requiere: p4[1].Vacunado == False
+        requiere: p5[1].Vacunado == False
+
+        asegura: p1[1].Vacunado == True
+        asegura: p2[1].Vacunado == True
+        asegura: p3[1].Vacunado == True
+        asegura: p4[1].Vacunado == True
+        asegura: p5[1].Vacunado == True
+        asegura: Ciudades[ciudad].dosisAplicadas = old(Ciudades)[ciudad].dosisAplicadas + 5 
+        asegura: Ciudades[ciudad].dosisDisponibles = old(Ciudades)[ciudad].dosisDisponibles - 5 
+        asegura: Ciudades[ciudad].fila = old(Ciudades)[ciudad].fila - [p1, p2, p3, p4, p5]
+        asegura: forall otrasCiudades: String :: (otrasCiudades in Ciudades && ciudad != ciudad) ==>  Ciudades[otrasCiudades].fila == old(Ciudades)[otrasCiudades].fila
+    }
+}

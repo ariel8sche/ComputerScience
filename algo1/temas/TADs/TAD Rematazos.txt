@@ -1,0 +1,40 @@
+TAD Usuario: NAT
+TAD Producto: NAT
+TAD Oferta: Tupla(Usuario, precio: Nat)
+
+TAD Rematazos {
+
+    obs: publicacionesActivas: dict<clave: Nat, Publicacion>;
+    obs: Publicacion: Struct(Usuario, Producto, precioVentaAutomatica: Nat, ofertaMaximaActual: Nat)
+
+    proc publicar(inout publicacionesActivas, in Publicacion, in clave: Nat) {
+        requiere: !(clave in publicacionesActivas)
+        
+        asegura: setKey(publicacionesActivas, clave, Publicacion)
+        asegura: publicacionesActivas[clave].ofertaMaximaActual == 0
+    }
+
+    proc ofertar(inout publicacionesActivas, in clave: Nat, in Oferta) {
+        requiere: clave in publicacionesActivas
+        requiere: publicacionesActivas[clave].Usuario != Oferta[0]
+
+        asegura: ventaAutomatica(publicacionesActivas, clave, Oferta) ==> delKey(publicacionesActivas, clave)
+        asegura: !ventaAutomatica(publicacionesActivas, clave, Oferta) && mejoraLaOferta(publicacionesActivas, clave, Oferta) ==> publicacionesActivas[clave].ofertaMaximaActual = Oferta[1]
+        asegura: !ventaAutomatica(publicacionesActivas, clave, Oferta) && !mejoraLaOferta(publicacionesActivas, clave, Oferta) ==> publicacionesActivas == old(publicacionesActivas)
+    }
+
+    pred ventaAutomatica(publicacionesActivas, clave, Oferta) {
+        Oferta[1] >= publicacionesActivas[clave].precioVentaAutomatica
+    }
+    
+    pred mejoraLaOferta(publicacionesActivas, clave, oferta) {
+        Oferta[1] > publicacionesActivas[clave].ofertaMaximaActual
+    }
+
+    proc finalizarPublicacion(inout publicacionesActivas, in clave: Nat, in usuario) {
+        requiere: publicacionesActivas[clave].Usuario == usuario
+        requiere: clave in publicacionesActivas
+
+        asegura: delKey(publicacionesActivas, clave)
+    }
+}

@@ -1,0 +1,208 @@
+--- Eleccion de Estructura ----------------------------------------------------------------
+
+Modulo Sistema
+    var alumnos DiccionarioDigital<alumno, m: DiccionarioAVL<materia, nota>>
+
+    var materias: DiccionarioAVL<materia, Vector<int>>
+
+    proc RegistrarMateria(s: Sistema, m: materia) { //O/(log m)
+        var notas : Vector<int> // Vector siempre de tamaño 10, un espacio para cada nota del 1 al 10
+        notas := VectorVacio() //O(1)
+        s.materias.definir(m, notas) //O(log m)
+    }
+
+    proc RegistrarNota(s: Sistema, a: alumno, m: materia, n: nota) { //O(log m)
+        var esta: Bool
+        esta := false //O(1)
+        if (s.alumnos[a].esta(m)) { //O(log m)
+            esta := true //O(1)
+        }
+        if (esta) { //O(1)
+            s.alumnos[a][m] := n //O(log m)
+        } else { 
+            s.alumnos[a].definir(m,n) //O(log m)
+        }
+        s.materias[m][nota] := s.materias[m][nota] + 1  //O(log m)
+    }   
+
+    proc NotaAlumno(s: Sistema, a: alumno, m: materia): nota { //O(log m)
+        return s.alumnos[a][mateira] //O(log m)
+    }
+
+    proc CantAlumnosConNota(s: Sistema, m: materia): int {
+        var alumnos: int
+        alumnos := CantAlumnosAprobados(s, m) //O(log m)
+        for (i = 1; i < 7; i++) { //O(1)
+            alumnos := alumnos + s.materias[m][i] //O(log m)
+        }
+        return alumnos
+    }
+
+    proc CantAlumnosAprobados(s: Sistema, m: Materia): int {
+        var aprobados: int
+        aprobados := 0 //O(1)
+        for (i = 7; i < 11; i++) { //O(1)
+            alumnos := alumnos + s.materias[m][i] //O(log m)
+        }
+        return aprobados
+    }
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Rep y aps 
+
+
+TAD 99 %Lucha {
+    obs buenos: conj(int)
+    obs malos: conj(int)
+    obs cantLuchas: dict(tupla(b: int, m: int), nat)
+}
+
+Modulo 99 %LuchaImpl implementa 99 %Lucha {
+    var buenos: Conjunto(nat)
+    var malos: Conjunto(nat)
+    var contrincantes: Diccionario(nat, Conjunto(nat))
+    var históricoLuchas: Vector(Tupla< b: nat, m: nat >)
+}
+
+InvRep Informal
+    * La interseccion entre buenos y malos es vacia
+    * Todas las claves de contricantes estan en buenos o malos
+    * Para cualquier clave en contrincantes todo el conjunto valor esta en buenos o malos pero no ambos
+    * Para todo primer elemento de cualquier tupla de históricoLuchas tiene que estar en buenos y no en malos
+    * Para todo segundo elemento de cualquier tupla de históricoLuchas tiene que estar en malos y no en buenos
+
+FuncAbs(L: LuchaImpl): Lucha {
+    L: Lucha |
+                L.buenos.elems == buenos &&
+                L.buenos..malos == malos &&
+                algo de cantLuchas y L.históricoLuchas 
+
+
+} 
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Complejidad
+
+i. Si f(n) ∈ O(h(n)) ∩ Ω(g(n)) entonces h(n)∈ Ω(f(n)) y g(n) ∈ Ω(f(n)).
+
+ii. Si para todo n : N, f(n) < g(n) entonces O(f(n)) ∩ Ω(g(n)) = ∅.
+
+i.
+
+f(n) <= k * h(n) && f(n) >= k * g(n)
+
+f(n) = n
+g(n) = log n
+h(n) = n^2
+
+n <= k * n^2 && n >= k * log n
+
+n^2 >= k * n && log n >= k * n 
+
+log n >= k * n 
+
+log n < n es siempre menor que n por lo tanto es falso que log n >= k * n 
+
+FALSO
+
+2. 
+
+si f(n) < g(n)
+
+f(n) = 2n && g(n) = n^2
+
+
+FALSO
+
+------------------------------------------------------------------------------------------------
+
+Sorting
+
+Algoritmo de Papa Noel
+
+zona horaria desde 1 hasta z, donde z es un parametro
+
+ordenar por zona horaria y dps por cantidad de juguetes pedidos
+
+Ejemplo (3, [(2, ),(0, ), (1,)])
+
+Primero separo el arreglo pedidos en quienes pidieron mas de 3n regalos
+y los que pidieron a lo sumo 3n regalos.
+Los que pidieron mas de 3n regalos es un numero acotado como mucho 1000 niños
+Ahora ordeno en forma creciente cada sub arreglo.
+El arreglo de mas de 3n regalos lo puedo ordenar 
+por cualquer Algoritmo ya que es una cantidad acotada ya que es O(1)
+y la segunda lista hago bucket sort de longitud 3n bucket que cuesta O(4n) 
+n para recorrer la lista y 3n de cantidad de buckets
+Ahora concateno las dos lista
+y hago bucket sort por zona horaria que me costaria z que es la zona horaria
+y long de p que seria el arreglo de pedidos O(z + long p)
+
+------------------------------------------------------------------------------
+
+Eleccion de Estructuras
+
+Modulo AgendaImple implementa Agenda
+
+    var dias: Array<ConjuntoLogaritmico<tareas>> // ano actual
+    var tareas: DiccionarioAVL<tarea, dia>
+    var diaActual: int
+
+    proc AgendarNuevaTarea(a: AgendaImple, dia: int, t: tarea) {  // O(log n)
+        a.dias[d].agregarRapido(t) // O(log n)
+        a.tareas.definir(t, d)
+    }
+
+    proc tareaCumplida(a: AgendaImple, t: tarea) {
+        ta = a.dias[a.diaActual].sacar(t)
+    }
+
+    proc PosponerTarea(a: AgendaImple, t: tarea) {
+        ta= a.dias[a.diaActual].sacar(t)
+        a.dias[a.diaActual+1].agregarRapido(ta)
+    }
+
+    proc TareasPendientes(a: AgendaImple): ConjuntoLogaritmico {
+        res = a.dias[a.diaActual]
+        return res
+    }
+
+    proc FuturasTares(a: AgendaImple, d:dia): Conjun0.toLogaritmico {
+        res = a.dias[dia]
+        return res
+    }
+
+    proc PasarDia(a: AgendaImple) {
+        a.diaActual = a.diaActual + 1
+    }
+
+    proc DiaTarea(a: Agenda, t:tarea): int {
+        dia = a.tareas[tarea]
+        return dia
+    }
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Rep y FuncAbs
+
+InvRep en castellano
+    * todo elemento de Atendidos tiene que estar en entraron 
+    * no existe un elemento de atendidos en fila
+    * todo elemento de colados tiene que estar en fila 
+    * no existe un elemento de colados que este en atendidos ?
+    * todo elemento de colados de colados tiene que etar en entraron ?
+    * todo elemento de fila tiene que estar en entraron
+    * ningun elemento de fila puede estar en atendidos
+    * entraron atendidos
+    * entraron fila
+
+
+    forall p : persona :: p in atendidos ==> p in entraron && !(exist p: persona :: p in atendidos ==> p in fila)  
+FuncAbs(f: FilaImpl): Fila {
+    f:FilaImpl |
+                f.fila.elems == fila
+                f.atendidos.elems == atendidos
+                f.entraron.elems ==
+}

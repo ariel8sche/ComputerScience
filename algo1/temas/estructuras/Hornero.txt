@@ -1,0 +1,23 @@
+usuario: String     //Tamaño max 20 caracteres
+mensaje: array<String>     //Tamaño ilimitado
+
+Modulo Hornero
+
+    var d: DiccionarioDig<usuario, tupla<posts:ConjuntoLog<mensaje>, menciones: ConjuntoLineal<mensaje>> >
+
+    proc postear(s: Hornero, id: usuario, m: mensaje) {
+        var n: int
+        n := mensaje.length                             // O(1)
+        s.d.obtener(id)[0].agregarRapido(m)             // O(log l)
+        for i=0 to n-1                                  // O(n)
+            if (s.esMencion?(m[i]))                     // O(1)
+                s.d.obtener(m[i])[1].agregarRapidp(m)   // O(m)
+    } O(log l + n*m)
+
+    proc verMenciones(s: Hornero, id: usuario): ConjuntoLineal<mensaje> {
+        return s.d.obtener(id)[1]                       // O(1)
+    } O(1)
+    
+    proc verTodos(s: Hornero, id: usuario): ConjuntoLog<mensaje> {
+        return s.d.obtener(id)[0]                       // O(1)
+    } O(1)

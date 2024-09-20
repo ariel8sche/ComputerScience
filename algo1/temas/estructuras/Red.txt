@@ -1,0 +1,11 @@
+conjunto de ANTENAS que dan servicio a distintas UNIDADES MOVILES
+Dada una antena y una unidad se sabe si la unidad movil se encuentra en el radio de la antena
+Si esta dentro del rango de la antena se puede conocer la DISTANCIA
+Si la unidad movil no se encientra dentro del rango de ninguna antena se dice que es HUERFANA 
+Una unidad que NO es HUERFANA, se le asigna la antena que este mas cerca, que se llamara antena DUEÑA
+En caso que haya dos ANTENAS con la misma distancia se le asigna la que tenga un identificador mas alto
+Dada una antena A, los clientes son las unidades que entan dentro del ragno de la antena A 
+
+
+Modulo RedImpl Implementa Red
+

@@ -1,0 +1,199 @@
+Ejercicio 7
+
+TAD Stock {
+
+    obs minimo: dict<Producto, int>
+    obs comprados: dict<Producto, int>
+    obs vendidos: dict<Producto, int>
+    obs sustituto: dict<Producto, Producto>
+
+    aux hay(in stock:Stock, in prod: Producto): int
+        if (stock.comprados[prod] > stock.vendidos[prod]) then stock.comprados[prod] - stock.vendidos[prod] else 0 fi
+
+    proc crearRegistro(): Stock
+
+        asegura res.minimos == {}
+        asegura res.comprados == {}
+        asegura res.vendidos == {}
+        asegura res.sustitutos == {}
+
+    proc registrarProducto(inout stock:Stock, in prod: Producto, in min: int):
+
+        requiere: stock = stock0
+    
+        asegura: setKey(stock.minimos, prod, min)
+        asegura: stock.comprados[prod] == 0
+        asegura: stock.vendidos[prod] == 0
+        asegura: stock.sustitutos == stock0.sustitutos
+
+    proc comprar(inout stock: Stock, in prod: Producto):
+
+        requiere: stock = stock0
+
+        asegura: stock.comprados[prod] = stock0.comprados[prod] + 1
+        asegura: stock.vendidos = stock0.vendidos
+        asegura: stock.minimos = stock0.minimos
+        asegura: stock.sustitutos = stock0.sustitutos    
+        
+    proc vender(inout stock: Stock, in prod: Producto):
+
+        requiere: stock = stock0
+        requiere: stock.minimos[prod] >=  1
+
+        asegura: stock.vendidos[prod] = stock0.vendidos[prod] + 1
+        asegura: stock.comprados = stock0.comprados
+        asegura: stock.minimos = stock0.minimos
+        asegura: stock.sustitutos = stock0.sustitutos
+    
+    proc sustituir(inout stock: Stock, in prod: Producto, in sust: Producto):
+
+        requiere: stock = stock0
+
+        asegura: setKey(stock.sustitutos, prod, sust)
+        asegura: stock.comprados = stock0.comprados
+        asegura: stock.vendidos = stock0.vendidos
+        asegura: stock.minimos = stock0.minimos
+
+    proc productosMinimos(in stock: Stock): conj(Producto)
+        
+        asegura debajoDelMinimoSinSust(res, stock) && debajoDelMinimoProdYSust(res, stock)
+
+    pred debajoDelMinimoSinSust(prods: Conj(Producto), stock: Stock):
+        (forall: prod: Producto :: prod in prods ==> !(prod in stock.sustitutos && hay(stock, prod) < stock.minimos[prod]))
+
+pred debajoDelMinimoSinSust(prods: Conj(Producto), stock: Stock):
+        (forall: prod: Producto :: prod in prods ==> prod in stock.sustitutos &&L (hay(stock, prod) + hay(stock, stock.sustitutos[prod]) < stock.minimos[prod] ))
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio 8
+
+TAD Tablero
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio 9
+
+TAD Banco {
+    obs cliente: tupla<estatus: seq<char>, dni: Int>
+    obs filaBien: conj(cliente)
+    obs filaProle: conj(cliente)
+    obs cajaA: Bool
+    obs cajaB: Bool
+
+    pred filaBienVacia?(banco: Banco): Bool
+        banco.FilaBien.elems == {}
+    
+    pred filaProleVacia?(banco: Banco): Bool
+        banco.FilaProle.elems == {}
+    
+    proc crearBanco() : Banco
+
+        asegura: filaBienVacia?(banco)
+        asegura: filaProleVacia?(banco)
+        asegura: banco.cajaA == False
+        asegura: banco.cajaB == False
+    
+    proc agregarFila(inout banco:Banco, in cliente: tupla<estatus: seq<char>, dni: Int>):
+        asegura: if (cliente[0] == "bien") then (banco.filaBien.elems == old(banco).filaBien.elems + {cliente} &&
+                                                banco.filaProle.elems == old(banco).filaProle.elems &&
+                                                banco.cajaA == old(banco).cajaA &&
+                                                banco.cajaB == old(banco).cajaB) fi ||
+                if (cliente[0] == "prole") then (banco.filaProle.elems == old(banco).filaProle.elems + {cliente} &&
+                                                banco.filaBien.elems == old(banco).filaBien.elems &&
+                                                banco.cajaA == old(banco).cajaA &&
+                                                banco.cajaB == old(banco).cajaB) fi
+
+    proc atiendeCajaA(inout banco: Banco, in cliente: tupla<estatus: seq<char>, dni: Int>):
+        
+        requiere: filaBienVacia(banco, cliente) #Creo que no hace falta
+        requiere: cliente[0] == "bien" #Creo que no hace falta
+        requiere: cliente in banco.filaBien
+
+        asegura: banco.cajaA == True
+        asegura: banco.filaBien.elems == old(banco).filaBien.elems - {cliente}
+        asegura: banco.filaProle.elems == old(banco).filaProle.elems
+        asegura: banco.cajaB == old(banco).cajaB
+
+    proc atiendeCajaB(inout banco: Banco, in cliente: tupla<estatus: seq<char>, dni: Int>):
+        
+        requiere: cliente in banco.filaBien || cliente in banco.filaProle
+
+        asegura: banco.cajaB == True
+        asegura: banco.cajaA == old(banco).cajaA
+        asegura: if (cliente[0] == "bien") then (banco.filaBien.elems == old(banco).filaBien.elems - {cliente}) fi ||
+                 if (cliente[0] == "prole" && filaBienVacia?(banco)) then (banco.filaProle.elems == old(banco).filaProle.elems - {cliente}) fi
+    
+    proc terminoDeAtenderA(inout banco: Banco):
+        
+        requiere: banco.cajaA == True
+
+        asegura: banco.cajaA == False
+
+    proc terminoDeAtenderB(inout banco: Banco):
+        
+        requiere: banco.cajaB == True
+
+        asegura: banco.cajaB == False
+
+    proc seCansó(inout banco: Banco, in cliente: tupla<estatus: seq<char>, dni: Int>)
+        
+        requiere: cliente in banco.filaBien || cliente in banco.filaProle
+
+        asegura: banco.cajaA == old(banco).cajaA
+        asegura: banco.cajaB == old(banco).cajaB
+        asegura: if (cliente[0] == "bien" ) then (banco.filaBien.elems == old(banco).filaBien.elems - {cliente}) fi ||
+                 if (cliente[0] == "prole" ) then (banco.filaProle.elems == old(banco).filaProle.elems - {cliente}) fi
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+Ejercicio 10
+
+TAD Conjunto<T> {
+    obs elems: conj<T>
+    
+    proc conjVacio(): Conjunto<T>
+        asegura res.elems == {}
+
+    proc pertenece(in c: Conjunto<T>, in T e): bool
+        asegura res == true <==> e in c.elems
+    
+    proc agregar(input c: Conjunto<T>, in e: T)
+        asegura c.elems == old(c).elems + {e}
+
+    proc sacar(inout c: Conjunto<T>, in e: T)
+        asegura c.elems == old(c).elems - {e}
+
+    proc unir(inout c: Conjunto<T>, in c’: Conjunto<T>)
+        asegura c.elems == old(c).elems + c’.elems
+
+    proc restar(inout c: Conjunto<T>, in c’: Conjunto<T>)
+        asegura c.elems == old(c).elems - c’.elems
+
+}
+
+TAD Baño {
+
+    obs alumnos: dict<alumno: String, #VecesFueAlBaño, Int>
+    obs ocupado?: Bool
+    obs fila: Conjunto
+
+    pred alumnoValido(alumno: String):
+        alumno != "" && alumno in alumnos
+
+    proc irAlBaño(inout baño: Baño, in alumno: String):
+        requiere: baño.alumnos[alumno] <= 3
+        requiere: alumnoValido(alumno)
+        requiere: baño.fila.pertenece(alumno)
+        
+        asegura: if old(baño).ocupado? == False then setKey(banco.alumnos, alumno, banco.alumnos[alumno]+1) && 
+                                                     baño.fila.desencolar() 
+                                                else baño.fila.agregar(alumno)
+                                                     
+        asegura: baño.ocupado? == True
+
+
+}

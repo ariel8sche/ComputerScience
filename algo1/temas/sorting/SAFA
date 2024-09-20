@@ -1,0 +1,30 @@
+n cintas transportadoras
+cada cinta tiene un peso maximo
+se tiene k paquetes, k < n
+
+proc puedoTransportar(C: array(int), P: array(int)):bool {
+    var res:bool
+    var k:int
+    var n:int
+    var a:int    
+    var b:int    
+    res:= False              // O(1)
+    k:= P.length             // O(1)
+    n:= C.length             // O(1)
+    a:= C.desencolar         // O(1)
+    b:= P.desencolar         // O(1)
+    HeapifyMaxHeap(P)        // O(k) 
+    HeapifyMaxHeap(C)        // O(n) 
+    while (k < n || k == 0)  // O(k)
+        if (b > a) {         // O(1)
+            return false
+        } else {
+            a:= C.desencolar // O(log n)
+            b:= P.desencolar // O(log k)
+            k-=              // O(1)
+            n-=              // O(1)
+        }
+    return res
+}
+
+O(n + k * log n)

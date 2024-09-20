@@ -1,0 +1,47 @@
+12.
+
+Modulo Torneo Impl implementa Torne
+
+    var puntosXEquipo: DiccionarioAVL<equipo: int, puntos: int>>
+    var tabla: DiccionarioAVL<puntos: int, struct<posicion: int, cantidad: Int>>
+
+    proc nuevoTorne() : Torneo {
+        // Complejidad O(1)
+
+        res.puntosXEquipo := nuevo DiccionarioAVL<equipo: int, puntos: int>>() // O(1)
+        res.tabla := nuevo DiccionarioAVL<puntos: int, struct<posicion: int, cantidad: Int>>() // O(1)
+    }
+
+    proc puntos(t: Torneo, e: int):int {
+        // Complejidad O(log n)
+
+        var punto: int
+        punto := t.puntosXEquipo.obtener(e) // O(log n)
+        return punto
+    }
+
+    proc posicion(t: Torneo, e: int): int {
+        // Complejidad O(log n)
+
+        var pos: int
+        var punto: int
+        punto := t.posicionXEquipo.obtener(e) // O(log n)
+        pos := t.tabla.obtener(punto).posicion // O(log n)
+        return pos
+    }
+
+    proc registrarPartido(t: Torneo, ganador: int, perdedor: int) {
+        //Complejidad O(log n)
+
+        if (t.puntosXEquipo.esta(ganador)) {
+            acomodar(t, ganador)
+        } else {
+            t.puntosXEquipo.definirRapido(<ganador, 1>)
+            sumarPunto(t, ganador)
+        }
+
+        if (t.puntosXEquipo.esta(perdedor)) {
+            t.puntajePorEquipo.definir(perdedor, 0) // O(log n) (definir en un dicc AVL)
+            agregarEquipoConCeroPuntos(t)
+        }
+    }
