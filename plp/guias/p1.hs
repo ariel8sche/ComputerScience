@@ -355,11 +355,9 @@ altura = foldAB (\izq _ der -> 1 + max izq der) 0
 esNil :: AB a -> Bool
 esNil = foldAB ((const . const) (const False)) True
 
-{-
-altura :: AB a -> Int
-altura Nil = 0
-altura (Bin izq _ der) = 1 + max (altura izq) (altura der)
--}
+-- altura :: AB a -> Int
+-- altura Nil = 0
+-- altura (Bin izq _ der) = 1 + max (altura izq) (altura der)
 
 
 main8 :: IO ()
@@ -384,9 +382,6 @@ main8 = do
 --data AIH a = Hoja a | Bin (AIH a) (AIH a)
 
 --foldAIH
-
---altura :: AIH a -> Integer y tamaño :: AIH a -> Integer
---altura
 
 
 

@@ -317,3 +317,25 @@ perimetro(tri(A,B,C), P) :- not(ground(tri(A,B,C))), suman([A,B,C],P), A>0, B>0,
 
 %III.
 triangulo(T) :- desde(1, N), perimetro(T,N).
+
+%Final 16/12/2024
+
+% caminoSimple([], _, _, []).
+% caminoSimple(G, E, E, []).
+% caminoSimple(G,S,E,[(S,Q)|P]) :- member((S,Q),G), caminoSimple(G,Q,E,P).
+% caminoSimple(G,S,E,[(S,Q)|P]) :- member((Q,S),G), not(member((S, Q), P)), caminoSimple(G,Q,E,P).
+
+caminosSimples(G, Inicio, Fin, Camino) :-
+    simple_path(G, Inicio, Fin, [Inicio], CaminoRev),
+    reverse(CaminoRev, Camino).
+
+simple_path(_, Fin, Fin, Camino, Camino).
+simple_path(G, A, Fin, CaminoAc, Camino) :-
+    A \= Fin,
+    ( member((A, X), G) ; member((X, A), G) ),
+    \+ member(X, CaminoAc),
+    simple_path(G, X, Fin, [X|CaminoAc], Camino).
+
+aciclico(G) :- not(((member((_,X),G);member((X,_),G)),
+ (member((_,Y),G);member((Y,_),G)), 
+ caminosSimples(G,X,Y,P), caminosSimples(G,X,Y,P2), P \= P2)).

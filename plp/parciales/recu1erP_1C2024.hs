@@ -1,12 +1,21 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 import Data.Foldable (Foldable(fold))
 import Data.List (nub)
+import Data.Bifoldable (bifoldl1, biList)
 {-# HLINT ignore "Avoid lambda" #-}
 data AT a = NilT | Tri a (AT a) (AT a) (AT a)
 
 foldAT :: (a -> b -> b -> b -> b) -> b -> AT a -> b
 foldAT f z NilT = z
 foldAT f z (Tri r i c d) = f r (foldAT f z i) (foldAT f z c) (foldAT f z d)
+
+recAT :: (a -> AT a -> AT a -> AT a -> b -> b -> b -> b) -> b -> AT a -> b
+recAT f b NilT = b
+recAT f b (Tri r i c d) = f r i c d (rec i) (rec c) (rec d)
+    where rec = recAT f b
+
+foldAT2 :: (a -> b -> b -> b -> b) -> b -> AT a -> b
+foldAT2 f b = recAT (\r _ _ _ i c d -> f r i c d) b
 
 preorder :: AT a -> [a]
 preorder (Tri r i c d) = foldAT (\r i c d -> r:(i ++ c ++ d)) [] (Tri r i c d)
