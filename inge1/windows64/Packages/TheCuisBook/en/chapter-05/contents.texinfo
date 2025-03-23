@@ -1,0 +1,595 @@
+@node Control Flow Messaging
+@chapter Control Flow Messaging
+
+@quotation
+Fools ignore complexity. Pragmatists suffer it. Some can avoid
+it. Geniuses remove it.
+@author Alan Perlis
+@end quotation
+
+@*
+
+@cuis{} syntax is minimal. Essentially there is syntax only for
+sending messages (i.e., expressions) . Expressions are built up from a
+very small number of primitive elements. There are only 6 keywords,
+and @strong{there is no syntax for control structures} or for
+declaring new classes. Instead, nearly everything is achieved by
+sending messages to objects. For instance, instead of an if-then-else
+control structure, Smalltalk sends messages like @msg{ifTrue:} to
+@class{Boolean} objects. As we already know, new (sub)classes are
+created by sending a message to their superclass.
+
+@menu
+* Syntactic elements::
+* Pseudo-variables::
+* Method syntax::
+* Block syntax::
+* Control flow with block and message::
+* Spacewar!'s methods::
+@end menu
+
+@node Syntactic elements
+@section Syntactic elements
+Expressions are composed of the following building blocks:
+
+@enumerate
+
+  @item six reserved keywords, or @emph{pseudo-variables}:
+    @smalltalk{self}, @smalltalk{super}, @smalltalk{nil},
+    @smalltalk{true}, @smalltalk{false}, and @smalltalk{thisContext},
+
+  @item constant expressions for @emph{literal objects} including
+  numbers, characters, strings, symbols and arrays,
+
+  @item variable declarations
+
+  @item assignments,
+
+  @item block closures,
+  
+  @item messages.
+
+@end enumerate
+
+@node Pseudo-variables
+@section Pseudo-variables
+@cindex pseudo-variables
+
+In Smalltalk, there are 6 reserved keywords, or pseudo-variables:
+
+@indentedblock
+@smalltalk{nil}, @smalltalk{true}, @smalltalk{false},
+@smalltalk{self}, @smalltalk{super}, and @smalltalk{thisContext}.
+@end indentedblock
+
+They are called @dfn{pseudo-variables} because they are predefined and
+cannot be assigned to. @smalltalk{true}, @smalltalk{false}, and
+@smalltalk{nil} are constants while the values of @smalltalk{self},
+@smalltalk{super}, and @smalltalk{thisContext} vary dynamically as
+code is executed.
+
+@itemize
+
+@cindex pseudo-variable @subentry @smalltalk{true}
+@cindex pseudo-variable @subentry @smalltalk{false}
+@cindex @smalltalk{true}
+@cindex @smalltalk{false}
+   @item @smalltalk{true} and @smalltalk{false} are the unique
+   instances of the @class{Boolean} classes @class{True} and
+   @smalltalk{False}.
+
+@cindex pseudo-variable @subentry @smalltalk{self}
+@cindex @smalltalk{self}
+@cindex @smalltalk{self}
+   @item @smalltalk{self} always refers to the receiver of the
+   currently executing method.
+
+@cindex pseudo-variable @subentry @smalltalk{super}
+@cindex @smalltalk{super}
+   @item @smalltalk{super} also refers to the receiver of the current
+   method, but when you send a message to @smalltalk{super}, the
+   method-lookup changes so that it starts from the superclass of the
+   class containing the method that uses @smalltalk{super}.
+   
+@cindex pseudo-variable @subentry @smalltalk{nil}
+@cindex @smalltalk{nil}
+   @item @smalltalk{nil} is the undefined object. It is the unique
+   instance of the class @smalltalk{UndefinedObject}. Instance
+   variables, class variables and local variables are initialized to
+   @smalltalk{nil}.
+
+
+@cindex pseudo-variable @subentry @smalltalk{thisContext}
+@cindex @smalltalk{thisContext}
+   @item @smalltalk{thisContext} is a pseudo-variable that represents
+   the top frame of the run-time stack. In other words, it represents
+   the currently executing @smalltalk{MethodContext} or
+   @smalltalk{BlockContext}. @smalltalk{thisContext} is normally not
+   of interest to most programmers, but it is essential for
+   implementing development tools like the Debugger and it is also
+   used to implement exception handling and continuations.
+
+@end itemize
+
+@node Method syntax
+@section Method syntax
+@cindex method
+
+Whereas expressions may be evaluated anywhere in @cuis{} (for example 
+in a workspace, in a debugger, or in a browser), methods are normally
+defined in the System Browser window or in the Debugger. Methods can
+also be filed in from an external medium, but this is not the usual
+way to program in @cuis{}.
+
+Programs are developed one method at a time, in the context of a given
+class. A class is defined by sending a message to an existing class,
+asking it to create a subclass, so there is no special syntax required
+for defining classes. We are already farmiliar with this
+from previous examples.
+
+Let's take a another look to the method syntax when control flow is
+involved -- our first explanation was @ref{Spacewar! States and Behaviors}).
+
+Here is the method @method{keyStroke:} in the class @class{SpaceWar}.
+
+@smalltalkExampleCaption{SpaceWar! key stroke,spacewarKeyStroke,SpaceWar>>keyStroke: event
+"Check for any keyboard stroke@comma{} and take action accordingly"
+   | key |
+   key @assign{} event keyCharacter.
+   event isArrowUp ifTrue: [@return{} ships first push].
+   event isArrowRight ifTrue: [@return{} ships first right].
+   event isArrowLeft ifTrue: [@return{} ships first left].
+   event isArrowDown ifTrue: [@return{} ships first fireTorpedo].
+   key = $w ifTrue: [@return{} ships second push].
+   ...}
+
+Syntactically, a method consists of:
+
+@itemize
+
+ @item the method pattern, containing the name (@emph{i.e.},
+ @method{keyStroke:}) and any arguments. Here @smalltalk{event} is a
+ @class{KeyboardEvent},
+
+ @item comments (these may occur anywhere, but the convention is to
+ put one at the top that explains what the method does),
+ 
+ @item declarations of local variables (@emph{i.e.}, @smalltalk{key}),
+
+ @item and any number of expressions separated by dots; here there are
+ 5.
+
+@end itemize
+
+The evaluation of any expression preceded by a @return{} (typed as ^)
+will cause the method to exit at that point, returning the value of
+that expression. A method that terminates without explicitly returning
+the value of some expression will always return the current
+value of @smalltalk{self}.
+
+Arguments and local variables should always start with lower case
+letters. Names starting with upper-case letters are assumed to be
+global variables. Class names, like @class{Character}, for example,
+are simply global variables referring to the object representing
+that class.
+
+As you might suspect from @ref{classesCount}, @smalltalk{Smalltalk allClasses size} just
+sends the @msg{allClasses} message to a dictionary named @smalltalk{Smalltalk}.
+As with any other object, you can inspect this dictionary.  You can note a case of
+self-reference here: the value of @smalltalk{Smalltalk at: #Smalltalk} is @smalltalk{Smalltalk}.
+
+@node Block syntax
+@section Block syntax
+@cindex block
+
+Blocks provide a mechanism to defer the evaluation of expressions. A
+block is essentially an anonymous function. A block is evaluated by
+sending it the message @msg{value}. The block answers the value of the
+last expression in its body, unless there is an explicit return (with
+@return{}), in which case it returns the value of the subsequent
+expression).
+
+@smalltalkExample{[ 1 + 2 ] value
+@result{} 3}
+
+@cindex block @subentry parameter
+Blocks may take parameters, each of which is declared with a leading
+colon. A vertical bar separates the parameter declaration(s) from the
+body of the block. To evaluate a block with one parameter, you must
+send it the message @msg{value:} with one argument. A two-parameter
+block must be sent @msg{value:value:}, and so on, up to 4 arguments:
+
+@smalltalkExample{[ :x | 1 + x ] value: 2
+@result{} 3
+[ :x :y | x + y ] value: 1 value: 2
+@result{} 3}
+
+If you have a block with more than four parameters, you must use
+@msg{valueWithArguments:} and pass the arguments in an array. (A block
+with a large number of parameters is often a sign of a design
+problem.)
+
+@cindex block @subentry local variable
+Blocks may also declare local variables, which are surrounded by
+vertical bars, just like local variable declarations in a
+method. Locals are declared after any arguments:
+
+@smalltalkExample{[ :x :y | | z | z @assign{} x + y. z ] value: 1 value: 2
+@result{} 3}
+
+Blocks can refer to
+variables of the surrounding environment.
+Blocks are said to ``close over'' their lexical environment, which
+is a fancy way to say that they remember and refer to variables in
+their surrounding lexical context -- those apparent in their enclosing text.
+
+The following block refers
+to the variable x of its enclosing environment:
+
+@smalltalkExample{|x|
+x @assign{} 1.
+[ :y | x + y ] value: 2
+@result{} 3}
+
+@cindex block @subentry assigned to a variable
+Blocks are instances of the class @class{BlockClosure}. This means
+that they are objects, so they can be assigned to variables and passed
+as arguments just like any other object.
+
+Consider the example below to compute the divisors of an integer:
+
+@smalltalkExampleCaption{Compute divisors, computeDivisors,| n m |
+n @assign{} 60.
+m @assign{} 45.
+(1 to: n) select: [:d | n \\\\ d = 0 ].
+"@result{} #(1 2 3 4 5 6 10 12 15 20 30 60)"
+(1 to: m) select: [:d | m \\\\ d = 0]
+"@result{} #(1 3 5 9 15 45)"}
+
+The problem with this example is the code duplication in the divisor
+computation. We can avoid duplication with a dedicated block doing the
+computation and assigning it to a variable:
+
+@exercise{Block to compute divisors,blockDivisor, @emph{How will you
+rewrite @ref{computeDivisors} to avoid code duplication?}}
+
+@cindex number @subentry integer @subentry @method{atRandom}
+The @smalltalk{SpaceWar>>teleport:} method contains a nice example
+using a block to avoid code duplication to generate random abscissa
+and ordinate coordinates. Each time a new coordinate is needed, the
+message @msg{value} is sent to the block of code:
+
+@smalltalkExampleCaption{@method{teleport:} method, teleportMethod,
+SpaceWar>>teleport: aShip
+  "Teleport a ship at a random location"
+  | area randomCoordinate |
+  aShip resupply.
+  area @assign{} self morphLocalBounds insetBy: 20.
+  randomCoordinate @assign{} [(area left to: area right) atRandom].
+  aShip 
+    velocity: 0 @@ 0;
+    morphPosition: randomCoordinate value @@ randomCoordinate value}
+
+
+@node Control flow with block and message
+@section Control flow with block and message
+@cindex control flow
+
+Deciding to send @emph{this} message instead of @emph{that}
+one is called @dfn{control flow} --
+controlling the flow of a computation.
+Smalltalk offers no special constructs for control flow.
+Decision logic is expressed by sending messages to booleans, numbers
+and collections with blocks as arguments.
+
+@subheading Test
+@cindex control flow @subentry test
+@cindex test
+@cindex boolean
+
+Conditionals are expressed by sending one of the messages
+@msg{ifTrue:}, @msg{ifFalse:} or @msg{ifTrue:ifFalse:} to the result
+of a boolean expression:
+
+@smalltalkExample{(17 * 13 > 220)
+  ifTrue: [ 'bigger' ]
+  ifFalse: [ 'smaller' ]
+@result{} 'bigger'}
+
+The class @class{Boolean} offers a fascinating insight into how much
+of the Smalltalk language has been pushed into the class
+library. @class{Boolean} is the abstract superclass of the
+@emph{Singleton} classes @class{True} and @class{False}@footnote{A
+singleton class is designed to have only one instance. Each of
+@class{True} and @class{False} classes has one instance, the values 
+@smalltalk{true} and @smalltalk{false}.}.
+
+Most of the behaviour of @class{Boolean} instances can be understood
+by considering the method @method{ifTrue:ifFalse:}, which takes two
+blocks as arguments:
+
+@smalltalkExample{(4 factorial > 20) ifTrue: [ 'bigger' ] ifFalse: [ 'smaller' ]
+@result{} 'bigger'}
+
+The method is abstract in @class{Boolean}. It is implemented in its
+concrete subclasses @class{True} and @class{False}:
+
+@smalltalkExampleCaption{Implementations of ifTrue:ifFalse:, ifTrueIfFalse, 
+True>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+  @return{} trueAlternativeBlock value
+
+False>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock
+  @return{} falseAlternativeBlock value}
+
+In fact, this is the essence of OOP: when a message is sent to an
+object, the object itself determines which method will be used to
+respond. In this case an instance of True simply evaluates the true
+alternative, while an instance of False evaluates the false
+alternative. All the abstract @class{Boolean} methods are implemented
+in this way for @class{True} and @class{False}. Look at another
+example:
+
+@smalltalkExampleCaption{Implementing negation, negation,
+True>>not
+   "Negation----answer false since the receiver is true."
+   @return{} false}
+
+Booleans offer several useful convenience methods, such as
+@method{ifTrue:}, @method{ifFalse:}, @method{ifFalse:ifTrue:}. You also
+have the choice between eager and lazy conjunctions and disjunctions:
+
+@smalltalkExample{(1 > 2) & (3 < 4)
+@result{} false  "must evaluate both sides"
+(1 > 2) and: [ 3 < 4 ]
+@result{} false  "only evaluate receiver"
+(1 > 2) and: [ (1 / 0) > 0 ]
+@result{} false  "argument block is never evaluated, so no exception"}
+
+In the first example, both @class{Boolean} subexpressions are
+evaluated, since @smalltalk{&} takes a @class{Boolean} argument. In
+the second and third examples, only the first is evaluated, since
+@method{and:} expects a @class{Block} as its argument. The
+@class{Block} is evaluated only if the first argument is true.
+
+@exercise{Implementing @method{and:} and @method{or:}, implementingAndOr,
+@emph{Try to imagine how @method{and:} and @method{or:} are  implemented.}}
+
+In the @ref{spacewarKeyStroke} at the beginning of this chapter, there
+are 4 control flow @msg{ifTrue:} messages. Each argument is a block of
+code and when evaluated, it explicitly returns an expression,
+therefore interrupting the method execution.
+
+In the code fragment of @ref{shipLost} below, we test if a ship is
+lost in deep space. It depends on two conditions:
+@enumerate
+
+  @item the ship is out of the game play area, tested with the
+  @msg{isInOuterSpace} message,
+
+  @item the ship takes the direction of deep space, tested with the
+  @msg{isGoingOuterSpace} message.
+
+@end enumerate
+
+Of course, the condition #2 is only tested when condition #1 is true.
+
+@smalltalkExampleCaption{Ship lost in space,shipLost,
+"Are we out of screen?
+If so we move the mobile to the other corner
+and slow it down by a factor of 2"
+(self isInOuterSpace and: [self isGoingOuterSpace])
+  ifTrue: [
+     velocity @assign{} velocity / 2.
+     self morphPosition: self morphPosition negated]}
+
+
+@subheading Loop
+@cindex control flow @subentry loop
+@cindex loop
+
+Loops are typically expressed by sending messages to blocks, integers
+or collections. Since the exit condition for a loop may be repeatedly
+evaluated, it should be a block rather than a boolean value. Here is
+an example of a very procedural loop:
+
+@smalltalkExample{n @assign{} 1.
+[ n < 1000 ] whileTrue: [ n @assign{} n * 2 ].
+n @result{} 1024}
+
+@msg{whileFalse:} reverses the exit condition:
+
+@smalltalkExample{n @assign{} 1.
+[ n > 1000 ] whileFalse: [ n @assign{} n * 2 ].
+n @result{} 1024}
+
+You can check all the alternatives in the @label{controlling} method
+category of the class @class{BlockClosure}.
+
+@msg{timesRepeat:} offers a simple way to implement a fixed iteration:
+
+@smalltalkExample{n @assign{} 1.
+10 timesRepeat: [ n @assign{} n * 2 ].
+n @result{} 1024}
+
+We can also send the message @msg{to:do:} to a number which then acts
+as the initial value of a loop counter. The two arguments are the
+upper bound, and a block that takes the current value of the loop
+counter as its argument:
+
+@smalltalkExample{result @assign{} String new.
+1 to: 10 do: [:n | result @assign{} result, n printString, ' '].
+result @result{} '1 2 3 4 5 6 7 8 9 10 '}
+
+You can check all the alternatives in the @label{intervals} method
+category of the class @class{Number}.
+
+@cuisNote{If the exit condition of method like @method{whileTrue:} is
+never satisfied, you may have implemented an @dfn{infinite loop}.
+Just type @kbd{Cmd-period} to get the Debugger.}
+
+@node Spacewar!'s methods
+@section Spacewar!'s methods
+You are already acquainted to the writing of simple methods for the
+Spacewar! game. We will write some more and learn how to categorize
+them.
+
+@subsection Initializing the game play
+@cindex method @subentry creating
+
+We want to add the @method{initialize} method to our @class{SpaceWar}
+class. Of course we need to use the System Browser:
+...@clicksequence{World menu @click{} @label{Open...} @click{}
+@label{Browser}}...
+
+As a reminder, proceed as follows (if necessary observe
+@ref{ch02-browserDetailed}):
+
+@enumerate
+
+ @item In the @label{Class Category} pane at the far left, scroll down
+ to the @label{Spacewar!} category, then select it.
+
+ @item In the @label{Class} pane, select the class @class{SpaceWar}.
+
+ @item Below, click the @label{instance} button to expose the
+ instance side methods of the @class{SpaceWar} class. It is the
+ default behavior of the browser anyway, so you can skip this step as
+ long as you have not clicked on the @label{class} button.
+
+ @item In the @label{Method Category} pane, select the category
+ @label{-- all --}. A method source code template shows up in the pane
+ below:
+@smalltalkExample{messageSelectorAndArgumentNames
+  "comment stating purpose of message"
+  | temporary variable names |
+  statements}
+
+  The template comes in four lines: the method name, a comment, local
+  variable declaration and statements. You can select all and delete
+  it or edit each line of the template as needed.
+
+  In our case, we select it all and replace it with the
+  @method{SpaceWar>>initialize} source code:
+
+
+  @smalltalkExampleCaption{Initialize @class{SpaceWar}, initSpacewar,SpaceWar>>initialize
+  "We want to capture keyboard and mouse events@comma{} 
+  start the game loop(step) and initialize the actors."
+  super initialize.
+  color @assign{} self defaultColor.
+  self setProperty: #'handlesKeyboard' toValue: true.
+  self setProperty: #'handlesMouseOver:' toValue: true.
+  self startSteppingStepTime: self stepTime.
+  self initializeActors}
+
+  @item Once edited, save-it with @kbd{Ctrl-s} or
+  ...@clicksequence{right click @click{} @label{Accept (s)}}...
+
+@end enumerate
+
+The newly created method shows up in the @label{Method} pane. You can
+  get it categorized automatically too: with the mouse, go over the
+  @label{Method Category} pane ...@clicksequence{right click @click{}
+  @label{categorize all uncategorized (c)}}..
+
+@exercise{Categorize a method,categorizeTeleport, @emph{In the
+@class{SpaceWar} class, add the @method{teleport:} method as defined
+in @ref{teleportMethod} then categorize it in the @label{events}
+method category.}}
+
+@subsection Space ship controls
+
+In a previous chapter, you wrote as an exercise simple implementation
+of the @ref{simpleControls,,control ship methods}. The definitive
+control methods of the @class{SpaceShip} class are rewritten as:
+
+@smalltalkExampleCaption{Ship controls, shipControls,SpaceShip>>push
+  "Init an acceleration boost"
+  fuel isZero ifTrue: [@return{} self].
+  fuel @assign{} fuel - 1.
+  acceleration @assign{} 50
+
+SpaceShip>>unpush
+  "Stop the acceleration boost"
+  acceleration @assign{} 0
+
+SpaceShip>>right
+  "Rotate the ship to its right"
+  self heading: self heading + 0.1
+  
+SpaceShip>>left
+  "Rotate the ship to its left"
+  self heading: self heading - 0.1}
+
+Observe the @method{right} and @method{left} methods, they are mostly
+identical to the ones asked in @ref{shipHeading}. We don't modify
+directly the @smalltalk{heading} attribute, we use the methods
+@method{heading:} and @method{heading} to read and write this
+information.
+
+@exercise{Categorize control methods,categorizeControls,
+@emph{Categorize the control methods in a newly created method
+category named @label{control}.}}
+
+Control will not be complete without the method to fire a torpedo. It
+is more complex to correctly initialize a torpedo.
+This is because a space ship is typically in motion, and in addition
+its heading and velocity are changing frequently.
+Therefore the torpedo must be set up according to the current 
+space ship position, heading, and velocity before being fired.
+
+@smalltalkExampleCaption{Firing a torpedo from a space ship in motion,fireTorpedo,
+SpaceShip>>fireTorpedo
+  "Fire a torpedo in the direction of
+  the ship heading with its velocity"
+  | torpedo | 
+  torpedoes isZero ifTrue: [ @return{} self].
+  torpedoes @assign{} torpedoes - 1.
+  torpedo @assign{} Torpedo new.
+  torpedo 
+    position: position + self nose;
+    heading: self heading;
+    velocity: velocity;
+    color: self color muchLighter.
+  owner addTorpedo: torpedo}
+
+
+@figure{Spacewar! torpedoes around,ch05-SpacewarGamePlay,8}
+
+
+@subsection Collisions
+In a previous chapter we gave a small taste of the collision detection
+code between the space ships and the central star. It relies on
+iterator, block of code and control flow.
+
+However we have other scenarios as ship-ship, torpedo-Sun and
+torpedo-ship collisions.
+
+@exercise{Ships collision, shipCollision, @emph{How will you write the
+method to detect the collision between the two ships and take action
+accordingly? (Adapt from @ref{shipSunCollision}).}}
+
+The detection between the two ships and the possible numerous
+torpedoes required two enumerators with nested blocks of code:
+
+@smalltalkExampleCaption{Collision between the ships and the
+torpedoes,shipsTorpedoesCollision,
+SpaceWar>>collisionsShipsTorpedoes
+ships do: [:aShip | 
+  torpedoes do: [:aTorpedo |
+    (aShip morphPosition dist: aTorpedo morphPosition) < 15 ifTrue: [
+      aShip flashWith: Color red.
+      aTorpedo flashWith: Color orange.
+      self destroyTorpedo: aTorpedo.
+      self teleport: aShip]
+  ]
+]}
+
+
+The last torpedo-Sun scenario collision is left as an exercise for
+you.
+
+@exercise{Collision between the torpedoes and the Sun, torpedoSunCollision,
+@emph{Write the method to detect the collisions between the torpedoes
+and the central star and take action accordingly. (Adapt from
+@ref{shipSunCollision} and @ref{shipsTorpedoesCollision}.)}}

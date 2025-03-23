@@ -1,0 +1,310 @@
+@node Events
+@chapter Events
+
+@quotation
+When I used to read fairy tales, I fancied that kind of thing never
+happened, and now here I am in the middle of one!
+@author Lewis Carroll, Alice in Wonderland
+@end quotation
+
+@*
+
+
+@heading What just happened?
+
+We talked above about control flow, how one makes decisions about what
+to do in making calculations.  We talked about this like the entire
+computer processing resource was dedicated to this task. But it isn't
+so.
+
+Computers may be fast at some calculations, but they are only so fast,
+and when there are many things to do, one shares and takes turns.
+
+So aside from @emph{do this and then do that}, @dfn{event}s happen.
+
+Also, a computer may be fast enough that it literally has
+@emph{nothing} to do.  What does it do then?  When a processor
+@emph{goes to sleep}, how do we get its attention?
+
+You are reading the right chapter to know.
+
+@menu
+* System Events::
+* Overall Mechanism::
+* Spacewar! Events::
+@end menu
+
+@node System Events
+@section System Events
+
+Modern integrated @dfn{System On a Chip} (@dfn{SOC}) hardware has many
+circuits which are active at the same time.  So one kind of event is
+sensing something happening in the world.  Class @class{EventSensor}
+handles keyboard key press and mouse @dfn{hardware interrupts},
+translating between hardware signals and software event objects.
+
+Basically, a morph @emph{raises its hand} and says what events, if
+any, it is interested in receiving. Then it implements methods to get
+the event objects holding the information of the captured events. In
+@cuis{}, the class @class{MorphicEvent} and its subclasses represent
+the diversity of events in the system.
+
+@cindex event @subentry classes
+@format
+@class{MorphicEvent}
+   @class{DropEvent}
+   @class{DropFilesEvent}
+   @class{UserInputEvent}
+      @class{KeyboardEvent}
+      @class{MouseEvent}
+         @class{MouseButtonEvent}
+         @class{MouseMoveEvent}
+         @class{MouseScrollEvent}
+      @class{WindowEvent}
+@end format
+
+
+As @class{MouseMoveEvent}s are generated, the @class{HandMorph}
+adjusts its screen position.  When mouse and keystroke events arrive,
+the @class{HandMorph} coordinates the ``dispatch'' of events to the
+proper morph under the hand as well as displaying tool tips and
+carrying morphs in transit during drag operations.
+
+As we saw in the previous chapter with @class{ColorClickEllipse}, any
+morph may override default @class{Morph} methods to assert that it
+handles various user events and the methods which take the associated
+event objects when events arrive.
+
+Basically, user input events are generated, a @class{HandMorph}
+reflects any cursor movement, morphs react to events, each long
+running task gets a time slice and makes some progress, any display
+changes are updated on the screen, and the next step happens.  Time
+marches forward a step.
+
+This happens over and over and over, keeping the juggler's illusion
+that all balls in the air are moving at once.  Underneath, the balls
+are each moving just a bit, in sequence.
+
+@node Overall Mechanism
+@section Overall Mechanism
+
+@c Explain the event-handling-testing and event method categories in
+@c Morph. (btw, event->event-handling,
+@c event-handling->event-preferences. Need to be clarified because it
+@c is confusing
+
+@c event-handling-tested->events-handled
+@c event-handling->events-preference
+@c events->events-handling
+
+@cindex event @subentry testing
+@cindex event @subentry handling
+In @ref{A brief introduction to Inspectors}, we explained how to set
+properties for an individual morph instance to handle a
+specific event. In this
+case, one property informed @cuis{} we were interested in a
+given event (@smalltalk{#handlesMouseDown}), a second property defined
+the behavior with a block of code to be executed each time this event occurred.
+
+Alternatively, to handle events in a given morph class, we define the
+behavior with instance methods. In the @class{Morph} class, observe
+the method categories @label{event} and @label{event handling
+testing}.
+
+The method category @label{event handling testing} lists methods
+returning a Boolean to indicate if the instance should be notified about
+certain events. Let's take a look at one of these methods,
+@method{handlesMouseDown:}, its comment is worth reading:
+
+@smalltalkExample{Morph>>handlesMouseDown: aMouseButtonEvent
+"Do I want to receive mouseButton messages ?
+- #mouseButton1Down:localPosition:
+- #mouseButton1Up:localPosition:
+- #mouseButton2Down:localPosition:
+- #mouseButton2Up:localPosition:
+- #mouseButton3Down:localPosition:
+- #mouseButton3Up:localPosition:
+- #mouseMove:localPosition:
+- #mouseButton2Activity
+NOTE: The default response is false. Subclasses that implement these
+messages directly should override this one to return true.
+Implementors could query the argument, and only answer true for (for
+example) button 2 up only."
+"Use a property test to allow individual instances to dynamically
+specify this."
+
+   @return{} self hasProperty: #'handlesMouseDown:'}
+
+As defined by default, this method and the other handlers
+check to see if an instance has defined a property with the same
+name as the standard method.
+So each individual instance can add its own behavior.
+
+In a morph class where we want @emph{all} instances to
+handle mouse down events, we just override
+the appropriate method to return true:
+
+@smalltalkExample{MyMorph>>>>handlesMouseDown: aMouseButtonEvent
+   @return{} true}
+
+Now in the @label{events} method category for class @class{Morph}, we find the
+handlers listed in the comment above. A @class{ScrollBar}, a kind of
+Morph to represent a list's position control, scrolls its list contents when a
+mouse button 1 is pressed:
+
+@smalltalkExample{ScrollBar>>mouseButton1Down: aMouseBtnEvent position: eventPosition
+"Update visual feedback"
+   self setNextDirectionFromEvent: aMouseBtnEvent.
+   self scrollByPage}
+
+To discover other events available for your morph, explore with the
+System Browser as described above.
+
+@node Spacewar! Events
+@section Spacewar! Events
+Obviously our Spacewar! game handles events. Firstly we want to control the
+ships with the keyboard. Secondly, we want the game to pause
+when the mouse cursor moves out of the game play, and resume when it
+enters again.
+
+In our design, a unique morph, @class{SpaceWar} instance, models the
+game play. Therefore we want this instance to handle the events
+described above.
+
+@subsection Mouse event
+@cindex event @subentry mouse
+@cindex mouse
+
+@subsubheading Mouse cursor enters game play
+@cindex event @subentry testing @subentry mouse over
+
+We want to catch events when the mouse cursor moves over our
+@class{SpaceWar} morph.
+
+@exercise{Get notified of mouse move-over event, handleMouseOver,
+@emph{Which method should return true to let the game play be notified
+with a dedicated messages that the mouse cursor enters or leaves? In which
+class should we implement this method?}}
+
+Once we make explicit we want the game play to receive mouse move-over
+events, we need to set the behavior accordingly with dedicated
+methods.
+
+@cindex event @subentry handling @subentry mouse enter
+Each time the mouse cursor enters the game play, we want to:
+
+@itemize
+
+  @item @strong{Get keyboard focus.} It follows the mouse cursor: the
+  keyboard input goes to the morph under the mouse cursor. In @cuis{},
+  the mouse cursor is modeled as a @class{HandMorph} instance, an
+  event object (see event classes hierarchy at the beginning of this
+  chapter). An event object is interrogated about its hand with the
+  @msg{hand} message. All in all, we want the keyboard focus to be
+  targeted toward our game play when the mouse enters:
+
+  @smalltalkExample{event hand newKeyboardFocus: self}
+
+  @item @strong{Resume the game.} The continuous update of the game is
+  done through a dedicated process stepping mechanism, which will
+  be discussed in the next chapter. The game play just asks itself to
+  resume stepping:
+  @smalltalkExample{self startStepping} 
+@end itemize
+
+@exercise{Handle mouse enter event, mouseEnter, @emph{Which message is
+sent to the game play to be notified the mouse cursor enters the game
+play area?  How should the matching method be written?}}
+
+@subsubheading Mouse cursor leaves game play 
+@cindex event @subentry handling @subentry mouse-enter
+
+We also want to be informed when the mouse cursor leaves our
+@class{SpaceWar} morph. Thanks to the work done in
+@ref{handleMouseOver}, we already informed @cuis{} we want to be
+notified of mouse movement over the game play. However we need to code
+the behavior when the mouse cursor leaves the game play:
+
+@itemize
+
+  @item @strong{Release keyboard focus.} We tell @cuis{} the game play
+  does not want keyboard focus:
+
+  @smalltalkExample{event hand releaseKeyboardFocus: self}
+
+  @item @strong{Pause the game.} We stop the continuous
+  @emph{stepping} update of the game:
+
+  @smalltalkExample{self stopStepping}
+
+@end itemize
+
+@exercise{Handle mouse leave event, mouseLeave, @emph{Which message is
+sent to the game play to be notified the mouse cursor leaves the game
+play area?  How should we write the overridden method?}}
+
+In graphic user interface, a visual effect is often used to inform the
+user the keyboard focus changed. In Spacewar! we change the game play
+background depending on the sate of the keyboard focus.
+
+In @ref{ch08-Focus}, at the left keyboard focus is on the game; at the
+right keyboard focus is not on the game, it is paused and we can see
+underneath.
+
+@figure{Spacewar! effect depending on the keyboard focus, ch08-Focus,12}
+
+In the Morph framework, the @msg{keyboardFocusChange:} message is sent
+to the morph losing or gaining the keyboard focus, its parameter is a
+Boolean. Therefore we implement the @ref{ch08-Focus} behavior in the
+matching @class{SpaceWar}'s method @method{keyboardFocusChange:}
+
+@smalltalkExampleCaption{Spacewar! keyboard focus effect, keyboardFocusEffect,
+SpaceWar>>keyboardFocusChange: gotFocus
+   gotFocus 
+      ifTrue: [color @assign{} self defaultColor]
+      ifFalse: [color @assign{} self defaultColor alpha: 0.5].
+   self redrawNeeded}
+
+@subsection Keyboard event
+@cindex event @subentry keyboard
+@cindex event @subentry testing @subentry keyboard
+
+To control the space ships, we use the keyboard. Therefore we want the
+game play to be notified of keyboard events.
+
+@exercise{Get notified of keyboard event, keyboardEvent, @emph{Find
+out which method should return true to let the game be notified of
+keyboard event.}}
+
+@cindex event @subentry handling @subentry keyboard
+We can decide to be notified of the key down or key up event and also
+key down then up event (@dfn{key stroke}). As long as our
+@class{SpaceWar} morph responds true to the @msg{handlesKeyboard}
+message, it receives the messages @msg{keyUp:}, @msg{keyDown:} and
+@msg{keyStroke:}. By default, the matching methods in the
+@class{Morph} class do nothing.
+
+The argument of these messages is a @class{KeyboardEvent} object to
+which, among other things, you can ask the @msg{keyCharacter} of the
+pressed key or test about some special keys as the keyboard
+arrows. The first player ship -- the green one -- is controlled with
+the keyboard arrows when there are stroked:
+
+@smalltalkExampleCaption{Keystroke to control the first player ship,firstShipControl,SpaceWar>>keyStroke: event
+   event isArrowUp ifTrue: [@return{} ships first push].
+   event isArrowRight ifTrue: [@return{} ships first right].
+   event isArrowLeft ifTrue: [@return{} ships first left].
+   event isArrowDown ifTrue: [@return{} ships first fireTorpedo].
+   ...}
+
+To control the second player ship, we use another classic arrangement
+in QWERTY keyboard controlled game:
+WASD@footnote{@url{https://en.wikipedia.org/wiki/Arrow_keys#WASD_keys}}.
+
+@exercise{Keys to control the second player ship,secondShipControl,
+@emph{Append the additional code to @ref{firstShipControl} to control
+the second player ship with the keys WASD. As a reminder, in Smalltalk
+the character code for q can be written as @smalltalk{$q}.}}
+
+
+
