@@ -1,0 +1,2 @@
+focusFollowsMouse=true
+defaultFontSize=21
