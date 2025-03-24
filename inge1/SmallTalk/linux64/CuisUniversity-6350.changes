@@ -158557,3 +158557,1895 @@ applyOn: aClass
 
 
 ----QUIT----(7 May 2024 18:17:34) CuisUniversity-6350.image priorSource: 6643620!
+
+----STARTUP---- (23 March 2025 19:32:28) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----QUIT----(23 March 2025 19:33:09) CuisUniversity-6350.image priorSource: 6643839!
+
+----STARTUP---- (23 March 2025 19:33:26) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+DenotativeObject subclass: #Pepe
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio1'!
+
+!classDefinition: #Pepe category: #Ejercicio1 stamp: 'as 3/23/2025 19:34:22'!
+DenotativeObject subclass: #Pepe
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio1'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Pepe class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Pepe class' category: #Ejercicio1 stamp: 'as 3/23/2025 19:34:22'!
+Pepe class
+	instanceVariableNames: ''!
+!Pepe class methodsFor: 'as yet unclassified'!
+                        hola
+	^ 'chau'.! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/Ejercicio1.st----!
+
+DenotativeObject subclass: #Bill
+	instanceVariableNames: 'dias'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio2'!
+
+!classDefinition: #Bill category: #Ejercicio2 stamp: 'as 3/23/2025 19:35:13'!
+DenotativeObject subclass: #Bill
+	instanceVariableNames: 'dias'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio2'!
+!Bill methodsFor: 'actions'!
+                     caminar: arg1
+	dias := dias - (arg1 + 3).! !
+!Bill methodsFor: 'actions'!
+                      comer: arg1
+	dias := dias + (4 * arg1).! !
+!Bill methodsFor: 'actions'!
+                        energia
+	^ dias.! !
+!Bill methodsFor: 'initialization'!
+        initializeLive: arg1
+	dias := arg1.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Bill class
+	instanceVariableNames: 'energia'!
+
+!classDefinition: 'Bill class' category: #Ejercicio2 stamp: 'as 3/23/2025 19:35:13'!
+Bill class
+	instanceVariableNames: 'energia'!
+!Bill class methodsFor: 'instance creation'!
+                              live
+	^ self new initializeLive: 28.! !
+!Bill class methodsFor: 'instance creation'!
+           live: arg1
+	^ self new initializeLive: arg1.! !
+!Bill class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+    initializeCollaboratorsFromFile
+	energia := nil.! !
+
+Bill initializeAfterFileIn!
+
+!methodRemoval: Bill class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:13'!
+initializeCollaboratorsFromFile
+	energia := nil.!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/Ejercicio2.st----!
+
+DenotativeObject subclass: #Falso
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+!classDefinition: #Falso category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+DenotativeObject subclass: #Falso
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Falso class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Falso class' category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+Falso class
+	instanceVariableNames: ''!
+!Falso class methodsFor: 'Logic Operations'!
+                          negado
+	^ Verdadero.! !
+!Falso class methodsFor: 'Logic Operations' stamp: '' prior: 50539376!
+ negado
+	^ Verdadero.! !
+!Falso class methodsFor: '-- all --'!
+  o: arg1
+	^ arg1.! !
+!Falso class methodsFor: '-- all --'!
+      siFalso: arg1
+	^ arg1.! !
+!Falso class methodsFor: '-- all --'!
+siVerdadero: arg1
+	^ self.! !
+!Falso class methodsFor: '-- all --'!
+                            y: arg1
+	^ Falso.! !
+
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+!classDefinition: #Test category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Test class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Test class' category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+Test class
+	instanceVariableNames: ''!
+!Test class methodsFor: 'as yet unclassified'!
+      test01VerdaderoNegadoFalso
+	Assert
+		that: Verdadero negado
+		isEqualTo: Falso.! !
+!Test class methodsFor: 'as yet unclassified'!
+                              test02FalsoNegadoVerdadero
+	Assert
+		that: Falso negado
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: 'as yet unclassified' stamp: '' prior: 50539408!
+    test01VerdaderoNegadoFalso
+	Assert
+		that: Verdadero negado
+		isEqualTo: Falso.! !
+!Test class methodsFor: 'as yet unclassified' stamp: '' prior: 50539413!
+    test02FalsoNegadoVerdadero
+	Assert
+		that: Falso negado
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+        test03VerdaderoYVerdadero
+	Assert
+		that: (Verdadero y: Verdadero)
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+                             test04VerdaderoYFalso
+	Assert
+		that: (Verdadero y: Falso)
+		isEqualTo: Falso.! !
+!Test class methodsFor: '-- all --'!
+         test05FalsoYVerdadero
+	Assert
+		that: (Falso y: Verdadero)
+		isEqualTo: Falso.! !
+!Test class methodsFor: '-- all --'!
+         test06FalsoYFalso
+	Assert
+		that: (Falso y: Falso)
+		isEqualTo: Falso.! !
+!Test class methodsFor: '-- all --'!
+                 test07FalsoOFalso
+	Assert
+		that: (Falso o: Falso)
+		isEqualTo: Falso.! !
+!Test class methodsFor: '-- all --'!
+                 test08FalsoOVerdadero
+	Assert
+		that: (Falso o: Verdadero)
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+     test09VerdaderoOFalso
+	Assert
+		that: (Verdadero o: Falso)
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+     test10VerdaderoOVerdadero
+	Assert
+		that: (Verdadero o: Verdadero)
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+                             test11VerdaderoSiVerdadero
+	Assert
+		that: (Verdadero siVerdadero: 2 + 2)
+		isEqualTo: 4.! !
+!Test class methodsFor: '-- all --'!
+                              test12VerdaderoSiFalso
+	Assert
+		that: (Verdadero siFalso: 2 + 2)
+		isEqualTo: Verdadero.! !
+!Test class methodsFor: '-- all --'!
+                              test13FalsoSiFalso
+	Assert
+		that: (Falso siFalso: 2 + 2)
+		isEqualTo: 4.! !
+!Test class methodsFor: '-- all --'!
+              test14FalsoSiVerdadero
+	Assert
+		that: (Falso siVerdadero: 2 + 2)
+		isEqualTo: Falso.! !
+
+DenotativeObject subclass: #Verdadero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+!classDefinition: #Verdadero category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+DenotativeObject subclass: #Verdadero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio3'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Verdadero class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Verdadero class' category: #Ejercicio3 stamp: 'as 3/23/2025 19:35:35'!
+Verdadero class
+	instanceVariableNames: ''!
+!Verdadero class methodsFor: 'Logic Operations'!
+  negado
+	^ Falso.! !
+!Verdadero class methodsFor: 'Logic Operations' stamp: '' prior: 50539498!
+ negado
+	^ Falso.! !
+!Verdadero class methodsFor: '-- all --'!
+  o: arg1
+	^ Verdadero.! !
+!Verdadero class methodsFor: '-- all --'!
+                             siFalso: arg1
+	^ self.! !
+!Verdadero class methodsFor: '-- all --'!
+                            siVerdadero: arg1
+	^ arg1.! !
+!Verdadero class methodsFor: '-- all --'!
+                        y: arg1
+	^ arg1.! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/Ejercicio3.st----!
+
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #I category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+I class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'I class' category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+I class
+	instanceVariableNames: 'nextNumber'!
+!I class methodsFor: '-- all --'!
+                     + arg1
+	^ arg1 next.! !
+!I class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+                               initializeCollaboratorsFromFile
+	nextNumber := II.! !
+!I class methodsFor: '-- all --'!
+        next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!I class methodsFor: '--** private fileout/in **--' stamp: '' prior: 50539540 overrides: 50497016!
+                         initializeCollaboratorsFromFile
+	nextNumber := II.! !
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #II category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+II class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'II class' category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+II class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!II class methodsFor: '-- all --'!
+           + arg1
+	^ previousNumber + arg1 next.! !
+!II class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+             initializeCollaboratorsFromFile
+	previousNumber := I.
+	nextNumber := III.! !
+!II class methodsFor: '-- all --'!
+                next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!II class methodsFor: '-- all --'!
+                         previous
+	^ previousNumber.! !
+!II class methodsFor: '-- all --'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+!II class methodsFor: '--** private fileout/in **--' stamp: '' prior: 50539577 overrides: 50497016!
+              initializeCollaboratorsFromFile
+	previousNumber := I.
+	nextNumber := III.! !
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --'!
+             + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+            initializeCollaboratorsFromFile
+	previousNumber := II.
+	nextNumber := IIII.! !
+!III class methodsFor: '-- all --'!
+             next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --'!
+                        previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+!III class methodsFor: '--** private fileout/in **--' stamp: '' prior: 50539622 overrides: 50497016!
+             initializeCollaboratorsFromFile
+	previousNumber := II.
+	nextNumber := IIII.! !
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --'!
+    + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+           initializeCollaboratorsFromFile
+	previousNumber := III.
+	nextNumber := IIIII.! !
+!IIII class methodsFor: '-- all --'!
+          next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --'!
+                       previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --'!
+                            setPrevious: arg1
+	previousNumber := arg1.! !
+!IIII class methodsFor: '--** private fileout/in **--' stamp: '' prior: 50539667 overrides: 50497016!
+            initializeCollaboratorsFromFile
+	previousNumber := III.
+	nextNumber := IIIII.! !
+
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIII category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 19:35:45'!
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIII class methodsFor: '-- all --'!
+                           + arg1
+	^ previousNumber + arg1 next.! !
+!IIIII class methodsFor: '--** private fileout/in **--' overrides: 50497016!
+          initializeCollaboratorsFromFile
+	previousNumber := IIII.
+	nextNumber := nil.! !
+!IIIII class methodsFor: '-- all --'!
+          next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIII class methodsFor: '-- all --'!
+                      previous
+	^ previousNumber.! !
+!IIIII class methodsFor: '-- all --'!
+                           setPrevious: arg1
+	previousNumber := arg1.! !
+!IIIII class methodsFor: '--** private fileout/in **--' stamp: '' prior: 50539713 overrides: 50497016!
+           initializeCollaboratorsFromFile
+	previousNumber := IIII.
+	nextNumber := nil.! !
+
+I initializeAfterFileIn!
+
+!methodRemoval: I class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:45'!
+initializeCollaboratorsFromFile
+	nextNumber := II.!
+
+II initializeAfterFileIn!
+
+!methodRemoval: II class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:45'!
+initializeCollaboratorsFromFile
+	previousNumber := I.
+	nextNumber := III.!
+
+III initializeAfterFileIn!
+
+!methodRemoval: III class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:45'!
+initializeCollaboratorsFromFile
+	previousNumber := II.
+	nextNumber := IIII.!
+
+IIII initializeAfterFileIn!
+
+!methodRemoval: IIII class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:45'!
+initializeCollaboratorsFromFile
+	previousNumber := III.
+	nextNumber := IIIII.!
+
+IIIII initializeAfterFileIn!
+
+!methodRemoval: IIIII class #initializeCollaboratorsFromFile stamp: 'as 3/23/2025 19:35:45'!
+initializeCollaboratorsFromFile
+	previousNumber := IIII.
+	nextNumber := nil.!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/Ejercicio4.st----!
+
+----SNAPSHOT----(23 March 2025 19:35:53) CuisUniversity-6350.image priorSource: 6644063!
+
+----QUIT----(23 March 2025 19:35:56) CuisUniversity-6350.image priorSource: 6659821!
+
+----STARTUP---- (23 March 2025 20:10:05) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+!classRemoval: #IIIII stamp: 'as 3/23/2025 20:10:29'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 20:10:33'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 20:10:36'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:22:38'!
+        - sustrahend
+
+	sustrahend name isEqualTo: I name ifTrue: [self previous] ifFalse: [self next - sustrahend previous]! !
+
+2 - 1!
+
+2 +1 !
+
+2 +1!
+
+II next!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 20:23:47'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:23:47'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:23:47'!
+                              + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:23:47'!
+                    - sustrahend
+
+	sustrahend name isEqualTo: I name ifTrue: [self previous] ifFalse: [self next - sustrahend previous]! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:23:47'!
+      next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:23:47'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:23:47'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+II + I!
+
+II + II!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 20:24:00'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:24:00'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:24:00'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:24:00'!
+                   - sustrahend
+
+	sustrahend name isEqualTo: I name ifTrue: [self previous] ifFalse: [self next - sustrahend previous]! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:24:00'!
+     next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:24:00'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:24:00'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+III - I!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:30:34' prior: 50539797!
+                      - sustrahend
+
+	sustrahend = I ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+
+III - I!
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 20:31:05'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 20:31:09'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+II + I!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 20:31:33'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:31:33'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:33'!
+                 + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:33'!
+                    - sustrahend
+
+	sustrahend = I ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:33'!
+                           next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:33'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:33'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+III - II!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 20:31:40'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:31:40'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:40'!
+                      + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:40'!
+                   - sustrahend
+
+	sustrahend = I ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:40'!
+                          next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:40'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:31:40'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+III - II!
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 20:37:23'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 20:37:27'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:37:50' prior: 50539891!
+     - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+
+II - I!
+
+II + I!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 20:38:31'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:38:31'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:31'!
+                        + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:31'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:31'!
+                 next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:31'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:31'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+III - I!
+
+III - II!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 20:38:44'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:38:44'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:44'!
+            + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:44'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self next - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:44'!
+                next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:44'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:38:44'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+III - I!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:39:13' prior: 50540006!
+                      - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 20:39:40'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 20:39:52'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+II + I!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:12'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:12'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:12'!
+             + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:12'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:12'!
+             next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:12'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:12'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+II - I!
+
+III - I!
+
+III - II!
+
+III + II!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:59'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:59'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                        + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+            next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIII category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:59'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 20:40:59'!
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                          + arg1
+	^ previousNumber + arg1 next.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                  - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+           next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                       previous
+	^ previousNumber.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 20:40:59'!
+                            setPrevious: arg1
+	previousNumber := arg1.! !
+
+IIIII - III!
+!I class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:46:26'!
+   - sustrahend
+	
+	self error: 'no se puede restarle nada a I'! !
+
+I -II!
+
+!classRemoval: #IIIII stamp: 'as 3/23/2025 22:46:53'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 22:46:56'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 22:47:01'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+!I class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:48:39'!
+             * aMultiplandt
+
+	^ aMultiplandt ! !
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:28'!
+                          * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+
+II next!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 22:52:39'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:52:39'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+                              * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+               + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+             next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:39'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+II * II!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 22:52:52'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:52:52'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+                       * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+            next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:52:52'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+II * IIII!
+
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIII category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+IIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+              * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+             + arg1
+	^ previousNumber + arg1 next.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                  - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+           next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                       previous
+	^ previousNumber.! !
+!IIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                            setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIIII category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+DenotativeObject subclass: #IIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+IIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                   * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+            + arg1
+	^ previousNumber + arg1 next.! !
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                 - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+          next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                      previous
+	^ previousNumber.! !
+!IIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                           setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIIIII category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+DenotativeObject subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+IIIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+            * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+           + arg1
+	^ previousNumber + arg1 next.! !
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+         next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                     previous
+	^ previousNumber.! !
+!IIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                          setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIIIIIII category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+DenotativeObject subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIIIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIIIIIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 22:53:04'!
+IIIIIIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+     * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+          + arg1
+	^ previousNumber + arg1 next.! !
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+               - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+        next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                    previous
+	^ previousNumber.! !
+!IIIIIIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:53:04'!
+                         setPrevious: arg1
+	previousNumber := arg1.! !
+
+!classRemoval: #IIIIIIII stamp: 'as 3/23/2025 22:53:27'!
+DenotativeObject subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIIIIII stamp: 'as 3/23/2025 22:53:31'!
+DenotativeObject subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIIIII stamp: 'as 3/23/2025 22:53:34'!
+DenotativeObject subclass: #IIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIIII stamp: 'as 3/23/2025 22:53:36'!
+DenotativeObject subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 22:53:38'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 22:53:40'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+!I class methodsFor: '-- all --' stamp: 'as 3/23/2025 22:57:12'!
+         / dividend
+
+	dividend name = I name ifTrue: [^I].
+	self error: 'No se puede dividir a I por algo que no sea I'! !
+
+I / I!
+
+I / II!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:14'!
+                           / dividend
+
+	^ I + ((self - dividend )/ dividend ).! !
+
+II * II!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 23:00:35'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:00:35'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                     * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+               + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+             / dividend
+
+	^ I + ((self - dividend )/ dividend ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+      next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 23:00:35'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:00:35'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+ * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+            / dividend
+
+	^ I + ((self - dividend )/ dividend ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+     next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:00:35'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+IIII / I!
+
+IIII / II!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:20' prior: 50540607!
+         / dividend
+
+	self = dividend ifTrue: [^I]
+	^ I + ((self - dividend )/ dividend ).! !
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 23:05:27'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 23:05:29'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+II * II!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 23:05:44'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:05:44'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+       * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+               + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+             / dividend
+
+	self = dividend ifTrue: [^I]
+	^ I + ((self - dividend )/ dividend ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+        next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 23:05:44'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:05:44'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+ * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+            / dividend
+
+	self = dividend ifTrue: [^I]
+	^ I + ((self - dividend )/ dividend ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+       next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:05:44'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+IIII / II.!
+!II class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:28' prior: 50540715!
+                   / dividend
+
+	self = dividend ifTrue: [^I].
+	^ I + ((self - dividend )/ dividend ).! !
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 23:06:31'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 23:06:34'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+II * II.!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 23:06:49'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:06:49'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+     * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+               + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+             / dividend
+
+	self = dividend ifTrue: [^I].
+	^ I + ((self - dividend )/ dividend ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+       next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 23:06:49'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:06:49'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+ * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+            / dividend
+
+	self = dividend ifTrue: [^I].
+	^ I + ((self - dividend )/ dividend ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+      next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:06:49'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+
+IIII / II.!
+
+IIII / III.!
+!I class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:08:40' prior: 50540600!
+      / dividend
+
+	dividend name = I name ifTrue: [^I].
+	self error: 'No da como resultado un numero entero'! !
+
+!classRemoval: #IIII stamp: 'as 3/23/2025 23:08:44'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classRemoval: #III stamp: 'as 3/23/2025 23:08:46'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+DenotativeObject subclass: #NumerosNaturalesTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: #NumerosNaturalesTest category: #'Numeros Naturales Tests' stamp: 'as 3/23/2025 23:09:23'!
+DenotativeObject subclass: #NumerosNaturalesTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+NumerosNaturalesTest class
+	instanceVariableNames: ''!
+
+!classDefinition: 'NumerosNaturalesTest class' category: #'Numeros Naturales Tests' stamp: 'as 3/23/2025 23:09:23'!
+NumerosNaturalesTest class
+	instanceVariableNames: ''!
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 12:51:26'!
+       test01UnoMasUnSumandoEsElProximoDelSumando
+
+	Assert that: I + II isEqualTo: II next.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 4/6/2021 14:37:43'!
+                        test02NumerosMayoresaUnoSumanBien
+
+	Assert that: II + II isEqualTo: IIII.
+! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 13:12:19'!
+ test03UnNumeroMenosUnoEsElPrevioDelNumero
+
+	Assert that: II - I isEqualTo: II previous.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 4/6/2021 14:37:48'!
+                     test04NumerosMayoresaUnoRestanBien
+
+	Assert that: IIII - II isEqualTo: II.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 12:51:02'!
+ test05RestaNoSoportaNumerosNegativos
+
+	Assert should: [ I - II ] signal: Error withDescription: I descripcionDeErrorDeNumerosNegativosNoSoportados.
+! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 13:15:53'!
+                       test06UnNumeroMultiplicadoPorUnoEsIgualAlNumero
+
+	Assert that: II * I isEqualTo: II.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 4/6/2021 14:37:51'!
+                        test07NumerosMayoresaUnoMultiplicanBien
+
+	Assert that: II * II isEqualTo: IIII.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 13:16:46'!
+                            test08UnoMultiplicadoUnoEsIgualAUno
+
+	Assert that: I * I isEqualTo: I.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 4/6/2021 14:37:53'!
+      test09NumerosMayoresaUnoDividenBien
+
+	Assert that: IIII / II isEqualTo: II.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 13:17:28'!
+test10UnNumeroDivididoUnoEsIgualAlNumero
+
+	Assert that: II / I isEqualTo: II.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 3/26/2018 13:17:38'!
+                              test11UnoDivididoUnoEsIgualAUno
+
+	Assert that: I / I isEqualTo: I.! !
+!NumerosNaturalesTest class methodsFor: 'tests' stamp: 'ARM 4/6/2021 14:37:57'!
+          test12DivisionNoSoportaDividirPorUnNumeroMayor
+
+	Assert should: [ III /  IIII ] signal: Error withDescription: II descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor.
+
+	Assert should: [ I /  II] signal: Error withDescription: I descripcionDeErrorDeNoSePuedeDividirPorUnNumeroMayor
+! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/Guias/Numeros Naturales Tests.st----!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #III category: #Ejercicio4 stamp: 'as 3/23/2025 23:09:35'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'III class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:09:35'!
+III class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+             * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+               + arg1
+	^ previousNumber + arg1 next.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+                    - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+             / dividend
+
+	self = dividend ifTrue: [^I].
+	^ I + ((self - dividend )/ dividend ).! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+       next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+                         previous
+	^ previousNumber.! !
+!III class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:35'!
+                              setPrevious: arg1
+	previousNumber := arg1.! !
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+!classDefinition: #IIII category: #Ejercicio4 stamp: 'as 3/23/2025 23:09:42'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio4'!
+
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+
+!classDefinition: 'IIII class' category: #Ejercicio4 stamp: 'as 3/23/2025 23:09:42'!
+IIII class
+	instanceVariableNames: 'previousNumber nextNumber'!
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+ * aMultiplicandt
+
+	^ aMultiplicandt  + (self previous  * aMultiplicandt ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+              + arg1
+	^ previousNumber + arg1 next.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+                   - sustrahend
+
+	sustrahend name = I name ifTrue: [^ self previous].
+	^ (self previous - sustrahend previous).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+            / dividend
+
+	self = dividend ifTrue: [^I].
+	^ I + ((self - dividend )/ dividend ).! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+      next
+	nextNumber isNil ifTrue: [ nextNumber := self cloneNamed: self name , 'I' ].
+	nextNumber setPrevious: self.
+	^ nextNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+                        previous
+	^ previousNumber.! !
+!IIII class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:09:42'!
+                             setPrevious: arg1
+	previousNumber := arg1.! !
+!I class methodsFor: '-- all --' stamp: 'as 3/23/2025 23:12:58' prior: 50540246!
+ - sustrahend
+	
+	self error: 'descripcionDeErrorDeNumerosNegativosNoSoportados'! !
+
+----QUIT----(23 March 2025 23:16:08) CuisUniversity-6350.image priorSource: 6659911!
