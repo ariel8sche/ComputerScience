@@ -1380,3 +1380,1028 @@ PASSED!
 ERROR!
 
 ----QUIT----(23 March 2025 23:16:08) CuisUniversity-6350.image priorSource: 6659911!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:21'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'as 3/28/2025 16:26:46'!
+ERROR!
+
+----STARTUP---- (28 March 2025 16:26:15) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+IIII / III.!
+
+III / III.!
+
+IIII / II.!
+
+III * I!
+
+----QUIT----(28 March 2025 16:47:28) CuisUniversity-6350.image priorSource: 6705137!
+
+----STARTUP---- (30 March 2025 00:40:11) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+ObjectBuilder create: #objeto0 asChildOf: DenotativeObject collaboratorNames: '' in: 'Numeros Naturales Tests'!
+
+!classDefinition: #objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 01:02:22'!
+DenotativeObject subclass: #objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 01:02:22'!
+objeto0 class
+	instanceVariableNames: ''!
+
+!classRenamed: #objeto0 as: #Objeto0 stamp: 'as 3/30/2025 01:02:34'!
+Smalltalk renameClassNamed: #objeto0 as: #Objeto0!
+
+!classRemoval: #Objeto0 stamp: 'as 3/30/2025 01:02:42'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+ObjectBuilder create: #Objeto0 asChildOf: DenotativeObject collaboratorNames: '' in: 'Numeros Naturales Tests'!
+
+!classDefinition: #Objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 01:02:52'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'Objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 01:02:52'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classRemoval: #Objeto0 stamp: 'as 3/30/2025 01:03:15'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+ObjectBuilder create: #Objeto0 asChildOf: DenotativeObject collaboratorNames: '' in: 'Ejercicio0g2'!
+
+!classDefinition: #Objeto0 category: #Ejercicio0g2 stamp: 'as 3/30/2025 01:03:27'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio0g2'!
+
+!classDefinition: 'Objeto0 class' category: #Ejercicio0g2 stamp: 'as 3/30/2025 01:03:27'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Objeto0 class' category: 'G2Ejercicio0' stamp: 'as 3/30/2025 01:04:57'!
+Objeto0 class
+	instanceVariableNames: 'aVar'!
+!Objeto0 class methodsFor: 'as yet unclassified' stamp: 'as 3/30/2025 01:04:55'!
+m1 
+
+	|b|
+	
+	b := 42.
+	aVar := 1.
+	
+	^self m2:b! !
+
+Objeto0 m1!
+!Objeto0 class methodsFor: 'as yet unclassified' stamp: 'as 3/30/2025 01:07:38'!
+m2: anotherValue 
+
+	|b|
+	
+	b := 24.
+	aVar < 3 ifTrue: [aVar := aVar + anotherValue ].
+	
+	^aVar + b! !
+
+Objeto0 m1!
+
+ObjectBuilder create: #G2Ejercicio1 asChildOf: DenotativeObject collaboratorNames: '' in: 'G2Ejercicio0'!
+
+!classDefinition: #G2Ejercicio1 category: 'G2Ejercicio0' stamp: 'as 3/30/2025 01:08:58'!
+DenotativeObject subclass: #G2Ejercicio1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'G2Ejercicio0'!
+
+!classDefinition: 'G2Ejercicio1 class' category: 'G2Ejercicio0' stamp: 'as 3/30/2025 01:08:58'!
+G2Ejercicio1 class
+	instanceVariableNames: ''!
+
+!classRemoval: #G2Ejercicio1 stamp: 'as 3/30/2025 01:09:05'!
+DenotativeObject subclass: #G2Ejercicio1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'G2Ejercicio0'!
+
+x := #(5 4 3 2 1).!
+
+x at: 1 put: 42 !
+
+x!
+
+x at: 5 put: 5!
+
+x!
+
+x := #(5 4 3 2 1).
+x at: 1 put: 42!
+
+x at: 6 put: 5!
+
+x := OrderedCollection  with: 4 with: 3  with: 2  with: 1!
+
+x add: 42!
+
+x add: 2!
+
+x!
+
+x = #(5 4 3 2 )
+x at: 1 put: 42!
+
+x = #(5 4 3 2 )!
+
+x := #(5 4 3 2 )!
+
+x at: 1 put: 42!
+
+x!
+
+x2 := OrderedCollection  with: 4 with: 3  with: 2  with: 1!
+
+x2 add: 42!
+
+x2 add: 2!
+
+x2.!
+
+x3 := Set with: 4 with: 3 with: 2 with: 1.!
+
+x3 add: 42.!
+
+x3 add: 2.!
+
+x3!
+
+x3!
+
+x asOrderedCollection !
+
+x := #(5 4 3 2 ).!
+
+x := #(5 4 3 2 )!
+
+x at: 1 put: 42.!
+
+x5 := x asOrderedCollection!
+
+x!
+
+x := #(5 4 3 2 ).!
+
+x at: 1 put: 42.!
+
+x at: 1 put: 42.!
+
+x2 := OrderedCollection  with: 4 with: 3  with: 2  with: 1.!
+
+x3 := Set with: 4 with: 3 with: 2 with: 1.!
+
+x3!
+
+x2 add: 42.!
+
+x2 add:2.!
+
+x3 add: 42.!
+
+x3 add: 2.!
+
+x3!
+
+x4 := x asOrderedCollection !
+
+x5 := x asSet !
+
+x5 := x asSet.!
+
+x5 := x asOrderedCollection.!
+
+x6 := x asSet.!
+
+x4 := Dictionary new !
+
+x4 add: #a->4; add:#b->3; add:#c->1;add:#d->2; yourself.!
+
+x4 add: #a->4; add:#b->3; add:#c->1;add:#d->2; yourself.!
+
+x4 add:#e->42.!
+
+x4!
+
+x4 keys!
+
+x4 keys.!
+
+x4 values .!
+
+x4 at: #a!
+
+x4 at: #z!
+
+x4 at: #z ifAbsent: 24 !
+
+x7 := x3 asArray!
+
+x8 := x4 asArray !
+
+x9 := #(1 2 5 6 9)!
+
+x9 select: [aNumber | aNumber odd]!
+
+x9 select: [:aNumber | aNumber odd]!
+
+x10 := #(1 2 5 6 9).!
+
+x10 select: [:aNumber | aNumber odd].!
+
+|elements index odds |!
+
+elements := #(1 2 5 6 9).!
+
+odds := OrderedCollection  new.!
+
+index := 1.!
+
+elements := #(1 2 5 6 9).!
+
+odds := OrderedCollection  new.!
+
+index := 1.!
+
+[index < elements size]!
+
+[index <= elements size]!
+
+^odds!
+
+----STARTUP---- (30 March 2025 10:32:54) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+!classDefinition: #objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:04'!
+DenotativeObject subclass: #objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:04'!
+objeto0 class
+	instanceVariableNames: ''!
+
+!classDefinition: #objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:04'!
+DenotativeObject subclass: #objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:04'!
+objeto0 class
+	instanceVariableNames: ''!
+
+!classRenamed: #objeto0 as: #Objeto0 stamp: 'as 3/30/2025 10:33:04'!
+Smalltalk renameClassNamed: #objeto0 as: #Objeto0!
+
+!classRemoval: #Objeto0 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: #Objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'Objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:05'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classDefinition: #Objeto0 category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: 'Objeto0 class' category: #'Numeros Naturales Tests' stamp: 'as 3/30/2025 10:33:05'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classRemoval: #Objeto0 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros Naturales Tests'!
+
+!classDefinition: #Objeto0 category: #Ejercicio0g2 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio0g2'!
+
+!classDefinition: 'Objeto0 class' category: #Ejercicio0g2 stamp: 'as 3/30/2025 10:33:05'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classDefinition: #Objeto0 category: #Ejercicio0g2 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #Objeto0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio0g2'!
+
+!classDefinition: 'Objeto0 class' category: #Ejercicio0g2 stamp: 'as 3/30/2025 10:33:05'!
+Objeto0 class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Objeto0 class' category: #Ejercicio0g2 stamp: 'as 3/30/2025 10:33:05'!
+Objeto0 class
+	instanceVariableNames: 'aVar'!
+!Objeto0 class methodsFor: 'as yet unclassified' stamp: 'as 3/30/2025 01:04:55'!
+m1 
+
+	|b|
+	
+	b := 42.
+	aVar := 1.
+	
+	^self m2:b! !
+!Objeto0 class methodsFor: 'as yet unclassified' stamp: 'as 3/30/2025 01:07:38'!
+m2: anotherValue 
+
+	|b|
+	
+	b := 24.
+	aVar < 3 ifTrue: [aVar := aVar + anotherValue ].
+	
+	^aVar + b! !
+
+!classDefinition: #G2Ejercicio1 category: #G2Ejercicio0 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #G2Ejercicio1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'G2Ejercicio0'!
+
+!classDefinition: 'G2Ejercicio1 class' category: #G2Ejercicio0 stamp: 'as 3/30/2025 10:33:05'!
+G2Ejercicio1 class
+	instanceVariableNames: ''!
+
+!classDefinition: #G2Ejercicio1 category: #G2Ejercicio0 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #G2Ejercicio1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'G2Ejercicio0'!
+
+!classDefinition: 'G2Ejercicio1 class' category: #G2Ejercicio0 stamp: 'as 3/30/2025 10:33:05'!
+G2Ejercicio1 class
+	instanceVariableNames: ''!
+
+!classRemoval: #G2Ejercicio1 stamp: 'as 3/30/2025 10:33:05'!
+DenotativeObject subclass: #G2Ejercicio1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'G2Ejercicio0'!
+
+2!
+
+2 + 2!
+
+2 + 2!
+
+2 + 2!
+
+----STARTUP---- (30 March 2025 10:45:01) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+ObjectBuilder create: #anObject0
+	collaboratorNames: 'aVar'
+	in: 'P1S2Ejercicio1'
+	!
+
+!classDefinition: #anObject0 category: #P1S2Ejercicio1 stamp: 'as 3/30/2025 11:00:34'!
+DenotativeObject subclass: #anObject0
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'P1S2Ejercicio1'!
+
+!classDefinition: 'anObject0 class' category: #P1S2Ejercicio1 stamp: 'as 3/30/2025 11:00:34'!
+anObject0 class
+	instanceVariableNames: 'aVar'!
+!anObject0 class methodsFor: 'as yet unclassified' stamp: 'as 3/30/2025 11:02:44'!
+m1
+
+	| b |
+	
+	b := 42.
+	aVar := 1.
+	
+	^self m2:b! !
+!anObject0 class methodsFor: '-- all --' stamp: 'as 3/30/2025 11:04:18'!
+m2: anotherValue
+
+	| b |
+	
+	b := 24.
+	aVar < 3 ifTrue: [aVar :=aVar + anotherValue ].
+	
+	^aVar + b! !
+
+anObject0 m1!
+
+----SNAPSHOT----(30 March 2025 11:04:43) CuisUniversity-6350.image priorSource: 6705414!
+
+anObject0 m1.!
+
+anObject0!
+
+anObject0!
+
+anObject0!
+
+anObject0!
+
+anObject0!
+
+----SNAPSHOT----(30 March 2025 11:36:21) CuisUniversity-6350.image priorSource: 6715796!
+
+----SNAPSHOT----(30 March 2025 11:36:31) CuisUniversity-6350.image priorSource: 6715962!
+
+x := Set with: 4 with: 3 with: 2 with: 1. !
+
+x := Dictionary new.!
+
+x add: #a->4.!
+
+x at: #z ifAbsent:24. !
+
+----SNAPSHOT----(30 March 2025 12:03:54) CuisUniversity-6350.image priorSource: 6716052!
+
+| elements index odds |
+​elements:= #(1 2 5 6 9).
+​
+​odds := OrderedCollection new.
+index := 1.
+​
+​[index <= elements size]
+whileTrue: [
+​			((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+			index := index +1.
+		].
+^odds!
+
+| elements index odds |
+​elements:= #(1 2 5 6 9).
+​
+​odds := OrderedCollection new.
+index := 1.
+​
+​[index <= elements size]
+whileTrue: [
+​			((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+			index := index +1.
+		].
+^odds!
+
+| elements index odds |
+​elements:= #(1 2 5 6 9).
+​
+​odds := OrderedCollection new.
+index := 1.
+​
+​[index <= elements size]
+whileTrue: [
+​			((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+			index := index +1.
+		].
+^odds!
+
+| elements index odds |
+​elements:= #(1 2 5 6 9).
+​
+​odds := OrderedCollection new.
+index := 1.
+​
+​[index <= elements size]
+whileTrue: [
+​			((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+			index := index +1.
+		].
+^odds!
+
+​elements:= #(1 2 5 6 9).!
+
+​odds := OrderedCollection new.!
+
+elements do: [:anElem | elem odd ifTrue: [odds add: elem].].!
+
+elements do: [:anElem | (elem odd) ifTrue: [odds add: elem].].!
+
+elements do: [:anElem | (anElem odd) ifTrue: [odds add: elem].].!
+
+^odds!
+
+​elements:= #(1 2 5 6 9).!
+
+​odds := OrderedCollection new.!
+
+​elements:= #(1 2 5 6 9).!
+
+​odds := OrderedCollection new.!
+
+elements do: [:anElem | (anElem odd) ifTrue: [odds add: anElem]].!
+
+^odds!
+
+| elements doble |!
+
+​elements:= #(1 2 5 6 9).!
+
+​doble := OrderedCollection new!
+
+​elements do: [:anElem | doble add: (anElem * 2)].!
+
+^doble !
+
+​elements:= #(1 2 5 6 9).!
+
+​doble := OrderedCollection new.!
+
+doble := elements collect: [anElem | anElem * 2].!
+
+doble := elements collect: [anElem | anElem * 2].!
+
+elements collect: [anElem | anElem * 2].!
+
+doble := elements collect: [:anElem | anElem * 2].!
+
+^doble.!
+
+elements.!
+
+^ elements collect: [:anElem | anElem * 2].!
+
+| elements index |
+​elements:= #(1 2 5 6 9).
+index := 1.
+[index <= elements size]
+whileTrue: [
+	((elements at: index) even) ifTrue: [^elements at: index].
+	index := index + 1.
+	].!
+
+element do: [:anElen | (anElem even) ifTrue: [^anElem ]].!
+
+elements do: [:anElen | (anElem even) ifTrue: [^anElem ]].!
+
+elements do: [:anElem | (anElem even) ifTrue: [^anElem ]].!
+
+elements detect: [:anElem | anElem even].!
+
+​elements:= #(1 5 9).!
+
+elements do: [:anElem | (anElem even) ifTrue: [^anElem ]].!
+
+elements detect: [:anElem | anElem even].!
+
+elements detect: [:anElem | anElem even].!
+
+​elements:= #(1 5 9). #(1 5 9) .
+index := 1.
+[index <= elements size]
+whileTrue: [
+	((elements at: index) even) ifTrue: [^elements at: index].
+	index := index + 1.
+	].!
+
+elements detect: [:anElem | anElem even] ifNone: [self error:'No hay numeros pares'].!
+
+elements do: [:anElem | (anElem even) ifTrue: [^anElem ]].
+self error:'No hay numeros pares'!
+
+​elements:= #(1 5 9). #(1 5 9) .
+index := 1.
+[index <= elements size]
+whileTrue: [
+	((elements at: index) even) ifTrue: [^elements at: index].
+	index := index + 1.
+	].
+self error:'No hay numeros pares'!
+
+elements = #(a b c d e f g u i j p).!
+
+elements := #(a b c d e f g u i j p).!
+
+vocales := #(a e i o u).!
+
+elements select: [:anElem | anElem in: vocales].!
+
+elementsV := OrderedCollection new.!
+
+elements select: [:anElem | (vocales includes: anElem) ifTrue:[elementsV  add: anElem ]].!
+
+vocales includes:#a!
+
+elementsV := OrderedCollection new.!
+
+elements := #('a' 'b' 'c' 'd' 'e' 'f' 'g' 'u' 'i' 'j' 'p').!
+
+vocales := #('a' 'e' 'i' 'o' 'u').!
+
+elementsV := OrderedCollection new.!
+
+elementsV := elements select: [:anElem | vocales includes: anElem].!
+
+vocales := Set new.!
+
+vocales addAll: #('a' 'e' 'i' 'o' 'u').!
+
+^vocales  includes: elements asString.!
+
+x value.!
+
+|x|!
+
+x :=[ y:= 1. z:= 2.].!
+
+x value.!
+
+y.!
+
+y.!
+
+x :=[ y:= 1. z:= 2.].!
+
+x value.!
+
+y.!
+
+|x y|!
+
+x :=[ y:= 1. z:= 2.].!
+
+x value.!
+
+y.!
+
+y.!
+
+x :=[ y:= 1. z:= 2.].!
+
+x value.!
+
+x!
+
+x :=[ y:= 1. z:= 2.].
+!
+
+y!
+
+x :=[ w:= 1. z:= 2.].!
+
+x value.!
+
+w.!
+
+x :=[ f:= 1. z:= 2.].!
+
+x value.!
+
+f.!
+
+doblar := [:x | 2*x].!
+
+doblar value: 2!
+
+doblar value: 3!
+
+​x = y.!
+
+x := #pepe.!
+
+y := #pepe.!
+
+​x = y.!
+
+​x = y.!
+
+​x = y.!
+
+x.!
+
+y!
+
+​x = y.!
+
+​x == y.!
+
+x := #pepe.!
+
+y := #pepe.!
+
+​x == y.!
+
+#Hello , #Wordl , #!!!
+
+10 * peso + 10 *dollar!
+
+10 *dollar!
+
+(10 * peso) + (10 *dollar).!
+
+10 * peso + (10 *dollar).!
+
+10 * peso + (10 *dollar) - (2*dollar).!
+
+10 * peso + (10 *dollar) - (2*dollar) - (8*dollar).!
+
+peso inspect!
+
+peso inspect!
+
+(10*peso) amount!
+
+(10*peso) unit!
+
+peso!
+
+1 unit!
+
+1 amount!
+
+(10 * peso) + 1!
+
+1 + (10 * peso)!
+
+(10 * peso) * 5!
+
+(10 * peso) * 5!
+
+(10 * peso) * (5 * peso)!
+
+(10 * peso) + 1!
+
+peso := BaseUnit nameForOne: 'peso' nameForMany: 'pesos' sign: '$$'. !
+
+peso * 10!
+
+peso * 10!
+
+(peso * 10) sign!
+
+peso sign!
+
+(10 * metros) + (500 * centimetros).!
+
+(10 * meter ) + (500 * centimeter ).!
+
+metros := BaseUnit  nameForOne: 'metro' nameForMany: 'metros' sign: 'm'.!
+
+centimetros := ProportionalDerivedUnit initializeBaseUnit: metros conversionFactor: 100 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm' .!
+
+centimetros := ProportionalDerivedUnit initializeBaseUnit: metros conversionFactor: 100 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+ProportionalDerivedUnit initializeBaseUnit: metros conversionFactor: 100 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+metro := BaseUnit  nameForOne: 'metro' nameForMany: 'metros' sign: 'm'.!
+
+centimetro := ProportionalDerivedUnit initializeBaseUnit: metro conversionFactor: 100 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+centimetro := ProportionalDerivedUnit initializeBaseUnit: metro conversionFactor: 0.01 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+centimetro := ProportionalDerivedUnit initializeBaseUnit: metro conversionFactor: 0.01 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+centimetro := ProportionalDerivedUnit new initializeBaseUnit: metro conversionFactor: 0.01 nameForOne: 'centimetro' nameForMany: 'centimetros' sign: 'cm'.!
+
+(10 * metros)!
+
+(10 * metro) + (500 * centimetro)!
+
+pulgada := ProportionalDerivedUnit new initializeBaseUnit: metro conversionFactor: 0.0254 nameForOne: 'pulgada' nameForMany: 'pulgadas' sign: 'in'.!
+
+diezMetros := metros * 10!
+
+sesentaPulgadas := pulgadas * 60!
+
+sesentaPulgadas := pulgada * 60!
+
+sesentaPulgadas := pulgada * 60!
+
+sesentaPulgadas := pulgada * 60!
+
+diezMetros + sesentaPulgadas !
+
+----SNAPSHOT----(30 March 2025 18:52:52) CuisUniversity-6350.image priorSource: 6716251!
+
+----SNAPSHOT----(30 March 2025 18:53:03) CuisUniversity-6350.image priorSource: 6722893!
+
+----SNAPSHOT----(30 March 2025 18:53:06) CuisUniversity-6350.image priorSource: 6722983!
+
+----QUIT----(30 March 2025 18:53:21) CuisUniversity-6350.image priorSource: 6723073!
+
+----STARTUP---- (30 March 2025 23:59:24) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+DateAndTime fromSeconds: 0.!
+
+(DateAndTime fromSeconds: 0) + (Duration days: 1).!
+
+DateAndTime now !
+
+DateAndTime now fromSeconds: 0!
+
+(DateAndTime now) fromSeconds: 0!
+
+(DateAndTime fromSeconds: 0)!
+
+Time now.!
+
+Time hour: 1 minute: 2 second: 4.!
+
+DateAndTime fromSeconds: 0.!
+
+Time now.!
+
+Time hour: 1 minute: 2 second: 4.!
+
+Time now + (Duration hours: 1). "FALLA porque no es un timespan"!
+
+(DateAndTime fromSeconds: 0) + (Duration days: 1).!
+
+Date today.!
+
+Date newDay: 1 month: 2 year: 3 .!
+
+FixedGregorianDate today.!
+
+FixedGregorianDate today next next.!
+
+GregorianDateTime now.!
+
+GregorianDateTime now next.!
+
+GregorianDateTime now.!
+
+GregorianDateTime now next distanceFrom: GregorianDateTime now.!
+
+(GregorianDateTime now next distanceFrom: GregorianDateTime now) convertTo: second / millisecond.!
+
+FixedGregorianDate today.
+!
+
+FixedGregorianDate today next next.
+!
+
+GregorianDateTime now.
+!
+
+GregorianDateTime now next.
+!
+
+GregorianDateTime now next.
+!
+
+GregorianDateTime now next distanceFrom: GregorianDateTime now.
+!
+
+GregorianDateTime now next distanceFrom: GregorianDateTime now.
+!
+
+GregorianDateTime now next distanceFrom: GregorianDateTime now.!
+
+(GregorianDateTime now next distanceFrom: GregorianDateTime now) convertTo: second / millisecond.
+!
+
+TimeOfDay now.!
+
+TimeOfDay now.!
+
+TimeOfDay now next: (30 * hour).!
+
+FixedGregorianDate today year.!
+
+FixedGregorianDate today year.!
+
+FixedGregorianDate today month.!
+
+FixedGregorianDate today monthOfYear.!
+
+FixedGregorianDate today week !
+
+FixedGregorianDate today!
+
+FixedGregorianDate today weeks!
+
+FixedGregorianDate today weekNumber !
+
+FixedGregorianDate today + (24 * second )!
+
+24 * second !
+
+TimeOfDay + (24 * second).!
+
+GregorianDateTime now + (24 * second).!
+
+DateAndTime time + (24 * second).!
+
+2024 isLeap!
+
+----QUIT----(31 March 2025 00:33:29) CuisUniversity-6350.image priorSource: 6723163!
