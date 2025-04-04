@@ -2405,3 +2405,2763 @@ DateAndTime time + (24 * second).!
 2024 isLeap!
 
 ----QUIT----(31 March 2025 00:33:29) CuisUniversity-6350.image priorSource: 6723163!
+
+----STARTUP---- (31 March 2025 10:36:07) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+(FixedGregorianDate  today) dayOfWeek!
+
+(FixedGregorianDate  today) day!
+
+(FixedGregorianDate  today) weekday !
+
+(FixedGregorianDate  today) next: (24 * day)!
+
+(FixedGregorianDate  today) next: (24 * second )!
+
+(FixedGregorianDate  today) next: (24 second )!
+
+(FixedGregorianDate  today) next: (24)!
+
+(FixedGregorianDate  today) + 24 second!
+
+(FixedGregorianDate  today) + 24 seconds!
+
+(Time now) +24 second!
+
+(Time now) + (24 * seconds)!
+
+(Time now) + (24 * second )!
+
+Timespan  now!
+
+Timespan today !
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+(DateAndTime now) + (24 seconds)!
+
+DateAndTime now!
+
+(DateAndTime now) second !
+
+(DateAndTime now) second !
+
+(DateAndTime now) second !
+
+(DateAndTime now) second !
+
+(DateAndTime day) second !
+
+(24 * 60 * 60 * second)!
+
+(DateAndTime now) + (24 * 60 * 60 * second).!
+
+(DateAndTime now) + (24 * 60 * 60 seconds).!
+
+(DateAndTime now) + ((24 * 60 * 60) seconds).!
+
+2024 isLeap.!
+
+(April , 2024) year isLeap.!
+
+April , 2024!
+
+(April , 2024) year.!
+
+(April , 2024) year.
+!
+
+(April , 2024) year!
+
+TimeOfDay  now!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next!
+
+TimeOfDay now next: 3600!
+
+TimeOfDay now!
+
+TimeOfDay now!
+
+TimeOfDay now next: (3600 millisecond)!
+
+TimeOfDay now next: (3600 * millisecond)!
+
+TimeOfDay now !
+
+----QUIT----(31 March 2025 11:41:45) CuisUniversity-6350.image priorSource: 6725176!
+
+----STARTUP---- (1 April 2025 15:24:29) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----QUIT----(1 April 2025 15:28:40) CuisUniversity-6350.image priorSource: 6727035!
+
+----STARTUP---- (3 April 2025 14:55:47) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/Guias/CodigoRepetido-Ejercicio.st----!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:22:15'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:23:07'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds stamp: 'as 4/3/2025 15:23:07'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:23:57'!
+customerAction: action test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: stamp: 'as 4/3/2025 15:23:57'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:25:02'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #customerAction:test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: stamp: 'as 4/3/2025 15:25:02'!
+customerAction: action test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:25:27'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext customerAction: action 
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: stamp: 'as 4/3/2025 15:25:27'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:27:54'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext customerAction: action timeToEvaluate: time  
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds:customerAction: stamp: 'as 4/3/2025 15:27:54'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext customerAction: action 
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:29:50' prior: 50542331!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext customerAction: action timeToEvaluate: time  
+
+	| customerBook customer millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	previousContext value.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	action value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (time * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds:customerAction:timeToEvaluate: stamp: 'as 4/3/2025 15:32:03'!
+test01v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: previousContext customerAction: action timeToEvaluate: time  
+
+	| customerBook customer millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	previousContext value.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	action value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (time * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:33:22'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:42:21' prior: 50542409!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:42:37'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: customerBook
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds stamp: 'as 4/3/2025 15:42:37'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:43:14'!
+customerBookAction: action test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: customerBook
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: stamp: 'as 4/3/2025 15:43:14'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: customerBook
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:43:27'!
+customerBookAction: action 
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #customerBookAction:test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: stamp: 'as 4/3/2025 15:43:27'!
+customerBookAction: action test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificMilliseconds: customerBook
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:44:59'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action 
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #customerBookAction: stamp: 'as 4/3/2025 15:44:59'!
+customerBookAction: action 
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:46:11'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action client: client  
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime:customerBookAction: stamp: 'as 4/3/2025 15:46:11'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action 
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:47:36'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action client: client timeToEvaluate: time   
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime:customerBookAction:client: stamp: 'as 4/3/2025 15:47:36'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action client: client  
+
+	| customerBook2 millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook2 := CustomerBook new.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook2 addCustomerNamed: 'John Lennon'.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (50 * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:49:39' prior: 50542628!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action client: client timeToEvaluate: time   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook action: client.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (time * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:51:42'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime: customerBook customerBookAction: action clientToPerformAction: client timeToEvaluate: time   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook action: client.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (time * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime:customerBookAction:client:timeToEvaluate: stamp: 'as 4/3/2025 15:51:42'!
+test01Y02v2CustomerActionShouldNotTakeMoraThanSpecificTime: customerBook customerBookAction: action client: client timeToEvaluate: time   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	customerBook action: client.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (time * millisecond)
+	
+!
+!Behavior method!
+includesCustomerNamed: aName
+	#_coverageTracker3410325_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker3410325_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker3410325_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker3410325_
+					cover: (51 to: 55)
+					declaredAt: (24 to: 28)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker3410325_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			receiver3 or: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker3410325_
+					cover: (64 to: 72)
+					declaredAt: (64 to: 72)
+					by: suspended.
+				#_coverageTracker3410325_
+					coverAll:
+						{74 to: 82}
+					evaluating: [
+						receiver2 includes:
+							(#_coverageTracker3410325_
+								cover: (84 to: 88)
+								declaredAt: (24 to: 28)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver2 ] value ]]
+		thatSends: #or:
+		to: receiver3 ] value.! !
+!Behavior method!
+addCustomerNamed: aName
+	#_coverageTracker3410340_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker3410340_
+		cover: (27 to: 31)
+		declaredAt: (19 to: 23)
+		by: aName.
+	#_coverageTracker3410340_
+		coverAll:
+			{33 to: 39}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker3410340_
+		coverAll:
+			{41 to: 47}
+		evaluating: [
+			receiver3 ifTrue: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker3410340_
+					coverAll:
+						{51 to: 54}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker3410340_
+					coverAll:
+						{56 to: 86}
+					evaluating: [ receiver2 signalCustomerNameCannotBeEmpty ]
+					thatSends: #signalCustomerNameCannotBeEmpty
+					to: receiver2 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver3 ] value.
+	[ | receiver8 |
+	receiver8 := [ | receiver6 |
+	receiver6 := [ | receiver4 |
+	receiver4 := #_coverageTracker3410340_
+		cover: (94 to: 99)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker3410340_
+		coverAll:
+			{101 to: 109}
+		evaluating: [
+			receiver4 includes:
+				(#_coverageTracker3410340_
+					cover: (111 to: 115)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver4 ] value.
+	#_coverageTracker3410340_
+		coverAll:
+			{118 to: 120}
+		evaluating: [
+			receiver6 or: [
+				[ | receiver5 |
+				receiver5 := #_coverageTracker3410340_
+					cover: (123 to: 131)
+					declaredAt: (123 to: 131)
+					by: suspended.
+				#_coverageTracker3410340_
+					coverAll:
+						{133 to: 141}
+					evaluating: [
+						receiver5 includes:
+							(#_coverageTracker3410340_
+								cover: (143 to: 147)
+								declaredAt: (19 to: 23)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver5 ] value ]]
+		thatSends: #or:
+		to: receiver6 ] value.
+	#_coverageTracker3410340_
+		coverAll:
+			{151 to: 157}
+		evaluating: [
+			receiver8 ifTrue: [
+				[ | receiver7 |
+				receiver7 := #_coverageTracker3410340_
+					coverAll:
+						{161 to: 164}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker3410340_
+					coverAll:
+						{166 to: 192}
+					evaluating: [ receiver7 signalCustomerAlreadyExists ]
+					thatSends: #signalCustomerAlreadyExists
+					to: receiver7 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver8 ] value.
+	[ | receiver9 |
+	receiver9 := #_coverageTracker3410340_
+		cover: (200 to: 205)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker3410340_
+		coverAll:
+			{207 to: 210}
+		evaluating: [
+			receiver9 add:
+				(#_coverageTracker3410340_
+					cover: (212 to: 216)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver9 ] value.! !
+!Behavior method!
+numberOfSuspendedCustomers
+	#_coverageTracker3410358_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker3410358_
+		cover: (32 to: 40)
+		declaredAt: (32 to: 40)
+		by: suspended.
+	#_coverageTracker3410358_
+		coverAll:
+			{42 to: 45}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+isEmpty
+	#_coverageTracker3410360_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker3410360_
+		cover: (13 to: 18)
+		declaredAt: (13 to: 18)
+		by: active.
+	#_coverageTracker3410360_
+		coverAll:
+			{20 to: 26}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker3410360_
+		coverAll:
+			{28 to: 31}
+		evaluating: [
+			receiver3 and: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker3410360_
+					cover: (35 to: 43)
+					declaredAt: (35 to: 43)
+					by: suspended.
+				#_coverageTracker3410360_
+					coverAll:
+						{45 to: 51}
+					evaluating: [ receiver2 isEmpty ]
+					thatSends: #isEmpty
+					to: receiver2 ] value ]]
+		thatSends: #and:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfActiveCustomers
+	#_coverageTracker3410367_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker3410367_
+		cover: (29 to: 34)
+		declaredAt: (29 to: 34)
+		by: active.
+	#_coverageTracker3410367_
+		coverAll:
+			{36 to: 39}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+suspendCustomerNamed: aName
+	#_coverageTracker3410369_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker3410369_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker3410369_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker3410369_
+					cover: (51 to: 55)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker3410369_
+		coverAll:
+			{58 to: 65}
+		evaluating: [ receiver3 ifFalse: [ ^ [ | receiver2 |
+				receiver2 := #_coverageTracker3410369_
+					coverAll:
+						{69 to: 79}
+					by: CantSuspend.
+				#_coverageTracker3410369_
+					coverAll:
+						{81 to: 86}
+					evaluating: [ receiver2 signal ]
+					thatSends: #signal
+					to: receiver2 ] value ]]
+		thatSends: #ifFalse:
+		to: receiver3 ] value.
+	[ | receiver4 |
+	receiver4 := #_coverageTracker3410369_
+		cover: (93 to: 98)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker3410369_
+		coverAll:
+			{100 to: 106}
+		evaluating: [
+			receiver4 remove:
+				(#_coverageTracker3410369_
+					cover: (108 to: 112)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #remove:
+		to: receiver4 ] value.
+	[ | receiver5 |
+	receiver5 := #_coverageTracker3410369_
+		cover: (118 to: 126)
+		declaredAt: (118 to: 126)
+		by: suspended.
+	#_coverageTracker3410369_
+		coverAll:
+			{128 to: 131}
+		evaluating: [
+			receiver5 add:
+				(#_coverageTracker3410369_
+					cover: (133 to: 137)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver5 ] value.! !
+!Behavior method!
+signalCustomerNameCannotBeEmpty
+	#_coverageTracker3410379_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker3410379_
+		coverAll:
+			{36 to: 39}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker3410379_
+		coverAll:
+			{41 to: 46}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker3410379_
+					coverAll:
+						{48 to: 51}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker3410379_
+					coverAll:
+						{53 to: 57}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker3410379_
+					coverAll:
+						{59 to: 91}
+					evaluating: [ receiver2 customerCanNotBeEmptyErrorMessage ]
+					thatSends: #customerCanNotBeEmptyErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+customerAlreadyExistsErrorMessage
+	#_coverageTracker3410383_ markAsExecuted.
+	^ #_coverageTracker3410383_
+		coverAll:
+			{38 to: 65}
+		byLiteralOrPseudoVariable: 'Customer already exists!!!!!!'.! !
+!Behavior method!
+initialize
+	#_coverageTracker3410385_ markAsExecuted.
+	#_coverageTracker3410385_
+		cover: (14 to: 19)
+		declaredAt: (14 to: 19)
+		by:
+			(active := [ | receiver1 |
+			receiver1 := #_coverageTracker3410385_
+				coverAll:
+					{24 to: 40}
+				by: OrderedCollection.
+			#_coverageTracker3410385_
+				coverAll:
+					{42 to: 44}
+				evaluating: [ receiver1 new ]
+				thatSends: #new
+				to: receiver1 ] value).
+	#_coverageTracker3410385_
+		cover: (48 to: 56)
+		declaredAt: (48 to: 56)
+		by:
+			(suspended := [ | receiver2 |
+			receiver2 := #_coverageTracker3410385_
+				coverAll:
+					{60 to: 76}
+				by: OrderedCollection.
+			#_coverageTracker3410385_
+				coverAll:
+					{78 to: 80}
+				evaluating: [ receiver2 new ]
+				thatSends: #new
+				to: receiver2 ] value).! !
+!Behavior method!
+customerCanNotBeEmptyErrorMessage
+	#_coverageTracker3410391_ markAsExecuted.
+	^ #_coverageTracker3410391_
+		coverAll:
+			{38 to: 71}
+		byLiteralOrPseudoVariable: 'Customer name cannot be empty!!!!!!'.! !
+!Behavior method!
+signalCustomerAlreadyExists
+	#_coverageTracker3410393_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker3410393_
+		coverAll:
+			{32 to: 35}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker3410393_
+		coverAll:
+			{37 to: 42}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker3410393_
+					coverAll:
+						{44 to: 47}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker3410393_
+					coverAll:
+						{49 to: 53}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker3410393_
+					coverAll:
+						{55 to: 87}
+					evaluating: [ receiver2 customerAlreadyExistsErrorMessage ]
+					thatSends: #customerAlreadyExistsErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfCustomers
+	#_coverageTracker3410395_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker3410395_
+		cover: (23 to: 28)
+		declaredAt: (23 to: 28)
+		by: active.
+	#_coverageTracker3410395_
+		coverAll:
+			{30 to: 33}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.
+	#_coverageTracker3410395_
+		coverAll:
+			{35 to: 35}
+		evaluating: [
+			receiver3 +
+				[ | receiver2 |
+				receiver2 := #_coverageTracker3410395_
+					cover: (37 to: 45)
+					declaredAt: (37 to: 45)
+					by: suspended.
+				#_coverageTracker3410395_
+					coverAll:
+						{47 to: 50}
+					evaluating: [ receiver2 size ]
+					thatSends: #size
+					to: receiver2 ] value ]
+		thatSends: #+
+		to: receiver3 ] value.! !
+!Behavior method!
+removeCustomerNamed: aName
+	#_coverageTracker3410402_ markAsExecuted.
+	[ | receiver6 |
+	receiver6 := #_coverageTracker3410402_
+		coverAll:
+			{32 to: 32}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker3410402_
+		coverAll:
+			{34 to: 36. 50 to: 52}
+		evaluating: [
+			receiver6
+				to:
+					[ | receiver1 |
+					receiver1 := #_coverageTracker3410402_
+						cover: (38 to: 43)
+						declaredAt: (38 to: 43)
+						by: active.
+					#_coverageTracker3410402_
+						coverAll:
+							{45 to: 48}
+						evaluating: [ receiver1 size ]
+						thatSends: #size
+						to: receiver1 ] value
+				do: [ :index |
+					[ | receiver5 |
+					receiver5 := [ | receiver3 |
+					receiver3 := #_coverageTracker3410402_
+						cover: (69 to: 73)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker3410402_
+						coverAll:
+							{75 to: 75}
+						evaluating: [
+							receiver3 =
+								[ | receiver2 |
+								receiver2 := #_coverageTracker3410402_
+									cover: (78 to: 83)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker3410402_
+									coverAll:
+										{85 to: 87}
+									evaluating: [
+										receiver2 at:
+											(#_coverageTracker3410402_
+												cover: (89 to: 93)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #at:
+									to: receiver2 ] value ]
+						thatSends: #=
+						to: receiver3 ] value.
+					#_coverageTracker3410402_
+						coverAll:
+							{99 to: 105}
+						evaluating: [
+							receiver5 ifTrue: [
+								[ | receiver4 |
+								receiver4 := #_coverageTracker3410402_
+									cover: (113 to: 118)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker3410402_
+									coverAll:
+										{120 to: 128}
+									evaluating: [
+										receiver4 removeAt:
+											(#_coverageTracker3410402_
+												cover: (130 to: 134)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver4 ] value.
+								^ #_coverageTracker3410402_
+									cover: (143 to: 147)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver5 ] value ]]
+		thatSends: #to:do:
+		to: receiver6 ] value.
+	[ | receiver12 |
+	receiver12 := #_coverageTracker3410402_
+		coverAll:
+			{162 to: 162}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker3410402_
+		coverAll:
+			{164 to: 166. 183 to: 185}
+		evaluating: [
+			receiver12
+				to:
+					[ | receiver7 |
+					receiver7 := #_coverageTracker3410402_
+						cover: (168 to: 176)
+						declaredAt: (168 to: 176)
+						by: suspended.
+					#_coverageTracker3410402_
+						coverAll:
+							{178 to: 181}
+						evaluating: [ receiver7 size ]
+						thatSends: #size
+						to: receiver7 ] value
+				do: [ :index |
+					[ | receiver11 |
+					receiver11 := [ | receiver9 |
+					receiver9 := #_coverageTracker3410402_
+						cover: (203 to: 207)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker3410402_
+						coverAll:
+							{209 to: 209}
+						evaluating: [
+							receiver9 =
+								[ | receiver8 |
+								receiver8 := #_coverageTracker3410402_
+									cover: (212 to: 220)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker3410402_
+									coverAll:
+										{222 to: 224}
+									evaluating: [
+										receiver8 at:
+											(#_coverageTracker3410402_
+												cover: (226 to: 230)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #at:
+									to: receiver8 ] value ]
+						thatSends: #=
+						to: receiver9 ] value.
+					#_coverageTracker3410402_
+						coverAll:
+							{236 to: 242}
+						evaluating: [
+							receiver11 ifTrue: [
+								[ | receiver10 |
+								receiver10 := #_coverageTracker3410402_
+									cover: (250 to: 258)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker3410402_
+									coverAll:
+										{260 to: 268}
+									evaluating: [
+										receiver10 removeAt:
+											(#_coverageTracker3410402_
+												cover: (270 to: 274)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver10 ] value.
+								^ #_coverageTracker3410402_
+									cover: (283 to: 287)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver11 ] value ]]
+		thatSends: #to:do:
+		to: receiver12 ] value.
+	^ [ | receiver13 |
+	receiver13 := #_coverageTracker3410402_
+		coverAll:
+			{305 to: 312}
+		by: NotFound.
+	#_coverageTracker3410402_
+		coverAll:
+			{314 to: 319}
+		evaluating: [ receiver13 signal ]
+		thatSends: #signal
+		to: receiver13 ] value.! !
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test03CanNotAddACustomerWithEmptyName stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test04CanNotRemoveAnInvalidCustomer stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test05SuspendingACustomerShouldNotRemoveItFromCustomerBook stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test07CanNotSuspendAnInvalidCustomer stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+!testRun: #CustomerBookTest #test08CanNotSuspendAnAlreadySuspendedCustomer stamp: 'as 4/3/2025 15:52:38'!
+PASSED!
+
+customerBook := (CustomerBook new) addCustomerNamed: 'Ariel'.!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:55:40' prior: 50542686!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aCustomerBook anAction : aClient.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/3/2025 15:59:01' prior: 50543207!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aCustomerBook action: aClient.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+
+----QUIT----(3 April 2025 16:25:23) CuisUniversity-6350.image priorSource: 6727261!
+
+----STARTUP---- (4 April 2025 10:17:08) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:25:02'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aCustomerBook action: aClient.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction:clientToPerformAction:timeToEvaluate: stamp: 'as 4/4/2025 10:25:02'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aCustomerBook action: aClient.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:26:44' prior: 50543251!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := aCustomerBook.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	anAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:27:06'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction timeToEvaluate: aTime   
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := aCustomerBook.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	anAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #testCustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction:clientToPerformAction:timeToEvaluate: stamp: 'as 4/4/2025 10:27:06'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := aCustomerBook.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	anAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:27:31' prior: 50543309!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction timeToEvaluate: aTime   
+
+	| customerBook millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	customerBook := aCustomerBook.
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:33:30' prior: 50543349!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:34:02'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #testCustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction:timeToEvaluate: stamp: 'as 4/4/2025 10:34:02'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:34:15'!
+customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #testCustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction: stamp: 'as 4/4/2025 10:34:15'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:34:32'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #customerBookAction: stamp: 'as 4/4/2025 10:34:37'!
+customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:34:44'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #testCustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction:timeToEvaluate: stamp: 'as 4/4/2025 10:34:44'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:34:49'!
+customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #testCustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction: stamp: 'as 4/4/2025 10:34:49'!
+testCustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:35:31'!
+customerBookActionTime: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+! !
+
+!methodRemoval: CustomerBookTest #customerBookAction: stamp: 'as 4/4/2025 10:35:31'!
+customerBookAction: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning)
+	
+!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test03CanNotAddACustomerWithEmptyName stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test04CanNotRemoveAnInvalidCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test05SuspendingACustomerShouldNotRemoveItFromCustomerBook stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test07CanNotSuspendAnInvalidCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test08CanNotSuspendAnAlreadySuspendedCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test03CanNotAddACustomerWithEmptyName stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test04CanNotRemoveAnInvalidCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test05SuspendingACustomerShouldNotRemoveItFromCustomerBook stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test07CanNotSuspendAnInvalidCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+
+!testRun: #CustomerBookTest #test08CanNotSuspendAnAlreadySuspendedCustomer stamp: 'as 4/4/2025 10:37:11'!
+PASSED!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 10:38:40' prior: 50541921!
+test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+!Behavior method!
+includesCustomerNamed: aName
+	#_coverageTracker1300320_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1300320_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1300320_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1300320_
+					cover: (51 to: 55)
+					declaredAt: (24 to: 28)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1300320_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			receiver3 or: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1300320_
+					cover: (64 to: 72)
+					declaredAt: (64 to: 72)
+					by: suspended.
+				#_coverageTracker1300320_
+					coverAll:
+						{74 to: 82}
+					evaluating: [
+						receiver2 includes:
+							(#_coverageTracker1300320_
+								cover: (84 to: 88)
+								declaredAt: (24 to: 28)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver2 ] value ]]
+		thatSends: #or:
+		to: receiver3 ] value.! !
+!Behavior method!
+addCustomerNamed: aName
+	#_coverageTracker1300334_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1300334_
+		cover: (27 to: 31)
+		declaredAt: (19 to: 23)
+		by: aName.
+	#_coverageTracker1300334_
+		coverAll:
+			{33 to: 39}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1300334_
+		coverAll:
+			{41 to: 47}
+		evaluating: [
+			receiver3 ifTrue: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1300334_
+					coverAll:
+						{51 to: 54}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1300334_
+					coverAll:
+						{56 to: 86}
+					evaluating: [ receiver2 signalCustomerNameCannotBeEmpty ]
+					thatSends: #signalCustomerNameCannotBeEmpty
+					to: receiver2 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver3 ] value.
+	[ | receiver8 |
+	receiver8 := [ | receiver6 |
+	receiver6 := [ | receiver4 |
+	receiver4 := #_coverageTracker1300334_
+		cover: (94 to: 99)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1300334_
+		coverAll:
+			{101 to: 109}
+		evaluating: [
+			receiver4 includes:
+				(#_coverageTracker1300334_
+					cover: (111 to: 115)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver4 ] value.
+	#_coverageTracker1300334_
+		coverAll:
+			{118 to: 120}
+		evaluating: [
+			receiver6 or: [
+				[ | receiver5 |
+				receiver5 := #_coverageTracker1300334_
+					cover: (123 to: 131)
+					declaredAt: (123 to: 131)
+					by: suspended.
+				#_coverageTracker1300334_
+					coverAll:
+						{133 to: 141}
+					evaluating: [
+						receiver5 includes:
+							(#_coverageTracker1300334_
+								cover: (143 to: 147)
+								declaredAt: (19 to: 23)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver5 ] value ]]
+		thatSends: #or:
+		to: receiver6 ] value.
+	#_coverageTracker1300334_
+		coverAll:
+			{151 to: 157}
+		evaluating: [
+			receiver8 ifTrue: [
+				[ | receiver7 |
+				receiver7 := #_coverageTracker1300334_
+					coverAll:
+						{161 to: 164}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1300334_
+					coverAll:
+						{166 to: 192}
+					evaluating: [ receiver7 signalCustomerAlreadyExists ]
+					thatSends: #signalCustomerAlreadyExists
+					to: receiver7 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver8 ] value.
+	[ | receiver9 |
+	receiver9 := #_coverageTracker1300334_
+		cover: (200 to: 205)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1300334_
+		coverAll:
+			{207 to: 210}
+		evaluating: [
+			receiver9 add:
+				(#_coverageTracker1300334_
+					cover: (212 to: 216)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver9 ] value.! !
+!Behavior method!
+numberOfSuspendedCustomers
+	#_coverageTracker1300353_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1300353_
+		cover: (32 to: 40)
+		declaredAt: (32 to: 40)
+		by: suspended.
+	#_coverageTracker1300353_
+		coverAll:
+			{42 to: 45}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+isEmpty
+	#_coverageTracker1300355_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1300355_
+		cover: (13 to: 18)
+		declaredAt: (13 to: 18)
+		by: active.
+	#_coverageTracker1300355_
+		coverAll:
+			{20 to: 26}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1300355_
+		coverAll:
+			{28 to: 31}
+		evaluating: [
+			receiver3 and: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1300355_
+					cover: (35 to: 43)
+					declaredAt: (35 to: 43)
+					by: suspended.
+				#_coverageTracker1300355_
+					coverAll:
+						{45 to: 51}
+					evaluating: [ receiver2 isEmpty ]
+					thatSends: #isEmpty
+					to: receiver2 ] value ]]
+		thatSends: #and:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfActiveCustomers
+	#_coverageTracker1300359_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1300359_
+		cover: (29 to: 34)
+		declaredAt: (29 to: 34)
+		by: active.
+	#_coverageTracker1300359_
+		coverAll:
+			{36 to: 39}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+suspendCustomerNamed: aName
+	#_coverageTracker1300363_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1300363_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1300363_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1300363_
+					cover: (51 to: 55)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1300363_
+		coverAll:
+			{58 to: 65}
+		evaluating: [ receiver3 ifFalse: [ ^ [ | receiver2 |
+				receiver2 := #_coverageTracker1300363_
+					coverAll:
+						{69 to: 79}
+					by: CantSuspend.
+				#_coverageTracker1300363_
+					coverAll:
+						{81 to: 86}
+					evaluating: [ receiver2 signal ]
+					thatSends: #signal
+					to: receiver2 ] value ]]
+		thatSends: #ifFalse:
+		to: receiver3 ] value.
+	[ | receiver4 |
+	receiver4 := #_coverageTracker1300363_
+		cover: (93 to: 98)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1300363_
+		coverAll:
+			{100 to: 106}
+		evaluating: [
+			receiver4 remove:
+				(#_coverageTracker1300363_
+					cover: (108 to: 112)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #remove:
+		to: receiver4 ] value.
+	[ | receiver5 |
+	receiver5 := #_coverageTracker1300363_
+		cover: (118 to: 126)
+		declaredAt: (118 to: 126)
+		by: suspended.
+	#_coverageTracker1300363_
+		coverAll:
+			{128 to: 131}
+		evaluating: [
+			receiver5 add:
+				(#_coverageTracker1300363_
+					cover: (133 to: 137)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver5 ] value.! !
+!Behavior method!
+signalCustomerNameCannotBeEmpty
+	#_coverageTracker1300374_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1300374_
+		coverAll:
+			{36 to: 39}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1300374_
+		coverAll:
+			{41 to: 46}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1300374_
+					coverAll:
+						{48 to: 51}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1300374_
+					coverAll:
+						{53 to: 57}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1300374_
+					coverAll:
+						{59 to: 91}
+					evaluating: [ receiver2 customerCanNotBeEmptyErrorMessage ]
+					thatSends: #customerCanNotBeEmptyErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+customerAlreadyExistsErrorMessage
+	#_coverageTracker1300378_ markAsExecuted.
+	^ #_coverageTracker1300378_
+		coverAll:
+			{38 to: 65}
+		byLiteralOrPseudoVariable: 'Customer already exists!!!!!!'.! !
+!Behavior method!
+initialize
+	#_coverageTracker1300380_ markAsExecuted.
+	#_coverageTracker1300380_
+		cover: (14 to: 19)
+		declaredAt: (14 to: 19)
+		by:
+			(active := [ | receiver1 |
+			receiver1 := #_coverageTracker1300380_
+				coverAll:
+					{24 to: 40}
+				by: OrderedCollection.
+			#_coverageTracker1300380_
+				coverAll:
+					{42 to: 44}
+				evaluating: [ receiver1 new ]
+				thatSends: #new
+				to: receiver1 ] value).
+	#_coverageTracker1300380_
+		cover: (48 to: 56)
+		declaredAt: (48 to: 56)
+		by:
+			(suspended := [ | receiver2 |
+			receiver2 := #_coverageTracker1300380_
+				coverAll:
+					{60 to: 76}
+				by: OrderedCollection.
+			#_coverageTracker1300380_
+				coverAll:
+					{78 to: 80}
+				evaluating: [ receiver2 new ]
+				thatSends: #new
+				to: receiver2 ] value).! !
+!Behavior method!
+customerCanNotBeEmptyErrorMessage
+	#_coverageTracker1300384_ markAsExecuted.
+	^ #_coverageTracker1300384_
+		coverAll:
+			{38 to: 71}
+		byLiteralOrPseudoVariable: 'Customer name cannot be empty!!!!!!'.! !
+!Behavior method!
+signalCustomerAlreadyExists
+	#_coverageTracker1300386_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1300386_
+		coverAll:
+			{32 to: 35}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1300386_
+		coverAll:
+			{37 to: 42}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1300386_
+					coverAll:
+						{44 to: 47}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1300386_
+					coverAll:
+						{49 to: 53}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1300386_
+					coverAll:
+						{55 to: 87}
+					evaluating: [ receiver2 customerAlreadyExistsErrorMessage ]
+					thatSends: #customerAlreadyExistsErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfCustomers
+	#_coverageTracker1300390_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1300390_
+		cover: (23 to: 28)
+		declaredAt: (23 to: 28)
+		by: active.
+	#_coverageTracker1300390_
+		coverAll:
+			{30 to: 33}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.
+	#_coverageTracker1300390_
+		coverAll:
+			{35 to: 35}
+		evaluating: [
+			receiver3 +
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1300390_
+					cover: (37 to: 45)
+					declaredAt: (37 to: 45)
+					by: suspended.
+				#_coverageTracker1300390_
+					coverAll:
+						{47 to: 50}
+					evaluating: [ receiver2 size ]
+					thatSends: #size
+					to: receiver2 ] value ]
+		thatSends: #+
+		to: receiver3 ] value.! !
+!Behavior method!
+removeCustomerNamed: aName
+	#_coverageTracker1300395_ markAsExecuted.
+	[ | receiver6 |
+	receiver6 := #_coverageTracker1300395_
+		coverAll:
+			{32 to: 32}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1300395_
+		coverAll:
+			{34 to: 36. 50 to: 52}
+		evaluating: [
+			receiver6
+				to:
+					[ | receiver1 |
+					receiver1 := #_coverageTracker1300395_
+						cover: (38 to: 43)
+						declaredAt: (38 to: 43)
+						by: active.
+					#_coverageTracker1300395_
+						coverAll:
+							{45 to: 48}
+						evaluating: [ receiver1 size ]
+						thatSends: #size
+						to: receiver1 ] value
+				do: [ :index |
+					[ | receiver5 |
+					receiver5 := [ | receiver3 |
+					receiver3 := #_coverageTracker1300395_
+						cover: (69 to: 73)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1300395_
+						coverAll:
+							{75 to: 75}
+						evaluating: [
+							receiver3 =
+								[ | receiver2 |
+								receiver2 := #_coverageTracker1300395_
+									cover: (78 to: 83)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1300395_
+									coverAll:
+										{85 to: 87}
+									evaluating: [
+										receiver2 at:
+											(#_coverageTracker1300395_
+												cover: (89 to: 93)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #at:
+									to: receiver2 ] value ]
+						thatSends: #=
+						to: receiver3 ] value.
+					#_coverageTracker1300395_
+						coverAll:
+							{99 to: 105}
+						evaluating: [
+							receiver5 ifTrue: [
+								[ | receiver4 |
+								receiver4 := #_coverageTracker1300395_
+									cover: (113 to: 118)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1300395_
+									coverAll:
+										{120 to: 128}
+									evaluating: [
+										receiver4 removeAt:
+											(#_coverageTracker1300395_
+												cover: (130 to: 134)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver4 ] value.
+								^ #_coverageTracker1300395_
+									cover: (143 to: 147)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver5 ] value ]]
+		thatSends: #to:do:
+		to: receiver6 ] value.
+	[ | receiver12 |
+	receiver12 := #_coverageTracker1300395_
+		coverAll:
+			{162 to: 162}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1300395_
+		coverAll:
+			{164 to: 166. 183 to: 185}
+		evaluating: [
+			receiver12
+				to:
+					[ | receiver7 |
+					receiver7 := #_coverageTracker1300395_
+						cover: (168 to: 176)
+						declaredAt: (168 to: 176)
+						by: suspended.
+					#_coverageTracker1300395_
+						coverAll:
+							{178 to: 181}
+						evaluating: [ receiver7 size ]
+						thatSends: #size
+						to: receiver7 ] value
+				do: [ :index |
+					[ | receiver11 |
+					receiver11 := [ | receiver9 |
+					receiver9 := #_coverageTracker1300395_
+						cover: (203 to: 207)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1300395_
+						coverAll:
+							{209 to: 209}
+						evaluating: [
+							receiver9 =
+								[ | receiver8 |
+								receiver8 := #_coverageTracker1300395_
+									cover: (212 to: 220)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1300395_
+									coverAll:
+										{222 to: 224}
+									evaluating: [
+										receiver8 at:
+											(#_coverageTracker1300395_
+												cover: (226 to: 230)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #at:
+									to: receiver8 ] value ]
+						thatSends: #=
+						to: receiver9 ] value.
+					#_coverageTracker1300395_
+						coverAll:
+							{236 to: 242}
+						evaluating: [
+							receiver11 ifTrue: [
+								[ | receiver10 |
+								receiver10 := #_coverageTracker1300395_
+									cover: (250 to: 258)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1300395_
+									coverAll:
+										{260 to: 268}
+									evaluating: [
+										receiver10 removeAt:
+											(#_coverageTracker1300395_
+												cover: (270 to: 274)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver10 ] value.
+								^ #_coverageTracker1300395_
+									cover: (283 to: 287)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver11 ] value ]]
+		thatSends: #to:do:
+		to: receiver12 ] value.
+	^ [ | receiver13 |
+	receiver13 := #_coverageTracker1300395_
+		coverAll:
+			{305 to: 312}
+		by: NotFound.
+	#_coverageTracker1300395_
+		coverAll:
+			{314 to: 319}
+		evaluating: [ receiver13 signal ]
+		thatSends: #signal
+		to: receiver13 ] value.! !
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:38:48'!
+ERROR!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:38:48'!
+ERROR!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:39:29' prior: 50543535!
+customerBookActionTime: aBlockAction    
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlockAction value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning).
+	
+! !
+!Behavior method!
+includesCustomerNamed: aName
+	#_coverageTracker1359410_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1359410_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1359410_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1359410_
+					cover: (51 to: 55)
+					declaredAt: (24 to: 28)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1359410_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			receiver3 or: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1359410_
+					cover: (64 to: 72)
+					declaredAt: (64 to: 72)
+					by: suspended.
+				#_coverageTracker1359410_
+					coverAll:
+						{74 to: 82}
+					evaluating: [
+						receiver2 includes:
+							(#_coverageTracker1359410_
+								cover: (84 to: 88)
+								declaredAt: (24 to: 28)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver2 ] value ]]
+		thatSends: #or:
+		to: receiver3 ] value.! !
+!Behavior method!
+addCustomerNamed: aName
+	#_coverageTracker1359426_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1359426_
+		cover: (27 to: 31)
+		declaredAt: (19 to: 23)
+		by: aName.
+	#_coverageTracker1359426_
+		coverAll:
+			{33 to: 39}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1359426_
+		coverAll:
+			{41 to: 47}
+		evaluating: [
+			receiver3 ifTrue: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1359426_
+					coverAll:
+						{51 to: 54}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1359426_
+					coverAll:
+						{56 to: 86}
+					evaluating: [ receiver2 signalCustomerNameCannotBeEmpty ]
+					thatSends: #signalCustomerNameCannotBeEmpty
+					to: receiver2 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver3 ] value.
+	[ | receiver8 |
+	receiver8 := [ | receiver6 |
+	receiver6 := [ | receiver4 |
+	receiver4 := #_coverageTracker1359426_
+		cover: (94 to: 99)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1359426_
+		coverAll:
+			{101 to: 109}
+		evaluating: [
+			receiver4 includes:
+				(#_coverageTracker1359426_
+					cover: (111 to: 115)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver4 ] value.
+	#_coverageTracker1359426_
+		coverAll:
+			{118 to: 120}
+		evaluating: [
+			receiver6 or: [
+				[ | receiver5 |
+				receiver5 := #_coverageTracker1359426_
+					cover: (123 to: 131)
+					declaredAt: (123 to: 131)
+					by: suspended.
+				#_coverageTracker1359426_
+					coverAll:
+						{133 to: 141}
+					evaluating: [
+						receiver5 includes:
+							(#_coverageTracker1359426_
+								cover: (143 to: 147)
+								declaredAt: (19 to: 23)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver5 ] value ]]
+		thatSends: #or:
+		to: receiver6 ] value.
+	#_coverageTracker1359426_
+		coverAll:
+			{151 to: 157}
+		evaluating: [
+			receiver8 ifTrue: [
+				[ | receiver7 |
+				receiver7 := #_coverageTracker1359426_
+					coverAll:
+						{161 to: 164}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1359426_
+					coverAll:
+						{166 to: 192}
+					evaluating: [ receiver7 signalCustomerAlreadyExists ]
+					thatSends: #signalCustomerAlreadyExists
+					to: receiver7 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver8 ] value.
+	[ | receiver9 |
+	receiver9 := #_coverageTracker1359426_
+		cover: (200 to: 205)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1359426_
+		coverAll:
+			{207 to: 210}
+		evaluating: [
+			receiver9 add:
+				(#_coverageTracker1359426_
+					cover: (212 to: 216)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver9 ] value.! !
+!Behavior method!
+numberOfSuspendedCustomers
+	#_coverageTracker1359443_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1359443_
+		cover: (32 to: 40)
+		declaredAt: (32 to: 40)
+		by: suspended.
+	#_coverageTracker1359443_
+		coverAll:
+			{42 to: 45}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+isEmpty
+	#_coverageTracker1359447_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1359447_
+		cover: (13 to: 18)
+		declaredAt: (13 to: 18)
+		by: active.
+	#_coverageTracker1359447_
+		coverAll:
+			{20 to: 26}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1359447_
+		coverAll:
+			{28 to: 31}
+		evaluating: [
+			receiver3 and: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1359447_
+					cover: (35 to: 43)
+					declaredAt: (35 to: 43)
+					by: suspended.
+				#_coverageTracker1359447_
+					coverAll:
+						{45 to: 51}
+					evaluating: [ receiver2 isEmpty ]
+					thatSends: #isEmpty
+					to: receiver2 ] value ]]
+		thatSends: #and:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfActiveCustomers
+	#_coverageTracker1359451_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1359451_
+		cover: (29 to: 34)
+		declaredAt: (29 to: 34)
+		by: active.
+	#_coverageTracker1359451_
+		coverAll:
+			{36 to: 39}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+suspendCustomerNamed: aName
+	#_coverageTracker1359453_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1359453_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1359453_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1359453_
+					cover: (51 to: 55)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1359453_
+		coverAll:
+			{58 to: 65}
+		evaluating: [ receiver3 ifFalse: [ ^ [ | receiver2 |
+				receiver2 := #_coverageTracker1359453_
+					coverAll:
+						{69 to: 79}
+					by: CantSuspend.
+				#_coverageTracker1359453_
+					coverAll:
+						{81 to: 86}
+					evaluating: [ receiver2 signal ]
+					thatSends: #signal
+					to: receiver2 ] value ]]
+		thatSends: #ifFalse:
+		to: receiver3 ] value.
+	[ | receiver4 |
+	receiver4 := #_coverageTracker1359453_
+		cover: (93 to: 98)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1359453_
+		coverAll:
+			{100 to: 106}
+		evaluating: [
+			receiver4 remove:
+				(#_coverageTracker1359453_
+					cover: (108 to: 112)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #remove:
+		to: receiver4 ] value.
+	[ | receiver5 |
+	receiver5 := #_coverageTracker1359453_
+		cover: (118 to: 126)
+		declaredAt: (118 to: 126)
+		by: suspended.
+	#_coverageTracker1359453_
+		coverAll:
+			{128 to: 131}
+		evaluating: [
+			receiver5 add:
+				(#_coverageTracker1359453_
+					cover: (133 to: 137)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver5 ] value.! !
+!Behavior method!
+signalCustomerNameCannotBeEmpty
+	#_coverageTracker1359464_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1359464_
+		coverAll:
+			{36 to: 39}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1359464_
+		coverAll:
+			{41 to: 46}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1359464_
+					coverAll:
+						{48 to: 51}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1359464_
+					coverAll:
+						{53 to: 57}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1359464_
+					coverAll:
+						{59 to: 91}
+					evaluating: [ receiver2 customerCanNotBeEmptyErrorMessage ]
+					thatSends: #customerCanNotBeEmptyErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+customerAlreadyExistsErrorMessage
+	#_coverageTracker1359468_ markAsExecuted.
+	^ #_coverageTracker1359468_
+		coverAll:
+			{38 to: 65}
+		byLiteralOrPseudoVariable: 'Customer already exists!!!!!!'.! !
+!Behavior method!
+initialize
+	#_coverageTracker1359470_ markAsExecuted.
+	#_coverageTracker1359470_
+		cover: (14 to: 19)
+		declaredAt: (14 to: 19)
+		by:
+			(active := [ | receiver1 |
+			receiver1 := #_coverageTracker1359470_
+				coverAll:
+					{24 to: 40}
+				by: OrderedCollection.
+			#_coverageTracker1359470_
+				coverAll:
+					{42 to: 44}
+				evaluating: [ receiver1 new ]
+				thatSends: #new
+				to: receiver1 ] value).
+	#_coverageTracker1359470_
+		cover: (48 to: 56)
+		declaredAt: (48 to: 56)
+		by:
+			(suspended := [ | receiver2 |
+			receiver2 := #_coverageTracker1359470_
+				coverAll:
+					{60 to: 76}
+				by: OrderedCollection.
+			#_coverageTracker1359470_
+				coverAll:
+					{78 to: 80}
+				evaluating: [ receiver2 new ]
+				thatSends: #new
+				to: receiver2 ] value).! !
+!Behavior method!
+customerCanNotBeEmptyErrorMessage
+	#_coverageTracker1359476_ markAsExecuted.
+	^ #_coverageTracker1359476_
+		coverAll:
+			{38 to: 71}
+		byLiteralOrPseudoVariable: 'Customer name cannot be empty!!!!!!'.! !
+!Behavior method!
+signalCustomerAlreadyExists
+	#_coverageTracker1359478_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1359478_
+		coverAll:
+			{32 to: 35}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1359478_
+		coverAll:
+			{37 to: 42}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1359478_
+					coverAll:
+						{44 to: 47}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1359478_
+					coverAll:
+						{49 to: 53}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1359478_
+					coverAll:
+						{55 to: 87}
+					evaluating: [ receiver2 customerAlreadyExistsErrorMessage ]
+					thatSends: #customerAlreadyExistsErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+numberOfCustomers
+	#_coverageTracker1359482_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1359482_
+		cover: (23 to: 28)
+		declaredAt: (23 to: 28)
+		by: active.
+	#_coverageTracker1359482_
+		coverAll:
+			{30 to: 33}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.
+	#_coverageTracker1359482_
+		coverAll:
+			{35 to: 35}
+		evaluating: [
+			receiver3 +
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1359482_
+					cover: (37 to: 45)
+					declaredAt: (37 to: 45)
+					by: suspended.
+				#_coverageTracker1359482_
+					coverAll:
+						{47 to: 50}
+					evaluating: [ receiver2 size ]
+					thatSends: #size
+					to: receiver2 ] value ]
+		thatSends: #+
+		to: receiver3 ] value.! !
+!Behavior method!
+removeCustomerNamed: aName
+	#_coverageTracker1359486_ markAsExecuted.
+	[ | receiver6 |
+	receiver6 := #_coverageTracker1359486_
+		coverAll:
+			{32 to: 32}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1359486_
+		coverAll:
+			{34 to: 36. 50 to: 52}
+		evaluating: [
+			receiver6
+				to:
+					[ | receiver1 |
+					receiver1 := #_coverageTracker1359486_
+						cover: (38 to: 43)
+						declaredAt: (38 to: 43)
+						by: active.
+					#_coverageTracker1359486_
+						coverAll:
+							{45 to: 48}
+						evaluating: [ receiver1 size ]
+						thatSends: #size
+						to: receiver1 ] value
+				do: [ :index |
+					[ | receiver5 |
+					receiver5 := [ | receiver3 |
+					receiver3 := #_coverageTracker1359486_
+						cover: (69 to: 73)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1359486_
+						coverAll:
+							{75 to: 75}
+						evaluating: [
+							receiver3 =
+								[ | receiver2 |
+								receiver2 := #_coverageTracker1359486_
+									cover: (78 to: 83)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1359486_
+									coverAll:
+										{85 to: 87}
+									evaluating: [
+										receiver2 at:
+											(#_coverageTracker1359486_
+												cover: (89 to: 93)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #at:
+									to: receiver2 ] value ]
+						thatSends: #=
+						to: receiver3 ] value.
+					#_coverageTracker1359486_
+						coverAll:
+							{99 to: 105}
+						evaluating: [
+							receiver5 ifTrue: [
+								[ | receiver4 |
+								receiver4 := #_coverageTracker1359486_
+									cover: (113 to: 118)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1359486_
+									coverAll:
+										{120 to: 128}
+									evaluating: [
+										receiver4 removeAt:
+											(#_coverageTracker1359486_
+												cover: (130 to: 134)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver4 ] value.
+								^ #_coverageTracker1359486_
+									cover: (143 to: 147)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver5 ] value ]]
+		thatSends: #to:do:
+		to: receiver6 ] value.
+	[ | receiver12 |
+	receiver12 := #_coverageTracker1359486_
+		coverAll:
+			{162 to: 162}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1359486_
+		coverAll:
+			{164 to: 166. 183 to: 185}
+		evaluating: [
+			receiver12
+				to:
+					[ | receiver7 |
+					receiver7 := #_coverageTracker1359486_
+						cover: (168 to: 176)
+						declaredAt: (168 to: 176)
+						by: suspended.
+					#_coverageTracker1359486_
+						coverAll:
+							{178 to: 181}
+						evaluating: [ receiver7 size ]
+						thatSends: #size
+						to: receiver7 ] value
+				do: [ :index |
+					[ | receiver11 |
+					receiver11 := [ | receiver9 |
+					receiver9 := #_coverageTracker1359486_
+						cover: (203 to: 207)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1359486_
+						coverAll:
+							{209 to: 209}
+						evaluating: [
+							receiver9 =
+								[ | receiver8 |
+								receiver8 := #_coverageTracker1359486_
+									cover: (212 to: 220)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1359486_
+									coverAll:
+										{222 to: 224}
+									evaluating: [
+										receiver8 at:
+											(#_coverageTracker1359486_
+												cover: (226 to: 230)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #at:
+									to: receiver8 ] value ]
+						thatSends: #=
+						to: receiver9 ] value.
+					#_coverageTracker1359486_
+						coverAll:
+							{236 to: 242}
+						evaluating: [
+							receiver11 ifTrue: [
+								[ | receiver10 |
+								receiver10 := #_coverageTracker1359486_
+									cover: (250 to: 258)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1359486_
+									coverAll:
+										{260 to: 268}
+									evaluating: [
+										receiver10 removeAt:
+											(#_coverageTracker1359486_
+												cover: (270 to: 274)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver10 ] value.
+								^ #_coverageTracker1359486_
+									cover: (283 to: 287)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver11 ] value ]]
+		thatSends: #to:do:
+		to: receiver12 ] value.
+	^ [ | receiver13 |
+	receiver13 := #_coverageTracker1359486_
+		coverAll:
+			{305 to: 312}
+		by: NotFound.
+	#_coverageTracker1359486_
+		coverAll:
+			{314 to: 319}
+		evaluating: [ receiver13 signal ]
+		thatSends: #signal
+		to: receiver13 ] value.! !
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:39:47'!
+ERROR!
+
+!testRun: #CustomerBookTest #test01AddingCustomerShouldNotTakeMoreThan50Milliseconds stamp: 'as 4/4/2025 10:39:47'!
+ERROR!
+
+customerBook := CustomerBook new.!
+
+CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon'].!
+
+CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon'].!
+
+CustomerBookTest new customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon'.].!
+
+customerBook := CustomerBook new.!
