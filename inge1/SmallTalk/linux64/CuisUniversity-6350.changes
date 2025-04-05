@@ -164345,3 +164345,2136 @@ CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John L
 CustomerBookTest new customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon'.].!
 
 customerBook := CustomerBook new.!
+
+----STARTUP---- (4 April 2025 10:53:36) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 10:38:40' prior: 50541921!
+                               test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 10:38:40' prior: 50544563!
+                    test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (CustomerBookTest customerBookActionTime: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+
+!methodRemoval: CustomerBookTest #test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime:customerBookAction:clientToPerformAction:timeToEvaluate: stamp: 'as 4/4/2025 10:58:08'!
+test01Y02v2CustomerActionShouldNotTakeMoreThanSpecificTime: aCustomerBook customerBookAction: anAction clientToPerformAction: aClient timeToEvaluate: aTime   
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aCustomerBook action: aClient.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	self assert: (millisecondsAfterRunning-millisecondsBeforeRunning) < (aTime * millisecond)
+	
+!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 10:59:41'!
+   customerActionTimer: aBlock
+
+	| millisecondsBeforeRunning millisecondsAfterRunning |
+	  
+	millisecondsBeforeRunning := Time millisecondClockValue * millisecond.
+	aBlock  value.
+	millisecondsAfterRunning := Time millisecondClockValue * millisecond.
+	
+	^(millisecondsAfterRunning-millisecondsBeforeRunning).
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 10:59:57' prior: 50544574!
+                 test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (CustomerBookTest customerActionTimer: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 11:01:59' prior: 50541938!
+                       test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
+
+	| customerBook paulMcCartney |
+	
+	customerBook := CustomerBook new.
+	paulMcCartney := 'Paul McCartney'.
+	
+	customerBook addCustomerNamed: paulMcCartney.
+	
+	self assert: (CustomerBookTest new customerActionTimer: [customerBook removeCustomerNamed: paulMcCartney ]) < (100 * millisecond)
+	
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 11:02:14' prior: 50544618!
+        test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (CustomerBookTest new customerActionTimer: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+!Behavior method!
+                        includesCustomerNamed: aName
+	#_coverageTracker522821_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker522821_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker522821_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker522821_
+					cover: (51 to: 55)
+					declaredAt: (24 to: 28)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker522821_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			receiver3 or: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker522821_
+					cover: (64 to: 72)
+					declaredAt: (64 to: 72)
+					by: suspended.
+				#_coverageTracker522821_
+					coverAll:
+						{74 to: 82}
+					evaluating: [
+						receiver2 includes:
+							(#_coverageTracker522821_
+								cover: (84 to: 88)
+								declaredAt: (24 to: 28)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver2 ] value ]]
+		thatSends: #or:
+		to: receiver3 ] value.! !
+!Behavior method!
+                              addCustomerNamed: aName
+	#_coverageTracker522837_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker522837_
+		cover: (27 to: 31)
+		declaredAt: (19 to: 23)
+		by: aName.
+	#_coverageTracker522837_
+		coverAll:
+			{33 to: 39}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker522837_
+		coverAll:
+			{41 to: 47}
+		evaluating: [
+			receiver3 ifTrue: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker522837_
+					coverAll:
+						{51 to: 54}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker522837_
+					coverAll:
+						{56 to: 86}
+					evaluating: [ receiver2 signalCustomerNameCannotBeEmpty ]
+					thatSends: #signalCustomerNameCannotBeEmpty
+					to: receiver2 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver3 ] value.
+	[ | receiver8 |
+	receiver8 := [ | receiver6 |
+	receiver6 := [ | receiver4 |
+	receiver4 := #_coverageTracker522837_
+		cover: (94 to: 99)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker522837_
+		coverAll:
+			{101 to: 109}
+		evaluating: [
+			receiver4 includes:
+				(#_coverageTracker522837_
+					cover: (111 to: 115)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver4 ] value.
+	#_coverageTracker522837_
+		coverAll:
+			{118 to: 120}
+		evaluating: [
+			receiver6 or: [
+				[ | receiver5 |
+				receiver5 := #_coverageTracker522837_
+					cover: (123 to: 131)
+					declaredAt: (123 to: 131)
+					by: suspended.
+				#_coverageTracker522837_
+					coverAll:
+						{133 to: 141}
+					evaluating: [
+						receiver5 includes:
+							(#_coverageTracker522837_
+								cover: (143 to: 147)
+								declaredAt: (19 to: 23)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver5 ] value ]]
+		thatSends: #or:
+		to: receiver6 ] value.
+	#_coverageTracker522837_
+		coverAll:
+			{151 to: 157}
+		evaluating: [
+			receiver8 ifTrue: [
+				[ | receiver7 |
+				receiver7 := #_coverageTracker522837_
+					coverAll:
+						{161 to: 164}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker522837_
+					coverAll:
+						{166 to: 192}
+					evaluating: [ receiver7 signalCustomerAlreadyExists ]
+					thatSends: #signalCustomerAlreadyExists
+					to: receiver7 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver8 ] value.
+	[ | receiver9 |
+	receiver9 := #_coverageTracker522837_
+		cover: (200 to: 205)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker522837_
+		coverAll:
+			{207 to: 210}
+		evaluating: [
+			receiver9 add:
+				(#_coverageTracker522837_
+					cover: (212 to: 216)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver9 ] value.! !
+!Behavior method!
+      numberOfSuspendedCustomers
+	#_coverageTracker522856_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker522856_
+		cover: (32 to: 40)
+		declaredAt: (32 to: 40)
+		by: suspended.
+	#_coverageTracker522856_
+		coverAll:
+			{42 to: 45}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+          isEmpty
+	#_coverageTracker522860_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker522860_
+		cover: (13 to: 18)
+		declaredAt: (13 to: 18)
+		by: active.
+	#_coverageTracker522860_
+		coverAll:
+			{20 to: 26}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker522860_
+		coverAll:
+			{28 to: 31}
+		evaluating: [
+			receiver3 and: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker522860_
+					cover: (35 to: 43)
+					declaredAt: (35 to: 43)
+					by: suspended.
+				#_coverageTracker522860_
+					coverAll:
+						{45 to: 51}
+					evaluating: [ receiver2 isEmpty ]
+					thatSends: #isEmpty
+					to: receiver2 ] value ]]
+		thatSends: #and:
+		to: receiver3 ] value.! !
+!Behavior method!
+                    numberOfActiveCustomers
+	#_coverageTracker522864_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker522864_
+		cover: (29 to: 34)
+		declaredAt: (29 to: 34)
+		by: active.
+	#_coverageTracker522864_
+		coverAll:
+			{36 to: 39}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+                suspendCustomerNamed: aName
+	#_coverageTracker522868_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker522868_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker522868_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker522868_
+					cover: (51 to: 55)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker522868_
+		coverAll:
+			{58 to: 65}
+		evaluating: [ receiver3 ifFalse: [ ^ [ | receiver2 |
+				receiver2 := #_coverageTracker522868_
+					coverAll:
+						{69 to: 79}
+					by: CantSuspend.
+				#_coverageTracker522868_
+					coverAll:
+						{81 to: 86}
+					evaluating: [ receiver2 signal ]
+					thatSends: #signal
+					to: receiver2 ] value ]]
+		thatSends: #ifFalse:
+		to: receiver3 ] value.
+	[ | receiver4 |
+	receiver4 := #_coverageTracker522868_
+		cover: (93 to: 98)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker522868_
+		coverAll:
+			{100 to: 106}
+		evaluating: [
+			receiver4 remove:
+				(#_coverageTracker522868_
+					cover: (108 to: 112)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #remove:
+		to: receiver4 ] value.
+	[ | receiver5 |
+	receiver5 := #_coverageTracker522868_
+		cover: (118 to: 126)
+		declaredAt: (118 to: 126)
+		by: suspended.
+	#_coverageTracker522868_
+		coverAll:
+			{128 to: 131}
+		evaluating: [
+			receiver5 add:
+				(#_coverageTracker522868_
+					cover: (133 to: 137)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver5 ] value.! !
+!Behavior method!
+                          signalCustomerNameCannotBeEmpty
+	#_coverageTracker522879_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker522879_
+		coverAll:
+			{36 to: 39}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker522879_
+		coverAll:
+			{41 to: 46}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker522879_
+					coverAll:
+						{48 to: 51}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker522879_
+					coverAll:
+						{53 to: 57}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker522879_
+					coverAll:
+						{59 to: 91}
+					evaluating: [ receiver2 customerCanNotBeEmptyErrorMessage ]
+					thatSends: #customerCanNotBeEmptyErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+                         customerAlreadyExistsErrorMessage
+	#_coverageTracker522883_ markAsExecuted.
+	^ #_coverageTracker522883_
+		coverAll:
+			{38 to: 65}
+		byLiteralOrPseudoVariable: 'Customer already exists!!!!!!'.! !
+!Behavior method!
+          initialize
+	#_coverageTracker522885_ markAsExecuted.
+	#_coverageTracker522885_
+		cover: (14 to: 19)
+		declaredAt: (14 to: 19)
+		by:
+			(active := [ | receiver1 |
+			receiver1 := #_coverageTracker522885_
+				coverAll:
+					{24 to: 40}
+				by: OrderedCollection.
+			#_coverageTracker522885_
+				coverAll:
+					{42 to: 44}
+				evaluating: [ receiver1 new ]
+				thatSends: #new
+				to: receiver1 ] value).
+	#_coverageTracker522885_
+		cover: (48 to: 56)
+		declaredAt: (48 to: 56)
+		by:
+			(suspended := [ | receiver2 |
+			receiver2 := #_coverageTracker522885_
+				coverAll:
+					{60 to: 76}
+				by: OrderedCollection.
+			#_coverageTracker522885_
+				coverAll:
+					{78 to: 80}
+				evaluating: [ receiver2 new ]
+				thatSends: #new
+				to: receiver2 ] value).! !
+!Behavior method!
+                         customerCanNotBeEmptyErrorMessage
+	#_coverageTracker522891_ markAsExecuted.
+	^ #_coverageTracker522891_
+		coverAll:
+			{38 to: 71}
+		byLiteralOrPseudoVariable: 'Customer name cannot be empty!!!!!!'.! !
+!Behavior method!
+    signalCustomerAlreadyExists
+	#_coverageTracker522893_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker522893_
+		coverAll:
+			{32 to: 35}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker522893_
+		coverAll:
+			{37 to: 42}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker522893_
+					coverAll:
+						{44 to: 47}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker522893_
+					coverAll:
+						{49 to: 53}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker522893_
+					coverAll:
+						{55 to: 87}
+					evaluating: [ receiver2 customerAlreadyExistsErrorMessage ]
+					thatSends: #customerAlreadyExistsErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+                             numberOfCustomers
+	#_coverageTracker522897_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker522897_
+		cover: (23 to: 28)
+		declaredAt: (23 to: 28)
+		by: active.
+	#_coverageTracker522897_
+		coverAll:
+			{30 to: 33}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.
+	#_coverageTracker522897_
+		coverAll:
+			{35 to: 35}
+		evaluating: [
+			receiver3 +
+				[ | receiver2 |
+				receiver2 := #_coverageTracker522897_
+					cover: (37 to: 45)
+					declaredAt: (37 to: 45)
+					by: suspended.
+				#_coverageTracker522897_
+					coverAll:
+						{47 to: 50}
+					evaluating: [ receiver2 size ]
+					thatSends: #size
+					to: receiver2 ] value ]
+		thatSends: #+
+		to: receiver3 ] value.! !
+!Behavior method!
+                               removeCustomerNamed: aName
+	#_coverageTracker522901_ markAsExecuted.
+	[ | receiver6 |
+	receiver6 := #_coverageTracker522901_
+		coverAll:
+			{32 to: 32}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker522901_
+		coverAll:
+			{34 to: 36. 50 to: 52}
+		evaluating: [
+			receiver6
+				to:
+					[ | receiver1 |
+					receiver1 := #_coverageTracker522901_
+						cover: (38 to: 43)
+						declaredAt: (38 to: 43)
+						by: active.
+					#_coverageTracker522901_
+						coverAll:
+							{45 to: 48}
+						evaluating: [ receiver1 size ]
+						thatSends: #size
+						to: receiver1 ] value
+				do: [ :index |
+					[ | receiver5 |
+					receiver5 := [ | receiver3 |
+					receiver3 := #_coverageTracker522901_
+						cover: (69 to: 73)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker522901_
+						coverAll:
+							{75 to: 75}
+						evaluating: [
+							receiver3 =
+								[ | receiver2 |
+								receiver2 := #_coverageTracker522901_
+									cover: (78 to: 83)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker522901_
+									coverAll:
+										{85 to: 87}
+									evaluating: [
+										receiver2 at:
+											(#_coverageTracker522901_
+												cover: (89 to: 93)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #at:
+									to: receiver2 ] value ]
+						thatSends: #=
+						to: receiver3 ] value.
+					#_coverageTracker522901_
+						coverAll:
+							{99 to: 105}
+						evaluating: [
+							receiver5 ifTrue: [
+								[ | receiver4 |
+								receiver4 := #_coverageTracker522901_
+									cover: (113 to: 118)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker522901_
+									coverAll:
+										{120 to: 128}
+									evaluating: [
+										receiver4 removeAt:
+											(#_coverageTracker522901_
+												cover: (130 to: 134)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver4 ] value.
+								^ #_coverageTracker522901_
+									cover: (143 to: 147)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver5 ] value ]]
+		thatSends: #to:do:
+		to: receiver6 ] value.
+	[ | receiver12 |
+	receiver12 := #_coverageTracker522901_
+		coverAll:
+			{162 to: 162}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker522901_
+		coverAll:
+			{164 to: 166. 183 to: 185}
+		evaluating: [
+			receiver12
+				to:
+					[ | receiver7 |
+					receiver7 := #_coverageTracker522901_
+						cover: (168 to: 176)
+						declaredAt: (168 to: 176)
+						by: suspended.
+					#_coverageTracker522901_
+						coverAll:
+							{178 to: 181}
+						evaluating: [ receiver7 size ]
+						thatSends: #size
+						to: receiver7 ] value
+				do: [ :index |
+					[ | receiver11 |
+					receiver11 := [ | receiver9 |
+					receiver9 := #_coverageTracker522901_
+						cover: (203 to: 207)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker522901_
+						coverAll:
+							{209 to: 209}
+						evaluating: [
+							receiver9 =
+								[ | receiver8 |
+								receiver8 := #_coverageTracker522901_
+									cover: (212 to: 220)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker522901_
+									coverAll:
+										{222 to: 224}
+									evaluating: [
+										receiver8 at:
+											(#_coverageTracker522901_
+												cover: (226 to: 230)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #at:
+									to: receiver8 ] value ]
+						thatSends: #=
+						to: receiver9 ] value.
+					#_coverageTracker522901_
+						coverAll:
+							{236 to: 242}
+						evaluating: [
+							receiver11 ifTrue: [
+								[ | receiver10 |
+								receiver10 := #_coverageTracker522901_
+									cover: (250 to: 258)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker522901_
+									coverAll:
+										{260 to: 268}
+									evaluating: [
+										receiver10 removeAt:
+											(#_coverageTracker522901_
+												cover: (270 to: 274)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver10 ] value.
+								^ #_coverageTracker522901_
+									cover: (283 to: 287)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver11 ] value ]]
+		thatSends: #to:do:
+		to: receiver12 ] value.
+	^ [ | receiver13 |
+	receiver13 := #_coverageTracker522901_
+		coverAll:
+			{305 to: 312}
+		by: NotFound.
+	#_coverageTracker522901_
+		coverAll:
+			{314 to: 319}
+		evaluating: [ receiver13 signal ]
+		thatSends: #signal
+		to: receiver13 ] value.! !
+
+customerBook := (CustomerBook new) addCustomerNamed: 'Ariel'.!
+
+customerBook := (CustomerBook new)!
+
+CustomerBookTest new test01AddingCustomerShouldNotTakeMoreThan50Milliseconds.!
+
+CustomerBookTest new test01AddingCustomerShouldNotTakeMoreThan50Milliseconds.!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 11:06:23' prior: 50544643!
+   test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self assert: (self customerActionTimer: [customerBook addCustomerNamed: 'John Lennon']) < (50 * millisecond)
+	
+! !
+
+CustomerBookTest new test01AddingCustomerShouldNotTakeMoreThan50Milliseconds.!
+!Behavior method!
+                        includesCustomerNamed: aName
+	#_coverageTracker1085222_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1085222_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1085222_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1085222_
+					cover: (51 to: 55)
+					declaredAt: (24 to: 28)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1085222_
+		coverAll:
+			{58 to: 60}
+		evaluating: [
+			receiver3 or: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1085222_
+					cover: (64 to: 72)
+					declaredAt: (64 to: 72)
+					by: suspended.
+				#_coverageTracker1085222_
+					coverAll:
+						{74 to: 82}
+					evaluating: [
+						receiver2 includes:
+							(#_coverageTracker1085222_
+								cover: (84 to: 88)
+								declaredAt: (24 to: 28)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver2 ] value ]]
+		thatSends: #or:
+		to: receiver3 ] value.! !
+!Behavior method!
+                      addCustomerNamed: aName
+	#_coverageTracker1085238_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1085238_
+		cover: (27 to: 31)
+		declaredAt: (19 to: 23)
+		by: aName.
+	#_coverageTracker1085238_
+		coverAll:
+			{33 to: 39}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1085238_
+		coverAll:
+			{41 to: 47}
+		evaluating: [
+			receiver3 ifTrue: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1085238_
+					coverAll:
+						{51 to: 54}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1085238_
+					coverAll:
+						{56 to: 86}
+					evaluating: [ receiver2 signalCustomerNameCannotBeEmpty ]
+					thatSends: #signalCustomerNameCannotBeEmpty
+					to: receiver2 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver3 ] value.
+	[ | receiver8 |
+	receiver8 := [ | receiver6 |
+	receiver6 := [ | receiver4 |
+	receiver4 := #_coverageTracker1085238_
+		cover: (94 to: 99)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1085238_
+		coverAll:
+			{101 to: 109}
+		evaluating: [
+			receiver4 includes:
+				(#_coverageTracker1085238_
+					cover: (111 to: 115)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver4 ] value.
+	#_coverageTracker1085238_
+		coverAll:
+			{118 to: 120}
+		evaluating: [
+			receiver6 or: [
+				[ | receiver5 |
+				receiver5 := #_coverageTracker1085238_
+					cover: (123 to: 131)
+					declaredAt: (123 to: 131)
+					by: suspended.
+				#_coverageTracker1085238_
+					coverAll:
+						{133 to: 141}
+					evaluating: [
+						receiver5 includes:
+							(#_coverageTracker1085238_
+								cover: (143 to: 147)
+								declaredAt: (19 to: 23)
+								by: aName) ]
+					thatSends: #includes:
+					to: receiver5 ] value ]]
+		thatSends: #or:
+		to: receiver6 ] value.
+	#_coverageTracker1085238_
+		coverAll:
+			{151 to: 157}
+		evaluating: [
+			receiver8 ifTrue: [
+				[ | receiver7 |
+				receiver7 := #_coverageTracker1085238_
+					coverAll:
+						{161 to: 164}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1085238_
+					coverAll:
+						{166 to: 192}
+					evaluating: [ receiver7 signalCustomerAlreadyExists ]
+					thatSends: #signalCustomerAlreadyExists
+					to: receiver7 ] value ]]
+		thatSends: #ifTrue:
+		to: receiver8 ] value.
+	[ | receiver9 |
+	receiver9 := #_coverageTracker1085238_
+		cover: (200 to: 205)
+		declaredAt: (94 to: 99)
+		by: active.
+	#_coverageTracker1085238_
+		coverAll:
+			{207 to: 210}
+		evaluating: [
+			receiver9 add:
+				(#_coverageTracker1085238_
+					cover: (212 to: 216)
+					declaredAt: (19 to: 23)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver9 ] value.! !
+!Behavior method!
+                   numberOfSuspendedCustomers
+	#_coverageTracker1085259_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1085259_
+		cover: (32 to: 40)
+		declaredAt: (32 to: 40)
+		by: suspended.
+	#_coverageTracker1085259_
+		coverAll:
+			{42 to: 45}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+       isEmpty
+	#_coverageTracker1085261_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1085261_
+		cover: (13 to: 18)
+		declaredAt: (13 to: 18)
+		by: active.
+	#_coverageTracker1085261_
+		coverAll:
+			{20 to: 26}
+		evaluating: [ receiver1 isEmpty ]
+		thatSends: #isEmpty
+		to: receiver1 ] value.
+	#_coverageTracker1085261_
+		coverAll:
+			{28 to: 31}
+		evaluating: [
+			receiver3 and: [
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1085261_
+					cover: (35 to: 43)
+					declaredAt: (35 to: 43)
+					by: suspended.
+				#_coverageTracker1085261_
+					coverAll:
+						{45 to: 51}
+					evaluating: [ receiver2 isEmpty ]
+					thatSends: #isEmpty
+					to: receiver2 ] value ]]
+		thatSends: #and:
+		to: receiver3 ] value.! !
+!Behavior method!
+              numberOfActiveCustomers
+	#_coverageTracker1085267_ markAsExecuted.
+	^ [ | receiver1 |
+	receiver1 := #_coverageTracker1085267_
+		cover: (29 to: 34)
+		declaredAt: (29 to: 34)
+		by: active.
+	#_coverageTracker1085267_
+		coverAll:
+			{36 to: 39}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.! !
+!Behavior method!
+             suspendCustomerNamed: aName
+	#_coverageTracker1085269_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1085269_
+		cover: (34 to: 39)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1085269_
+		coverAll:
+			{41 to: 49}
+		evaluating: [
+			receiver1 includes:
+				(#_coverageTracker1085269_
+					cover: (51 to: 55)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #includes:
+		to: receiver1 ] value.
+	#_coverageTracker1085269_
+		coverAll:
+			{58 to: 65}
+		evaluating: [ receiver3 ifFalse: [ ^ [ | receiver2 |
+				receiver2 := #_coverageTracker1085269_
+					coverAll:
+						{69 to: 79}
+					by: CantSuspend.
+				#_coverageTracker1085269_
+					coverAll:
+						{81 to: 86}
+					evaluating: [ receiver2 signal ]
+					thatSends: #signal
+					to: receiver2 ] value ]]
+		thatSends: #ifFalse:
+		to: receiver3 ] value.
+	[ | receiver4 |
+	receiver4 := #_coverageTracker1085269_
+		cover: (93 to: 98)
+		declaredAt: (34 to: 39)
+		by: active.
+	#_coverageTracker1085269_
+		coverAll:
+			{100 to: 106}
+		evaluating: [
+			receiver4 remove:
+				(#_coverageTracker1085269_
+					cover: (108 to: 112)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #remove:
+		to: receiver4 ] value.
+	[ | receiver5 |
+	receiver5 := #_coverageTracker1085269_
+		cover: (118 to: 126)
+		declaredAt: (118 to: 126)
+		by: suspended.
+	#_coverageTracker1085269_
+		coverAll:
+			{128 to: 131}
+		evaluating: [
+			receiver5 add:
+				(#_coverageTracker1085269_
+					cover: (133 to: 137)
+					declaredAt: (23 to: 27)
+					by: aName) ]
+		thatSends: #add:
+		to: receiver5 ] value.! !
+!Behavior method!
+             signalCustomerNameCannotBeEmpty
+	#_coverageTracker1085280_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1085280_
+		coverAll:
+			{36 to: 39}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1085280_
+		coverAll:
+			{41 to: 46}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1085280_
+					coverAll:
+						{48 to: 51}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1085280_
+					coverAll:
+						{53 to: 57}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1085280_
+					coverAll:
+						{59 to: 91}
+					evaluating: [ receiver2 customerCanNotBeEmptyErrorMessage ]
+					thatSends: #customerCanNotBeEmptyErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+                   customerAlreadyExistsErrorMessage
+	#_coverageTracker1085284_ markAsExecuted.
+	^ #_coverageTracker1085284_
+		coverAll:
+			{38 to: 65}
+		byLiteralOrPseudoVariable: 'Customer already exists!!!!!!'.! !
+!Behavior method!
+        initialize
+	#_coverageTracker1085286_ markAsExecuted.
+	#_coverageTracker1085286_
+		cover: (14 to: 19)
+		declaredAt: (14 to: 19)
+		by:
+			(active := [ | receiver1 |
+			receiver1 := #_coverageTracker1085286_
+				coverAll:
+					{24 to: 40}
+				by: OrderedCollection.
+			#_coverageTracker1085286_
+				coverAll:
+					{42 to: 44}
+				evaluating: [ receiver1 new ]
+				thatSends: #new
+				to: receiver1 ] value).
+	#_coverageTracker1085286_
+		cover: (48 to: 56)
+		declaredAt: (48 to: 56)
+		by:
+			(suspended := [ | receiver2 |
+			receiver2 := #_coverageTracker1085286_
+				coverAll:
+					{60 to: 76}
+				by: OrderedCollection.
+			#_coverageTracker1085286_
+				coverAll:
+					{78 to: 80}
+				evaluating: [ receiver2 new ]
+				thatSends: #new
+				to: receiver2 ] value).! !
+!Behavior method!
+                  customerCanNotBeEmptyErrorMessage
+	#_coverageTracker1085290_ markAsExecuted.
+	^ #_coverageTracker1085290_
+		coverAll:
+			{38 to: 71}
+		byLiteralOrPseudoVariable: 'Customer name cannot be empty!!!!!!'.! !
+!Behavior method!
+  signalCustomerAlreadyExists
+	#_coverageTracker1085292_ markAsExecuted.
+	[ | receiver3 |
+	receiver3 := #_coverageTracker1085292_
+		coverAll:
+			{32 to: 35}
+		byLiteralOrPseudoVariable: self.
+	#_coverageTracker1085292_
+		coverAll:
+			{37 to: 42}
+		evaluating: [
+			receiver3 error:
+				[ | receiver2 |
+				receiver2 := [ | receiver1 |
+				receiver1 := #_coverageTracker1085292_
+					coverAll:
+						{44 to: 47}
+					byLiteralOrPseudoVariable: self.
+				#_coverageTracker1085292_
+					coverAll:
+						{49 to: 53}
+					evaluating: [ receiver1 class ]
+					thatSends: #class
+					to: receiver1 ] value.
+				#_coverageTracker1085292_
+					coverAll:
+						{55 to: 87}
+					evaluating: [ receiver2 customerAlreadyExistsErrorMessage ]
+					thatSends: #customerAlreadyExistsErrorMessage
+					to: receiver2 ] value ]
+		thatSends: #error:
+		to: receiver3 ] value.! !
+!Behavior method!
+                       numberOfCustomers
+	#_coverageTracker1085296_ markAsExecuted.
+	^ [ | receiver3 |
+	receiver3 := [ | receiver1 |
+	receiver1 := #_coverageTracker1085296_
+		cover: (23 to: 28)
+		declaredAt: (23 to: 28)
+		by: active.
+	#_coverageTracker1085296_
+		coverAll:
+			{30 to: 33}
+		evaluating: [ receiver1 size ]
+		thatSends: #size
+		to: receiver1 ] value.
+	#_coverageTracker1085296_
+		coverAll:
+			{35 to: 35}
+		evaluating: [
+			receiver3 +
+				[ | receiver2 |
+				receiver2 := #_coverageTracker1085296_
+					cover: (37 to: 45)
+					declaredAt: (37 to: 45)
+					by: suspended.
+				#_coverageTracker1085296_
+					coverAll:
+						{47 to: 50}
+					evaluating: [ receiver2 size ]
+					thatSends: #size
+					to: receiver2 ] value ]
+		thatSends: #+
+		to: receiver3 ] value.! !
+!Behavior method!
+                         removeCustomerNamed: aName
+	#_coverageTracker1085301_ markAsExecuted.
+	[ | receiver6 |
+	receiver6 := #_coverageTracker1085301_
+		coverAll:
+			{32 to: 32}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1085301_
+		coverAll:
+			{34 to: 36. 50 to: 52}
+		evaluating: [
+			receiver6
+				to:
+					[ | receiver1 |
+					receiver1 := #_coverageTracker1085301_
+						cover: (38 to: 43)
+						declaredAt: (38 to: 43)
+						by: active.
+					#_coverageTracker1085301_
+						coverAll:
+							{45 to: 48}
+						evaluating: [ receiver1 size ]
+						thatSends: #size
+						to: receiver1 ] value
+				do: [ :index |
+					[ | receiver5 |
+					receiver5 := [ | receiver3 |
+					receiver3 := #_coverageTracker1085301_
+						cover: (69 to: 73)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1085301_
+						coverAll:
+							{75 to: 75}
+						evaluating: [
+							receiver3 =
+								[ | receiver2 |
+								receiver2 := #_coverageTracker1085301_
+									cover: (78 to: 83)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1085301_
+									coverAll:
+										{85 to: 87}
+									evaluating: [
+										receiver2 at:
+											(#_coverageTracker1085301_
+												cover: (89 to: 93)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #at:
+									to: receiver2 ] value ]
+						thatSends: #=
+						to: receiver3 ] value.
+					#_coverageTracker1085301_
+						coverAll:
+							{99 to: 105}
+						evaluating: [
+							receiver5 ifTrue: [
+								[ | receiver4 |
+								receiver4 := #_coverageTracker1085301_
+									cover: (113 to: 118)
+									declaredAt: (38 to: 43)
+									by: active.
+								#_coverageTracker1085301_
+									coverAll:
+										{120 to: 128}
+									evaluating: [
+										receiver4 removeAt:
+											(#_coverageTracker1085301_
+												cover: (130 to: 134)
+												declaredAt: (59 to: 63)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver4 ] value.
+								^ #_coverageTracker1085301_
+									cover: (143 to: 147)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver5 ] value ]]
+		thatSends: #to:do:
+		to: receiver6 ] value.
+	[ | receiver12 |
+	receiver12 := #_coverageTracker1085301_
+		coverAll:
+			{162 to: 162}
+		byLiteralOrPseudoVariable: 1.
+	#_coverageTracker1085301_
+		coverAll:
+			{164 to: 166. 183 to: 185}
+		evaluating: [
+			receiver12
+				to:
+					[ | receiver7 |
+					receiver7 := #_coverageTracker1085301_
+						cover: (168 to: 176)
+						declaredAt: (168 to: 176)
+						by: suspended.
+					#_coverageTracker1085301_
+						coverAll:
+							{178 to: 181}
+						evaluating: [ receiver7 size ]
+						thatSends: #size
+						to: receiver7 ] value
+				do: [ :index |
+					[ | receiver11 |
+					receiver11 := [ | receiver9 |
+					receiver9 := #_coverageTracker1085301_
+						cover: (203 to: 207)
+						declaredAt: (22 to: 26)
+						by: aName.
+					#_coverageTracker1085301_
+						coverAll:
+							{209 to: 209}
+						evaluating: [
+							receiver9 =
+								[ | receiver8 |
+								receiver8 := #_coverageTracker1085301_
+									cover: (212 to: 220)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1085301_
+									coverAll:
+										{222 to: 224}
+									evaluating: [
+										receiver8 at:
+											(#_coverageTracker1085301_
+												cover: (226 to: 230)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #at:
+									to: receiver8 ] value ]
+						thatSends: #=
+						to: receiver9 ] value.
+					#_coverageTracker1085301_
+						coverAll:
+							{236 to: 242}
+						evaluating: [
+							receiver11 ifTrue: [
+								[ | receiver10 |
+								receiver10 := #_coverageTracker1085301_
+									cover: (250 to: 258)
+									declaredAt: (168 to: 176)
+									by: suspended.
+								#_coverageTracker1085301_
+									coverAll:
+										{260 to: 268}
+									evaluating: [
+										receiver10 removeAt:
+											(#_coverageTracker1085301_
+												cover: (270 to: 274)
+												declaredAt: (193 to: 197)
+												by: index) ]
+									thatSends: #removeAt:
+									to: receiver10 ] value.
+								^ #_coverageTracker1085301_
+									cover: (283 to: 287)
+									declaredAt: (22 to: 26)
+									by: aName ]]
+						thatSends: #ifTrue:
+						to: receiver11 ] value ]]
+		thatSends: #to:do:
+		to: receiver12 ] value.
+	^ [ | receiver13 |
+	receiver13 := #_coverageTracker1085301_
+		coverAll:
+			{305 to: 312}
+		by: NotFound.
+	#_coverageTracker1085301_
+		coverAll:
+			{314 to: 319}
+		evaluating: [ receiver13 signal ]
+		thatSends: #signal
+		to: receiver13 ] value.! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:02:18'!
+                        aaaa
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	[ customerBook addCustomerNamed: ''.
+	self fail ]
+		on: Error 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:02:36'!
+    aaaa: aBlock
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	[ customerBook addCustomerNamed: ''.
+	self fail ]
+		on: Error 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+
+!methodRemoval: CustomerBookTest #aaaa stamp: 'as 4/4/2025 12:02:36'!
+aaaa
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	[ customerBook addCustomerNamed: ''.
+	self fail ]
+		on: Error 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:03:19'!
+   aaaa: aBlock exception: anException 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	[ customerBook addCustomerNamed: ''.
+	self fail ]
+		on: Error 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+
+!methodRemoval: CustomerBookTest #aaaa: stamp: 'as 4/4/2025 12:03:19'!
+aaaa: aBlock
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	[ customerBook addCustomerNamed: ''.
+	self fail ]
+		on: Error 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:04:12' prior: 50545668!
+                  aaaa: aBlock exception: anException 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:04:52'!
+   aaaa: aBlock exception: anException assertions: anAssertionBlock  
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+
+!methodRemoval: CustomerBookTest #aaaa:exception: stamp: 'as 4/4/2025 12:04:52'!
+aaaa: aBlock exception: anException 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]!
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:06:14' prior: 50545703!
+                aaaa: aBlock exception: anException assertions: anAssertionBlock  
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ]! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:07:01'!
+                        errorController: aBlock exception: anException assertions: anAssertionBlock  
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ]! !
+
+!methodRemoval: CustomerBookTest #aaaa:exception:assertions: stamp: 'as 4/4/2025 12:07:01'!
+aaaa: aBlock exception: anException assertions: anAssertionBlock  
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ]!
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 12:08:39' prior: 50541958!
+   test03CanNotAddACustomerWithEmptyName 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	self errorController: [ customerBook addCustomerNamed: ''.
+	self fail ] exception: Error assertions: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ]! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 12:11:36' prior: 50545751!
+                   test03CanNotAddACustomerWithEmptyName 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	self errorController: [ customerBook addCustomerNamed: ''.
+	self fail ] exception: Error assertions: [ :anError | 
+			self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+			self assert: customerBook isEmpty ].! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 12:11:43' prior: 50545735!
+                 errorController: aBlock exception: anException assertions: anAssertionBlock  
+
+	aBlock value
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ].! !
+
+----QUIT----(4 April 2025 12:42:32) CuisUniversity-6350.image priorSource: 6770987!
+
+----STARTUP---- (4 April 2025 18:48:11) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 18:51:06' prior: 50545779!
+                           errorController: aBlock exception: anException assertions: anAssertionBlock  
+
+	[aBlock value]
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ].! !
+
+----STARTUP---- (4 April 2025 15:54:24) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 15:54:50' prior: 50545779!
+              errorController: aBlock exception: anException assertions: anAssertionBlock  
+
+	[aBlock value]
+		on: anException 
+		do: [ :anError | 
+			anAssertionBlock value:anError ].! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 15:58:08' prior: 50541970!
+                           test04CanNotRemoveAnInvalidCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	
+	self errorController: [ customerBook removeCustomerNamed: 'Paul McCartney'.
+	self fail ] exception: NotFound assertions: [ :anError | 
+			self assert: customerBook numberOfCustomers = 1.
+			self assert: (customerBook includesCustomerNamed: johnLennon) ].
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 15:59:34' prior: 50542025!
+               test07CanNotSuspendAnInvalidCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	
+	self errorController: [ customerBook suspendCustomerNamed: 'George Harrison'.
+	self fail ] exception: CantSuspend  assertions: [ :anError | 
+			self assert: customerBook numberOfCustomers = 1.
+			self assert: (customerBook includesCustomerNamed: johnLennon) ].
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'as 4/4/2025 15:59:59' prior: 50542041!
+        test08CanNotSuspendAnAlreadySuspendedCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	customerBook suspendCustomerNamed: johnLennon.
+	
+	self errorController: [ customerBook suspendCustomerNamed: johnLennon.
+	self fail ] exception: CantSuspend assertions: [ :anError | 
+			self assert: customerBook numberOfCustomers = 1.
+			self assert: (customerBook includesCustomerNamed: johnLennon) ].
+! !
+!CustomerBookTest methodsFor: 'abstract' stamp: 'as 4/4/2025 16:17:40'!
+      aaaa
+
+	| customerBook paulMcCartney|
+	
+	customerBook := CustomerBook new.
+	paulMcCartney := 'Paul McCartney'.
+	
+	customerBook addCustomerNamed: paulMcCartney.
+	customerBook suspendCustomerNamed: paulMcCartney.
+	
+	self assert: 0 equals: customerBook numberOfActiveCustomers.
+	self assert: 1 equals: customerBook numberOfSuspendedCustomers.
+	self assert: 1 equals: customerBook numberOfCustomers.
+	self assert: (customerBook includesCustomerNamed: paulMcCartney).
+	
+
+	
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/4/2025 16:27:39' prior: 50542136!
+          suspendCustomerNamed: aName 
+	
+	(active includes: aName) ifTrue: [active remove: aName. suspended add: aName].
+	
+	^CantSuspend signal.
+! !
+
+customerBook := CustomerBook new.!
+
+customerBook addCustomerNamed: 'ariel'.!
+
+customerBook suspendCustomerNamed: 'ariel'.!
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/4/2025 16:30:17' prior: 50545887!
+                          suspendCustomerNamed: aName 
+	
+	(active includes: aName) ifTrue: [^CantSuspend signal].
+	
+	active remove: aName.
+	
+	suspended add: aName
+! !
+
+----QUIT----(4 April 2025 16:33:38) CuisUniversity-6350.image priorSource: 6852363!
+
+----STARTUP---- (4 April 2025 20:57:47) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Vehicle category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:04:57'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Vehicle methodsFor: 'initialization' stamp: 'ARM 4/29/2024 11:00:51'!
+    initializeWithType: typeToTake
+
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'ARM 4/29/2024 11:03:19'!
+                    accelerate
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:04:57'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                    helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/1.Replace-if-Type.st----!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Vehicle category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:05:00'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Vehicle methodsFor: 'initialization' stamp: 'ARM 4/29/2024 11:00:51' prior: 50545925!
+   initializeWithType: typeToTake
+
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'ARM 4/29/2024 11:03:19' prior: 50545931!
+    accelerate
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:05:00'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50545948!
+    helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50545953!
+      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/1.Replace-if-Type.st----!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Vehicle category: #'3.Replace-if-Type+State' stamp: 'as 4/4/2025 21:05:03'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Vehicle methodsFor: 'initialization' stamp: 'ARM 4/29/2024 11:05:09' prior: 50545974!
+     initializeWithType: typeToTake
+
+	state := #Off.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'ARM 4/29/2024 11:05:56' prior: 50545980!
+                    accelerate
+
+	state = #Off ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:32'!
+               turnOff
+
+	state := #Off! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:23'!
+      turnOn
+
+	state := #On! !
+!Vehicle methodsFor: 'error messages' stamp: 'ARM 4/29/2024 11:08:20'!
+canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'3.Replace-if-Type+State' stamp: 'as 4/4/2025 21:05:03'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50545997!
+              helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50546002!
+      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/3.Replace-if-Type+State.st----!
+
+TestCase subclass: #VehicleTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+
+!classDefinition: #VehicleTests category: #'4.Replace-if-Strategy' stamp: 'as 4/4/2025 21:05:05'!
+TestCase subclass: #VehicleTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:25:03'!
+                        test01LandVehicleCannotAccelerateWhileTurnedOff
+
+	| landVehicle |
+	
+	landVehicle := Vehicle electricMotorcycle.
+	
+	self should: [ landVehicle accelerate ] 
+	raise: Error 
+	withExceptionDo: [ :error | error messageText = 'Can not run when turned off'.
+		self assert: (landVehicle speedAt: (0 * kilometer / hour)) ]
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:27:17'!
+                          test02AirVehicleCannotAccelerateWhileTurnedOff
+
+	| airVehicle |
+	
+	airVehicle := Vehicle helicopter.
+	
+	self should: [ airVehicle accelerate ] 
+	raise: Error 
+	withExceptionDo: [ :error | error messageText = 'Can not fly when turned off'.
+		self assert: (airVehicle speedAt: (0 * kilometer / hour)).
+		self assert: (airVehicle altitudeAt: (0 * meter)) ]
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:20'!
+                  test03ElectricVehicleAccelerateAsIntended
+
+	| electricVehicle |
+	
+	electricVehicle := Vehicle electricMotorcycle.
+	
+	electricVehicle turnOn.
+	self assert: (electricVehicle speedAt: 0 * kilometer / hour).
+	
+	electricVehicle accelerate.
+	self assert: (electricVehicle speedAt: 10 * kilometer / hour).
+	
+	electricVehicle accelerate.
+	self assert: (electricVehicle speedAt: 40 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:16'!
+       test04GasolineVehicleAccelerateAsIntended
+
+	| gasolineVehicle |
+	
+	gasolineVehicle := Vehicle gasolineMotorcycle.
+	
+	gasolineVehicle turnOn.
+	self assert: (gasolineVehicle speedAt: 0 * kilometer / hour).
+	
+	gasolineVehicle accelerate.
+	self assert: (gasolineVehicle speedAt: 10 * kilometer / hour).
+	
+	gasolineVehicle accelerate.
+	self assert: (gasolineVehicle speedAt: 20 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:11'!
+       test05JetFueledVehicleAccelerateAsIntended
+
+	| jetFueledVehicle |
+	
+	jetFueledVehicle := Vehicle helicopter.
+	
+	jetFueledVehicle turnOn.
+	self assert: (jetFueledVehicle speedAt: 0 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 1 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 5 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 41 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:47:14'!
+       test06AirVehicleGoesUpAsItAcceleratesAsExpected
+
+	| airVehicle |
+	
+	airVehicle := Vehicle helicopter.
+	
+	airVehicle turnOn.
+	self assert: (airVehicle altitudeAt: 0 * meter).
+	
+	airVehicle accelerate.
+	self assert: (airVehicle altitudeAt: 5 * meter).
+	
+	airVehicle accelerate.
+	self assert: (airVehicle altitudeAt: 10 * meter)
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:05'!
+                test07SpeedLimiterForCityLimitsSpeedAt70Kmh
+
+	| cityVehicle |
+	
+	cityVehicle := Vehicle electricMotorcycle.
+	
+	cityVehicle turnOn.
+	self assert: (cityVehicle speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ cityVehicle accelerate ].
+	
+	self assert: (cityVehicle speedAt: 70 * kilometer / hour)
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:53:50'!
+          test08SpeedLimiterForOpenRoadLimitsSpeedAt130Kmh
+
+	| openRoadVehicle |
+	
+	openRoadVehicle := Vehicle gasolineMotorcycle.
+	
+	openRoadVehicle turnOn.
+	self assert: (openRoadVehicle speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ openRoadVehicle accelerate ].
+	
+	self assert: (openRoadVehicle speedAt: 130 * kilometer / hour)
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:55:32'!
+            test09SpeedLimiterForAirTrafficLimitsSpeedAt500Kmh
+
+	| vehicleInAir |
+	
+	vehicleInAir := Vehicle helicopter.
+	
+	vehicleInAir turnOn.
+	self assert: (vehicleInAir speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ vehicleInAir accelerate ].
+	
+	self assert: (vehicleInAir speedAt: 500 * kilometer / hour)
+	
+	
+	! !
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude engineType where'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+
+!classDefinition: #Vehicle category: #'4.Replace-if-Strategy' stamp: 'as 4/4/2025 21:05:05'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude engineType where'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+!Vehicle methodsFor: 'initialization' stamp: 'NR 9/7/2024 08:26:13'!
+ initializeWithType: typeToTake engineType: anEngineType andSurroundings: surroundings
+
+	state := #Off.
+	type := typeToTake.
+	engineType := anEngineType.
+	where := surroundings.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 09:00:22' prior: 50546031!
+          accelerate
+
+	| acceleration |
+	
+	state = #Off ifTrue: [ self error: self canNotAccelerateErrorMessage ].
+
+	engineType = #ElectricEngine ifTrue: [ acceleration := (speed + (5 * kilometer / hour)) * 2 ].
+	engineType = #GasolineEngine ifTrue: [ acceleration := 10 * kilometer / hour ].
+	engineType = #JetFueledEngine ifTrue: [ acceleration := ((speed amount + 1) ^ 2) * kilometer / hour ].
+
+	type = #Helicopter
+		ifTrue:[ speed := speed + acceleration.
+			altitude := altitude + (5 * meter) ].
+		
+	type = #Motorcycle
+		ifTrue:[ speed := speed + acceleration ].
+		
+	where = #city ifTrue: [ speed > (70 * kilometer / hour) ifTrue: [ speed := 70 * kilometer / hour ] ].
+	where = #openRoad ifTrue: [ speed > (130 * kilometer / hour) ifTrue: [ speed := 130 * kilometer / hour ] ].
+	where = #skies ifTrue: [ speed > (500 * kilometer / hour) ifTrue: [ speed := 500 * kilometer / hour ] ]! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 18:24:00'!
+                    altitudeAt: anAltitude
+
+	^ altitude = anAltitude! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 18:23:27'!
+                 speedAt: aSpeed
+
+	^ speed = aSpeed! !
+!Vehicle methodsFor: 'on/off' stamp: 'NR 9/7/2024 08:46:15' prior: 50546042!
+             turnOff
+
+	state := #Off.
+	speed := 0 * kilometer / hour! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:23' prior: 50546045!
+                      turnOn
+
+	state := #On! !
+!Vehicle methodsFor: 'error messages' stamp: 'ARM 4/29/2024 11:08:20' prior: 50546048!
+                canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'4.Replace-if-Strategy' stamp: 'as 4/4/2025 21:05:06'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:59'!
+  electricMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #ElectricEngine andSurroundings: #city
+
+! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:55'!
+                          gasolineMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #GasolineEngine andSurroundings: #openRoad! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:54:07' prior: 50546064!
+        helicopter
+
+	^ self new initializeWithType: #Helicopter engineType: #JetFueledEngine andSurroundings: #skies! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/4.Replace-if-Strategy.st----!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/4/2025 21:05:08'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'initialization' stamp: 'ARM 4/29/2024 10:57:09' overrides: 16932297!
+      initialize
+
+	state := #Off.
+	speed := 0 * kilometer / hour! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:54:56'!
+  accelerate
+
+	state = #Off ifTrue:[self error: 'Can not accelerate when turned off'].
+	state = #On ifTrue:[speed := speed + (10 * kilometer / hour)].! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:51:37'!
+        turnOn
+
+	state := #On! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/2.Replace-if-State.st----!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Vehicle category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:06:54'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Vehicle methodsFor: 'initialization' stamp: 'ARM 4/29/2024 11:00:51' prior: 50546024!
+   initializeWithType: typeToTake
+
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'ARM 4/29/2024 11:03:19' prior: 50546239!
+    accelerate
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:06:54'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50546315!
+    helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51' prior: 50546069!
+      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/2025-1c/Parte 2/02-SacarIfs/1.Replace-if-Type.st----!
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Helicopter category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:09:47'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Vehicle category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:10:00'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Helicopter category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:10:05'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Motorcycle category: #'1.Replace-if-Type' stamp: 'as 4/4/2025 21:10:18'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Helicopter methodsFor: 'as yet unclassified' stamp: 'as 4/4/2025 21:11:18' overrides: 50546375!
+                       accelerate
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].! !
+!Motorcycle methodsFor: 'as yet unclassified' stamp: 'as 4/4/2025 21:11:42' overrides: 50546375!
+accelerate
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/4/2025 21:11:55' prior: 50546375!
+                           accelerate
+
+	self subclassResponsibility.! !
+
+----QUIT----(4 April 2025 21:12:22) CuisUniversity-6350.image priorSource: 6856172!
