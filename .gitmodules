@@ -2,6 +2,3 @@
 [submodule "orga2/Guias/cBasico"]
 	path = orga2/Guias/cBasico
 	url = git@github.com:ariel8sche/cBasico.git
-[submodule "inge1/Guias/IngSoft1/2025"]
-	path = inge1/Guias/IngSoft1/2025
-	url = git@github.com:UBA-FCEN-IngSoft1/2025-1c.git
