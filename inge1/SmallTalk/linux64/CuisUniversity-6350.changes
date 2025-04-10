@@ -166478,3 +166478,2740 @@ accelerate
 	self subclassResponsibility.! !
 
 ----QUIT----(4 April 2025 21:12:22) CuisUniversity-6350.image priorSource: 6856172!
+
+----STARTUP---- (6 April 2025 20:09:35) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----QUIT----(6 April 2025 20:09:41) CuisUniversity-6350.image priorSource: 6874220!
+
+----STARTUP---- (6 April 2025 20:10:02) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+!methodRemoval: CustomerBookTest #aaaa stamp: 'as 4/6/2025 20:10:36'!
+aaaa
+
+	| customerBook paulMcCartney|
+	
+	customerBook := CustomerBook new.
+	paulMcCartney := 'Paul McCartney'.
+	
+	customerBook addCustomerNamed: paulMcCartney.
+	customerBook suspendCustomerNamed: paulMcCartney.
+	
+	self assert: 0 equals: customerBook numberOfActiveCustomers.
+	self assert: 1 equals: customerBook numberOfSuspendedCustomers.
+	self assert: 1 equals: customerBook numberOfCustomers.
+	self assert: (customerBook includesCustomerNamed: paulMcCartney).
+	
+
+	
+!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:17:22'!
+                 aaaa
+	| aName |
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:18:55'!
+      aaaa: aName2
+	| aName |
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].! !
+
+!methodRemoval: CustomerBook #aaaa stamp: 'as 4/6/2025 20:18:55'!
+aaaa
+	| aName |
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:19:22' prior: 50546508!
+                       aaaa: aName2
+	
+	
+	1 to: active size do: 
+	[ :index |
+		aName2 = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName2
+			] 
+	].! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:19:34' prior: 50546523!
+                      aaaa: aName2
+	
+	1 to: active size do: 
+	[ :index |
+		aName2 = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName2
+			] 
+	].! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:20:27' prior: 50546531!
+                        aaaa: aName
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName
+			] 
+	].! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:20:54'!
+           aaaa: aName list: aList 
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName
+			] 
+	].! !
+
+!methodRemoval: CustomerBook #aaaa: stamp: 'as 4/6/2025 20:20:54'!
+aaaa: aName
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName
+			] 
+	].!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:21:36'!
+           aaaa: aName list: aList action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName
+			] 
+	].! !
+
+!methodRemoval: CustomerBook #aaaa:list: stamp: 'as 4/6/2025 20:21:36'!
+aaaa: aName list: aList 
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName
+			] 
+	].!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:22:52' prior: 50546560!
+                         aaaa: aName list: aList action: aBlock  
+	
+	1 to: aList size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: aBlock
+	].! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 20:25:23' prior: 50542111!
+                             removeCustomerNamed: aName 
+ 
+	 
+	CustomerBook  new aaaa: aName list: active action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:27:00' prior: 50546576!
+   aaaa: aName list: aList action: aBlock  
+	
+	1 to: aList size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index ]
+	].! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 20:27:23' prior: 50546584!
+             removeCustomerNamed: aName 
+ 
+	 
+	CustomerBook new aaaa: aName list: active action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+
+cb := CustomerBook new.!
+
+cb addCustomerNamed: 'Ariel'.!
+
+cb addCustomerNamed: 'Eduardo'.!
+
+cb numberOfCustomers !
+
+cb numberOfActiveCustomers !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 20:32:03' prior: 50546604!
+       removeCustomerNamed: aName 
+ 
+	 
+	self aaaa: aName list: active action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:33:45' prior: 50546596!
+                aaaa: aName list: aList action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index ]
+	].! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:34:29'!
+       aaaa: aName action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index ]
+	].! !
+!CustomerBook methodsFor: 'as yet unclassified' stamp: 'as 4/6/2025 20:34:29' prior: 50546621!
+                        removeCustomerNamed: aName 
+ 
+	 
+	self aaaa: aName action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+
+!methodRemoval: CustomerBook #aaaa:list:action: stamp: 'as 4/6/2025 20:34:29'!
+aaaa: aName list: aList action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index ]
+	].!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 20:36:59' prior: 50546640!
+                          aaaa: aName action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index value: active]
+	].! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 20:48:53' prior: 50546648!
+           removeCustomerNamed: aName 
+ 
+	 
+	self aaaa: aName action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 20:49:58' prior: 50546675!
+                  removeCustomerNamed: aName 
+ 
+	self aaaa: aName action: [ :index | active removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:36:10' prior: 50546687!
+                     removeCustomerNamed: aName 
+ 
+	self aaaa: aName action: [ :index :anActive | anActive removeAt: index.^ aName ] .
+
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:41:09' prior: 50546699!
+         removeCustomerNamed: aName 
+ 
+	"self aaaa: aName action: [ :index :anActive | anActive removeAt: index.^ aName ] ."
+
+	1 to: active size do: 	
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 21:42:30' prior: 50546667!
+              aaaa: aName action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index value: active value:aName ]
+	].! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:44:00' prior: 50546711!
+                              removeCustomerNamed: aName 
+ 
+	self aaaa: aName action: [ :index :anActive :aName2 | anActive removeAt: index.^ aName2 ] .
+
+	1 to: active size do: 	
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:44:50' prior: 50546736!
+                            removeCustomerNamed: aName 
+
+	1 to: active size do: 	
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [
+				active removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+
+customerBook!
+
+cb suspendCustomerNamed: 'Ariel'.!
+
+cb!
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:55:48' prior: 50545899!
+   suspendCustomerNamed: aName 
+	
+	(active includes: aName) ifFalse: [^CantSuspend signal].
+	
+	active remove: aName.
+	
+	suspended add: aName
+! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 21:58:05' prior: 50546753!
+                   removeCustomerNamed: aName 
+
+	self aaaa: aName action: 	[ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			].
+	
+	1 to: suspended size do: 	
+	[ :index |
+		aName = (suspended at: index)
+			ifTrue: [
+				suspended removeAt: index.
+				^ aName 
+			] 
+	].
+	
+	^ NotFound signal.
+! !
+
+cb addCustomerNamed: 'Ariel'.!
+
+cb := CustomerBook new.!
+
+cb addCustomerNamed: 'Ariel'.!
+
+cb addCustomerNamed: 'Eduardo'.!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb suspendCustomerNamed: 'Ariel'.!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb removeCustomerNamed: 'Eduardo'!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb removeCustomerNamed: 'Ariel'.!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb addCustomerNamed: 'Ariel'.!
+
+cb suspendCustomerNamed: 'Ariel'.!
+
+cb numberOfSuspendedCustomers .!
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 22:01:17' prior: 50546776!
+              removeCustomerNamed: aName 
+
+	self aaaa: aName action: 	[ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			].
+	
+	self aaaa: aName action: [ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			] .
+	
+	^ NotFound signal.
+! !
+
+cb removeCustomerNamed: 'Ariel'.!
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb removeCustomerNamed: 'Ariel'.!
+
+cb addCustomerNamed: 'Eduardo'.!
+
+cb removeCustomerNamed: 'Eduardo'.!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 22:05:55'!
+              aaaa: aName activeOrSuspended: status action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index value: active value:aName ]
+	].! !
+!CustomerBook methodsFor: 'as yet unclassified' stamp: 'as 4/6/2025 22:05:55' prior: 50546808!
+    removeCustomerNamed: aName 
+
+	self aaaa: aName activeOrSuspended: status action: 	[ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			].
+	
+	self aaaa: aName activeOrSuspended: status action: [ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			] .
+	
+	^ NotFound signal.
+! !
+
+!methodRemoval: CustomerBook #aaaa:action: stamp: 'as 4/6/2025 22:05:55'!
+aaaa: aName action: aBlock  
+	
+	1 to: active size do: 
+	[ :index |
+		aName = (active at: index)
+			ifTrue: [aBlock value: index value: active value:aName ]
+	].!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 22:06:17' prior: 50546825!
+           aaaa: aName activeOrSuspended: status action: aBlock  
+	
+	1 to: status size do: 
+	[ :index |
+		aName = (status at: index)
+			ifTrue: [aBlock value: index value: status value:aName ]
+	].! !
+!CustomerBook methodsFor: 'customer management' stamp: 'as 4/6/2025 22:06:41' prior: 50546834!
+    removeCustomerNamed: aName 
+
+	self aaaa: aName activeOrSuspended: active action: 	[ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			].
+	
+	self aaaa: aName activeOrSuspended: suspended action: [ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			] .
+	
+	^ NotFound signal.
+! !
+
+cb numberOfActiveCustomers.!
+
+cb numberOfSuspendedCustomers .!
+
+cb removeCustomerNamed: 'Ariel'.!
+!CustomerBook methodsFor: 'abstract' stamp: 'as 4/6/2025 22:10:14'!
+ ifFoundACustomerNamed: aName inActiveOrSuspended: status do: aBlock  
+	
+	1 to: status size do: 
+	[ :index |
+		aName = (status at: index)
+			ifTrue: [aBlock value: index value: status value:aName ]
+	].! !
+!CustomerBook methodsFor: 'as yet unclassified' stamp: 'as 4/6/2025 22:10:14' prior: 50546863!
+                     removeCustomerNamed: aName 
+
+	self ifFoundACustomerNamed: aName inActiveOrSuspended: active do: 	[ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			].
+	
+	self ifFoundACustomerNamed: aName inActiveOrSuspended: suspended do: [ :index :aList :aName2 |
+				aList removeAt: index.
+				^ aName2 
+			] .
+	
+	^ NotFound signal.
+! !
+
+!methodRemoval: CustomerBook #aaaa:activeOrSuspended:action: stamp: 'as 4/6/2025 22:10:14'!
+aaaa: aName activeOrSuspended: status action: aBlock  
+	
+	1 to: status size do: 
+	[ :index |
+		aName = (status at: index)
+			ifTrue: [aBlock value: index value: status value:aName ]
+	].!
+
+----QUIT----(6 April 2025 22:10:48) CuisUniversity-6350.image priorSource: 6874445!
+
+----STARTUP---- (7 April 2025 11:23:51) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!Helicopter methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 11:26:45' overrides: 16932297!
+                initialize
+
+	super initializeWithType: #Helicopter.! !
+!Vehicle methodsFor: 'initialization' stamp: 'as 4/7/2025 11:27:17' prior: 50546369!
+                    initializeWithType: typeToTake
+
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Helicopter methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 11:27:25' prior: 50546918 overrides: 16932297!
+                      initialize
+
+	super initializeWithType: #Helicopter.
+	altitude := 0 * meter! !
+!Helicopter methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 11:27:26' prior: 50546930 overrides: 16932297!
+ initialize
+
+	super initializeWithType: #Helicopter.
+	altitude := 0 * meter.! !
+!Motorcycle methodsFor: 'initialization' stamp: 'as 4/7/2025 11:29:54' overrides: 16932297!
+                     initialize
+
+	super initializeWithType: #Motorcycle.! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/7/2025 11:30:22' prior: 50546460 overrides: 50546466!
+       accelerate
+		
+	speed := speed + (20 * kilometer / hour).! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/7/2025 11:30:41' prior: 50546453 overrides: 50546466!
+  accelerate
+
+	speed := speed + (10 * kilometer / hour).
+	altitude := altitude + (5 * meter)! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/7/2025 11:30:56' prior: 50546952 overrides: 50546466!
+accelerate
+
+	speed := speed + (10 * kilometer / hour).
+	altitude := altitude + (5 * meter).! !
+
+Helicopter new.!
+
+Helicopter accelerate !
+
+(Helicopter new) accelerate !
+
+!methodRemoval: Vehicle #initializeWithType:engineType:andSurroundings: stamp: 'as 4/7/2025 11:35:48'!
+initializeWithType: typeToTake engineType: anEngineType andSurroundings: surroundings
+
+	state := #Off.
+	type := typeToTake.
+	engineType := anEngineType.
+	where := surroundings.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter!
+
+!methodRemoval: Vehicle #altitudeAt: stamp: 'as 4/7/2025 11:35:59'!
+altitudeAt: anAltitude
+
+	^ altitude = anAltitude!
+
+!methodRemoval: Vehicle #speedAt: stamp: 'as 4/7/2025 11:36:03'!
+speedAt: aSpeed
+
+	^ speed = aSpeed!
+
+!methodRemoval: Vehicle #turnOff stamp: 'as 4/7/2025 11:36:10'!
+turnOff
+
+	state := #Off.
+	speed := 0 * kilometer / hour!
+
+!methodRemoval: Vehicle #turnOn stamp: 'as 4/7/2025 11:36:10'!
+turnOn
+
+	state := #On!
+
+!methodRemoval: Vehicle #canNotAccelerateErrorMessage stamp: 'as 4/7/2025 11:36:13'!
+canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].!
+
+----SNAPSHOT----(7 April 2025 11:36:27) CuisUniversity-6350.image priorSource: 6888301!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:38:12'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'initialization' stamp: 'ARM 4/29/2024 10:57:09' prior: 50546338 overrides: 16932297!
+                               initialize
+
+	state := #Off.
+	speed := 0 * kilometer / hour! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:54:56' prior: 50546342!
+                  accelerate
+
+	state = #Off ifTrue:[self error: 'Can not accelerate when turned off'].
+	state = #On ifTrue:[speed := speed + (10 * kilometer / hour)].! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:51:37' prior: 50546349!
+                        turnOn
+
+	state := #On! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/02-SacarIfs/2.Replace-if-State.st----!
+
+!classRemoval: #VehicleTests stamp: 'as 4/7/2025 11:38:36'!
+TestCase subclass: #VehicleTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+
+!classRemoval: #Automobile stamp: 'as 4/7/2025 11:38:41'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:40:48'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'initialization' stamp: 'ARM 4/29/2024 10:57:09' overrides: 16932297!
+          initialize
+
+	state := #Off.
+	speed := 0 * kilometer / hour! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:54:56'!
+  accelerate
+
+	state = #Off ifTrue:[self error: 'Can not accelerate when turned off'].
+	state = #On ifTrue:[speed := speed + (10 * kilometer / hour)].! !
+!Automobile methodsFor: 'move' stamp: 'ARM 4/29/2024 10:51:37'!
+        turnOn
+
+	state := #On! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/02-SacarIfs/2.Replace-if-State.st----!
+
+Vehicle subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Vehicle subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Vehicle subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Automobile category: #'1.Replace-if-Type' stamp: 'as 4/7/2025 11:42:05'!
+Vehicle subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Automobile category: #'1.Replace-if-Type' stamp: 'as 4/7/2025 11:42:53'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:43:02'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #On
+	instanceVariableNames: 'speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #On
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #On category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:51:15'!
+Automobile subclass: #On
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #Off
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Off category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:51:21'!
+Automobile subclass: #Off
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:51:28'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #On
+	instanceVariableNames: 'speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #On category: #'2.Replace-if-State' stamp: 'as 4/7/2025 11:51:32'!
+Automobile subclass: #On
+	instanceVariableNames: 'speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'initialization' stamp: 'as 4/7/2025 11:52:45' prior: 50547060 overrides: 16932297!
+initialize
+
+	state := On new.! !
+!On methodsFor: 'initialization' stamp: 'as 4/7/2025 11:53:06' overrides: 50547173!
+           initialize
+
+		speed := 0 * kilometer / hour.! !
+!On methodsFor: 'move' stamp: 'as 4/7/2025 11:53:46' overrides: 50547064!
+      accelerate
+
+	! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 11:53:58' prior: 50547064!
+ accelerate
+
+	state = #Off ifTrue:[self error: 'Can not accelerate when turned off'].
+	state = #On ifTrue:[].! !
+!On methodsFor: 'move' stamp: 'as 4/7/2025 11:54:08' prior: 50547181 overrides: 50547184!
+                      accelerate
+
+	speed := speed + (10 * kilometer / hour).
+	! !
+!Automobile methodsFor: 'initialization' stamp: 'as 4/7/2025 11:54:38' prior: 50547173 overrides: 16932297!
+                        initialize
+
+	state := Off new.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 11:54:50' prior: 50547071!
+                turnOn
+
+	state := On new.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 11:55:09' prior: 50547184!
+                     accelerate
+
+	state = #Off ifTrue:[self error: 'Can not accelerate when turned off'].
+	state accelerate.! !
+!Off methodsFor: 'initialization' stamp: 'as 4/7/2025 11:56:04' overrides: 50547197!
+initialize 
+
+	! !
+!Off methodsFor: 'move' stamp: 'as 4/7/2025 11:56:19' overrides: 50547205!
+   accelerate
+
+	 ! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 11:56:31' prior: 50547205!
+accelerate
+
+	state = #Off ifTrue:[].
+	state accelerate.! !
+!Off methodsFor: 'move' stamp: 'as 4/7/2025 11:56:38' prior: 50547214 overrides: 50547217!
+          accelerate
+
+	 self error: 'Can not accelerate when turned off'.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 11:57:08' prior: 50547217!
+               accelerate
+
+	state accelerate.! !
+
+v := Vehicle new!
+
+v accelerate !
+
+v accelerate.!
+
+v !
+
+v := Automobile new.!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate !
+
+v!
+
+v!
+
+On!
+
+#('speed')!
+
+----SNAPSHOT----(7 April 2025 12:05:54) CuisUniversity-6350.image priorSource: 6891094!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #Motorcycle stamp: 'as 4/7/2025 12:15:41'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classRemoval: #Helicopter stamp: 'as 4/7/2025 12:15:42'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classRemoval: #Vehicle stamp: 'as 4/7/2025 12:15:42'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Vehicle category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:15:59'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Vehicle methodsFor: 'initialization' stamp: 'ARM 4/29/2024 11:05:09'!
+               initializeWithType: typeToTake
+
+	state := #Off.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'ARM 4/29/2024 11:05:56'!
+    accelerate
+
+	state = #Off ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+	type = #Helicopter
+		ifTrue:[speed := speed + (10 * kilometer / hour).
+			altitude := altitude + (5 * meter)].
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:32'!
+               turnOff
+
+	state := #Off! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:23'!
+      turnOn
+
+	state := #On! !
+!Vehicle methodsFor: 'error messages' stamp: 'ARM 4/29/2024 11:08:20'!
+canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:15:59'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                              helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/02-SacarIfs/3.Replace-if-Type+State.st----!
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Helicopter category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:17:16'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Vehicle category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:17:22'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Helicopter category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:17:29'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Vehicle methodsFor: 'initialization' stamp: 'as 4/7/2025 12:17:50' prior: 50547275!
+         initializeWithType: typeToTake
+
+	state := #Off.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/7/2025 12:18:10' overrides: 16932297!
+                           initialize 
+
+		altitude := 0 * meter.! !
+
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Motorcycle category: #'3.Replace-if-Type+State' stamp: 'as 4/7/2025 12:19:00'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Motorcycle methodsFor: 'initialization' stamp: 'as 4/7/2025 12:19:33' overrides: 16932297!
+                             initialize 
+
+	super initialize.! !
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/7/2025 12:19:54' prior: 50547372 overrides: 16932297!
+                 initialize 
+
+		super initializeWithType: #Helicopter.
+		altitude := 0 * meter.! !
+!Motorcycle methodsFor: 'initialization' stamp: 'as 4/7/2025 12:20:11' prior: 50547389 overrides: 16932297!
+  initialize 
+
+	super initializeWithType: #Motorcycle.! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/7/2025 12:21:05' prior: 50547281!
+                             accelerate
+
+	state = #Off ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+
+		
+	type = #Motorcycle
+		ifTrue:[speed := speed + (20 * kilometer / hour)].! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/7/2025 12:21:32' overrides: 50547405!
+           accelerate
+
+		speed := speed + (10 * kilometer / hour).
+		altitude := altitude + (5 * meter). ! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/7/2025 12:22:15' prior: 50547405!
+                   accelerate
+
+	state = #Off ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+
+		
+	! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/7/2025 12:22:34' overrides: 50547419!
+                  accelerate
+
+	speed := speed + (20 * kilometer / hour). ! !
+
+Automobile subclass: #On
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #On category: #'2.Replace-if-State' stamp: 'as 4/7/2025 12:23:34'!
+Automobile subclass: #On
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 12:23:39'!
+Object subclass: #Automobile
+	instanceVariableNames: 'state speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+v := Automobile new.!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate !
+
+v!
+
+v!
+
+v turnOn .!
+
+v!
+
+v := Automobile new.!
+
+v!
+!Off methodsFor: 'initialization' stamp: 'as 4/7/2025 12:26:32' prior: 50547211 overrides: 50547197!
+        initialize 
+
+	speed := 0.! !
+
+v := Automobile new.!
+
+v!
+
+on := On new.!
+
+on!
+!Automobile methodsFor: 'initialization' stamp: 'as 4/7/2025 12:32:35' prior: 50547197 overrides: 16932297!
+       initialize
+
+	^Off new.! !
+
+Object subclass: #Automobile
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 12:32:46'!
+Object subclass: #Automobile
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #Off
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Off category: #'2.Replace-if-State' stamp: 'as 4/7/2025 12:32:59'!
+Automobile subclass: #Off
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #On
+	instanceVariableNames: 'speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #On category: #'2.Replace-if-State' stamp: 'as 4/7/2025 12:33:07'!
+Automobile subclass: #On
+	instanceVariableNames: 'speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Off methodsFor: 'initialization' stamp: 'as 4/7/2025 12:33:31' prior: 50547457 overrides: 50547463!
+             initialize 
+
+! !
+!Off methodsFor: 'initialization' stamp: 'as 4/7/2025 12:34:05' overrides: 50547201!
+                          turnOn
+
+	^On new.! !
+
+v := Automobile new.!
+
+v := Automobile new.!
+
+v accelerate.!
+
+!classRenamed: #Off as: #AutomobileOff stamp: 'as 4/7/2025 12:35:08'!
+Smalltalk renameClassNamed: #Off as: #AutomobileOff!
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:08' prior: 50547365!
+                       initializeWithType: typeToTake
+
+	state := #AutomobileOff.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Automobile methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:08' prior: 50547463 overrides: 16932297!
+                            initialize
+
+	^AutomobileOff new.! !
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:08' prior: 50547292!
+  turnOff
+
+	state := #AutomobileOff! !
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:08' prior: 50547419!
+ accelerate
+
+	state = #AutomobileOff ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+
+		
+	! !
+
+!classRenamed: #On as: #AutomobileOn stamp: 'as 4/7/2025 12:35:28'!
+Smalltalk renameClassNamed: #On as: #AutomobileOn!
+!AutomobileOff methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:28' prior: 50547505 overrides: 50547201!
+              turnOn
+
+	^AutomobileOn new.! !
+!Automobile methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:28' prior: 50547201!
+    turnOn
+
+	state := AutomobileOn new.! !
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/7/2025 12:35:28' prior: 50547295!
+                               turnOn
+
+	state := #AutomobileOn! !
+
+!methodRemoval: Automobile #accelerate stamp: 'as 4/7/2025 12:35:51'!
+accelerate
+
+	state accelerate.!
+
+!methodRemoval: Automobile #turnOn stamp: 'as 4/7/2025 12:35:51'!
+turnOn
+
+	state := AutomobileOn new.!
+
+	self subclassResponsibility .!
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 12:36:27'!
+               accelerate
+
+	self subclassResponsibility .! !
+
+v := Automobile new.!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate. !
+
+v!
+
+Automobile subclass: #AutomobileOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #AutomobileOn category: #'2.Replace-if-State' stamp: 'as 4/7/2025 13:24:17'!
+Automobile subclass: #AutomobileOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #Automobile
+	instanceVariableNames: 'speed state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Automobile category: #'2.Replace-if-State' stamp: 'as 4/7/2025 13:24:26'!
+Object subclass: #Automobile
+	instanceVariableNames: 'speed state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'initialization' stamp: 'as 4/7/2025 13:24:39' prior: 50547523 overrides: 16932297!
+                               initialize
+
+	state := AutomobileOff new.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 13:25:16' prior: 50547562!
+      accelerate
+
+	state accelerate.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 13:26:04'!
+turnOn
+
+	state := AutomobileOn new.! !
+
+!methodRemoval: AutomobileOff #turnOn stamp: 'as 4/7/2025 13:27:49'!
+turnOn
+
+	^AutomobileOn new.!
+
+v := Automobile new.!
+
+v accelerate.!
+
+v!
+
+v turnOn .!
+
+v!
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 13:28:46' prior: 50547601!
+            turnOn
+
+	state := AutomobileOn new.
+	speed := 0.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 13:29:18' prior: 50547598!
+                              accelerate
+
+	self subclassResponsibility .! !
+
+v := Automobile new.!
+
+v accelerate.!
+
+v!
+
+v turnOn .!
+
+v!
+
+v accelerate. !
+!Automobile methodsFor: 'move' stamp: 'as 4/7/2025 13:30:31' prior: 50547615!
+                       accelerate
+
+	state accelerate .! !
+
+v turnOn .!
+
+v accelerate. !
+
+v!
+
+an AutomobileOn!
+
+an AutomobileOn!
+
+AutomobileOn!
+
+----SNAPSHOT----(7 April 2025 14:36:46) CuisUniversity-6350.image priorSource: 6898711!
+
+----QUIT----(7 April 2025 14:36:50) CuisUniversity-6350.image priorSource: 6911287!
+
+----STARTUP---- (8 April 2025 11:21:57) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+!classRenamed: #AutomobileOff as: #MotorOff stamp: 'as 4/8/2025 11:51:15'!
+Smalltalk renameClassNamed: #AutomobileOff as: #MotorOff!
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:15' prior: 50547515!
+              initializeWithType: typeToTake
+
+	state := #MotorOff.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Automobile methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:15' prior: 50547594 overrides: 16932297!
+ initialize
+
+	state := MotorOff new.! !
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:15' prior: 50547527!
+                               turnOff
+
+	state := #MotorOff! !
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:15' prior: 50547531!
+      accelerate
+
+	state = #MotorOff ifTrue:[self error: self canNotAccelerateErrorMessage].
+
+
+		
+	! !
+
+!classRenamed: #AutomobileOn as: #MotorOn stamp: 'as 4/8/2025 11:51:30'!
+Smalltalk renameClassNamed: #AutomobileOn as: #MotorOn!
+!Vehicle methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:30' prior: 50547551!
+   turnOn
+
+	state := #MotorOn! !
+!Automobile methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:51:30' prior: 50547610!
+     turnOn
+
+	state := MotorOn new.
+	speed := 0.! !
+
+Automobile subclass: #Motor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Motor category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:51:47'!
+Automobile subclass: #Motor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Motor subclass: #MotorOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #MotorOff category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:51:54'!
+Motor subclass: #MotorOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Motor subclass: #MotorOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #MotorOn category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:51:58'!
+Motor subclass: #MotorOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Automobile subclass: #Motor
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Motor category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:52:53'!
+Automobile subclass: #Motor
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!Automobile methodsFor: 'move' stamp: 'as 4/8/2025 11:55:03'!
+                  increaseSpeed
+
+	speed := 0.! !
+!MotorOn methodsFor: 'move' stamp: 'as 4/8/2025 11:55:21' prior: 50547191 overrides: 50547622!
+  accelerate
+
+	
+	! !
+!Automobile methodsFor: 'move' stamp: 'as 4/8/2025 11:55:29' prior: 50547722!
+                               increaseSpeed
+
+	speed := speed + (10 * kilometer / hour).! !
+
+!methodRemoval: MotorOn #initialize stamp: 'as 4/8/2025 11:55:42'!
+initialize
+
+		speed := 0 * kilometer / hour.!
+!MotorOn methodsFor: 'move' stamp: 'as 4/8/2025 11:55:58' prior: 50547726 overrides: 50547622!
+                  accelerate
+
+	context increaseSpeed.
+	! !
+
+!methodRemoval: MotorOff #initialize stamp: 'as 4/8/2025 11:56:58'!
+initialize 
+
+!
+!Motor methodsFor: 'as yet unclassified' stamp: 'as 4/8/2025 11:57:22' overrides: 50547622!
+       accelerate 
+
+	self subclassResponsibility.! !
+
+Object subclass: #Motor
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #Motor category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:57:57'!
+Object subclass: #Motor
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #MotorState category: #'2.Replace-if-State' stamp: 'as 4/8/2025 11:58:09'!
+Object subclass: #MotorState
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classRemoval: #MotorState stamp: 'as 4/8/2025 11:58:17'!
+Object subclass: #MotorState
+	instanceVariableNames: 'context'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classRenamed: #Motor as: #MotorState stamp: 'as 4/8/2025 11:58:32'!
+Smalltalk renameClassNamed: #Motor as: #MotorState!
+!MotorState methodsFor: 'initialization' stamp: 'as 4/8/2025 12:00:21'!
+initializeWith: aCar
+
+	context := aCar.! !
+!MotorState methodsFor: 'initialization' stamp: 'as 4/8/2025 12:00:58'!
+             newWith: aCar
+
+	^self new initializeWith: aCar.! !
+!Automobile methodsFor: 'initialization' stamp: 'as 4/8/2025 12:01:43' prior: 50547650 overrides: 16932297!
+ initialize
+
+	state := MotorOff newWith:  self.! !
+!Automobile methodsFor: 'move' stamp: 'as 4/8/2025 12:01:54' prior: 50547673!
+turnOn
+
+	state := MotorOn newWith: self.
+	speed := 0.! !
+
+v := Automobile new.!
+
+v := Automobile new.!
+!Automobile methodsFor: 'initialization' stamp: 'as 4/8/2025 12:02:50' prior: 50547792 overrides: 16932297!
+             initialize
+
+	state := MotorOff newWith:  self.
+	speed := 0.! !
+
+car := Automobile new.!
+!Automobile methodsFor: 'initialization' stamp: 'as 4/8/2025 12:32:42' prior: 50547803 overrides: 16932297!
+                            initialize
+
+	state := MotorOff new initializeWith:  self.
+	speed := 0.! !
+
+!methodRemoval: MotorState #newWith: stamp: 'as 4/8/2025 12:33:05'!
+newWith: aCar
+
+	^self new initializeWith: aCar.!
+
+car := Automobile new.!
+
+car!
+
+car turnOn !
+!Automobile methodsFor: 'move' stamp: 'as 4/8/2025 12:34:02' prior: 50547796!
+     turnOn
+
+	state := MotorOn new initializeWith: self.
+	speed := 0.! !
+
+car turnOn !
+
+car!
+
+car accelerate.!
+
+car!
+
+----QUIT----(8 April 2025 12:34:50) CuisUniversity-6350.image priorSource: 6911376!
+
+----STARTUP---- (9 April 2025 10:44:53) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!Automobile methodsFor: 'initialization' stamp: 'as 4/9/2025 10:57:14' prior: 50547810 overrides: 16932297!
+   initialize
+
+	state := MotorOff new initializeWith:  self.
+	speed := 0 * kilometer / hour .! !
+!Automobile methodsFor: 'move' stamp: 'as 4/9/2025 10:59:13'!
+    increaseSpeed: kilometerPerHour
+
+	speed := speed + kilometerPerHour .! !
+!MotorOn methodsFor: 'move' stamp: 'as 4/9/2025 10:59:26' prior: 50547739 overrides: 50547746!
+                        accelerate
+
+	context increaseSpeed: (10 * kilometer / hour).
+	! !
+
+Object subclass: #MotorState
+	instanceVariableNames: 'aCar'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'aCar'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'aCar'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classDefinition: #MotorState category: #'2.Replace-if-State' stamp: 'as 4/9/2025 11:00:12'!
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+!MotorState methodsFor: 'initialization' stamp: 'as 4/9/2025 11:00:17' prior: 50547783!
+               initializeWith: aCar
+
+	car := aCar.! !
+!MotorOn methodsFor: 'move' stamp: 'as 4/9/2025 11:00:30' prior: 50547845 overrides: 50547746!
+                          accelerate
+
+	car increaseSpeed: (10 * kilometer / hour).
+	! !
+
+!classRemoval: #MotorOn stamp: 'as 4/9/2025 11:01:45'!
+MotorState subclass: #MotorOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classRemoval: #MotorOff stamp: 'as 4/9/2025 11:01:46'!
+MotorState subclass: #MotorOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classRemoval: #MotorState stamp: 'as 4/9/2025 11:01:46'!
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+!classRemoval: #Automobile stamp: 'as 4/9/2025 11:01:46'!
+Object subclass: #Automobile
+	instanceVariableNames: 'speed state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '2.Replace-if-State'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorState category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 11:17:40'!
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorStateOff category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 11:18:02'!
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorStateOn category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 11:18:08'!
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Vehicle methodsFor: 'initialization' stamp: 'as 4/9/2025 11:18:50' prior: 50547643!
+initializeWithType: typeToTake
+
+	state := MotorStateOff new initializeWith: self.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:21:00'!
+        initializeWith: aCar
+
+	car := aCar.! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 11:27:50' prior: 50547669!
+            turnOn
+
+	state := MotorStateOn new initializeWith: self.
+	! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 11:28:13' prior: 50547655!
+                     turnOff
+
+	state := MotorStateOff new initializeWith: self.
+	! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/9/2025 11:28:44' prior: 50547659!
+                     accelerate
+
+	state accelerate .
+
+
+		
+	! !
+!MotorStateOff methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:29:10'!
+      accelerate
+
+	self error: self canNotAccelerateErrorMessage.! !
+!MotorStateOff methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:29:51' prior: 50547971!
+ accelerate
+
+	self error: car canNotAccelerateErrorMessage.! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:30:27'!
+                   accelerate
+
+	car increaseSpeed.! !
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/9/2025 11:31:30'!
+                     increaseSpeed: kilometerPerHour
+
+		speed := speed + kilometerPerHour .! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:32:11' prior: 50547981!
+                       accelerate
+
+	car increaseSpeed: 10 * kilometer / hour.! !
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:32:38'!
+                         accelerate
+
+	self subclassResponsibility .! !
+
+!classRemoval: #Motorcycle stamp: 'as 4/9/2025 11:55:21'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #Helicopter stamp: 'as 4/9/2025 11:55:21'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #Vehicle stamp: 'as 4/9/2025 11:55:21'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorStateOn stamp: 'as 4/9/2025 11:55:21'!
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorStateOff stamp: 'as 4/9/2025 11:55:22'!
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorState stamp: 'as 4/9/2025 11:55:22'!
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Vehicle category: #'1.Replace-if-Type' stamp: 'as 4/9/2025 11:55:36'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Vehicle methodsFor: 'initialization' stamp: 'as 4/7/2025 11:27:17'!
+     initializeWithType: typeToTake
+
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/4/2025 21:11:55'!
+            accelerate
+
+	self subclassResponsibility.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'1.Replace-if-Type' stamp: 'as 4/9/2025 11:55:36'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:59'!
+                    electricMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #ElectricEngine andSurroundings: #city
+
+! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:55'!
+                          gasolineMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #GasolineEngine andSurroundings: #openRoad! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                      helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Helicopter category: #'1.Replace-if-Type' stamp: 'as 4/9/2025 11:55:36'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/7/2025 11:27:26' overrides: 16932297!
+              initialize
+
+	super initializeWithType: #Helicopter.
+	altitude := 0 * meter.! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/7/2025 11:30:56' overrides: 50548055!
+                               accelerate
+
+	speed := speed + (10 * kilometer / hour).
+	altitude := altitude + (5 * meter).! !
+
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classDefinition: #Motorcycle category: #'1.Replace-if-Type' stamp: 'as 4/9/2025 11:55:36'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+!Motorcycle methodsFor: 'initialization' stamp: 'as 4/7/2025 11:29:54' overrides: 16932297!
+                         initialize
+
+	super initializeWithType: #Motorcycle.! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/7/2025 11:30:22' overrides: 50548055!
+                       accelerate
+		
+	speed := speed + (20 * kilometer / hour).! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/1.Replace-if-Type.st----!
+
+!classRemoval: #Motorcycle stamp: 'as 4/9/2025 12:06:36'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classRemoval: #Helicopter stamp: 'as 4/9/2025 12:06:36'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+!classRemoval: #Vehicle stamp: 'as 4/9/2025 12:06:36'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '1.Replace-if-Type'!
+
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorState category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+Object subclass: #MotorState
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:32:38'!
+accelerate
+
+	self subclassResponsibility .! !
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:21:00'!
+     initializeWith: aCar
+
+	car := aCar.! !
+
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorStateOff category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!MotorStateOff methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:29:51' overrides: 50548171!
+        accelerate
+
+	self error: car canNotAccelerateErrorMessage.! !
+
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #MotorStateOn category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 11:32:11' overrides: 50548171!
+                     accelerate
+
+	car increaseSpeed: 10 * kilometer / hour.! !
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Vehicle category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Vehicle methodsFor: 'initialization' stamp: 'as 4/9/2025 11:18:50'!
+              initializeWithType: typeToTake
+
+	state := MotorStateOff new initializeWith: self.
+	type := typeToTake.
+	speed := 0 * kilometer / hour.
+! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/9/2025 11:28:44'!
+                          accelerate
+
+	state accelerate .
+
+
+		
+	! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 11:28:13'!
+                         turnOff
+
+	state := MotorStateOff new initializeWith: self.
+	! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 11:27:50'!
+   turnOn
+
+	state := MotorStateOn new initializeWith: self.
+	! !
+!Vehicle methodsFor: 'error messages' stamp: 'ARM 4/29/2024 11:08:20'!
+                           canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                              helicopter
+
+	^self new initializeWithType: #Helicopter! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'ARM 4/29/2024 11:00:51'!
+                      motorcycle
+
+	^self new initializeWithType: #Motorcycle! !
+
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Helicopter category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Helicopter methodsFor: 'move' stamp: 'as 4/7/2025 12:21:32' overrides: 50548234!
+      accelerate
+
+		speed := speed + (10 * kilometer / hour).
+		altitude := altitude + (5 * meter). ! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 11:31:30'!
+increaseSpeed: kilometerPerHour
+
+		speed := speed + kilometerPerHour .! !
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/7/2025 12:19:54' overrides: 16932297!
+                          initialize 
+
+		super initializeWithType: #Helicopter.
+		altitude := 0 * meter.! !
+
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classDefinition: #Motorcycle category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 12:06:44'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!Motorcycle methodsFor: 'initialization' stamp: 'as 4/7/2025 12:20:11' overrides: 16932297!
+                    initialize 
+
+	super initializeWithType: #Motorcycle.! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/7/2025 12:22:34' overrides: 50548234!
+                      accelerate
+
+	speed := speed + (20 * kilometer / hour). ! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/3.Replace-if-Type+State.st----!
+!Vehicle methodsFor: 'error messages' stamp: 'as 4/9/2025 12:07:21' prior: 50548247!
+      canNotAccelerateErrorMessage
+
+	self subclassResponsibility .! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/9/2025 12:07:56' overrides: 50548328!
+              canNotAccelerateErrorMessage
+
+	'Can not run when turned off'! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/9/2025 12:08:17' prior: 50548333 overrides: 50548328!
+                              canNotAccelerateErrorMessage
+
+	^'Can not run when turned off'.! !
+!Helicopter methodsFor: 'initialization' stamp: 'as 4/9/2025 12:08:33' overrides: 50548328!
+  canNotAccelerateErrorMessage
+
+	^'Can not fly when turned off'.! !
+
+v := Vehicle initializeWithType: #Helicopter.!
+
+v := Helicopter initialize !
+
+v accelerate !
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:16:39'!
+  speed: kilometerPerHour
+
+		speed := speed + kilometerPerHour .! !
+
+!methodRemoval: Helicopter #increaseSpeed: stamp: 'as 4/9/2025 12:16:39'!
+increaseSpeed: kilometerPerHour
+
+		speed := speed + kilometerPerHour .!
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:17:11'!
+             speed: kilometerPerHour altitude: high 
+
+		speed := speed + kilometerPerHour .! !
+
+!methodRemoval: Helicopter #speed: stamp: 'as 4/9/2025 12:17:11'!
+speed: kilometerPerHour
+
+		speed := speed + kilometerPerHour .!
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:17:22' prior: 50548360!
+                             speed: kilometerPerHour altitude: meters 
+
+		speed := speed + kilometerPerHour .! !
+!Vehicle methodsFor: 'move' stamp: 'as 4/9/2025 12:18:12' prior: 50548234!
+ accelerate
+
+	self subclassResponsibility .
+
+
+		
+	! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:18:32' prior: 50548285 overrides: 50548375!
+         accelerate
+
+		state accelerate .
+! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:18:45' prior: 50548370!
+             speed: kilometerPerHour altitude: meters 
+
+		speed := speed + kilometerPerHour .
+		altitude := altitude + meters. ! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 12:19:23' prior: 50548210 overrides: 50548171!
+                       accelerate
+
+	car speed: 10 * kilometer / hour altitude: 5* meter .! !
+
+v accelerate !
+
+v := Helicopter initialize.!
+
+v accelerate !
+
+v!
+
+v!
+
+v := Helicopter new.!
+
+v!
+
+v accelerate !
+
+v turnOn .!
+
+v!
+
+v accelerate .!
+
+v!
+
+v accelerate .!
+
+v!
+
+v turnOff .!
+
+v!
+
+v accelerate .!
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 12:24:38' overrides: 50548238!
+                         turnOff
+
+		state := MotorStateOff new initializeWith: self.
+		speed := 0.
+		altitude := 0.! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 12:24:58' prior: 50548238!
+                     turnOff
+
+	.
+	self subclassResponsibility .! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 12:25:09' prior: 50548242!
+     turnOn
+
+	self subclassResponsibility .	! !
+!Helicopter methodsFor: 'on/off' stamp: 'as 4/9/2025 12:25:33' overrides: 50548414!
+ turnOn
+
+		state := MotorStateOn new initializeWith: self.
+! !
+!Motorcycle methodsFor: 'on/off' stamp: 'as 4/9/2025 12:26:17' overrides: 50548414!
+              turnOn
+	
+	state := MotorStateOn new initializeWith: self.
+! !
+!Motorcycle methodsFor: 'on/off' stamp: 'as 4/9/2025 12:26:32' overrides: 50548410!
+              turnOff
+	
+	state := MotorStateOff new initializeWith: self.
+	speed := 0.
+! !
+!Motorcycle methodsFor: 'error messages' stamp: 'as 4/9/2025 12:26:56' prior: 50548339 overrides: 50548328!
+       canNotAccelerateErrorMessage
+
+	^'Can not run when turned off'.! !
+!Vehicle methodsFor: 'on/off' stamp: 'as 4/9/2025 12:27:15' prior: 50548410!
+                 turnOff
+
+	self subclassResponsibility .! !
+
+v accelerate .!
+
+v!
+
+v turnOn .!
+
+v accelerate .!
+
+v turnOff .!
+
+v!
+
+v accelerate .!
+
+v turnOn .!
+
+v accelerate .!
+
+v!
+
+----QUIT----(9 April 2025 12:33:37) CuisUniversity-6350.image priorSource: 6917615!
+
+----STARTUP---- (9 April 2025 16:46:58) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+v := Motorcycle new.!
+
+v accelerate.!
+
+v := Motorcycle new.!
+
+v!
+
+v!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate .!
+
+v!
+
+v turnOff .!
+
+v accelerate.!
+!Motorcycle methodsFor: 'move' stamp: 'as 4/9/2025 17:03:24' prior: 50548319 overrides: 50548375!
+    accelerate
+
+	state accelerate . ! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/9/2025 17:04:06'!
+                              speed: kilometerPerHour
+
+	speed := speed + kilometerPerHour .! !
+
+!classDefinition: #MotorState category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 17:04:51'!
+Object subclass: #MotorState
+	instanceVariableNames: 'vahicle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:04:51' prior: 50548175!
+            initializeWith: aCar
+
+	vahicle := aCar.! !
+!MotorStateOff methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:04:51' prior: 50548192 overrides: 50548171!
+ accelerate
+
+	self error: vahicle canNotAccelerateErrorMessage.! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:04:51' prior: 50548392 overrides: 50548171!
+           accelerate
+
+	vahicle speed: 10 * kilometer / hour altitude: 5* meter .! !
+
+!classDefinition: #MotorState category: #'3.Replace-if-Type+State' stamp: 'as 4/9/2025 17:05:02'!
+Object subclass: #MotorState
+	instanceVariableNames: 'vehicle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+!MotorState methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:05:02' prior: 50548476!
+   initializeWith: aCar
+
+	vehicle := aCar.! !
+!MotorStateOff methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:05:02' prior: 50548481 overrides: 50548171!
+ accelerate
+
+	self error: vehicle canNotAccelerateErrorMessage.! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:05:02' prior: 50548487 overrides: 50548171!
+           accelerate
+
+	vehicle speed: 10 * kilometer / hour altitude: 5* meter .! !
+
+v := Motorcycle new.!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate .!
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 17:10:07' prior: 50548384!
+   speed: kilometerPerHour altitude: meters 
+
+		speed := speed + kilometerPerHour .! !
+!Helicopter methodsFor: 'on/off' stamp: 'as 4/9/2025 17:10:32'!
+            altitude: meters
+
+		altitude := altitude + meters. 
+! !
+!Helicopter methodsFor: 'move' stamp: 'as 4/9/2025 17:10:49'!
+          speed: kilometerPerHour  
+
+		speed := speed + kilometerPerHour .! !
+
+!methodRemoval: Helicopter #speed:altitude: stamp: 'as 4/9/2025 17:10:49'!
+speed: kilometerPerHour altitude: meters 
+
+		speed := speed + kilometerPerHour .!
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:38:31' prior: 50548511 overrides: 50548171!
+           accelerate
+
+	(vehicle speed: 10 * kilometer / hour) altitude: 5* meter .! !
+!Helicopter methodsFor: 'on/off' stamp: 'as 4/9/2025 17:45:26'!
+                    boost
+
+	self speed: 10 * kilometer / hour.
+! !
+!Helicopter methodsFor: 'on/off' stamp: 'as 4/9/2025 17:45:43' prior: 50548543!
+ boost
+
+	self speed: 10 * kilometer / hour.
+	self altitude: 5 * meter .
+! !
+!Motorcycle methodsFor: 'move' stamp: 'as 4/9/2025 17:46:22'!
+                       boost
+
+	self speed: 10 * kilometer / hour.! !
+!MotorStateOn methodsFor: 'as yet unclassified' stamp: 'as 4/9/2025 17:46:49' prior: 50548538 overrides: 50548171!
+                               accelerate
+
+	vehicle boost.! !
+
+v := Motorcycle new.!
+
+v accelerate.!
+
+v turnOn .!
+
+v accelerate .!
+
+v accelerate .!
+
+v!
+
+v turnOff .!
+
+v accelerate .!
+
+----SNAPSHOT----(9 April 2025 17:47:47) CuisUniversity-6350.image priorSource: 6937474!
+
+!classRemoval: #Motorcycle stamp: 'as 4/9/2025 17:47:58'!
+Vehicle subclass: #Motorcycle
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #Helicopter stamp: 'as 4/9/2025 17:47:59'!
+Vehicle subclass: #Helicopter
+	instanceVariableNames: 'altitude'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #Vehicle stamp: 'as 4/9/2025 17:47:59'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorStateOn stamp: 'as 4/9/2025 17:47:59'!
+MotorState subclass: #MotorStateOn
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorStateOff stamp: 'as 4/9/2025 17:47:59'!
+MotorState subclass: #MotorStateOff
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+!classRemoval: #MotorState stamp: 'as 4/9/2025 17:48:00'!
+Object subclass: #MotorState
+	instanceVariableNames: 'vehicle'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '3.Replace-if-Type+State'!
+
+TestCase subclass: #VehicleTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+
+!classDefinition: #VehicleTests category: #'4.Replace-if-Strategy' stamp: 'as 4/9/2025 17:48:19'!
+TestCase subclass: #VehicleTests
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:25:03'!
+                     test01LandVehicleCannotAccelerateWhileTurnedOff
+
+	| landVehicle |
+	
+	landVehicle := Vehicle electricMotorcycle.
+	
+	self should: [ landVehicle accelerate ] 
+	raise: Error 
+	withExceptionDo: [ :error | error messageText = 'Can not run when turned off'.
+		self assert: (landVehicle speedAt: (0 * kilometer / hour)) ]
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:27:17'!
+                          test02AirVehicleCannotAccelerateWhileTurnedOff
+
+	| airVehicle |
+	
+	airVehicle := Vehicle helicopter.
+	
+	self should: [ airVehicle accelerate ] 
+	raise: Error 
+	withExceptionDo: [ :error | error messageText = 'Can not fly when turned off'.
+		self assert: (airVehicle speedAt: (0 * kilometer / hour)).
+		self assert: (airVehicle altitudeAt: (0 * meter)) ]
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:20'!
+                  test03ElectricVehicleAccelerateAsIntended
+
+	| electricVehicle |
+	
+	electricVehicle := Vehicle electricMotorcycle.
+	
+	electricVehicle turnOn.
+	self assert: (electricVehicle speedAt: 0 * kilometer / hour).
+	
+	electricVehicle accelerate.
+	self assert: (electricVehicle speedAt: 10 * kilometer / hour).
+	
+	electricVehicle accelerate.
+	self assert: (electricVehicle speedAt: 40 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:16'!
+       test04GasolineVehicleAccelerateAsIntended
+
+	| gasolineVehicle |
+	
+	gasolineVehicle := Vehicle gasolineMotorcycle.
+	
+	gasolineVehicle turnOn.
+	self assert: (gasolineVehicle speedAt: 0 * kilometer / hour).
+	
+	gasolineVehicle accelerate.
+	self assert: (gasolineVehicle speedAt: 10 * kilometer / hour).
+	
+	gasolineVehicle accelerate.
+	self assert: (gasolineVehicle speedAt: 20 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:11'!
+       test05JetFueledVehicleAccelerateAsIntended
+
+	| jetFueledVehicle |
+	
+	jetFueledVehicle := Vehicle helicopter.
+	
+	jetFueledVehicle turnOn.
+	self assert: (jetFueledVehicle speedAt: 0 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 1 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 5 * kilometer / hour).
+	
+	jetFueledVehicle accelerate.
+	self assert: (jetFueledVehicle speedAt: 41 * kilometer / hour)
+	
+	
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:47:14'!
+       test06AirVehicleGoesUpAsItAcceleratesAsExpected
+
+	| airVehicle |
+	
+	airVehicle := Vehicle helicopter.
+	
+	airVehicle turnOn.
+	self assert: (airVehicle altitudeAt: 0 * meter).
+	
+	airVehicle accelerate.
+	self assert: (airVehicle altitudeAt: 5 * meter).
+	
+	airVehicle accelerate.
+	self assert: (airVehicle altitudeAt: 10 * meter)
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:52:05'!
+                test07SpeedLimiterForCityLimitsSpeedAt70Kmh
+
+	| cityVehicle |
+	
+	cityVehicle := Vehicle electricMotorcycle.
+	
+	cityVehicle turnOn.
+	self assert: (cityVehicle speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ cityVehicle accelerate ].
+	
+	self assert: (cityVehicle speedAt: 70 * kilometer / hour)
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:53:50'!
+          test08SpeedLimiterForOpenRoadLimitsSpeedAt130Kmh
+
+	| openRoadVehicle |
+	
+	openRoadVehicle := Vehicle gasolineMotorcycle.
+	
+	openRoadVehicle turnOn.
+	self assert: (openRoadVehicle speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ openRoadVehicle accelerate ].
+	
+	self assert: (openRoadVehicle speedAt: 130 * kilometer / hour)
+	
+	
+	! !
+!VehicleTests methodsFor: 'testing' stamp: 'NR 9/7/2024 18:55:32'!
+            test09SpeedLimiterForAirTrafficLimitsSpeedAt500Kmh
+
+	| vehicleInAir |
+	
+	vehicleInAir := Vehicle helicopter.
+	
+	vehicleInAir turnOn.
+	self assert: (vehicleInAir speedAt: 0 * kilometer / hour).
+	
+	20 timesRepeat: [ vehicleInAir accelerate ].
+	
+	self assert: (vehicleInAir speedAt: 500 * kilometer / hour)
+	
+	
+	! !
+
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude engineType where'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+
+!classDefinition: #Vehicle category: #'4.Replace-if-Strategy' stamp: 'as 4/9/2025 17:48:19'!
+Object subclass: #Vehicle
+	instanceVariableNames: 'state type speed altitude engineType where'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: '4.Replace-if-Strategy'!
+!Vehicle methodsFor: 'initialization' stamp: 'NR 9/7/2024 08:26:13'!
+ initializeWithType: typeToTake engineType: anEngineType andSurroundings: surroundings
+
+	state := #Off.
+	type := typeToTake.
+	engineType := anEngineType.
+	where := surroundings.
+	speed := 0 * kilometer / hour.
+	altitude := 0 * meter! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 09:00:22'!
+                          accelerate
+
+	| acceleration |
+	
+	state = #Off ifTrue: [ self error: self canNotAccelerateErrorMessage ].
+
+	engineType = #ElectricEngine ifTrue: [ acceleration := (speed + (5 * kilometer / hour)) * 2 ].
+	engineType = #GasolineEngine ifTrue: [ acceleration := 10 * kilometer / hour ].
+	engineType = #JetFueledEngine ifTrue: [ acceleration := ((speed amount + 1) ^ 2) * kilometer / hour ].
+
+	type = #Helicopter
+		ifTrue:[ speed := speed + acceleration.
+			altitude := altitude + (5 * meter) ].
+		
+	type = #Motorcycle
+		ifTrue:[ speed := speed + acceleration ].
+		
+	where = #city ifTrue: [ speed > (70 * kilometer / hour) ifTrue: [ speed := 70 * kilometer / hour ] ].
+	where = #openRoad ifTrue: [ speed > (130 * kilometer / hour) ifTrue: [ speed := 130 * kilometer / hour ] ].
+	where = #skies ifTrue: [ speed > (500 * kilometer / hour) ifTrue: [ speed := 500 * kilometer / hour ] ]! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 18:24:00'!
+                    altitudeAt: anAltitude
+
+	^ altitude = anAltitude! !
+!Vehicle methodsFor: 'move' stamp: 'NR 9/7/2024 18:23:27'!
+                 speedAt: aSpeed
+
+	^ speed = aSpeed! !
+!Vehicle methodsFor: 'on/off' stamp: 'NR 9/7/2024 08:46:15'!
+                             turnOff
+
+	state := #Off.
+	speed := 0 * kilometer / hour! !
+!Vehicle methodsFor: 'on/off' stamp: 'ARM 4/29/2024 11:06:23'!
+      turnOn
+
+	state := #On! !
+!Vehicle methodsFor: 'error messages' stamp: 'ARM 4/29/2024 11:08:20'!
+canNotAccelerateErrorMessage
+
+	type = #Helicopter ifTrue:[^'Can not fly when turned off'].
+	type = #Motorcycle ifTrue:[^'Can not run when turned off'].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+Vehicle class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Vehicle class' category: #'4.Replace-if-Strategy' stamp: 'as 4/9/2025 17:48:19'!
+Vehicle class
+	instanceVariableNames: ''!
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:59'!
+  electricMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #ElectricEngine andSurroundings: #city
+
+! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:53:55'!
+                          gasolineMotorcycle
+
+	^ self new initializeWithType: #Motorcycle engineType: #GasolineEngine andSurroundings: #openRoad! !
+!Vehicle class methodsFor: 'instance creation' stamp: 'NR 9/7/2024 08:54:07'!
+                        helicopter
+
+	^ self new initializeWithType: #Helicopter engineType: #JetFueledEngine andSurroundings: #skies! !
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/02-SacarIfs/4.Replace-if-Strategy.st----!
+
+----QUIT----(10 April 2025 00:56:09) CuisUniversity-6350.image priorSource: 6941271!
