@@ -5,3 +5,6 @@
 [submodule "inge1/SmallTalk/guias"]
 	path = inge1/SmallTalk/guias
 	url = git@github.com:UBA-FCEN-IngSoft1/2025-1c.git
+[submodule "orga2/Guias/cAvanzado"]
+	path = orga2/Guias/cAvanzado
+	url = git@github.com:ariel8sche/cAvanzado.git
