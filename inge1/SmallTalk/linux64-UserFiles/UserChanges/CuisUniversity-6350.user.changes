@@ -13464,3 +13464,1663 @@ FAILURE!
 ----SNAPSHOT----(12 April 2025 11:38:20) CuisUniversity-6350.image priorSource: 7103763!
 
 ----QUIT----(12 April 2025 11:38:32) CuisUniversity-6350.image priorSource: 7103853!
+
+----STARTUP---- (15 April 2025 11:02:32) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/04-IRobot/IRobot-Solucion.st----!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/04-IRobot/IRobot-Enunciado.st----!
+
+!classRemoval: #Trailer stamp: 'as 4/15/2025 11:37:20'!
+Object subclass: #Trailer
+	instanceVariableNames: 'weightCapacity heightCapacity container'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Robot stamp: 'as 4/15/2025 11:37:20'!
+Object subclass: #Robot
+	instanceVariableNames: 'status trailer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductB stamp: 'as 4/15/2025 11:37:20'!
+Product subclass: #ProductB
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductA stamp: 'as 4/15/2025 11:37:21'!
+Product subclass: #ProductA
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Product stamp: 'as 4/15/2025 11:37:21'!
+Object subclass: #Product
+	instanceVariableNames: 'weight height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Cashier stamp: 'as 4/15/2025 11:37:21'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #TrailerTest stamp: 'as 4/15/2025 11:37:22'!
+TestCase subclass: #TrailerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #RobotTest stamp: 'as 4/15/2025 11:37:22'!
+TestCase subclass: #RobotTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductTest stamp: 'as 4/15/2025 11:37:22'!
+TestCase subclass: #ProductTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #CashierTest stamp: 'as 4/15/2025 11:37:22'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #WorkingNormal stamp: 'as 4/15/2025 11:37:23'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #SensorsFailure stamp: 'as 4/15/2025 11:37:23'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #OutOfOrder stamp: 'as 4/15/2025 11:37:24'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #MechanicalFailure stamp: 'as 4/15/2025 11:37:24'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #RobotStatus stamp: 'as 4/15/2025 11:37:24'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'robot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/04-IRobot/IRobot-Enunciado.st----!
+
+Object subclass: #RobotStatus
+	instanceVariableNames: ' '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #RobotStatus category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:38:08'!
+Object subclass: #RobotStatus
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #OutOfOrder category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:38:27'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #MechanicalFailure category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:38:50'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #SensorsFailure category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:38:59'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #WorkingNormal category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:39:09'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+!MechanicalFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:46:50'!
+aaaa
+
+	Cashier! !
+
+Object subclass: #RobotStatus
+	instanceVariableNames: 'linkedRobot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classDefinition: #RobotStatus category: #'IRobot-Enunciado' stamp: 'as 4/15/2025 11:47:30'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'linkedRobot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+!MechanicalFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:47:47'!
+aaaa: aCashier
+
+	Cashier! !
+
+!methodRemoval: MechanicalFailure #aaaa: stamp: 'as 4/15/2025 11:47:51'!
+aaaa: aCashier
+
+	Cashier!
+
+!methodRemoval: MechanicalFailure #aaaa stamp: 'as 4/15/2025 11:47:52'!
+aaaa
+
+	Cashier!
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:48:27'!
+aaaa: bbbb
+
+	^bbbb receiveOrder: linkedRobot .! !
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:49:19'!
+initializeWithRobot: aRobot
+
+	linkedRobot := aRobot .! !
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:52:04'!
+closeOrder: bbbb
+
+	^bbbb receiveOrder: linkedRobot .! !
+
+!methodRemoval: RobotStatus #aaaa: stamp: 'as 4/15/2025 11:52:04'!
+aaaa: bbbb
+
+	^bbbb receiveOrder: linkedRobot .!
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:52:20' prior: 50556656!
+closeOrder: aCashier
+
+	^aCashier receiveOrder: linkedRobot .! !
+!OutOfOrder methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:05' overrides: 50556665!
+closeOrder: aCashier
+
+	^aCashier receiveOrder: linkedRobot .! !
+!MechanicalFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:05' overrides: 50556665!
+closeOrder: aCashier
+
+	^aCashier receiveOrder: linkedRobot .! !
+!SensorsFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:05' overrides: 50556665!
+closeOrder: aCashier
+
+	^aCashier receiveOrder: linkedRobot .! !
+!WorkingNormal methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:05' overrides: 50556665!
+closeOrder: aCashier
+
+	^aCashier receiveOrder: linkedRobot .! !
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:05' prior: 50556665!
+closeOrder: aCashier
+
+	self subclassResponsibility! !
+!OutOfOrder methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:53:44' prior: 50556671 overrides: 50556694!
+closeOrder: aCashier
+
+	^linkedRobot class signalOutOfOrder .! !
+!Robot methodsFor: 'actions' stamp: 'as 4/15/2025 11:54:13' prior: 50556300!
+closeOrderUsing: aCashier
+	
+	^ status closeOrder: aCashier 
+! !
+!OutOfOrder methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:54:31' prior: 50556700 overrides: 50556694!
+closeOrder: aCashier
+
+	^ linkedRobot class signalOutOfOrder .! !
+!Robot methodsFor: 'initialization' stamp: 'as 4/15/2025 11:55:29' prior: 50556341!
+initializeWith: aTrailer
+
+	trailer := aTrailer.
+	status := WorkingNormal new initializeWithRobot: self.
+! !
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:55:57' prior: 50556323!
+outOfOrder
+
+	status := OutOfOrder new initializeWithRobot: self.
+! !
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:56:22' prior: 50556327!
+withMechanicalFailure
+
+	status := MechanicalFailure new initializeWithRobot: self.
+! !
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:56:34' prior: 50556331!
+withSensorsFailure
+
+	status := SensorsFailure new initializeWithRobot: self.
+! !
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:23'!
+take: aProduct
+
+	self subclassResponsibility! !
+!OutOfOrder methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:28' overrides: 50556738!
+take: aProduct
+
+	self subclassResponsibility! !
+!MechanicalFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:28' overrides: 50556738!
+take: aProduct
+
+	self subclassResponsibility! !
+!SensorsFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:28' overrides: 50556738!
+take: aProduct
+
+	self subclassResponsibility! !
+!WorkingNormal methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:28' overrides: 50556738!
+take: aProduct
+
+	self subclassResponsibility! !
+!RobotStatus methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:57:28' prior: 50556738!
+take: aProduct
+
+	self subclassResponsibility! !
+!MechanicalFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:59:22' prior: 50556748 overrides: 50556763!
+take: aProduct
+
+	^linkedRobot trailer carry: aProduct .! !
+!SensorsFailure methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:59:48' prior: 50556753 overrides: 50556763!
+take: aProduct
+
+	^linkedRobot trailer carry: aProduct .! !
+!WorkingNormal methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 11:59:58' prior: 50556758 overrides: 50556763!
+take: aProduct
+
+	^linkedRobot trailer carry: aProduct .! !
+!OutOfOrder methodsFor: 'action' stamp: 'as 4/15/2025 12:02:56' prior: 50556743 overrides: 50556763!
+take: aProduct
+
+	^ linkedRobot class signalOutOfOrder .! !
+!Robot methodsFor: 'actions' stamp: 'as 4/15/2025 12:04:19' prior: 50556312!
+take: aProduct
+
+	^ status take: aProduct .! !
+
+----QUIT----(15 April 2025 13:28:48) CuisUniversity-6350.image priorSource: 7103943!
+
+----STARTUP---- (15 April 2025 15:19:21) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:20:52'!
+bbbb: aRobot
+	
+	aRobot status = #WorkingNormal ifTrue: [ | aTrailer | 
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+		
+		^ true
+	].
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:01' prior: 50556802!
+bbbb: aRobot
+	
+	aRobot status = #WorkingNormal ifTrue: [ | aTrailer | 
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+		
+		^ true
+	].! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:27'!
+cccc: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:48'!
+dddd: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:23:05' prior: 50556824!
+bbbb: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:23:54'!
+receiveWorkingNormalRobotOrder: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.! !
+
+!methodRemoval: Cashier #bbbb: stamp: 'as 4/15/2025 15:23:54'!
+bbbb: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:24:35'!
+receiveMechanicalFailureRobotOrder: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+
+!methodRemoval: Cashier #dddd: stamp: 'as 4/15/2025 15:24:35'!
+dddd: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:24:49'!
+receiveSensorsFailureRobotOrder: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].! !
+
+!methodRemoval: Cashier #cccc: stamp: 'as 4/15/2025 15:24:49'!
+cccc: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:25:12' prior: 50556880!
+receiveMechanicalFailureRobotOrder: aRobot
+	
+		| aTrailer |
+		
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:25:26' prior: 50556903!
+receiveSensorsFailureRobotOrder: aRobot
+
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure! !
+!RobotStatus methodsFor: 'action' stamp: 'as 4/15/2025 15:35:12'!
+closeOrderUsing: aCashier
+
+	self subclassResponsibility! !
+
+!methodRemoval: RobotStatus #closeOrder: stamp: 'as 4/15/2025 15:35:12'!
+closeOrder: aCashier
+
+	self subclassResponsibility!
+!RobotStatus methodsFor: 'initialization' stamp: 'as 4/15/2025 15:35:49'!
+initializeWith: aRobot
+
+	linkedRobot := aRobot .! !
+
+!methodRemoval: RobotStatus #initializeWithRobot: stamp: 'as 4/15/2025 15:35:49'!
+initializeWithRobot: aRobot
+
+	linkedRobot := aRobot .!
+
+----STARTUP---- (15 April 2025 15:40:06) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:20:52'!
+bbbb: aRobot
+	
+	aRobot status = #WorkingNormal ifTrue: [ | aTrailer | 
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+		
+		^ true
+	].
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:01' prior: 50556956!
+bbbb: aRobot
+	
+	aRobot status = #WorkingNormal ifTrue: [ | aTrailer | 
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+		
+		^ true
+	].! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:27'!
+cccc: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:21:48'!
+dddd: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:23:05' prior: 50556978!
+bbbb: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:23:54'!
+receiveWorkingNormalRobotOrder: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.! !
+
+!methodRemoval: Cashier #bbbb: stamp: 'as 4/15/2025 15:40:11'!
+bbbb: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:24:35'!
+receiveMechanicalFailureRobotOrder: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+! !
+
+!methodRemoval: Cashier #dddd: stamp: 'as 4/15/2025 15:40:11'!
+dddd: aRobot
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:24:49'!
+receiveSensorsFailureRobotOrder: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].! !
+
+!methodRemoval: Cashier #cccc: stamp: 'as 4/15/2025 15:40:11'!
+cccc: aRobot
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:25:12' prior: 50557034!
+receiveMechanicalFailureRobotOrder: aRobot
+	
+		| aTrailer |
+		
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:25:26' prior: 50557057!
+receiveSensorsFailureRobotOrder: aRobot
+
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure! !
+!RobotStatus methodsFor: 'action' stamp: 'as 4/15/2025 15:35:12'!
+closeOrderUsing: aCashier
+
+	self subclassResponsibility! !
+
+!methodRemoval: RobotStatus #closeOrder: stamp: 'as 4/15/2025 15:40:11'!
+closeOrder: aCashier
+
+	self subclassResponsibility!
+!RobotStatus methodsFor: 'initialization' stamp: 'as 4/15/2025 15:35:49'!
+initializeWith: aRobot
+
+	linkedRobot := aRobot .! !
+
+!methodRemoval: RobotStatus #initializeWithRobot: stamp: 'as 4/15/2025 15:40:11'!
+initializeWithRobot: aRobot
+
+	linkedRobot := aRobot .!
+
+----SNAPSHOT----(15 April 2025 15:40:17) CuisUniversity-6350.image priorSource: 7204621!
+
+!methodRemoval: Cashier #receiveOrder: stamp: 'as 4/15/2025 15:41:06'!
+receiveOrder: aRobot
+	
+	aRobot status = #WorkingNormal ifTrue: [ | aTrailer | 
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+		
+		^ true
+	].
+
+	aRobot status = #SensorsFailure ifTrue: [ 	
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure
+	].
+	
+	aRobot status = #MechanicalFailure ifTrue: [ | aTrailer |
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+	].
+!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:41:52'!
+receiveOrderFromMechanicalFailureRobot: aRobot
+	
+		| aTrailer |
+		
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+! !
+
+!methodRemoval: Cashier #receiveMechanicalFailureRobotOrder: stamp: 'as 4/15/2025 15:41:52'!
+receiveMechanicalFailureRobotOrder: aRobot
+	
+		| aTrailer |
+		
+		aRobot outOfOrder.
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:42:12'!
+receiveOrderFromSensorsFailureRobot: aRobot
+
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure! !
+
+!methodRemoval: Cashier #receiveSensorsFailureRobotOrder: stamp: 'as 4/15/2025 15:42:12'!
+receiveSensorsFailureRobotOrder: aRobot
+
+		aRobot outOfOrder.
+		self signalRobotSensorsFailure!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:42:27'!
+receiveOrderFromWorkingNormalRobot: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.! !
+
+!methodRemoval: Cashier #receiveWorkingNormalRobotOrder: stamp: 'as 4/15/2025 15:42:27'!
+receiveWorkingNormalRobotOrder: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ true.!
+!MechanicalFailure methodsFor: 'action' stamp: 'as 4/15/2025 15:46:22' prior: 50556677!
+closeOrder: aCashier
+
+	^aCashier receiveOrderFromMechanicalFailureRobot: linkedRobot .! !
+!SensorsFailure methodsFor: 'action' stamp: 'as 4/15/2025 15:47:04' prior: 50556683!
+closeOrder: aCashier
+
+	^aCashier receiveOrderFromSensorsFailureRobot: linkedRobot .! !
+!WorkingNormal methodsFor: 'action' stamp: 'as 4/15/2025 15:47:14' prior: 50556689!
+closeOrder: aCashier
+
+	^aCashier receiveOrderFromWorkingNormalRobot: linkedRobot .! !
+
+----SNAPSHOT----(15 April 2025 15:48:21) CuisUniversity-6350.image priorSource: 7214557!
+
+!classRemoval: #Trailer stamp: 'as 4/15/2025 15:48:52'!
+Object subclass: #Trailer
+	instanceVariableNames: 'weightCapacity heightCapacity container'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #WorkingNormal stamp: 'as 4/15/2025 15:48:53'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #SensorsFailure stamp: 'as 4/15/2025 15:48:53'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #OutOfOrder stamp: 'as 4/15/2025 15:48:53'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #MechanicalFailure stamp: 'as 4/15/2025 15:48:53'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #RobotStatus stamp: 'as 4/15/2025 15:48:53'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'linkedRobot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Robot stamp: 'as 4/15/2025 15:48:54'!
+Object subclass: #Robot
+	instanceVariableNames: 'status trailer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductB stamp: 'as 4/15/2025 15:48:54'!
+Product subclass: #ProductB
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductA stamp: 'as 4/15/2025 15:48:54'!
+Product subclass: #ProductA
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Product stamp: 'as 4/15/2025 15:48:54'!
+Object subclass: #Product
+	instanceVariableNames: 'weight height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Cashier stamp: 'as 4/15/2025 15:48:55'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #TrailerTest stamp: 'as 4/15/2025 15:48:55'!
+TestCase subclass: #TrailerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #RobotTest stamp: 'as 4/15/2025 15:48:55'!
+TestCase subclass: #RobotTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductTest stamp: 'as 4/15/2025 15:48:56'!
+TestCase subclass: #ProductTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #CashierTest stamp: 'as 4/15/2025 15:48:56'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/04-IRobot/IRobot-Solucion.st----!
+
+!classRemoval: #Trailer stamp: 'as 4/15/2025 15:51:47'!
+Object subclass: #Trailer
+	instanceVariableNames: 'weightCapacity heightCapacity container'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #WorkingNormal stamp: 'as 4/15/2025 15:51:48'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #SensorsFailure stamp: 'as 4/15/2025 15:51:48'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #OutOfOrder stamp: 'as 4/15/2025 15:51:48'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #MechanicalFailure stamp: 'as 4/15/2025 15:51:48'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #RobotStatus stamp: 'as 4/15/2025 15:51:49'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'robot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Robot stamp: 'as 4/15/2025 15:51:49'!
+Object subclass: #Robot
+	instanceVariableNames: 'status trailer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductB stamp: 'as 4/15/2025 15:51:49'!
+Product subclass: #ProductB
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductA stamp: 'as 4/15/2025 15:51:49'!
+Product subclass: #ProductA
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Product stamp: 'as 4/15/2025 15:51:50'!
+Object subclass: #Product
+	instanceVariableNames: 'weight height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Cashier stamp: 'as 4/15/2025 15:51:50'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #TrailerTest stamp: 'as 4/15/2025 15:51:50'!
+TestCase subclass: #TrailerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #RobotTest stamp: 'as 4/15/2025 15:51:51'!
+TestCase subclass: #RobotTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductTest stamp: 'as 4/15/2025 15:51:51'!
+TestCase subclass: #ProductTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #CashierTest stamp: 'as 4/15/2025 15:51:51'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/IRobot-Enunciado-v2.st----!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:55:30'!
+acceptOrderFrom: aRobot
+	
+		| aTrailer |
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:56:38' prior: 50558829!
+receiveOrderFromMechanicalFailureRobot: aRobot
+	
+		aRobot outOfOrder.
+
+		^ self acceptOrderFrom: aRobot.! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:56:54' prior: 50558846!
+receiveOrderFromWorkingNormalRobot: aRobot
+	
+	 | aTrailer | 
+	
+	aTrailer := aRobot trailer.	
+	self assertTrailerNotEmpty: aTrailer.
+
+	"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+	^ self acceptOrderFrom: aRobot.! !
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:56:59' prior: 50559412!
+receiveOrderFromWorkingNormalRobot: aRobot
+	
+	^ self acceptOrderFrom: aRobot.! !
+
+!testRun: #CashierTest #test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot stamp: 'as 4/15/2025 15:57:10'!
+ERROR!
+
+!testRun: #CashierTest #test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot stamp: 'as 4/15/2025 15:57:10'!
+ERROR!
+
+!testRun: #ProductTest #test01CanNotCreateProductWithCeroOrLessWeight stamp: 'as 4/15/2025 15:57:49'!
+PASSED!
+
+!testRun: #ProductTest #test02CanNotCreateProductWithCeroOrLessHeight stamp: 'as 4/15/2025 15:57:49'!
+PASSED!
+
+!testRun: #ProductTest #test03CanNotCreateProductWithNoIntegerWeight stamp: 'as 4/15/2025 15:57:49'!
+PASSED!
+
+!testRun: #ProductTest #test04CanNotCreateProductWithNoIntegerHeight stamp: 'as 4/15/2025 15:57:49'!
+PASSED!
+
+!testRun: #RobotTest #test01ShouldReceiveAnEmptyTrailer stamp: 'as 4/15/2025 15:57:58'!
+PASSED!
+
+!testRun: #RobotTest #test02ShouldTakeProductsWhenWorkingNormal stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test03ShouldTakeProductsWhenWorkingWithSensorsFailures stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test04ShouldTakeProductsWhenWorkingWithMechanicalFailures stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test05ShouldNotTakeProductsWhenOutOfOrder stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test06CanCloseOrderWhenWorkingNormal stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test07CanNotCloseOrderWhenWorkingWithSensorsFailures stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test08CanCloseOrderWhenWorkingWithMechanicalFailures stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #RobotTest #test09CanNotCloseOrderWhenOutOfOrder stamp: 'as 4/15/2025 15:57:58'!
+ERROR!
+
+!testRun: #TrailerTest #test01CanNotCreateTrailerWithCeroOrLessMaxWeight stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test02CanNotCreateTrailerWithCeroOrLessMaxHeight stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test03CanNotCreateTrailerWithNoIntegerMaxWeight stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test04CanNotCreateTrailerWithNoIntegerMaxHeight stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test05ShouldRejectProductAIfWeightExceeded stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test06ShouldRejectProductBIfWeightExceeded stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test07ShouldAcceptProductsIfWeightUnderMaxWeightCapacity stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test08ShouldAcceptProductsIfWeightEqualsMaxWeightCapacity stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test09ShouldAcceptProductAIgnoringMaxTotalHeightOfBProducts stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test10ShouldIgnoreAProductsInMaxTotalHeightOfBProducts stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+
+!testRun: #TrailerTest #test11ShouldRejectProductBExceedingMaxTotalHeightOfBProducts stamp: 'as 4/15/2025 15:58:08'!
+PASSED!
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:58:48' prior: 50559041!
+outOfOrder
+
+	status := OutOfOrder new initializeWith: self.
+! !
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:59:01' prior: 50559046!
+withMechanicalFailure
+
+	status := MechanicalFailure new initializeWith: self.
+! !
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:59:06' prior: 50559051!
+withSensorsFailure
+
+	status := SensorsFailure new initializeWith: self.
+! !
+!Robot methodsFor: 'initialization' stamp: 'as 4/15/2025 15:59:15' prior: 50559062!
+initializeWith: aTrailer
+
+	trailer := aTrailer.
+	status := WorkingNormal new initializeWith: self.
+! !
+
+!testRun: #RobotTest #test01ShouldReceiveAnEmptyTrailer stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test02ShouldTakeProductsWhenWorkingNormal stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test03ShouldTakeProductsWhenWorkingWithSensorsFailures stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test04ShouldTakeProductsWhenWorkingWithMechanicalFailures stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test05ShouldNotTakeProductsWhenOutOfOrder stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test06CanCloseOrderWhenWorkingNormal stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test07CanNotCloseOrderWhenWorkingWithSensorsFailures stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test08CanCloseOrderWhenWorkingWithMechanicalFailures stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #RobotTest #test09CanNotCloseOrderWhenOutOfOrder stamp: 'as 4/15/2025 15:59:25'!
+PASSED!
+
+!testRun: #ProductTest #test01CanNotCreateProductWithCeroOrLessWeight stamp: 'as 4/15/2025 15:59:33'!
+PASSED!
+
+!testRun: #ProductTest #test02CanNotCreateProductWithCeroOrLessHeight stamp: 'as 4/15/2025 15:59:33'!
+PASSED!
+
+!testRun: #ProductTest #test03CanNotCreateProductWithNoIntegerWeight stamp: 'as 4/15/2025 15:59:33'!
+PASSED!
+
+!testRun: #ProductTest #test04CanNotCreateProductWithNoIntegerHeight stamp: 'as 4/15/2025 15:59:33'!
+PASSED!
+
+!testRun: #CashierTest #test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot stamp: 'as 4/15/2025 15:59:42'!
+FAILURE!
+
+!testRun: #CashierTest #test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot stamp: 'as 4/15/2025 15:59:42'!
+FAILURE!
+
+!testRun: #CashierTest #test03ShouldNotAcceptSensorsFailureRobot stamp: 'as 4/15/2025 15:59:42'!
+FAILURE!
+
+!testRun: #CashierTest #test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot stamp: 'as 4/15/2025 15:59:42'!
+FAILURE!
+
+!testRun: #CashierTest #test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot stamp: 'as 4/15/2025 16:00:05'!
+FAILURE!
+
+!testRun: #CashierTest #test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot stamp: 'as 4/15/2025 16:00:05'!
+FAILURE!
+
+!testRun: #CashierTest #test03ShouldNotAcceptSensorsFailureRobot stamp: 'as 4/15/2025 16:00:05'!
+FAILURE!
+
+!testRun: #CashierTest #test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot stamp: 'as 4/15/2025 16:00:05'!
+FAILURE!
+!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'as 4/15/2025 16:08:27' prior: 50558424!
+test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Cashier new.
+
+	self
+		should: [ 
+			aRobot closeOrderUsing: aCashier
+		]
+		raise: Error
+		withMessageText: Cashier trailerIsEmptyErrorDescription.
+! !
+!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'as 4/15/2025 16:08:43' prior: 50558437!
+test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Cashier new.
+
+	self
+		should: [ 
+			aRobot withMechanicalFailure.
+			aRobot closeOrderUsing: aCashier
+		]
+		raise: Error
+		withMessageText: Cashier trailerIsEmptyErrorDescription.
+! !
+!CashierTest methodsFor: 'receiving from sensors failure robot' stamp: 'as 4/15/2025 16:08:57' prior: 50558452!
+test03ShouldNotAcceptSensorsFailureRobot
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Cashier new.
+
+	self
+		should: [ 
+			aRobot withSensorsFailure.
+			aRobot closeOrderUsing: aCashier
+ ]
+		raise: Error
+		withMessageText: Cashier robotSensorsFailureErrorDescription.
+! !
+!CashierTest methodsFor: 'receiving from sensors failure robot' stamp: 'as 4/15/2025 16:09:00' prior: 50559479!
+test03ShouldNotAcceptSensorsFailureRobot
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Cashier new.
+
+	self
+		should: [ 
+			aRobot withSensorsFailure.
+			aRobot closeOrderUsing: aCashier]
+		raise: Error
+		withMessageText: Cashier robotSensorsFailureErrorDescription.
+! !
+!CashierTest methodsFor: 'receiving from mechanical failure robot' stamp: 'as 4/15/2025 16:09:34' prior: 50558466!
+test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot
+
+	| aRobot aTrailer aCashier |
+	
+	aTrailer := Trailer with: 20 and: 100.
+	aRobot := Robot with: aTrailer.
+	
+	aCashier := Cashier new.
+
+	self
+		should: [ 
+			aRobot take: (ProductA with: 1  and: 1).
+			aRobot withMechanicalFailure.
+			
+			aRobot closeOrderUsing: aCashier.
+			
+			aRobot take: (ProductA with: 1 and: 1) ]
+		raise: Error
+		withMessageText: Robot outOfOrderErrorDescription.
+
+! !
+
+!testRun: #CashierTest #test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot stamp: 'as 4/15/2025 16:09:42'!
+PASSED!
+
+!testRun: #CashierTest #test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot stamp: 'as 4/15/2025 16:09:42'!
+PASSED!
+
+!testRun: #CashierTest #test03ShouldNotAcceptSensorsFailureRobot stamp: 'as 4/15/2025 16:09:42'!
+PASSED!
+
+!testRun: #CashierTest #test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot stamp: 'as 4/15/2025 16:09:42'!
+PASSED!
+!Trailer methodsFor: 'assertions' stamp: 'as 4/15/2025 16:14:56'!
+aaaa: aProduct
+	
+	(self totalProductsHeight + aProduct height) > heightCapacity ifTrue: [ self signalMaxHeightCapacityExceeded ]! !
+
+!methodRemoval: Trailer #aaaa: stamp: 'as 4/15/2025 16:18:25'!
+aaaa: aProduct
+	
+	(self totalProductsHeight + aProduct height) > heightCapacity ifTrue: [ self signalMaxHeightCapacityExceeded ]!
+
+----QUIT----(15 April 2025 16:24:43) CuisUniversity-6350.image priorSource: 7217621!
+
+----STARTUP---- (15 April 2025 20:46:29) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+!OOStack methodsFor: 'accessing' stamp: 'as 4/15/2025 20:47:51'!
+state
+
+	^OOStackState from: self.! !
+!OOStackState methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 20:48:11'!
+state: aStack! !
+
+!methodRemoval: OOStackState #state: stamp: 'as 4/15/2025 20:50:36'!
+state: aStack!
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 20:50:49'!
+from: aStack! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:29:47'!
+getSubclasses
+
+! !
+
+OOStackState subclasses!
+
+OOStackState subclasses!
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:30:41' prior: 50559560!
+getSubclasses
+
+	^OOStackState subclasses ! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:34:35' prior: 50559556!
+from: aStack
+
+	^ OOStackState getSubclasses detect: [].! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:36:13'!
+for: aStack
+
+	^ OOStackState getSubclasses detect: [].! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:36:13' prior: 50559546!
+state
+
+	^OOStackState for: self.! !
+
+!methodRemoval: OOStackState class #from: stamp: 'as 4/15/2025 21:36:13'!
+from: aStack
+
+	^ OOStackState getSubclasses detect: [].!
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:37:27' prior: 50559576!
+for: aStack
+
+	^ OOStackState getSubclasses detect: [] new.! !
+!EmptyStack methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:40:20'!
+isForTheStack: stack
+
+	^ stack isEmpty .! !
+!NotEmptyStack methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:40:48'!
+isForThisStack: aStack
+
+	^ aStack isEmpty not.
+! !
+!EmptyStack methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:41:02' prior: 50559595!
+isForTheStack: aStack
+
+	^ aStack isEmpty .! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 21:42:13' prior: 50559590!
+for: aStack
+
+	^ OOStackState getSubclasses detect: [:aStackState | aStackState isForThisStack: aStack] new.! !
+
+----QUIT----(15 April 2025 21:42:18) CuisUniversity-6350.image priorSource: 7292421!
+
+----STARTUP---- (15 April 2025 22:50:40) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+s := OOStack new.!
+
+EmptyStack isForThisStack: s!
+!EmptyStack methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:16:53'!
+isForThisStack: aStack
+
+	^ aStack isEmpty .! !
+
+!methodRemoval: EmptyStack #isForTheStack: stamp: 'as 4/15/2025 23:16:53'!
+isForTheStack: aStack
+
+	^ aStack isEmpty .!
+
+s := OOStack new.!
+
+EmptyStack isForThisStack: s!
+
+EmptyStack new isForThisStack: s!
+
+NotEmptyStack new isForThisStack: s!
+
+OOStackState subclasses!
+
+OOStackState subclasses detect: [:subclass | subclass new isForThisStack: s]!
+
+s push: 2!
+
+OOStackState subclasses detect: [:subclass | subclass new isForThisStack: s]!
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:23:57' prior: 50559609!
+for: aStack
+
+	^ OOStackState getSubclasses detect: [:aStackState | aStackState new isForThisStack: aStack].! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:25:11' prior: 50559643!
+for: aStack
+	
+	| state |
+	
+	state := self getState: aStack.
+	
+	^state new.! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:25:22'!
+getState
+
+	^OOStackState subclasses ! !
+
+!methodRemoval: OOStackState class #getSubclasses stamp: 'as 4/15/2025 23:25:22'!
+getSubclasses
+
+	^OOStackState subclasses !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:26:01'!
+getState: aStack
+
+	^OOStackState subclasses ! !
+
+!methodRemoval: OOStackState class #getState stamp: 'as 4/15/2025 23:26:01'!
+getState
+
+	^OOStackState subclasses !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:26:29' prior: 50559664!
+getState: aStack
+
+	^ OOStackState subclasses detect: [:aStackState | aStackState new isForThisStack: aStack].
+ ! !
+
+OOStackState getState: s!
+
+OOStackState for: s!
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:27:47' prior: 50559673!
+getState: aStack
+
+	^ self subclasses detect: [:aStackState | aStackState new isForThisStack: aStack].
+ ! !
+
+	^ self state pop.!
+!OOStack methodsFor: 'modifiers' stamp: 'as 4/15/2025 23:28:46' prior: 50553429!
+pop
+
+	^ self state pop.! !
+!OOStack methodsFor: 'modifiers' stamp: 'as 4/15/2025 23:29:21' prior: 50553631!
+push: anElement
+
+	self state push: anElement .! !
+
+Object subclass: #OOStack
+	instanceVariableNames: 'stack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise' stamp: 'as 4/15/2025 23:29:30'!
+Object subclass: #OOStack
+	instanceVariableNames: 'stack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'initialization' stamp: 'as 4/15/2025 23:29:39' prior: 50553473 overrides: 16932297!
+initialize
+
+	stack := OrderedCollection new.! !
+!OOStack methodsFor: 'accessing' stamp: 'as 4/15/2025 23:29:55' prior: 50553638!
+top
+
+	^self state top.! !
+
+!testRun: #OOStackTest #test01StackShouldBeEmptyWhenCreated stamp: 'as 4/15/2025 23:30:21'!
+PASSED!
+
+!testRun: #OOStackTest #test02PushAddElementsToTheStack stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test03PopRemovesElementsFromTheStack stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test04PopReturnsLastPushedObject stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test05StackBehavesLIFO stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test06TopReturnsLastPushedObject stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test07TopDoesNotRemoveObjectFromStack stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test08CanNotPopWhenThereAreNoObjectsInTheStack stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test09CanNotPopWhenThereAreNoObjectsInTheStackAndTheStackHadObjects stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+!testRun: #OOStackTest #test10CanNotTopWhenThereAreNoObjectsInTheStack stamp: 'as 4/15/2025 23:30:21'!
+ERROR!
+
+s := OOStack !
+
+s state.!
+
+s state.!
+
+s!
+
+s := OOStack .!
+
+Object subclass: #OOStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackState category: #'Stack-Exercise' stamp: 'as 4/15/2025 23:34:03'!
+Object subclass: #OOStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStackState methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:34:13'!
+initializeWithStack! !
+
+!methodRemoval: OOStackState #initializeWithStack: stamp: 'as 4/15/2025 23:34:17'!
+initializeWithStack: aStack
+
+	linkedStack := aStack .!
+
+!methodRemoval: OOStackState #initializeWithStack stamp: 'as 4/15/2025 23:34:20'!
+initializeWithStack!
+
+Object subclass: #OOStackState
+	instanceVariableNames: 'linkedStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackState category: #'Stack-Exercise' stamp: 'as 4/15/2025 23:35:17'!
+Object subclass: #OOStackState
+	instanceVariableNames: 'linkedStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStackState methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:35:56'!
+initializeWith: aStack
+
+	linkedStack := aStack .! !
+!OOStackState class methodsFor: 'as yet unclassified' stamp: 'as 4/15/2025 23:36:50' prior: 50559650!
+for: aStack
+	
+	| state |
+	
+	state := self getState: aStack.
+	
+	^state new initializeWith: aStack .! !
+
+EmptyStack new initializeWith: s!
+
+s := OOStack .!
+
+s state.!
+
+s isEmpty !
+
+s := OOStack.!
+
+s := OOStack new.!
+
+s isEmpty !
+
+s!
+
+s state.!
+
+s push: 2.!
+!OOStack methodsFor: 'modifiers' stamp: 'as 4/15/2025 23:40:06' prior: 50553465!
+pushAsEmpty: anElement
+
+	stack addFirst: anElement .! !
+
+s := OOStack new.!
+
+s isEmpty.!
+
+s state.!
+
+s push: 2.!
+
+s state.!
+
+s push: 1.!
+
+s top.!
+
+s pop.!
+
+s state.!
+
+s pop!
+
+s state!
+
+s state!
+
+!testRun: #OOStackTest #test01StackShouldBeEmptyWhenCreated stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test02PushAddElementsToTheStack stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test03PopRemovesElementsFromTheStack stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test04PopReturnsLastPushedObject stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test05StackBehavesLIFO stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test06TopReturnsLastPushedObject stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test07TopDoesNotRemoveObjectFromStack stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test08CanNotPopWhenThereAreNoObjectsInTheStack stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test09CanNotPopWhenThereAreNoObjectsInTheStackAndTheStackHadObjects stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+!testRun: #OOStackTest #test10CanNotTopWhenThereAreNoObjectsInTheStack stamp: 'as 4/15/2025 23:41:27'!
+PASSED!
+
+----QUIT----(15 April 2025 23:41:33) CuisUniversity-6350.image priorSource: 7294862!
