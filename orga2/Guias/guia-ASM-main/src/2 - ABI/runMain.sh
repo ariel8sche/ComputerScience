@@ -18,4 +18,3 @@ if [ $? -ne 0 ]; then
   echo "  **Error de memoria"
   exit 1
 fi
-
