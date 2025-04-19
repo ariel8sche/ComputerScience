@@ -8,6 +8,9 @@
 #include "Memoria.h"
 
 int main() {
-	/* Acá pueden realizar sus propias pruebas */
+	char* texto1 = "Hola mundo";
+    uint32_t len = strLen(texto1);
+	assert(len == 10);
+
 	return 0;
 }
