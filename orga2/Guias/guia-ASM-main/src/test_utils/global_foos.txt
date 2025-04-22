@@ -1,0 +1,2 @@
+global_foo_label cantidad_total_de_elementos
+global_foo_label cantidad_total_de_elementos_packed

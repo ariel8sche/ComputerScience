@@ -77,10 +77,10 @@ strClone:
 	PUSH RBP
     MOV RBP, RSP
 
-    ; Guardamos el puntero original (a) porque CALL pisa RDI
+    ; guardo el puntero original (a) porque CALL pisa RDI
     MOV RSI, RDI        ; RSI = puntero a
 
-    ; Llamamos a strLen(a)
+    ; llamo a strLen(a)
     CALL strLen         ; EAX = longitud de a
 
     ; Reservamos memoria: longitud + 1 byte para el '\0'
@@ -89,21 +89,21 @@ strClone:
     MOV EDI, EAX        ; argumento para malloc
     CALL malloc         ; RAX = puntero destino
 
-    ; Guardamos el puntero a inicio del destino
+    ; guardo el puntero a inicio del destino
     MOV RDX, RAX        ; RDX = destino original
 
 .copy_loop:
     MOV BL, [RSI]       ; leer byte de origen
     MOV [RAX], BL       ; copiar al destino
-    INC RSI
-    INC RAX
-    CMP BL, 0
-    JNE .copy_loop
+    INC RSI				; avanzar puntero origen
+    INC RAX				; avanzar puntero destino
+    CMP BL, 0			; verifico si es el final de la cadena
+    JNE .copy_loop  	; si no es el final de la cadena, sigo copiando
 
-    ; devolver puntero a inicio del string clonado
-    MOV RAX, RDX
+    ; devuelvo el puntero al inicio del string clonado
+	MOV RAX, RDX
 
-    POP RBP
+    POP RBP ; retorno el rbp
     RET
 
 ; void strDelete(char* a)
