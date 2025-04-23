@@ -5,7 +5,7 @@ TestCase subclass: #CashierTest
 	poolDictionaries: ''
 	category: 'IRobot-Enunciado'!
 
-!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'F 5/21/2020 21:50:00'!
+!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'as 4/15/2025 16:08:27'!
 test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot
 
 	| aRobot aTrailer aCashier |
@@ -17,13 +17,13 @@ test01ShouldNotAcceptEmptyTrailerFromNormalWorkingRobot
 
 	self
 		should: [ 
-			aCashier receiveOrder: aRobot 
+			aRobot closeOrderUsing: aCashier
 		]
 		raise: Error
 		withMessageText: Cashier trailerIsEmptyErrorDescription.
 ! !
 
-!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'F 5/21/2020 21:50:32'!
+!CashierTest methodsFor: 'receiving from empty trailer' stamp: 'as 4/15/2025 16:08:43'!
 test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot
 
 	| aRobot aTrailer aCashier |
@@ -36,14 +36,14 @@ test02ShouldNotAcceptEmptyTrailerFromMechanicalFailureRobot
 	self
 		should: [ 
 			aRobot withMechanicalFailure.
-			aCashier receiveOrder: aRobot 
+			aRobot closeOrderUsing: aCashier
 		]
 		raise: Error
 		withMessageText: Cashier trailerIsEmptyErrorDescription.
 ! !
 
 
-!CashierTest methodsFor: 'receiving from sensors failure robot' stamp: 'F 5/20/2020 23:18:54'!
+!CashierTest methodsFor: 'receiving from sensors failure robot' stamp: 'as 4/15/2025 16:09:00'!
 test03ShouldNotAcceptSensorsFailureRobot
 
 	| aRobot aTrailer aCashier |
@@ -56,13 +56,13 @@ test03ShouldNotAcceptSensorsFailureRobot
 	self
 		should: [ 
 			aRobot withSensorsFailure.
-			aCashier receiveOrder: aRobot ]
+			aRobot closeOrderUsing: aCashier]
 		raise: Error
 		withMessageText: Cashier robotSensorsFailureErrorDescription.
 ! !
 
 
-!CashierTest methodsFor: 'receiving from mechanical failure robot' stamp: 'F 5/20/2020 23:47:15'!
+!CashierTest methodsFor: 'receiving from mechanical failure robot' stamp: 'as 4/15/2025 16:09:34'!
 test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot
 
 	| aRobot aTrailer aCashier |
@@ -77,7 +77,7 @@ test04ShouldChangeRobotStatusToOutOfOrderWhenMechanicalFailureRobot
 			aRobot take: (ProductA with: 1  and: 1).
 			aRobot withMechanicalFailure.
 			
-			aCashier receiveOrder: aRobot.
+			aRobot closeOrderUsing: aCashier.
 			
 			aRobot take: (ProductA with: 1 and: 1) ]
 		raise: Error
@@ -434,20 +434,12 @@ Object subclass: #Cashier
 	poolDictionaries: ''
 	category: 'IRobot-Enunciado'!
 
-!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:41:52'!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:56:38'!
 receiveOrderFromMechanicalFailureRobot: aRobot
 	
-		| aTrailer |
-		
 		aRobot outOfOrder.
-		
-		aTrailer := aRobot trailer.	
-		self assertTrailerNotEmpty: aTrailer.
-		
-		"Comentario: en este punto el cashier realizaría el checkout de los productos."
 
-		^ true
-! !
+		^ self acceptOrderFrom: aRobot.! !
 
 !Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:42:12'!
 receiveOrderFromSensorsFailureRobot: aRobot
@@ -455,17 +447,10 @@ receiveOrderFromSensorsFailureRobot: aRobot
 		aRobot outOfOrder.
 		self signalRobotSensorsFailure! !
 
-!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:42:27'!
+!Cashier methodsFor: 'closing buy order' stamp: 'as 4/15/2025 15:56:59'!
 receiveOrderFromWorkingNormalRobot: aRobot
 	
-	 | aTrailer | 
-	
-	aTrailer := aRobot trailer.	
-	self assertTrailerNotEmpty: aTrailer.
-
-	"Comentario: en este punto el cashier realizaría el checkout de los productos."
-
-	^ true.! !
+	^ self acceptOrderFrom: aRobot.! !
 
 
 !Cashier methodsFor: 'assertions' stamp: 'FRT 5/4/2020 11:17:52'!
@@ -477,6 +462,20 @@ assertTrailerNotEmpty: aTrailer
 signalTrailerIsEmpty
 	
 	self error: self class trailerIsEmptyErrorDescription! !
+
+
+!Cashier methodsFor: 'order acceptations' stamp: 'as 4/15/2025 15:55:30'!
+acceptOrderFrom: aRobot
+	
+		| aTrailer |
+		
+		aTrailer := aRobot trailer.	
+		self assertTrailerNotEmpty: aTrailer.
+		
+		"Comentario: en este punto el cashier realizaría el checkout de los productos."
+
+		^ true
+! !
 
 
 !Cashier methodsFor: 'exceptions' stamp: 'FRT 5/4/2020 11:28:03'!
@@ -654,22 +653,22 @@ take: aProduct
 	^ status take: aProduct .! !
 
 
-!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:55:57'!
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:58:48'!
 outOfOrder
 
-	status := OutOfOrder new initializeWithRobot: self.
+	status := OutOfOrder new initializeWith: self.
 ! !
 
-!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:56:22'!
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:59:01'!
 withMechanicalFailure
 
-	status := MechanicalFailure new initializeWithRobot: self.
+	status := MechanicalFailure new initializeWith: self.
 ! !
 
-!Robot methodsFor: 'status' stamp: 'as 4/15/2025 11:56:34'!
+!Robot methodsFor: 'status' stamp: 'as 4/15/2025 15:59:06'!
 withSensorsFailure
 
-	status := SensorsFailure new initializeWithRobot: self.
+	status := SensorsFailure new initializeWith: self.
 ! !
 
 
@@ -686,11 +685,11 @@ trailer
 ! !
 
 
-!Robot methodsFor: 'initialization' stamp: 'as 4/15/2025 11:55:29'!
+!Robot methodsFor: 'initialization' stamp: 'as 4/15/2025 15:59:15'!
 initializeWith: aTrailer
 
 	trailer := aTrailer.
-	status := WorkingNormal new initializeWithRobot: self.
+	status := WorkingNormal new initializeWith: self.
 ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!

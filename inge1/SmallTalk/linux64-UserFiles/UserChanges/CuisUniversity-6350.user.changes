@@ -15124,3 +15124,280 @@ PASSED!
 PASSED!
 
 ----QUIT----(15 April 2025 23:41:33) CuisUniversity-6350.image priorSource: 7294862!
+
+!testRun: #OOStackTest #test01StackShouldBeEmptyWhenCreated stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test02PushAddElementsToTheStack stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test03PopRemovesElementsFromTheStack stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test04PopReturnsLastPushedObject stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test05StackBehavesLIFO stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test06TopReturnsLastPushedObject stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test07TopDoesNotRemoveObjectFromStack stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test08CanNotPopWhenThereAreNoObjectsInTheStack stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test09CanNotPopWhenThereAreNoObjectsInTheStackAndTheStackHadObjects stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+!testRun: #OOStackTest #test10CanNotTopWhenThereAreNoObjectsInTheStack stamp: 'as 4/22/2025 15:44:31'!
+PASSED!
+
+----STARTUP---- (22 April 2025 15:44:21) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+Object subclass: #OOStackFinder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackFinder category: #'Stack-Exercise' stamp: 'as 4/22/2025 15:46:05'!
+Object subclass: #OOStackFinder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'as 4/22/2025 15:49:13'!
+find: prefix! !
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'as 4/22/2025 15:54:28'!
+initializeWith: aStack! !
+
+!classDefinition: #SentenceFinderByPrefix category: #'Stack-Exercise' stamp: 'as 4/22/2025 15:54:52'!
+Object subclass: #SentenceFinderByPrefix
+	instanceVariableNames: 'stack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'as 4/22/2025 15:54:44' prior: 50559802!
+initializeWith: aStack
+
+	stack := aStack ! !
+
+!classRemoval: #TrailerTest stamp: 'as 4/22/2025 16:07:52'!
+TestCase subclass: #TrailerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Trailer stamp: 'as 4/22/2025 16:08:02'!
+Object subclass: #Trailer
+	instanceVariableNames: 'weightCapacity heightCapacity container'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #WorkingNormal stamp: 'as 4/22/2025 16:08:02'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #SensorsFailure stamp: 'as 4/22/2025 16:08:02'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #OutOfOrder stamp: 'as 4/22/2025 16:08:02'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #MechanicalFailure stamp: 'as 4/22/2025 16:08:03'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #RobotStatus stamp: 'as 4/22/2025 16:08:03'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'linkedRobot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Robot stamp: 'as 4/22/2025 16:08:03'!
+Object subclass: #Robot
+	instanceVariableNames: 'status trailer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductB stamp: 'as 4/22/2025 16:08:03'!
+Product subclass: #ProductB
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductA stamp: 'as 4/22/2025 16:08:04'!
+Product subclass: #ProductA
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Product stamp: 'as 4/22/2025 16:08:04'!
+Object subclass: #Product
+	instanceVariableNames: 'weight height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #Cashier stamp: 'as 4/22/2025 16:08:04'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #RobotTest stamp: 'as 4/22/2025 16:08:05'!
+TestCase subclass: #RobotTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #ProductTest stamp: 'as 4/22/2025 16:08:05'!
+TestCase subclass: #ProductTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+!classRemoval: #CashierTest stamp: 'as 4/22/2025 16:08:05'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Enunciado'!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/guias/Parte 2/04-IRobot/IRobot-Solucion.st----!
+
+!classRemoval: #Trailer stamp: 'as 4/22/2025 16:14:09'!
+Object subclass: #Trailer
+	instanceVariableNames: 'weightCapacity heightCapacity container'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #WorkingNormal stamp: 'as 4/22/2025 16:14:09'!
+RobotStatus subclass: #WorkingNormal
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #SensorsFailure stamp: 'as 4/22/2025 16:14:10'!
+RobotStatus subclass: #SensorsFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #OutOfOrder stamp: 'as 4/22/2025 16:14:10'!
+RobotStatus subclass: #OutOfOrder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #MechanicalFailure stamp: 'as 4/22/2025 16:14:10'!
+RobotStatus subclass: #MechanicalFailure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #RobotStatus stamp: 'as 4/22/2025 16:14:10'!
+Object subclass: #RobotStatus
+	instanceVariableNames: 'robot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Robot stamp: 'as 4/22/2025 16:14:11'!
+Object subclass: #Robot
+	instanceVariableNames: 'status trailer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductB stamp: 'as 4/22/2025 16:14:11'!
+Product subclass: #ProductB
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductA stamp: 'as 4/22/2025 16:14:11'!
+Product subclass: #ProductA
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Product stamp: 'as 4/22/2025 16:14:11'!
+Object subclass: #Product
+	instanceVariableNames: 'weight height'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #Cashier stamp: 'as 4/22/2025 16:14:12'!
+Object subclass: #Cashier
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #TrailerTest stamp: 'as 4/22/2025 16:14:12'!
+TestCase subclass: #TrailerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #RobotTest stamp: 'as 4/22/2025 16:14:12'!
+TestCase subclass: #RobotTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #ProductTest stamp: 'as 4/22/2025 16:14:13'!
+TestCase subclass: #ProductTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+!classRemoval: #CashierTest stamp: 'as 4/22/2025 16:14:13'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'IRobot-Solucion'!
+
+----End fileIn of /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64-UserFiles/FileOuts/IRobot-Enunciado.st----!
+
+----QUIT----(22 April 2025 16:20:07) CuisUniversity-6350.image priorSource: 7300097!
