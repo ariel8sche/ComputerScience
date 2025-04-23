@@ -73,36 +73,40 @@ strCmp:
 	RET
 
 ; char* strClone(char* a)
+; Registros: RDI = puntero a, RAX = puntero destino
 strClone:
 	PUSH RBP
     MOV RBP, RSP
+	PUSH R12
+    PUSH R13
 
-    ; guardo el puntero original (a) porque CALL pisa RDI
-    MOV RSI, RDI        ; RSI = puntero a
+    ; Guardamos el puntero original en R12
+    MOV R12, RDI         ; R12 = puntero a (source para copiar después)
 
-    ; llamo a strLen(a)
-    CALL strLen         ; EAX = longitud de a
+	XOR RAX, RAX ; Inicializo RAX a 0
+
+    ; Llamamos a strLen
+    CALL strLen          ; EAX = longitud del string
 
     ; Reservamos memoria: longitud + 1 byte para el '\0'
-    MOV ECX, EAX        ; ECX = longitud
-    ADD EAX, 1          ; longitud + 1
-    MOV EDI, EAX        ; argumento para malloc
+    MOV R13D, EAX        ; R13D = longitud
+    ADD R13, 1          ; longitud + 1
+    MOV EDI, R13D        ; argumento para malloc
     CALL malloc         ; RAX = puntero destino
 
     ; guardo el puntero a inicio del destino
-    MOV RDX, RAX        ; RDX = destino original
+    MOV R13, RAX        ; RDX = puntero destino 
 
 .copy_loop:
-    MOV BL, [RSI]       ; leer byte de origen
-    MOV [RAX], BL       ; copiar al destino
-    INC RSI				; avanzar puntero origen
-    INC RAX				; avanzar puntero destino
+    MOV BL, [R12]       ; leer byte de origen
+    MOV [R13], BL       ; copiar al destino
+    INC R12				; avanzar puntero origen
+    INC R13D				; avanzar puntero destino
     CMP BL, 0			; verifico si es el final de la cadena
     JNE .copy_loop  	; si no es el final de la cadena, sigo copiando
 
-    ; devuelvo el puntero al inicio del string clonado
-	MOV RAX, RDX
-
+	POP R13
+	POP R12
     POP RBP ; retorno el rbp
     RET
 
