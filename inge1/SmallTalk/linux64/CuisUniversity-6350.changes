@@ -220525,3 +220525,8 @@ Object subclass: #CalcularResultadoPenal
 	direccionResultante := ubicacionDelGol .! !
 
 ----QUIT----(28 April 2025 12:01:04) CuisUniversity-6350.image priorSource: 8797753!
+
+----STARTUP---- (4 May 2025 10:49:41) as /home/ariel8sche/Documentos/ComputerScience/inge1/SmallTalk/linux64/CuisUniversity-6350.image!
+
+
+----QUIT----(4 May 2025 10:50:00) CuisUniversity-6350.image priorSource: 8804165!
