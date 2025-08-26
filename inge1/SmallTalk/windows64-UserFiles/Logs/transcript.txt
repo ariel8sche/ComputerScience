@@ -1,7 +1,0 @@
-2025-03-23T19:17:58.559 process:78 3663963 Incorrect changes file: C:\Users\ariel\Desktop\UBA\ComputerScience\inge1\SmallTalk\windows64\CuisUniversity-6350.changes
-2025-03-23T19:17:59.334 process:39 855922 -----------
-2025-03-23T19:18:23.622 process:78 3663963 Incorrect changes file: C:\Users\ariel\Desktop\UBA\ComputerScience\inge1\SmallTalk\windows64\CuisUniversity-6350.changes
-2025-03-23T19:18:59.297 process:78 3663963 Incorrect changes file: C:\Users\ariel\Desktop\UBA\ComputerScience\inge1\SmallTalk\windows64\CuisUniversity-6350.changes
-2025-03-23T19:19:40.267 process:79 1798046 
-2025-03-23T19:19:40.456 process:39 3182495 Could not find changes file: C:\Users\ariel\Desktop\UBA\ComputerScience\inge1\SmallTalk\windows64\Cuis6.3-6350.changes
-2025-03-23T19:19:45.891 process:79 3422833 
