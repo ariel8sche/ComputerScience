@@ -1,0 +1,5 @@
+Hola desde printf()
+2485624 fd
+2485629 fd1
+2486058 fd1.c
+2486281 salida.txt
