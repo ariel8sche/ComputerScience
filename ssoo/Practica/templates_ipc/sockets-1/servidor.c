@@ -11,8 +11,8 @@ int main() {
     int client_socket;
     struct sockaddr_un server_addr;
     struct sockaddr_un client_addr;
-    uint slen = sizeof(server_addr);
-    uint clen = sizeof(client_addr);
+    unsigned int slen = sizeof(server_addr);
+    unsigned int clen = sizeof(client_addr);
 
     server_addr.sun_family = AF_UNIX;
     strcpy(server_addr.sun_path, "unix_socket");
