@@ -7,6 +7,12 @@
 #include <sys/un.h>
 #include <sys/wait.h>
 
+
+// Función para determinar si un número es par
+int even(int number) {
+    return number % 2 == 0;
+}
+
 // -------------------------------
 // Crear socket servidor
 // -------------------------------
@@ -48,38 +54,47 @@ int crear_socket_servidor(const char *socket_path) {
 }
 
 int main(){
-    int num = 0;
 
-    int socket = crear_socket_servidor("unix_socket_ejercicio19");
+    int socket = crear_socket_servidor("unix_socket_ejercicio20");
 
-    printf("Proceso1: Esperando conexión...\n");
+    pid_t pid_child1 = fork();
+    if (pid_child1 == -1) { perror("fork"); exit(EXIT_FAILURE); }
+    if (pid_child1 == 0) {
+        int conn_child1 = accept(socket, NULL, NULL);
 
-    // Aceptar conexión
-    int conn_fd = accept(socket, NULL, NULL);
+        if (conn_child1 == -1) { perror("accept"); exit(1); }
 
-    if (conn_fd == -1) { perror("accept"); exit(1); }
+        printf("Hijo 1: Conexión aceptada.\n");
+    }
+    else {
+        pid_t pid_child2 = fork();
+        if (pid_child2 == -1) { perror("fork"); exit(EXIT_FAILURE); }
+        if (pid_child2 == 0) {
+            int conn_child2 = accept(socket, NULL, NULL);
 
-    printf("Proceso1: Conexión aceptada.\n");
+            if (conn_child2 == -1) { perror("accept"); exit(1); }
 
-    while (num < 50) {
+            printf("Hijo 2: Conexión aceptada.\n");
 
-        write(conn_fd, &num, sizeof(int));
+        }
+        else {
+            pid_t pid_child3 = fork();
+            if (pid_child3 == -1) { perror("fork"); exit(EXIT_FAILURE); }
+            if (pid_child3 == 0) {
+                int conn_child3 = accept(socket, NULL, NULL);
 
-        printf("Proceso1: Enviando al Proceso2 el valor %d\n", num);
+                if (conn_child3 == -1) { perror("accept"); exit(1); }
 
-        // Recibe el valor
-        read(conn_fd, &num, sizeof(int));
+                printf("Hijo 3: Conexión aceptada.\n");
 
-        printf("Proceso1: Recibió del Proceso2 el valor %d\n", num);
+            }
+            else {
 
-        num++;
-
+            }
+        }
     }
 
-    unlink("unix_socket_ejercicio19"); // borrar socket al salir
-    close(conn_fd);
     close(socket);
-    // Eliminar el archivo del socket al finalizar
-    unlink("unix_socket_ejercicio19");
+    unlink("unix_socket_ejercicio20"); // borrar socket al salir
     exit(EXIT_SUCCESS);
 }

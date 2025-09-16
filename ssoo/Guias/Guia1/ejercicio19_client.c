@@ -29,7 +29,8 @@ int crear_socket_cliente(const char *socket_path) {
 
     // Reintentar hasta que el servidor esté listo
     while (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
-        usleep(100000);
+        perror("connect");
+        sleep(1); // Esperar un segundo antes de reintentar
     }
 
     return sock;
@@ -42,7 +43,7 @@ int main(){
 
     int socket = crear_socket_cliente("unix_socket_ejercicio19");
 
-    while (num < 3) {
+    while (num < 50) {
         read(socket, &num, sizeof(int));
 
         printf("Proceso2: Recibió el valor %d\n", num);
@@ -52,6 +53,7 @@ int main(){
         printf("Proceso2: Enviando al Proceso1 el valor %d.\n", num);
 
         write(socket, &num, sizeof(int));
+
     }
     close(socket);
     exit(EXIT_SUCCESS);
