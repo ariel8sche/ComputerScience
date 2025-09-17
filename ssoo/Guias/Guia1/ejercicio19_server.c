@@ -55,7 +55,7 @@ int main(){
     printf("Proceso1: Esperando conexión...\n");
 
     // Aceptar conexión
-    int conn_fd = accept(socket, NULL, NULL);
+    int conn_fd = (socket, NULL, NULL);
 
     if (conn_fd == -1) { perror("accept"); exit(1); }
 

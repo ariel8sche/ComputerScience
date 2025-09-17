@@ -55,30 +55,67 @@ int crear_socket_servidor(const char *socket_path) {
 
 int main(){
 
+    int number;
+
+    printf("Servidor: Creando socket y esperando conexiones...\n");
+
     int socket = crear_socket_servidor("unix_socket_ejercicio20");
 
     pid_t pid_child1 = fork();
-    if (pid_child1 == -1) { perror("fork"); exit(EXIT_FAILURE); }
+
+    if (pid_child1 == -1) { perror("fork"); exit(EXIT_FAILURE); } // Manejo de error
+
+    // Child process 1
     if (pid_child1 == 0) {
-        int conn_child1 = accept(socket, NULL, NULL);
 
-        if (conn_child1 == -1) { perror("accept"); exit(1); }
+            int conn_child1 = accept(socket, NULL, NULL);
 
-        printf("Hijo 1: Conexión aceptada.\n");
+            if (conn_child1 == -1) { perror("accept"); exit(1); }
+
+            printf("Hijo 1: Conexión aceptada.\n");
+
+            recv(conn_child1, &number, sizeof(int), 0);
+            printf("Hijo 1: Número recibido: %d\n", number);
+
+            if (even(number)) {
+                send(conn_child1, "PAR", 4, 0);
+                printf("Hijo 1: El número %d es par.\n", number);
+            } else {
+                send(conn_child1, "IMPAR", 6, 0);
+                printf("Hijo 1: El número %d es impar.\n", number);
+            }
+
+            exit(EXIT_SUCCESS);
     }
+    // Parent process
     else {
         pid_t pid_child2 = fork();
         if (pid_child2 == -1) { perror("fork"); exit(EXIT_FAILURE); }
+
         if (pid_child2 == 0) {
+
             int conn_child2 = accept(socket, NULL, NULL);
 
             if (conn_child2 == -1) { perror("accept"); exit(1); }
 
             printf("Hijo 2: Conexión aceptada.\n");
 
+            recv(conn_child2, &number, sizeof(int), 0);
+            printf("Hijo 2: Número recibido: %d\n", number);
+
+            if (even(number)) {
+                send(conn_child2, "PAR", 4, 0);
+                printf("Hijo 2: El número %d es par.\n", number);
+            } else {
+                send(conn_child2, "IMPAR", 6, 0);
+                printf("Hijo 2: El número %d es impar.\n", number);
+            }
+
+            exit(EXIT_SUCCESS);
+
         }
         else {
-            pid_t pid_child3 = fork();
+/*             pid_t pid_child3 = fork();
             if (pid_child3 == -1) { perror("fork"); exit(EXIT_FAILURE); }
             if (pid_child3 == 0) {
                 int conn_child3 = accept(socket, NULL, NULL);
@@ -90,8 +127,11 @@ int main(){
             }
             else {
 
-            }
+            } */
         }
+        wait(NULL);
+        wait(NULL);
+        wait(NULL);
     }
 
     close(socket);
