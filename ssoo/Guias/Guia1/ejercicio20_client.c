@@ -37,9 +37,12 @@ int crear_socket_cliente(const char *socket_path) {
 }
 
 int main(){
-    int number = 5;
+    int number;
 
     char res[10];
+
+    printf("Cliente: Ingrese un número entero: ");
+    scanf("%d", &number);
 
     int conn = crear_socket_cliente("unix_socket_ejercicio20");
     printf("Cliente: Conectado al servidor.\n");
@@ -51,7 +54,6 @@ int main(){
 
     printf("Cliente: El número %d es %s.\n", number, res);
 
-    unlink("unix_socket_ejercicio20");
     close(conn);
     exit(EXIT_SUCCESS);
 }

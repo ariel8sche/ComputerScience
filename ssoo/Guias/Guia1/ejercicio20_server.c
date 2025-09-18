@@ -7,12 +7,6 @@
 #include <sys/un.h>
 #include <sys/wait.h>
 
-
-// Función para determinar si un número es par
-int even(int number) {
-    return number % 2 == 0;
-}
-
 // -------------------------------
 // Crear socket servidor
 // -------------------------------
@@ -53,88 +47,75 @@ int crear_socket_servidor(const char *socket_path) {
     return server_socket;
 }
 
-int main(){
+// Función para determinar si un número es par
+int even(int number) {
+    return number % 2 == 0;
+}
 
-    int number;
+// Proceso hijo que atiende clientes
+void child_process(int socket, int id)
+{
+    
+    while (1)
+    {
+        int number;
 
+        printf("Hijo %d: Esperando cliente...\n", id);
+        int conn = accept(socket, NULL, NULL);
+        if (conn == -1)
+        {
+            perror("accept");
+            continue; // o break si querés cortar
+        }
+
+        // Ahora atiendo al cliente
+        recv(conn, &number, sizeof(int), 0);
+
+        printf("Hijo %d: Número recibido: %d\n", id, number);
+
+        // Determinar si el número es par o impar
+        if (even(number))
+        {
+            // Enviar respuesta al cliente
+            send(conn, "PAR", 4, 0);
+        }
+        else
+        {
+            // Enviar respuesta al cliente
+            send(conn, "IMPAR", 6, 0);
+        }
+
+        close(conn); // 🔹 cerrar la conexión con ese cliente
+        // ahora vuelve al while y espera otro cliente
+    }
+}
+
+int main() {
     printf("Servidor: Creando socket y esperando conexiones...\n");
 
+    // Crear socket servidor
     int socket = crear_socket_servidor("unix_socket_ejercicio20");
 
-    pid_t pid_child1 = fork();
-
-    if (pid_child1 == -1) { perror("fork"); exit(EXIT_FAILURE); } // Manejo de error
-
-    // Child process 1
-    if (pid_child1 == 0) {
-
-            int conn_child1 = accept(socket, NULL, NULL);
-
-            if (conn_child1 == -1) { perror("accept"); exit(1); }
-
-            printf("Hijo 1: Conexión aceptada.\n");
-
-            recv(conn_child1, &number, sizeof(int), 0);
-            printf("Hijo 1: Número recibido: %d\n", number);
-
-            if (even(number)) {
-                send(conn_child1, "PAR", 4, 0);
-                printf("Hijo 1: El número %d es par.\n", number);
-            } else {
-                send(conn_child1, "IMPAR", 6, 0);
-                printf("Hijo 1: El número %d es impar.\n", number);
-            }
-
+    // Crear 3 hijos
+    for (int i = 1; i <= 3; i++) {
+        pid_t pid = fork();
+        if (pid == -1) { perror("fork"); exit(EXIT_FAILURE); }
+        if (pid == 0) {
+            // Código hijo
+            child_process(socket, i);
             exit(EXIT_SUCCESS);
-    }
-    // Parent process
-    else {
-        pid_t pid_child2 = fork();
-        if (pid_child2 == -1) { perror("fork"); exit(EXIT_FAILURE); }
-
-        if (pid_child2 == 0) {
-
-            int conn_child2 = accept(socket, NULL, NULL);
-
-            if (conn_child2 == -1) { perror("accept"); exit(1); }
-
-            printf("Hijo 2: Conexión aceptada.\n");
-
-            recv(conn_child2, &number, sizeof(int), 0);
-            printf("Hijo 2: Número recibido: %d\n", number);
-
-            if (even(number)) {
-                send(conn_child2, "PAR", 4, 0);
-                printf("Hijo 2: El número %d es par.\n", number);
-            } else {
-                send(conn_child2, "IMPAR", 6, 0);
-                printf("Hijo 2: El número %d es impar.\n", number);
-            }
-
-            exit(EXIT_SUCCESS);
-
         }
-        else {
-/*             pid_t pid_child3 = fork();
-            if (pid_child3 == -1) { perror("fork"); exit(EXIT_FAILURE); }
-            if (pid_child3 == 0) {
-                int conn_child3 = accept(socket, NULL, NULL);
-
-                if (conn_child3 == -1) { perror("accept"); exit(1); }
-
-                printf("Hijo 3: Conexión aceptada.\n");
-
-            }
-            else {
-
-            } */
-        }
-        wait(NULL);
-        wait(NULL);
-        wait(NULL);
     }
 
+    // El padre no atiende clientes
     close(socket);
+
+    // Esperar a los hijos
+    for (int i = 0; i < 3; i++) {
+        wait(NULL);
+    }
+
     unlink("unix_socket_ejercicio20"); // borrar socket al salir
     exit(EXIT_SUCCESS);
 }
+
