@@ -356,20 +356,27 @@ while finishedJobs < totalJobs:
             if issuedIO == False:
                 queue[currQueue].append(currJob)
 
-        
+    throughput = float(finishedJobs) / float(currTime)
 
+    # THROUGHPUT
+    if currTime % 2 == 0:
+        print('\n  [ time %d ] THROUGHPUT %.2f ( finished %d jobs out of %d )\n' % (currTime, throughput, finishedJobs, numJobs))
 
 # print out statistics
 print('')
 print('Final statistics:')
 responseSum   = 0
 turnaroundSum = 0
+waitingSum    = 0
+throughput = float(finishedJobs) / float(currTime)
 for i in range(numJobs):
     response   = job[i]['firstRun'] - job[i]['startTime']
     turnaround = job[i]['endTime'] - job[i]['startTime']
-    print('  Job %2d: startTime %3d - response %3d - turnaround %3d' % (i, job[i]['startTime'], response, turnaround))
+    waiting    = turnaround - job[i]['runTime']
+    print('  Job %2d: startTime %3d - response %3d - turnaround %3d - waiting %3d' % (i, job[i]['startTime'], response, turnaround, waiting))
     responseSum   += response
     turnaroundSum += turnaround
+    waitingSum    += waiting
 
-print('\n  Avg %2d: startTime n/a - response %.2f - turnaround %.2f' % (i, float(responseSum)/numJobs, float(turnaroundSum)/numJobs))
+print('\n  Avg %2d: startTime n/a - response %.2f - turnaround %.2f - waiting %.2f - throughput %.2f' % (i, float(responseSum)/numJobs, float(turnaroundSum)/numJobs, float(waitingSum)/numJobs, throughput))
 print('\n')
