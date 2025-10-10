@@ -9,9 +9,13 @@ Este repositorio contiene material organizado por materia:
 - ➗ **Álgebra**  
 - 💻 **Introducción a la Programación**  
 - 🏗️ **Algoritmos y Estructuras de Datos**  
-- 🖥️ **Organización del Computador**  
+- 🖥️ **Arquitectura y Organización del Computador**  
 - 🔄 **Paradigmas de la Programación**  
-- 🏆 **Técnicas y Diseño de Algoritmos**  
+- 🏆 **Técnicas y Diseño de Algoritmos**
+- ⚙️ **Arquitectura y Organizacion del Computador 2**
+- 🧩 **Lenguajes Formales, Automatas y Computabilidad**
+- 🧱 **Ingenieria en Software1**
+- 💿 **Sistemas Operativos**
 
 ## 🚀 Objetivo  
 Este repositorio tiene como objetivo almacenar y compartir código, ejercicios resueltos, resúmenes y proyectos de cada materia. Si estás cursando alguna de estas materias, ¡espero que te sirva!  
