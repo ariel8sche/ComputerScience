@@ -152,7 +152,7 @@ if options.jlist != '':
         job[jobCnt] = {'currPri':hiQueue, 'ticksLeft':quantum[hiQueue],
                        'allotLeft':allotment[hiQueue], 'startTime':startTime,
                        'runTime':runTime, 'timeLeft':runTime, 'ioFreq':ioFreq, 'doingIO':False,
-                       'firstRun':-1}
+                       'firstRun':-1, 'totalIOTime':0}
         if startTime not in ioDone:
             ioDone[startTime] = []
         ioDone[startTime].append((jobCnt, 'JOB BEGINS'))
@@ -167,7 +167,7 @@ else:
         job[jobCnt] = {'currPri':hiQueue, 'ticksLeft':quantum[hiQueue],
                        'allotLeft':allotment[hiQueue], 'startTime':startTime,
                        'runTime':runTime, 'timeLeft':runTime, 'ioFreq':ioFreq, 'doingIO':False,
-                       'firstRun':-1}
+                       'firstRun':-1, 'totalIOTime':0}
         if startTime not in ioDone:
             ioDone[startTime] = []
         ioDone[startTime].append((jobCnt, 'JOB BEGINS'))
@@ -320,6 +320,9 @@ while finishedJobs < totalJobs:
         if options.stay == True:
             job[currJob]['ticksLeft'] = quantum[currQueue]
             job[currJob]['allotLeft'] = allotment[currQueue]
+        
+        job[currJob]['totalIOTime'] += ioTime
+        
         # add to IO Queue: but which queue?
         futureTime = currTime + ioTime
         if futureTime not in ioDone:
@@ -332,7 +335,7 @@ while finishedJobs < totalJobs:
         if issuedIO == False:
             # IO HAS NOT BEEN ISSUED (therefor pop from queue)'
             desched = queue[currQueue].pop(0)
-        assert(desched == currJob)
+            assert(desched == currJob)
 
         job[currJob]['allotLeft'] = job[currJob]['allotLeft'] - 1
 
@@ -372,7 +375,7 @@ throughput = float(finishedJobs) / float(currTime)
 for i in range(numJobs):
     response   = job[i]['firstRun'] - job[i]['startTime']
     turnaround = job[i]['endTime'] - job[i]['startTime']
-    waiting    = turnaround - job[i]['runTime']
+    waiting    = turnaround - job[i]['runTime'] - job[i]['totalIOTime']
     print('  Job %2d: startTime %3d - response %3d - turnaround %3d - waiting %3d' % (i, job[i]['startTime'], response, turnaround, waiting))
     responseSum   += response
     turnaroundSum += turnaround
