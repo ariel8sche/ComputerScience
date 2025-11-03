@@ -296,6 +296,17 @@ while finishedJobs < totalJobs:
     # UPDATE TIME
     currTime += 1
 
+    # UPDATE I/O TIME
+    for j in job:
+        if job[j]['doingIO'] == True:
+            job[j]['totalIOTime'] += 1
+
+    # THROUGHPUT
+    throughput = float(finishedJobs) / float(currTime)
+    if currTime % 2 == 0:
+        print('[ time %d ] THROUGHPUT %.2f ( finished %d jobs out of %d )' % (currTime, throughput, finishedJobs, numJobs))
+
+
     # CHECK FOR JOB ENDING
     if timeLeft == 0:
         print('[ time %d ] FINISHED JOB %d' % (currTime, currJob))
@@ -319,17 +330,14 @@ while finishedJobs < totalJobs:
         # this does the bad rule -- reset your time at this level if you do I/O
         if options.stay == True:
             job[currJob]['ticksLeft'] = quantum[currQueue]
-            job[currJob]['allotLeft'] = allotment[currQueue]
-        
-        job[currJob]['totalIOTime'] += ioTime
-        
+            job[currJob]['allotLeft'] = allotment[currQueue]       
         # add to IO Queue: but which queue?
         futureTime = currTime + ioTime
         if futureTime not in ioDone:
             ioDone[futureTime] = []
         print('IO DONE')
         ioDone[futureTime].append((currJob, 'IO_DONE'))
-        
+
     # CHECK FOR QUANTUM ENDING AT THIS LEVEL (BUT REMEMBER, THERE STILL MAY BE ALLOTMENT LEFT)
     if ticksLeft == 0:
         if issuedIO == False:
@@ -359,11 +367,7 @@ while finishedJobs < totalJobs:
             if issuedIO == False:
                 queue[currQueue].append(currJob)
 
-    throughput = float(finishedJobs) / float(currTime)
 
-    # THROUGHPUT
-    if currTime % 2 == 0:
-        print('\n  [ time %d ] THROUGHPUT %.2f ( finished %d jobs out of %d )\n' % (currTime, throughput, finishedJobs, numJobs))
 
 # print out statistics
 print('')
