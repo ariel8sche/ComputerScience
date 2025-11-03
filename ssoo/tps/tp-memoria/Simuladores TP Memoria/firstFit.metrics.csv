@@ -1,0 +1,7 @@
+op_idx,kind,ret,max_free,num_free
+1,alloc,1000,97,1
+2,alloc,1003,92,2
+3,alloc,1008,84,3
+4,alloc,1008,84,3
+5,alloc,1000,84,4
+6,alloc,1008,84,4
