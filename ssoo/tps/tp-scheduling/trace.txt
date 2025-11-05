@@ -1,16 +1,16 @@
 Here is the list of inputs:
-OPTIONS jobs 3
+OPTIONS jobs 2
 OPTIONS queues 3
-OPTIONS allotments for queue  2 is   3
-OPTIONS quantum length for queue  2 is  30
-OPTIONS allotments for queue  1 is   2
-OPTIONS quantum length for queue  1 is  20
+OPTIONS allotments for queue  2 is   1
+OPTIONS quantum length for queue  2 is   4
+OPTIONS allotments for queue  1 is   1
+OPTIONS quantum length for queue  1 is  12
 OPTIONS allotments for queue  0 is   1
-OPTIONS quantum length for queue  0 is  10
+OPTIONS quantum length for queue  0 is  20
 OPTIONS boost 0
-OPTIONS ioTime 5
-OPTIONS stayAfterIO False
-OPTIONS iobump False
+OPTIONS ioTime 1
+OPTIONS stayAfterIO True
+OPTIONS iobump True
 
 
 For each job, three defining characteristics are given:
@@ -20,155 +20,212 @@ For each job, three defining characteristics are given:
               (the I/O takes ioTime units to complete)
 
 Job List:
-  Job  0: startTime   0 - runTime  30 - ioFreq   0
-  Job  1: startTime   0 - runTime   8 - ioFreq   2
-  Job  2: startTime  10 - runTime  10 - ioFreq   0
+  Job  0: startTime   0 - runTime  50 - ioFreq   2
+  Job  1: startTime   0 - runTime  28 - ioFreq   0
 
 
 Execution Trace:
 
 [ time 0 ] JOB BEGINS by JOB 0
 [ time 0 ] JOB BEGINS by JOB 1
-[ time 0 ] Run JOB 0 at PRIORITY 2 [ TICKS 29 ALLOT 3 TIME 29 (of 30) ]
-[ time 1 ] Run JOB 0 at PRIORITY 2 [ TICKS 28 ALLOT 3 TIME 28 (of 30) ]
-
-  [ time 2 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 2 ] Run JOB 0 at PRIORITY 2 [ TICKS 27 ALLOT 3 TIME 27 (of 30) ]
-[ time 3 ] Run JOB 0 at PRIORITY 2 [ TICKS 26 ALLOT 3 TIME 26 (of 30) ]
-
-  [ time 4 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 4 ] Run JOB 0 at PRIORITY 2 [ TICKS 25 ALLOT 3 TIME 25 (of 30) ]
-[ time 5 ] Run JOB 0 at PRIORITY 2 [ TICKS 24 ALLOT 3 TIME 24 (of 30) ]
-
-  [ time 6 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 6 ] Run JOB 0 at PRIORITY 2 [ TICKS 23 ALLOT 3 TIME 23 (of 30) ]
-[ time 7 ] Run JOB 0 at PRIORITY 2 [ TICKS 22 ALLOT 3 TIME 22 (of 30) ]
-
-  [ time 8 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 8 ] Run JOB 0 at PRIORITY 2 [ TICKS 21 ALLOT 3 TIME 21 (of 30) ]
-[ time 9 ] Run JOB 0 at PRIORITY 2 [ TICKS 20 ALLOT 3 TIME 20 (of 30) ]
-
-  [ time 10 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 10 ] JOB BEGINS by JOB 2
-[ time 10 ] Run JOB 0 at PRIORITY 2 [ TICKS 19 ALLOT 3 TIME 19 (of 30) ]
-[ time 11 ] Run JOB 0 at PRIORITY 2 [ TICKS 18 ALLOT 3 TIME 18 (of 30) ]
-
-  [ time 12 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 12 ] Run JOB 0 at PRIORITY 2 [ TICKS 17 ALLOT 3 TIME 17 (of 30) ]
-[ time 13 ] Run JOB 0 at PRIORITY 2 [ TICKS 16 ALLOT 3 TIME 16 (of 30) ]
-
-  [ time 14 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 14 ] Run JOB 0 at PRIORITY 2 [ TICKS 15 ALLOT 3 TIME 15 (of 30) ]
-[ time 15 ] Run JOB 0 at PRIORITY 2 [ TICKS 14 ALLOT 3 TIME 14 (of 30) ]
-
-  [ time 16 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 16 ] Run JOB 0 at PRIORITY 2 [ TICKS 13 ALLOT 3 TIME 13 (of 30) ]
-[ time 17 ] Run JOB 0 at PRIORITY 2 [ TICKS 12 ALLOT 3 TIME 12 (of 30) ]
-
-  [ time 18 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 18 ] Run JOB 0 at PRIORITY 2 [ TICKS 11 ALLOT 3 TIME 11 (of 30) ]
-[ time 19 ] Run JOB 0 at PRIORITY 2 [ TICKS 10 ALLOT 3 TIME 10 (of 30) ]
-
-  [ time 20 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 20 ] Run JOB 0 at PRIORITY 2 [ TICKS 9 ALLOT 3 TIME 9 (of 30) ]
-[ time 21 ] Run JOB 0 at PRIORITY 2 [ TICKS 8 ALLOT 3 TIME 8 (of 30) ]
-
-  [ time 22 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 22 ] Run JOB 0 at PRIORITY 2 [ TICKS 7 ALLOT 3 TIME 7 (of 30) ]
-[ time 23 ] Run JOB 0 at PRIORITY 2 [ TICKS 6 ALLOT 3 TIME 6 (of 30) ]
-
-  [ time 24 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 24 ] Run JOB 0 at PRIORITY 2 [ TICKS 5 ALLOT 3 TIME 5 (of 30) ]
-[ time 25 ] Run JOB 0 at PRIORITY 2 [ TICKS 4 ALLOT 3 TIME 4 (of 30) ]
-
-  [ time 26 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 26 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 3 TIME 3 (of 30) ]
-[ time 27 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 3 TIME 2 (of 30) ]
-
-  [ time 28 ] THROUGHPUT 0.00 ( finished 0 jobs out of 3 )
-
-[ time 28 ] Run JOB 0 at PRIORITY 2 [ TICKS 1 ALLOT 3 TIME 1 (of 30) ]
-[ time 29 ] Run JOB 0 at PRIORITY 2 [ TICKS 0 ALLOT 3 TIME 0 (of 30) ]
-[ time 30 ] FINISHED JOB 0
-[ time 30 ] Run JOB 1 at PRIORITY 2 [ TICKS 29 ALLOT 3 TIME 7 (of 8) ]
-[ time 31 ] Run JOB 1 at PRIORITY 2 [ TICKS 28 ALLOT 3 TIME 6 (of 8) ]
-[ time 32 ] IO_START by JOB 1
+[ time 0 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 49 (of 50) ]
+[ time 1 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 48 (of 50) ]
+[ time 2 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 2 ] IO_START by JOB 0
 IO DONE
-
-  [ time 32 ] THROUGHPUT 0.03 ( finished 1 jobs out of 3 )
-
-[ time 32 ] Run JOB 2 at PRIORITY 2 [ TICKS 29 ALLOT 3 TIME 9 (of 10) ]
-[ time 33 ] Run JOB 2 at PRIORITY 2 [ TICKS 28 ALLOT 3 TIME 8 (of 10) ]
-
-  [ time 34 ] THROUGHPUT 0.03 ( finished 1 jobs out of 3 )
-
-[ time 34 ] Run JOB 2 at PRIORITY 2 [ TICKS 27 ALLOT 3 TIME 7 (of 10) ]
-[ time 35 ] Run JOB 2 at PRIORITY 2 [ TICKS 26 ALLOT 3 TIME 6 (of 10) ]
-
-  [ time 36 ] THROUGHPUT 0.03 ( finished 1 jobs out of 3 )
-
-[ time 36 ] Run JOB 2 at PRIORITY 2 [ TICKS 25 ALLOT 3 TIME 5 (of 10) ]
-[ time 37 ] IO_DONE by JOB 1
-[ time 37 ] Run JOB 2 at PRIORITY 2 [ TICKS 24 ALLOT 3 TIME 4 (of 10) ]
-
-  [ time 38 ] THROUGHPUT 0.03 ( finished 1 jobs out of 3 )
-
-[ time 38 ] Run JOB 2 at PRIORITY 2 [ TICKS 23 ALLOT 3 TIME 3 (of 10) ]
-[ time 39 ] Run JOB 2 at PRIORITY 2 [ TICKS 22 ALLOT 3 TIME 2 (of 10) ]
-
-  [ time 40 ] THROUGHPUT 0.03 ( finished 1 jobs out of 3 )
-
-[ time 40 ] Run JOB 2 at PRIORITY 2 [ TICKS 21 ALLOT 3 TIME 1 (of 10) ]
-[ time 41 ] Run JOB 2 at PRIORITY 2 [ TICKS 20 ALLOT 3 TIME 0 (of 10) ]
-[ time 42 ] FINISHED JOB 2
-[ time 42 ] Run JOB 1 at PRIORITY 2 [ TICKS 27 ALLOT 3 TIME 5 (of 8) ]
-[ time 43 ] Run JOB 1 at PRIORITY 2 [ TICKS 26 ALLOT 3 TIME 4 (of 8) ]
-[ time 44 ] IO_START by JOB 1
+[ time 2 ] Run JOB 1 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 27 (of 28) ]
+[ time 3 ] IO_DONE by JOB 0
+[ time 3 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 47 (of 50) ]
+[ time 4 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 4 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 46 (of 50) ]
+[ time 5 ] IO_START by JOB 0
 IO DONE
-
-  [ time 44 ] THROUGHPUT 0.05 ( finished 2 jobs out of 3 )
-
-[ time 44 ] IDLE
-[ time 45 ] IDLE
-[ time 46 ] IDLE
-[ time 47 ] IDLE
-[ time 48 ] IDLE
-[ time 49 ] IO_DONE by JOB 1
-[ time 49 ] Run JOB 1 at PRIORITY 2 [ TICKS 25 ALLOT 3 TIME 3 (of 8) ]
-
-  [ time 50 ] THROUGHPUT 0.04 ( finished 2 jobs out of 3 )
-
-[ time 50 ] Run JOB 1 at PRIORITY 2 [ TICKS 24 ALLOT 3 TIME 2 (of 8) ]
-[ time 51 ] IO_START by JOB 1
+[ time 5 ] Run JOB 1 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 26 (of 28) ]
+[ time 6 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 6 ] IO_DONE by JOB 0
+[ time 6 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 45 (of 50) ]
+[ time 7 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 44 (of 50) ]
+[ time 8 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 8 ] IO_START by JOB 0
 IO DONE
-[ time 51 ] IDLE
-[ time 52 ] IDLE
-[ time 53 ] IDLE
-[ time 54 ] IDLE
-[ time 55 ] IDLE
-[ time 56 ] IO_DONE by JOB 1
-[ time 56 ] Run JOB 1 at PRIORITY 2 [ TICKS 23 ALLOT 3 TIME 1 (of 8) ]
-[ time 57 ] Run JOB 1 at PRIORITY 2 [ TICKS 22 ALLOT 3 TIME 0 (of 8) ]
-[ time 58 ] FINISHED JOB 1
+[ time 8 ] Run JOB 1 at PRIORITY 2 [ TICKS 1 ALLOT 1 TIME 25 (of 28) ]
+[ time 9 ] IO_DONE by JOB 0
+[ time 9 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 43 (of 50) ]
+[ time 10 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 10 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 42 (of 50) ]
+[ time 11 ] IO_START by JOB 0
+IO DONE
+[ time 11 ] Run JOB 1 at PRIORITY 2 [ TICKS 0 ALLOT 1 TIME 24 (of 28) ]
+[ time 12 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 12 ] IO_DONE by JOB 0
+[ time 12 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 41 (of 50) ]
+[ time 13 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 40 (of 50) ]
+[ time 14 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 14 ] IO_START by JOB 0
+IO DONE
+[ time 14 ] Run JOB 1 at PRIORITY 1 [ TICKS 11 ALLOT 1 TIME 23 (of 28) ]
+[ time 15 ] IO_DONE by JOB 0
+[ time 15 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 39 (of 50) ]
+[ time 16 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 16 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 38 (of 50) ]
+[ time 17 ] IO_START by JOB 0
+IO DONE
+[ time 17 ] Run JOB 1 at PRIORITY 1 [ TICKS 10 ALLOT 1 TIME 22 (of 28) ]
+[ time 18 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 18 ] IO_DONE by JOB 0
+[ time 18 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 37 (of 50) ]
+[ time 19 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 36 (of 50) ]
+[ time 20 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 20 ] IO_START by JOB 0
+IO DONE
+[ time 20 ] Run JOB 1 at PRIORITY 1 [ TICKS 9 ALLOT 1 TIME 21 (of 28) ]
+[ time 21 ] IO_DONE by JOB 0
+[ time 21 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 35 (of 50) ]
+[ time 22 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 22 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 34 (of 50) ]
+[ time 23 ] IO_START by JOB 0
+IO DONE
+[ time 23 ] Run JOB 1 at PRIORITY 1 [ TICKS 8 ALLOT 1 TIME 20 (of 28) ]
+[ time 24 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 24 ] IO_DONE by JOB 0
+[ time 24 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 33 (of 50) ]
+[ time 25 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 32 (of 50) ]
+[ time 26 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 26 ] IO_START by JOB 0
+IO DONE
+[ time 26 ] Run JOB 1 at PRIORITY 1 [ TICKS 7 ALLOT 1 TIME 19 (of 28) ]
+[ time 27 ] IO_DONE by JOB 0
+[ time 27 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 31 (of 50) ]
+[ time 28 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 28 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 30 (of 50) ]
+[ time 29 ] IO_START by JOB 0
+IO DONE
+[ time 29 ] Run JOB 1 at PRIORITY 1 [ TICKS 6 ALLOT 1 TIME 18 (of 28) ]
+[ time 30 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 30 ] IO_DONE by JOB 0
+[ time 30 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 29 (of 50) ]
+[ time 31 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 28 (of 50) ]
+[ time 32 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 32 ] IO_START by JOB 0
+IO DONE
+[ time 32 ] Run JOB 1 at PRIORITY 1 [ TICKS 5 ALLOT 1 TIME 17 (of 28) ]
+[ time 33 ] IO_DONE by JOB 0
+[ time 33 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 27 (of 50) ]
+[ time 34 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 34 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 26 (of 50) ]
+[ time 35 ] IO_START by JOB 0
+IO DONE
+[ time 35 ] Run JOB 1 at PRIORITY 1 [ TICKS 4 ALLOT 1 TIME 16 (of 28) ]
+[ time 36 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 36 ] IO_DONE by JOB 0
+[ time 36 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 25 (of 50) ]
+[ time 37 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 24 (of 50) ]
+[ time 38 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 38 ] IO_START by JOB 0
+IO DONE
+[ time 38 ] Run JOB 1 at PRIORITY 1 [ TICKS 3 ALLOT 1 TIME 15 (of 28) ]
+[ time 39 ] IO_DONE by JOB 0
+[ time 39 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 23 (of 50) ]
+[ time 40 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 40 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 22 (of 50) ]
+[ time 41 ] IO_START by JOB 0
+IO DONE
+[ time 41 ] Run JOB 1 at PRIORITY 1 [ TICKS 2 ALLOT 1 TIME 14 (of 28) ]
+[ time 42 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 42 ] IO_DONE by JOB 0
+[ time 42 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 21 (of 50) ]
+[ time 43 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 20 (of 50) ]
+[ time 44 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 44 ] IO_START by JOB 0
+IO DONE
+[ time 44 ] Run JOB 1 at PRIORITY 1 [ TICKS 1 ALLOT 1 TIME 13 (of 28) ]
+[ time 45 ] IO_DONE by JOB 0
+[ time 45 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 19 (of 50) ]
+[ time 46 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 46 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 18 (of 50) ]
+[ time 47 ] IO_START by JOB 0
+IO DONE
+[ time 47 ] Run JOB 1 at PRIORITY 1 [ TICKS 0 ALLOT 1 TIME 12 (of 28) ]
+[ time 48 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 48 ] IO_DONE by JOB 0
+[ time 48 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 17 (of 50) ]
+[ time 49 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 16 (of 50) ]
+[ time 50 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 50 ] IO_START by JOB 0
+IO DONE
+[ time 50 ] Run JOB 1 at PRIORITY 0 [ TICKS 19 ALLOT 1 TIME 11 (of 28) ]
+[ time 51 ] IO_DONE by JOB 0
+[ time 51 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 15 (of 50) ]
+[ time 52 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 52 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 14 (of 50) ]
+[ time 53 ] IO_START by JOB 0
+IO DONE
+[ time 53 ] Run JOB 1 at PRIORITY 0 [ TICKS 18 ALLOT 1 TIME 10 (of 28) ]
+[ time 54 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 54 ] IO_DONE by JOB 0
+[ time 54 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 13 (of 50) ]
+[ time 55 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 12 (of 50) ]
+[ time 56 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 56 ] IO_START by JOB 0
+IO DONE
+[ time 56 ] Run JOB 1 at PRIORITY 0 [ TICKS 17 ALLOT 1 TIME 9 (of 28) ]
+[ time 57 ] IO_DONE by JOB 0
+[ time 57 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 11 (of 50) ]
+[ time 58 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 58 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 10 (of 50) ]
+[ time 59 ] IO_START by JOB 0
+IO DONE
+[ time 59 ] Run JOB 1 at PRIORITY 0 [ TICKS 16 ALLOT 1 TIME 8 (of 28) ]
+[ time 60 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 60 ] IO_DONE by JOB 0
+[ time 60 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 9 (of 50) ]
+[ time 61 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 8 (of 50) ]
+[ time 62 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 62 ] IO_START by JOB 0
+IO DONE
+[ time 62 ] Run JOB 1 at PRIORITY 0 [ TICKS 15 ALLOT 1 TIME 7 (of 28) ]
+[ time 63 ] IO_DONE by JOB 0
+[ time 63 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 7 (of 50) ]
+[ time 64 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 64 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 6 (of 50) ]
+[ time 65 ] IO_START by JOB 0
+IO DONE
+[ time 65 ] Run JOB 1 at PRIORITY 0 [ TICKS 14 ALLOT 1 TIME 6 (of 28) ]
+[ time 66 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 66 ] IO_DONE by JOB 0
+[ time 66 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 5 (of 50) ]
+[ time 67 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 4 (of 50) ]
+[ time 68 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 68 ] IO_START by JOB 0
+IO DONE
+[ time 68 ] Run JOB 1 at PRIORITY 0 [ TICKS 13 ALLOT 1 TIME 5 (of 28) ]
+[ time 69 ] IO_DONE by JOB 0
+[ time 69 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 3 (of 50) ]
+[ time 70 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 70 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 2 (of 50) ]
+[ time 71 ] IO_START by JOB 0
+IO DONE
+[ time 71 ] Run JOB 1 at PRIORITY 0 [ TICKS 12 ALLOT 1 TIME 4 (of 28) ]
+[ time 72 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 72 ] IO_DONE by JOB 0
+[ time 72 ] Run JOB 0 at PRIORITY 2 [ TICKS 3 ALLOT 1 TIME 1 (of 50) ]
+[ time 73 ] Run JOB 0 at PRIORITY 2 [ TICKS 2 ALLOT 1 TIME 0 (of 50) ]
+[ time 74 ] THROUGHPUT 0.00 ( finished 0 jobs out of 2 )
+[ time 74 ] FINISHED JOB 0
+[ time 74 ] THROUGHPUT 0.01 ( finished 1 jobs out of 2 )
+[ time 74 ] Run JOB 1 at PRIORITY 0 [ TICKS 11 ALLOT 1 TIME 3 (of 28) ]
+[ time 75 ] Run JOB 1 at PRIORITY 0 [ TICKS 10 ALLOT 1 TIME 2 (of 28) ]
+[ time 76 ] THROUGHPUT 0.01 ( finished 1 jobs out of 2 )
+[ time 76 ] Run JOB 1 at PRIORITY 0 [ TICKS 9 ALLOT 1 TIME 1 (of 28) ]
+[ time 77 ] Run JOB 1 at PRIORITY 0 [ TICKS 8 ALLOT 1 TIME 0 (of 28) ]
+[ time 78 ] THROUGHPUT 0.01 ( finished 1 jobs out of 2 )
+[ time 78 ] FINISHED JOB 1
+[ time 78 ] THROUGHPUT 0.03 ( finished 2 jobs out of 2 )
 
 Final statistics:
-  Job  0: startTime   0 - response   0 - turnaround  30 - waiting   0
-  Job  1: startTime   0 - response  30 - turnaround  58 - waiting  50
-  Job  2: startTime  10 - response  22 - turnaround  32 - waiting  22
+  Job  0: startTime   0 - response   0 - turnaround  74 - waiting   0
+  Job  1: startTime   0 - response   2 - turnaround  78 - waiting  50
 
-  Avg  2: startTime n/a - response 17.33 - turnaround 40.00 - waiting 24.00 - throughput 0.05
+  Avg  1: startTime n/a - response 1.00 - turnaround 76.00 - waiting 25.00 - throughput 0.03
 
 

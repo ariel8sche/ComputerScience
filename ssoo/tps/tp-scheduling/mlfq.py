@@ -314,6 +314,12 @@ while finishedJobs < totalJobs:
         job[currJob]['endTime'] = currTime
         # print('BEFORE POP', queue)
         done = queue[currQueue].pop(0)
+
+        throughput = float(finishedJobs) / float(currTime)
+        if currTime % 2 == 0:
+            print('[ time %d ] THROUGHPUT %.2f ( finished %d jobs out of %d )' % (currTime, throughput, finishedJobs, numJobs))
+
+
         # print('AFTER POP', queue)
         assert(done == currJob)
         continue
