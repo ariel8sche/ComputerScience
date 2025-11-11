@@ -1,0 +1,12 @@
+Guia1
+Guia_0.pdf
+fd_prueba
+ls_prueba.txt
+practica0.pdf
+practica1.pdf
+practica2.pdf
+practica3.pdf
+practica4.pdf
+practica5.pdf
+practica6.pdf
+practica7.pdf
