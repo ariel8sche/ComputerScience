@@ -32,7 +32,7 @@ void maggie(){
 	}
 }
 
-void main(void){
+int main(void){
 	
 	pid_t pid_homero = fork();
 	
@@ -49,5 +49,5 @@ void main(void){
         printf("Abraham\n");
         wait(NULL);
 	}
-
+	return 0;
 }

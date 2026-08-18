@@ -18,11 +18,12 @@ b = np.array([1,2,0])
 
 Ab = np.c_[A, b]
 
+print("Matriz escalonada")
 print(row_echelon(Ab))
+print("Despeje")
+print(np.linalg.solve(A,b))
 
-a = -(3/2)
-b = 11/2
-c = -3
+a,b,c = np.linalg.solve(A,b)
 
 # Graficar
 
