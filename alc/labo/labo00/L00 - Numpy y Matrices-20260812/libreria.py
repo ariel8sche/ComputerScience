@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 # Matrices ejemplo
 matriz_cuadrada = np.array([
@@ -237,6 +238,14 @@ def matrizVandermonde(v):
 #print(matrizVandermonde(np.array([2, 3, 4])))
 
 def fibonacci(n):
+    if (n == 0):
+        return 0
+    if (n == 1):
+        return 1
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+def fibonacci_sucesion(n):
     sucesion = np.zeros((n+1,))
     
     def fibonacci_aux(n):
@@ -267,10 +276,20 @@ def numeroAureo(n):
     
     return F[0] / F[1]
 
-print(numeroAureo(10))
+#print(numeroAureo(10))
 
 # Ejercicio 15
-# def matrizFiboncacci(n):
+def matrizFiboncacci(n):
+    A = np.zeros((n,n))
+    
+    for i in range (0,n,1):
+        for j in range (0,n,1):
+            A[i][j] =  fibonacci(i+j)
+    
+    return A
+
+#print(matrizFiboncacci(8))
+
 # Ejercicio 16
 def matrizHilbert(n):
     h = np.zeros((n,n))
@@ -280,3 +299,36 @@ def matrizHilbert(n):
             h[i][j] =  1/(i+j+1)
             
     return h
+
+# Ejercicio 17
+def calcularPolinomios():
+    numeros = np.linspace(-1,1,100)
+    
+    p1 = []
+    p2 = []
+    p3 = []
+    
+    for x in numeros:
+        #p1 = x**5 - x**4 + x**3 - x**2 + x - 1
+        #print(f"polinomio 1 con valor {x} = {p1}\n")
+        #p2 = x**2 + 3
+        #print(f"polinomio 2 con valor {x} = {p2}\n")
+        #p3 = x**10 -2
+        #print(f"polinomio 3 con valor {x} = {p3}\n")
+        p1.append(x**5 - x**4 + x**3 - x**2 + x - 1)
+        p2.append(x**2 + 3)
+        p3.append(x**10 -2)
+        
+    plt.plot(numeros, p1, label="P1")
+    plt.plot(numeros, p2, label="P2")
+    plt.plot(numeros, p3, label="P3")
+
+    plt.xlabel("x")
+    plt.ylabel("P(x)")
+    plt.title("Polinomios")
+    plt.legend()
+    plt.grid()
+
+    plt.show()
+    
+calcularPolinomios()
