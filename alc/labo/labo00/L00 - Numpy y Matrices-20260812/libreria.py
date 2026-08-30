@@ -115,15 +115,15 @@ def traza(A):
 # print(traza(array_1d))
 
 # Ejercicio 6
-def transpuesta(A):
+def traspuesta(A):
     if (A.ndim > 1):
-        matrizTranspuesta = np.zeros((A.shape[1],A.shape[0]))
+        matrizTraspuesta = np.zeros((A.shape[1],A.shape[0]))
     
         for i in range (0,A.shape[0],1):
             for j in range (0,A.shape[1],1):
-                matrizTranspuesta[j][i] = A[i][j]
+                matrizTraspuesta[j][i] = A[i][j]
         
-        return matrizTranspuesta
+        return matrizTraspuesta
 
 # print(matriz_cuadrada)
 # print(transpuesta(matriz_cuadrada))
@@ -136,11 +136,11 @@ def transpuesta(A):
 def esSimetrica(A):
     
     if (esCuadrada(A)):
-        matrizTranspuesta = transpuesta(A)
+        matrizTraspuesta = traspuesta(A)
         
         for i in range (0,A.shape[0],1):
             for j in range (0,A.shape[1],1):
-                if (A[i][j] != matrizTranspuesta[i][j]): # type: ignore
+                if (A[i][j] != matrizTraspuesta[i][j]): # type: ignore
                     return False
         return True
         
