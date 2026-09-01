@@ -8,55 +8,147 @@
 
 enum { READ, WRITE };
 
-int fd_hijo[2];
+// int fd_hijo[2];
+// int fd_padre[2];
+
+// int main(){
+
+//     int numero = 0;
+
+//     pipe(fd_hijo);
+//     pipe(fd_padre);
+
+//     pid_t pid_hijo = fork();
+    
+//     if (pid_hijo < 0) {
+//         perror("fork");
+//         exit(EXIT_FAILURE);
+//     }
+
+//     if (pid_hijo == 0){
+
+//         pid_t pid_padre = getppid();
+
+//         close(fd_padre[READ]);
+//         close(fd_hijo[WRITE]);
+
+//         while(numero < 5){
+//             read(fd_hijo[READ],&numero,sizeof(int));
+//             numero++;
+//             printf("Hijo envia a Padre el valor %d\n",numero);
+//             write(fd_padre[WRITE],&numero,sizeof(int));
+//         }
+
+//         close(fd_hijo[READ]);
+//         close(fd_padre[WRITE]);
+
+//         exit(EXIT_SUCCESS);
+//     }
+
+//     close(fd_padre[WRITE]);
+//     close(fd_hijo[READ]);
+
+//     while (numero < 5){
+//         printf("Padre envia a Hijo el valor %d\n",numero);
+//         write(fd_hijo[WRITE],&numero,sizeof(int));
+//         read(fd_padre[READ],&numero,sizeof(int));
+//         numero++;
+//     }
+
+//     close(fd_padre[READ]);
+//     close(fd_hijo[WRITE]);
+
+//     exit(EXIT_SUCCESS);
+
+//     return 0;
+// }
+
+// Inciso B
+
+int fd_hijo1[2];
+int fd_hijo2[2];
 int fd_padre[2];
 
 int main(){
 
     int numero = 0;
 
-    pipe(fd_hijo);
+    pipe(fd_hijo1);
+    pipe(fd_hijo2);
     pipe(fd_padre);
 
-    pid_t pid_hijo = fork();
+    pid_t pid_hijo1 = fork();
     
-    if (pid_hijo < 0) {
+    if (pid_hijo1 < 0) {
         perror("fork");
         exit(EXIT_FAILURE);
     }
 
-    if (pid_hijo == 0){
+    if (pid_hijo1 == 0){
 
         pid_t pid_padre = getppid();
 
         close(fd_padre[READ]);
-        close(fd_hijo[WRITE]);
+        close(fd_padre[WRITE]);
+        close(fd_hijo1[WRITE]);
+        close(fd_hijo2[READ]);
 
-        while(numero < 5){
-            read(fd_hijo[READ],&numero,sizeof(int));
+        while(numero < 50){
+            read(fd_hijo1[READ],&numero,sizeof(int));
             numero++;
-            printf("Hijo envia a Padre el valor %d\n",numero);
+            printf("Hijo1 envia a Hijo2 el valor %d\n",numero);
+            write(fd_hijo2[WRITE],&numero,sizeof(int));
+        }
+
+        close(fd_hijo1[READ]);
+        close(fd_hijo2[WRITE]);
+
+        exit(EXIT_SUCCESS);
+    }
+
+    pid_t pid_hijo2 = fork();
+
+    if (pid_hijo2 < 0) {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+
+    if (pid_hijo2 == 0){
+
+        pid_t pid_padre = getppid();
+
+        close(fd_padre[READ]);
+        close(fd_hijo1[WRITE]);
+        close(fd_hijo1[WRITE]);
+        close(fd_hijo2[WRITE]);
+
+        while(numero < 50){
+            read(fd_hijo2[READ],&numero,sizeof(int));
+            numero++;
+            printf("Hijo2 envia a Padre el valor %d\n",numero);
             write(fd_padre[WRITE],&numero,sizeof(int));
         }
 
-        close(fd_hijo[READ]);
+        close(fd_hijo2[READ]);
         close(fd_padre[WRITE]);
 
         exit(EXIT_SUCCESS);
     }
 
     close(fd_padre[WRITE]);
-    close(fd_hijo[READ]);
+    close(fd_hijo1[READ]);
+    close(fd_hijo2[WRITE]);
+    close(fd_hijo2[READ]);
 
-    while (numero < 5){
-        printf("Padre envia a Hijo el valor %d\n",numero);
-        write(fd_hijo[WRITE],&numero,sizeof(int));
+    while (numero < 50){
+        printf("Padre envia a Hijo1 el valor %d\n",numero);
+        write(fd_hijo1[WRITE],&numero,sizeof(int));
         read(fd_padre[READ],&numero,sizeof(int));
         numero++;
     }
 
     close(fd_padre[READ]);
-    close(fd_hijo[WRITE]);
+    close(fd_hijo1[WRITE]);
 
     exit(EXIT_SUCCESS);
 
