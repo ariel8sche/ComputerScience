@@ -3,8 +3,11 @@
 # Contiene los tests provistos en el enunciado original.
 import numpy as np
 
+import sys
+sys.path.append("..")
+
 # Se asume que el módulo implementado se llama lab1 y se encuentra en el mismo directorio
-from lab1 import error, error_relativo, matricesIguales, esSimetrica
+from alc import error, error_relativo, matricesIguales, esSimetrica
 
 # Este módulo debe contener las implementaciones de:
 # - error(x, y)

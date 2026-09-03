@@ -1,12 +1,46 @@
 import numpy as np
 
+# Labo 00
+
+# Ejercicio 1
+def esCuadrada(A):
+    if (A.ndim > 1):
+        matrixShape = A.shape
+        return matrixShape[0]==matrixShape[1]
+    else:
+        return False
+
+# Ejercicio 6
+def traspuesta(A):
+    if (A.ndim > 1):
+        matrizTraspuesta = np.zeros((A.shape[1],A.shape[0]))
+    
+        for i in range (0,A.shape[0],1):
+            for j in range (0,A.shape[1],1):
+                matrizTraspuesta[j][i] = A[i][j]
+        
+        return matrizTraspuesta
+
+# Ejercicio 7
+def esSimetrica(A):
+    
+    if (esCuadrada(A)):
+        matrizTraspuesta = traspuesta(A)
+        
+        for i in range (0,A.shape[0],1):
+            for j in range (0,A.shape[1],1):
+                if (A[i][j] != matrizTraspuesta[i][j]): # type: ignore
+                    return False
+        return True
+        
+    return False
+
 # Labo 01
 
 def error(x, y):
     x = np.float32(x)
 
     return abs(x-y)
-
 
 def error_relativo(x, y):
     x = np.float32(x)
