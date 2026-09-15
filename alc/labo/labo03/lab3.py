@@ -29,81 +29,6 @@ def normaliza(X,p):
 
     return Y
 
-def graficar():
-
-    valores_p = [1,2,5,10,100,200,'inf']
-
-    x = np.linspace(-1,1,1000)
-
-    plt.figure(figsize=(8,8))
-
-    for p in valores_p:
-
-        if (p == 'inf'):
-            # Norma infinito:
-            # max(|x|, |y|) = 1
-            plt.plot(
-                [-1, 1, 1, -1, -1],
-                [-1, -1, 1, 1, -1],
-                '--',
-                color='black',
-                label='p = ∞'
-            )
-        else:
-            # De |x|^p + |y|^p = 1 despejamos y
-            y = (1 - np.abs(x)**p)**(1/p)
-
-            # Parte superior e inferior
-            plt.plot(x, y, label=f'p = {p}')
-            plt.plot(x, -y, color=plt.gca().lines[-1].get_color())
-
-
-    plt.axhline(0, color='gray', linewidth=0.5)
-    plt.axvline(0, color='gray', linewidth=0.5)
-
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Vectores de R² con norma p igual a 1')
-    plt.axis('equal')
-    plt.grid(True)
-    plt.legend()
-
-    plt.show()
-
-
-def graficar2():
-    valores_p = [1, 2, 5, 10, 100, 200, 'inf']
-
-    plt.figure(figsize=(8, 8))
-
-    # Puntos sobre una circunferencia
-    theta = np.linspace(0, 2*np.pi, 1000)
-
-    for p in valores_p:
-
-        # Generamos vectores (x,y)
-        X = np.array([[np.cos(t), np.sin(t)] for t in theta])
-
-        # Los normalizamos con nuestra función
-        Y = normaliza(X, p)
-
-        # Graficamos
-        Y = np.array(Y)
-
-        plt.plot(Y[:, 0], Y[:, 1], label=f'p = {p}')
-
-    plt.axis('equal')
-    plt.grid()
-    plt.legend()
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Vectores con norma p = 1')
-
-    plt.show()
-
-
-# graficar()
-# graficar2()
 
 # Ejercicio 2
 
@@ -138,30 +63,32 @@ def normaMatMC(A, q, p, Np):
 
 # Inciso b
 
-def normaExacta(A,p):
-    n, m = A.shape  # m filas, n columnas
-    
-    if (p == 'inf'):
+def normaExacta(A, p=[1,'inf']):
+    n, m = A.shape
+
+    if p == 'inf':
         sum_filas = []
-        for i in range(0, n, 1):
+        for i in range(n):
             fila = 0
-            for j in range(0, m, 1):
+            for j in range(m):
                 fila += abs(A[i][j])
             sum_filas.append(fila)
-        norma_A = max(sum_filas)
-    elif (p == 1):
+        return max(sum_filas)
+
+    elif p == 1:
         sum_columnas = []
-        for j in range(0, m, 1):
+        for j in range(m):
             columna = 0
-            for i in range(0, n, 1):
+            for i in range(n):
                 columna += abs(A[i][j])
             sum_columnas.append(columna)
-        norma_A = max(sum_columnas)
-        
+        return max(sum_columnas)
+
+    elif p == [1, 'inf']:
+        return [normaExacta(A, 1), normaExacta(A, 'inf')]
+
     else:
-        return None 
-    
-    return norma_A
+        return None
 
 def condMC(A, p):
     A_inv = np.linalg.inv(A)
@@ -178,3 +105,79 @@ def condExacto(A, p):
     norma_A_inv = normaExacta(A_inv, p)
     
     return norma_A * norma_A_inv # type: ignore
+
+# def graficar():
+
+#     valores_p = [1,2,5,10,100,200,'inf']
+
+#     x = np.linspace(-1,1,1000)
+
+#     plt.figure(figsize=(8,8))
+
+#     for p in valores_p:
+
+#         if (p == 'inf'):
+#             # Norma infinito:
+#             # max(|x|, |y|) = 1
+#             plt.plot(
+#                 [-1, 1, 1, -1, -1],
+#                 [-1, -1, 1, 1, -1],
+#                 '--',
+#                 color='black',
+#                 label='p = ∞'
+#             )
+#         else:
+#             # De |x|^p + |y|^p = 1 despejamos y
+#             y = (1 - np.abs(x)**p)**(1/p)
+
+#             # Parte superior e inferior
+#             plt.plot(x, y, label=f'p = {p}')
+#             plt.plot(x, -y, color=plt.gca().lines[-1].get_color())
+
+
+#     plt.axhline(0, color='gray', linewidth=0.5)
+#     plt.axvline(0, color='gray', linewidth=0.5)
+
+#     plt.xlabel('x')
+#     plt.ylabel('y')
+#     plt.title('Vectores de R² con norma p igual a 1')
+#     plt.axis('equal')
+#     plt.grid(True)
+#     plt.legend()
+
+#     plt.show()
+
+
+# def graficar2():
+#     valores_p = [1, 2, 5, 10, 100, 200, 'inf']
+
+#     plt.figure(figsize=(8, 8))
+
+#     # Puntos sobre una circunferencia
+#     theta = np.linspace(0, 2*np.pi, 1000)
+
+#     for p in valores_p:
+
+#         # Generamos vectores (x,y)
+#         X = np.array([[np.cos(t), np.sin(t)] for t in theta])
+
+#         # Los normalizamos con nuestra función
+#         Y = normaliza(X, p)
+
+#         # Graficamos
+#         Y = np.array(Y)
+
+#         plt.plot(Y[:, 0], Y[:, 1], label=f'p = {p}')
+
+#     plt.axis('equal')
+#     plt.grid()
+#     plt.legend()
+#     plt.xlabel('x')
+#     plt.ylabel('y')
+#     plt.title('Vectores con norma p = 1')
+
+#     plt.show()
+
+
+# graficar()
+# graficar2()
