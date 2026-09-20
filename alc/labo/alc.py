@@ -343,15 +343,17 @@ def trans_afin(v, theta, s, b):
 # EJERCICIO 1
 
 def norma(x, p):
-    n = len(x)
+    v = np.asarray(x).ravel()
+    
+    n = len(v)
 
     norma = 0
 
     if (p == 'inf'):
-        return max(abs(xi) for xi in x)
+        return max(abs(vi) for vi in v)
 
     for i in range (0, n, 1):
-        norma += (abs(x[i]))**p
+        norma += (abs(v[i]))**p
 
     return norma**(1/p)
 
@@ -604,3 +606,234 @@ def esSDP(A, atol=1e-8):
             return False
     
     return True
+
+# Labo 05
+
+# Ejercicio 1
+
+def proyeccion(v, w):
+    v_col = v.reshape(-1, 1)
+    w_col = w.reshape(-1, 1)
+    
+    v_t = traspuesta(v_col)
+    
+    # Numerador: v^T * w
+    num = mult_matrices(v_t, w_col)[0, 0]
+    # Denominador: v^T * v
+    den = mult_matrices(v_t, v_col)[0, 0]
+    
+    if abs(den) < 1e-15:
+        return np.zeros_like(w)
+        
+    return (num / den) * v  
+
+### Funciones L05-QR
+def QR_con_GS(A,tol=1e-12,retorna_nops=False):
+    """
+    A una matriz de n x n 
+    tol la tolerancia con la que se filtran elementos nulos en R
+    retorna_nops permite (opcionalmente) retornar el numero de operaciones realizado
+    retorna matrices Q y R calculadas con Gram Schmidt (y como tercer argumento opcional, el numero de operaciones).
+    Si la matriz A no es de n x n, debe retornar None
+    """
+    # Guardas para verificar la correctitud de la entrada
+    if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
+        return None
+    
+    if (not esCuadrada(A)):
+        return None
+    
+    # Dimensiones de la matriz A
+    n = A.shape[0]
+    
+    # Contador para las operaciones
+    cant_ops = 0
+    
+    # Matriz Q donde voy a ir guardando los q_i
+    Q = np.zeros((n,n), dtype=np.float64)
+    
+    # Matriz R donde voy a ir guardando los valores r_ij
+    R = np.zeros((n,n), dtype=np.float64)
+    
+    # Primer paso
+    
+    # Col_0 de A
+    a_0 = A[:, 0].copy()
+    
+    # r_00 es la norma 2 de la columna 0 de A
+    r_00 = norma(a_0,2)
+    # es el resultado de n-1 sumas, n multiplicaciones y 1 raiz cuadrada
+    cant_ops += 2 * n
+    
+    # q_0 es el valor a la columna 0 de A normalizada
+    q_0 = a_0 / r_00
+    # sumo las n divisiones 
+    cant_ops += n
+    
+    # de esta forma si multiplicamos q_0 por r_00 no devuelve la col_0 de A
+    
+    # guardo q_0 y r_00 en las matrices Q y R
+    if r_00 > tol:
+        Q[:, 0] = q_0
+        R[0,0] = r_00
+    else:
+        Q[:, 0] = 0.0
+        R[0,0] = 0.00
+    
+    for j in range (1, n, 1):
+        
+        # Llamo al vector ǭ como u_j
+        # ǭ no esta normalizado
+        # Por las definiciones es la columna j de A 
+        # y le voy restando las proyecciones de la columna j de A sobre las columnas de Q ya calculadas
+        u_j = A[:,j].copy()
+        u_j_col = u_j.reshape(n, 1)
+        
+        # Itero sobre las columnas de Q ya calculadas
+        for k in range (0, j, 1):
+            
+            # Me guardo la columna k de Q
+            q_k = Q[:,k].reshape(n, 1)
+            
+            # Coeficiente R[k, j] = q_k^T * a_j (sin usar @)
+            R[k, j] = mult_matrices(traspuesta(q_k), u_j_col)[0, 0]
+            cant_ops += 2 * n - 1  # n productos y n-1 sumas
+            
+            u_j_col -= R[k,j]*q_k
+            cant_ops += 2*n  # n restas del vector
+        
+        # Norma del vector resultante
+        r_jj = norma(u_j_col, 2)
+        cant_ops += 2 * n  # n mult, n-1 sumas, 1 raíz
+        
+        # Normalización y guardado en la columna j de Q
+        if r_jj > tol:
+            R[j, j] = r_jj
+            Q[:, j] = (u_j_col / r_jj).reshape(-1)
+            cant_ops += n  # n divisiones
+        else:
+            R[j, j] = 0.0
+            Q[:, j] = 0.0
+
+    # Limpieza de valores por debajo de la tolerancia en R
+    R[np.abs(R) < tol] = 0.0
+
+    if retorna_nops:
+        return Q, R, cant_ops
+    return Q, R
+
+# Ejercicio 2
+
+def QR_con_HH(A,tol=1e-12,extras=False):
+    """
+    A una matriz de m x n (m>=n)
+    tol la tolerancia con la que se filtran elementos nulos en R
+    retorna matrices Q y R calculadas con reflexiones de Householder
+    Si la matriz A no cumple m>=n, debe retornar None
+    extras : bool, opcional
+        Si es True, devuelve informacion extra sobre el proceso de factorizacion.
+        Por defecto es False. Esto lo hacemos para poder graficar el proceso.
+    Devuelve la factorizacion QR de A usando reflectores de Householder.
+    Devuelve: 
+        Q, R, extra_info (si extras es True)
+        Q, R (si extras es False)
+    extra_info es un diccionario con la clave:
+        'R_matrices': lista de las matrices R en cada paso
+        'Q_matrices': lista de las matrices Q en cada paso
+    """
+    
+    if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
+        return None
+    
+    m, n = A.shape
+    
+    if (m < n):
+        return None
+    
+    R = A.copy().astype(float)
+    
+    R_matrices = []
+    
+    Q = np.identity(m)
+    
+    Q_matrices = []
+    
+    for k in range (0,n,1):
+        x = R[k:m, k]
+        
+        norma_x = norma(x,2)
+        
+        if norma_x < tol:
+            if extras:
+                R_matrices.append(R.copy())
+                Q_matrices.append(Q.copy())
+            continue
+        
+        # alpha = -sign(x1) * ||x||2
+        signo = 1.0 if x[0] >= 0 else -1.0
+        alpha = -signo * norma_x
+        
+        u = x.copy()
+        u[0] -= alpha
+        
+        norma_u = norma(u,2)
+        
+        if (norma_u > tol):
+            u = u / norma_u
+            
+            # Dimension del bloque: (m - k)
+            dim_bloque = m - k
+            u_col = u.reshape(dim_bloque, 1)
+            
+            # Hk = I - 2 * u * u^T (sin usar @)
+            u_uT = mult_matrices(u_col, traspuesta(u_col))
+            H_k = np.eye(dim_bloque, dtype=float) - 2.0 * u_uT
+
+            # H_tilde_k de m x m
+            H_tilde = np.eye(m, dtype=float)
+            H_tilde[k:m, k:m] = H_k
+
+            # Actualizacion de R y Q (sin usar @)
+            R = mult_matrices(H_tilde, R)
+            Q = mult_matrices(Q, traspuesta(H_tilde))
+        else:
+            return None
+
+        if extras:
+            R_matrices.append(R.copy())
+            Q_matrices.append(Q.copy())
+            
+    extra_info = {
+            'R_matrices': R_matrices,
+            'Q_matrices': Q_matrices
+        }
+    
+    if extras:
+        return Q, R, extra_info
+    else:
+        return Q, R
+
+# Ejercicio 3
+
+def calculaQR(A,metodo='RH',tol=1e-12, extra=False):
+    """
+    A una matriz de n x n 
+    tol la tolerancia con la que se filtran elementos nulos en R    
+    metodo = ['RH','GS'] usa reflectores de Householder (RH) o Gram Schmidt (GS) para realizar la factorizacion
+    retorna matrices Q y R calculadas con Gram Schmidt (y como tercer argumento opcional, el numero de operaciones)
+    Si el metodo no esta entre las opciones, retorna None
+    """
+    
+    if (metodo == "RH"):
+        if (extra):
+            return QR_con_HH(A, extras=True)
+        else:
+            return QR_con_HH(A)
+            
+    elif (metodo == "GS"):
+        if (extra):
+            return QR_con_GS(A, retorna_nops=True)
+        else:
+            return QR_con_GS(A)
+    else:
+        return None

@@ -1,0 +1,7 @@
+{
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportOptionalIterable": "none",
+        "reportGeneralTypeIssues": "none",
+        "reportAssignmentType": "none"
+    }
+}
