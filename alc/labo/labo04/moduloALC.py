@@ -106,3 +106,38 @@ def esSDP(A, atol=1e-8):
             return False
     
     return True
+
+def calculaCholesky(A, atol=1e-10):
+    
+    if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
+        return False
+    
+    if not esCuadrada(A):
+        return None
+
+    if not esSDP(A, atol):
+        return None
+    
+    m,n = A.shape
+    
+    L,U, cantOps = calculaLU(A)
+    
+    if (L is None or U is None):
+        return None
+    
+    D = mult_matrices(inversa(L),traspuesta(U))
+    
+    L_traspuesta = traspuesta(L)
+    
+    D_raiz = np.zeros((n,n))
+    
+    for i in range(n):
+        D_raiz[i][i] = np.sqrt(D[i][i])
+
+    L_moño = mult_matrices(L,D_raiz)
+    L_moño_traspuesta = mult_matrices(D_raiz,L_traspuesta)
+    
+    if L_moño is None or L_moño_traspuesta is None:
+        return None
+    
+    return L_moño, L_moño_traspuesta
