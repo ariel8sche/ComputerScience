@@ -1,0 +1,272 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section*{Autovalores, Autovectores y Diagonalización}
+
+% =========================================================================
+% 1. MATRICES DIAGONALES Y SUS PROPIEDADES
+% =========================================================================
+\subsection*{1. Matrices Diagonales}
+
+\textbf{Definición:} Una matriz cuadrada $D \in \mathbb{K}^{n \times n}$ es \emph{diagonal} si todas sus entradas fuera de la diagonal principal son nulas, es decir, $d_{ij} = 0$ para todo $i \neq j$. Se denota habitualmente como:
+\[
+D = \operatorname{diag}(d_1, d_2, \dots, d_n) = \begin{pmatrix}
+d_1 & 0 & \cdots & 0 \\
+0 & d_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & d_n
+\end{pmatrix}
+\]
+
+\textbf{Propiedades Fundamentales:}
+\begin{enumerate}
+    \item \textbf{Potencias de una matriz diagonal:} Para cualquier entero $k \ge 1$:
+    \[
+    D^k = \operatorname{diag}(d_1^k, d_2^k, \dots, d_n^k)
+    \]
+    El costo computacional de calcular $D^k$ es de apenas $O(n)$ multiplicaciones escalares, a diferencia de los $O(k n^3)$ requeridos por una matriz genérica densa.
+    
+    \item \textbf{Determinante y Traza:}
+    \[
+    \det(D) = \prod_{i=1}^n d_i = d_1 \cdot d_2 \cdots d_n, \qquad \operatorname{tr}(D) = \sum_{i=1}^n d_i
+    \]
+    
+    \item \textbf{Inversibilidad e Inversa:} $D$ es inversible si y solo si todos sus elementos diagonales son no nulos ($d_i \neq 0$ para todo $i$). En tal caso:
+    \[
+    D^{-1} = \operatorname{diag}\left(\frac{1}{d_1}, \frac{1}{d_2}, \dots, \frac{1}{d_n}\right)
+    \]
+    
+    \item \textbf{Normas Matriciales:}
+    \[
+    \|D\|_1 = \|D\|_\infty = \|D\|_2 = \max_{1 \le i \le n} |d_i|
+    \]
+    
+    \item \textbf{Número de Condición ($\kappa_2$):} Si $D$ es inversible:
+    \[
+    \kappa_2(D) = \|D\|_2 \cdot \|D^{-1}\|_2 = \frac{\max_{1 \le i \le n} |d_i|}{\min_{1 \le i \le n} |d_i|}
+    \]
+    
+    \item \textbf{Acción geométrica como Transformación Lineal:} La aplicación lineal $T(x) = D x$ descompone el espacio en dilataciones o contracciones independientes a lo largo de los ejes coordenados canónicos:
+    \[
+    D e_i = d_i e_i \quad \text{para cada } i = 1, \dots, n
+    \]
+    No existen efectos de acoplamiento ni rotaciones cruzadas; cada variable $x_i$ evoluciona desacoplada según $y_i = d_i x_i$.
+    
+    \item \textbf{¿Por qué son matrices numéricamente ideales?}
+    \begin{itemize}
+        \item Resolver sistemas lineales $D x = b$ toma solo $n$ divisiones ($x_i = b_i / d_i$), sin acumulación de errores de redondeo por pivoteo.
+        \item Almacenamiento óptimo: requiere $O(n)$ memoria en lugar de $O(n^2)$.
+    \end{itemize}
+\end{enumerate}
+
+% =========================================================================
+% 2. AUTOVALORES Y AUTOVECTORES
+% =========================================================================
+\subsection*{2. Autovalores y Autovectores}
+
+\textbf{Definición de Autovector y Autovalor:} Dada una matriz $A \in \mathbb{K}^{n \times n}$, un escalar $\lambda \in \mathbb{K}$ se denomina \emph{autovalor} (o valor propio) de $A$ si existe un vector \textbf{no nulo} $v \in \mathbb{K}^n$ ($v \neq \mathbf{0}$) tal que:
+\[
+A v = \lambda v
+\]
+El vector $v$ se dice un \emph{autovector} (o vector propio) de $A$ asociado al autovalor $\lambda$.
+
+\vspace{0.5em}
+\noindent
+\textbf{Significado y deducción de la ecuación $(A - \lambda I)v = \mathbf{0}$:}
+Reescribiendo el segundo miembro mediante la matriz identidad ($v = Iv$):
+\[
+A v = \lambda I v \iff A v - \lambda I v = \mathbf{0} \iff (A - \lambda I)v = \mathbf{0}
+\]
+Esta ecuación homogénea expresa que:
+\begin{itemize}
+    \item Un vector $v \neq \mathbf{0}$ es autovector asociado a $\lambda$ si y solo si pertenece al \textbf{núcleo} de la matriz singular $(A - \lambda I)$:
+    \[
+    v \in \operatorname{Nu}(A - \lambda I), \quad v \neq \mathbf{0}
+    \]
+    \item Para que dicho sistema homogéneo admita soluciones no triviales ($v \neq \mathbf{0}$), es condición necesaria y suficiente que la matriz $(A - \lambda I)$ sea \textbf{no inversible / singular}.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent
+\textbf{Propiedades de la matriz $(A - \lambda I)$:}
+\begin{enumerate}
+    \item $\lambda$ es autovalor de $A \iff \det(A - \lambda I) = 0$.
+    \item $\operatorname{rg}(A - \lambda I) < n$.
+    \item El subespacio propio (o autoespacio) asociado a $\lambda$ se define como:
+    \[
+    E_\lambda = \operatorname{Nu}(A - \lambda I) = \{x \in \mathbb{K}^n : (A - \lambda I)x = \mathbf{0}\}
+    \]
+    $E_\lambda$ es un subespacio vectorial de $\mathbb{K}^n$, y el conjunto de autovectores asociados a $\lambda$ es $E_\lambda \setminus \{\mathbf{0}\}$.
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent
+\textbf{Propiedades Generales de los Autovalores y Autovectores:}
+\begin{enumerate}
+    \item Si $A$ es triangular (superior, inferior o diagonal), sus autovalores son exactamente los elementos de su diagonal principal: $\lambda_i = a_{ii}$.
+    \item $A$ es inversible si y solo si $\lambda = 0$ \textbf{no} es autovalor de $A$.
+    \item Si $\lambda$ es autovalor de $A$ con autovector $v$:
+    \begin{itemize}
+        \item $\lambda^k$ es autovalor de $A^k$ con el mismo autovector $v$ ($k \in \mathbb{N}$).
+        \item Si $A$ es inversible, $\lambda^{-1}$ es autovalor de $A^{-1}$ con el mismo autovector $v$.
+        \item $\lambda + c$ es autovalor de $(A + cI)$ con el mismo autovector $v$.
+    \end{itemize}
+    \item $A$ y su traspuesta $A^T$ tienen exactamente los mismos autovalores (ya que $\det(A^T - \lambda I) = \det((A - \lambda I)^T) = \det(A - \lambda I)$).
+    \item Autovectores asociados a autovalores distintos son linealmente independientes: si $\lambda_1 \neq \lambda_2$, entonces $E_{\lambda_1} \cap E_{\lambda_2} = \{\mathbf{0}\}$.
+\end{enumerate}
+
+% =========================================================================
+% 3. POLINOMIO CARACTERÍSTICO
+% =========================================================================
+\subsection*{3. Polinomio Característico}
+
+\textbf{Definición:} Dado $A \in \mathbb{K}^{n \times n}$, se define su \emph{polinomio característico} como:
+\[
+\chi_A(\lambda) = \det(A - \lambda I) \quad \text{(o equivalentemente } \det(\lambda I - A)\text{)}
+\]
+\begin{itemize}
+    \item $\chi_A(\lambda)$ es un polinomio de grado $n$ en la variable $\lambda$.
+    \item Los autovalores de $A$ son exactamente las \textbf{raíces} de la ecuación característica:
+    \[
+    \chi_A(\lambda) = 0
+    \]
+\end{itemize}
+
+\textbf{Propiedades Estructurales:}
+\begin{enumerate}
+    \item \textbf{Forma polinomial:} Para una matriz de tamaño $n \times n$:
+    \[
+    \chi_A(\lambda) = (-1)^n \lambda^n + (-1)^{n-1} \operatorname{tr}(A) \lambda^{n-1} + \dots + \det(A)
+    \]
+    \item \textbf{Relaciones de Viète (Traza y Determinante):} Factorizando en $\mathbb{C}$ con raíces $\lambda_1, \dots, \lambda_n$:
+    \[
+    \sum_{i=1}^n \lambda_i = \operatorname{tr}(A), \qquad \prod_{i=1}^n \lambda_i = \det(A)
+    \]
+    \item \textbf{Invarianza por Semejanza:} Matrices semejantes ($B = C^{-1} A C$) poseen exactamente el mismo polinomio característico y, por ende, los mismos autovalores:
+    \[
+    \chi_B(\lambda) = \det(C^{-1}(A - \lambda I)C) = \det(C^{-1})\det(A - \lambda I)\det(C) = \chi_A(\lambda)
+    \]
+    \item \textbf{Teorema de Cayley-Hamilton:} Toda matriz cuadrada anula a su propio polinomio característico: $\chi_A(A) = \mathbf{0}$.
+\end{enumerate}
+
+% =========================================================================
+% 4. MULTIPLICIDAD ARITMÉTICA Y MULTIPLICIDAD GEOMÉTRICA
+% =========================================================================
+\subsection*{4. Multiplicidad Aritmética y Geométrica}
+
+Sea $\lambda_0$ un autovalor de $A \in \mathbb{K}^{n \times n}$:
+
+\subsubsection*{A. Multiplicidad Aritmética / Algebraica ($m_a(\lambda_0)$)}
+\textbf{Definición:} Es el orden de multiplicidad de $\lambda_0$ como raíz del polinomio característico $\chi_A(\lambda)$. Es decir, es el mayor entero positivo $k$ tal que $(\lambda - \lambda_0)^k$ divide a $\chi_A(\lambda)$:
+\[
+\chi_A(\lambda) = (\lambda - \lambda_0)^{m_a(\lambda_0)} \cdot q(\lambda), \quad \text{con } q(\lambda_0) \neq 0
+\]
+
+\subsubsection*{B. Multiplicidad Geométrica ($m_g(\lambda_0)$)}
+\textbf{Definición:} Es la dimensión del autoespacio asociado a $\lambda_0$, es decir, la cantidad máxima de autovectores linealmente independientes asociados a ese autovalor:
+\[
+m_g(\lambda_0) = \dim(E_{\lambda_0}) = \dim(\operatorname{Nu}(A - \lambda_0 I)) = n - \operatorname{rg}(A - \lambda_0 I)
+\]
+
+\subsubsection*{C. Desigualdades Fundamentales}
+Para todo autovalor $\lambda_0$ de una matriz $A \in \mathbb{K}^{n \times n}$ se satisface estrictamente:
+\[
+1 \le m_g(\lambda_0) \le m_a(\lambda_0) \le n
+\]
+\begin{itemize}
+    \item $m_g \ge 1$ porque por definición de autovalor debe existir al menos un autovector no nulo ($E_{\lambda_0} \neq \{\mathbf{0}\}$).
+    \item Si para un autovalor ocurre que $m_g(\lambda_0) < m_a(\lambda_0)$, se dice que el autovalor es \emph{defectivo}.
+\end{itemize}
+
+\vspace{0.4em}
+\noindent
+\textbf{Ejemplo Comparativo Ilustrativo:}
+Consideremos las dos siguientes matrices triangulares en $\mathbb{R}^2$:
+\[
+A_1 = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix}, \qquad A_2 = \begin{pmatrix} 3 & 1 \\ 0 & 3 \end{pmatrix}
+\]
+Ambas poseen el mismo polinomio característico: $\chi_{A_1}(\lambda) = \chi_{A_2}(\lambda) = (3 - \lambda)^2$, por lo que el único autovalor es $\lambda = 3$ con \textbf{multiplicidad aritmética} $m_a(3) = 2$.
+\begin{itemize}
+    \item Para $A_1$: $A_1 - 3I = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$. Su núcleo es todo $\mathbb{R}^2$:
+    \[
+    m_g(3) = \dim(\operatorname{Nu}(A_1 - 3I)) = 2 - 0 = 2 = m_a(3) \implies \text{No defectiva (diagonal)}
+    \]
+    \item Para $A_2$: $A_2 - 3I = \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$. Su rango es $1$:
+    \[
+    m_g(3) = \dim(\operatorname{Nu}(A_2 - 3I)) = 2 - \operatorname{rg}(A_2 - 3I) = 2 - 1 = 1 < m_a(3) \implies \text{Defectiva}
+    \]
+\end{itemize}
+
+% =========================================================================
+% 5. DIAGONALIZABILIDAD Y FACTORIZACIÓN A = C D C^-1
+% =========================================================================
+\subsection*{5. Diagonalizabilidad y Factorización $A = C D C^{-1}$}
+
+\textbf{Definición:} Una matriz $A \in \mathbb{K}^{n \times n}$ se dice \emph{diagonalizable} si es semejante a una matriz diagonal; es decir, si existe una matriz inversible $C \in \mathbb{K}^{n \times n}$ y una matriz diagonal $D \in \mathbb{K}^{n \times n}$ tales que:
+\[
+A = C D C^{-1} \iff C^{-1} A C = D
+\]
+
+\textbf{Teorema Fundamental de Diagonalización:}
+Una matriz $A \in \mathbb{K}^{n \times n}$ es diagonalizable en $\mathbb{K}$ si y solo si existe una \textbf{base de $\mathbb{K}^n$ formada exclusivamente por autovectores de $A$}.
+
+\vspace{0.4em}
+\noindent
+\textbf{Construcción explícita de $C$ y $D$:}
+Si $v_1, v_2, \dots, v_n$ son $n$ autovectores LI con autovalores asociados $\lambda_1, \lambda_2, \dots, \lambda_n$:
+\begin{enumerate}
+    \item La matriz de paso $C$ se construye disponiendo los autovectores en columnas:
+    \[
+    C = \begin{pmatrix} v_1 & v_2 & \cdots & v_n \end{pmatrix}
+    \]
+    \item La matriz diagonal $D$ contiene a los autovalores en el mismo orden de columnas:
+    \[
+    D = \operatorname{diag}(\lambda_1, \lambda_2, \dots, \lambda_n) = \begin{pmatrix}
+    \lambda_1 & & 0 \\
+    & \ddots & \\
+    0 & & \lambda_n
+    \end{pmatrix}
+    \]
+    \item \emph{Demostración por bloques:}
+    \[
+    A C = A \begin{pmatrix} v_1 & \cdots & v_n \end{pmatrix} = \begin{pmatrix} A v_1 & \cdots & A v_n \end{pmatrix} = \begin{pmatrix} \lambda_1 v_1 & \cdots & \lambda_n v_n \end{pmatrix}
+    \]
+    Por otro lado, por multiplicación por bloques a derecha:
+    \[
+    C D = \begin{pmatrix} v_1 & \cdots & v_n \end{pmatrix} \begin{pmatrix} \lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_n \end{pmatrix} = \begin{pmatrix} \lambda_1 v_1 & \cdots & \lambda_n v_n \end{pmatrix}
+    \]
+    Como $A C = C D$ y los vectores $v_i$ son LI ($C$ es inversible), multiplicando a derecha por $C^{-1}$ se concluye $A = C D C^{-1}$.
+\end{enumerate}
+
+\vspace{0.5em}
+\noindent
+\textbf{Criterios y Teoremas de Diagonalizabilidad:}
+\begin{enumerate}
+    \item \textbf{Criterio por Multiplicidades:} $A$ es diagonalizable si y solo si:
+    \begin{itemize}
+        \item El polinomio característico se factoriza completamente en raíces en el cuerpo $\mathbb{K}$.
+        \item Para cada autovalor $\lambda_i$, su multiplicidad geométrica coincide con la aritmética:
+        \[
+        m_g(\lambda_i) = m_a(\lambda_i) \quad \text{para todo } i
+        \]
+    \end{itemize}
+    \item \textbf{Condición Suficiente (pero no necesaria):} Si $A \in \mathbb{K}^{n \times n}$ tiene $n$ autovalores \textbf{distintos dos a dos}, entonces $A$ es automáticamente diagonalizable (pues $1 \le m_g(\lambda_i) \le m_a(\lambda_i) = 1$ para todo $i$).
+    \item \textbf{Teorema Espectral para Matrices Simétricas Reales:} Si $A \in \mathbb{R}^{n \times n}$ es simétrica ($A^T = A$), entonces:
+    \begin{itemize}
+        \item Todos sus autovalores son reales ($\lambda_i \in \mathbb{R}$).
+        \item $A$ es \textbf{diagonalizable ortogonalmente}: existe una matriz ortogonal $Q$ ($Q^T Q = I$) tal que:
+        \[
+        A = Q D Q^T
+        \]
+        donde las columnas de $Q$ constituyen una base ortonormal (BON) de autovectores de $\mathbb{R}^n$.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}

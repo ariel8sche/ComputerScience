@@ -1,0 +1,498 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noquoting]{babel} % <--- es-noquoting evita el conflicto con '>'
+\usepackage{amsmath,amssymb}
+\usepackage{geometry}
+\usepackage{tikz}
+\usetikzlibrary{babel}                  % <--- Hace a TikZ compatible con babel
+
+\geometry{margin=2.5cm}
+
+\begin{document}
+
+\section*{Ortogonalidad, Ortonormalidad, Bases, Proyección y Factorización QR}
+
+% =========================================================================
+% RECUADRO RECORDATORIO DE PRODUCTO INTERNO
+% =========================================================================
+\noindent
+\fbox{
+    \parbox{0.96\textwidth}{
+        \textbf{Recordatorio: Producto Interno Canónico}
+        \vspace{0.4em}
+        \begin{itemize}
+            \item En $\mathbb{R}^n$: dados dos vectores $x, y \in \mathbb{R}^n$,
+            \[
+            \langle x, y \rangle = x^T y = \sum_{i=1}^n x_i y_i
+            \]
+            \item En $\mathbb{C}^n$: dados dos vectores $x, y \in \mathbb{C}^n$,
+            \[
+            \langle x, y \rangle = x^* y = \sum_{i=1}^n \overline{x_i} y_i
+            \]
+            donde $x^* = \overline{x}^T$ denota el vector fila transpuesto conjugado.
+        \end{itemize}
+    }
+}
+\vspace{1.2em}
+
+% =========================================================================
+% 1. ORTOGONALIDAD O PERPENDICULARIDAD
+% =========================================================================
+\subsection*{1. Ortogonalidad o Perpendicularidad}
+
+\textbf{Definición:} Dados dos vectores no nulos $u, v \in \mathbb{K}^n$, decimos que son \emph{ortogonales} o \emph{perpendiculares} ($u \perp v$) si y solo si su producto interno es nulo:
+\[
+\langle u, v \rangle = u^* v = 0
+\]
+En el caso real $\mathbb{R}^n$, la desigualdad de Cauchy-Schwarz permite definir el ángulo $\theta$ entre $u$ y $v$ mediante:
+\[
+\cos(\theta) = \frac{\langle u, v \rangle}{\|u\|_2 \, \|v\|_2}
+\]
+Por lo tanto, $\theta = \frac{\pi}{2}$ (ángulo recto de $90^\circ$) ocurre si y solo si $\langle u, v \rangle = 0$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1, >=stealth]
+    % Ejes cartesianos
+    \draw[->, gray!60] (-2,0) -- (4,0) node[right, black] {$x_1$};
+    \draw[->, gray!60] (0,-1) -- (0,3.5) node[above, black] {$x_2$};
+
+    % Vectores ortogonales: u = (3, 1), v = (-1, 3)
+    \draw[->, very thick, blue] (0,0) -- (3,1) node[below right] {$u = (3, 1)$};
+    \draw[->, very thick, red] (0,0) -- (-1,3) node[above left] {$v = (-1, 3)$};
+
+    % Ángulo recto
+    \draw[thick] (0.28, 0.09) -- (0.19, 0.38) -- (-0.09, 0.28);
+    \node at (0.45, 0.5) {$\theta = 90^\circ$};
+\end{tikzpicture}
+\end{center}
+
+% =========================================================================
+% 2. DEFINICIÓN DE CONJUNTO ORTOGONAL
+% =========================================================================
+\subsection*{2. Definición de Conjunto Ortogonal}
+
+Una colección de vectores no nulos $\{v_1, v_2, \dots, v_k\} \subset \mathbb{K}^n$ se dice un \emph{conjunto ortogonal} si todos sus pares son perpendiculares entre sí:
+\[
+v_i^* v_j = 0 \quad \text{para todo } i \neq j
+\]
+\textbf{Propiedad fundamental:} Todo conjunto ortogonal de vectores no nulos es \emph{linealmente independiente} (LI).
+
+% =========================================================================
+% 3. DEFINICIÓN DE CONJUNTO ORTONORMAL
+% =========================================================================
+\subsection*{3. Definición de Conjunto Ortonormal}
+
+Una colección de vectores $\{q_1, q_2, \dots, q_k\} \subset \mathbb{K}^n$ es un \emph{conjunto ortonormal} si es ortogonal y además cada uno de sus vectores tiene norma euclídea unitaria ($\|q_i\|_2 = 1$). De forma compacta:
+\[
+q_i^* q_j = \delta_{ij} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}
+\]
+donde $\delta_{ij}$ es la delta de Kronecker.
+
+
+% =========================================================================
+% 4. PASO DE CONJUNTO ORTOGONAL A ORTONORMAL
+% =========================================================================
+\subsection*{4. Paso de un Conjunto Ortogonal a uno Ortonormal: Normalización}
+
+Si se dispone de un conjunto $\{v_1, \dots, v_k\}$ de vectores no nulos que \emph{ya es ortogonal} ($v_i^* v_j = 0$ para $i \neq j$), para convertirlo en un conjunto ortonormal basta con \textbf{normalizar} cada uno de sus elementos:
+\[
+    q_i = \frac{v_i}{\|v_i\|_2} \quad \text{para cada } i = 1, \dots, k
+    \]
+    El conjunto resultante $\{q_1, \dots, q_k\}$ es automáticamente un conjunto ortonormal:
+    \begin{enumerate}
+        \item Cada vector tiene norma 1:
+        \[
+            \|q_i\|_2 = \left\| \frac{v_i}{\|v_i\|_2} \right\|_2 = \frac{\|v_i\|_2}{\|v_i\|_2} = 1
+            \]
+            \item Se preserva la ortogonalidad para $i \neq j$:
+            \[
+                q_i^* q_j = \left( \frac{v_i}{\|v_i\|_2} \right)^* \left( \frac{v_j}{\|v_j\|_2} \right) = \frac{v_i^* v_j}{\|v_i\|_2 \|v_j\|_2} = \frac{0}{\|v_i\|_2 \|v_j\|_2} = 0
+                \]
+            \end{enumerate}
+            En consecuencia, $q_i^* q_j = \delta_{ij}$. Si el conjunto original $\{v_1, \dots, v_n\}$ era una base ortogonal de $\mathbb{K}^n$, entonces $\{q_1, \dots, q_n\}$ es una \textbf{base ortonormal (BON)}.
+            
+\vspace{0.4em}
+\noindent
+\emph{Observación:} Si el conjunto de partida es únicamente linealmente independiente (LI) pero no es ortogonal, dividir cada vector por su norma solo los hace unitarios pero \emph{no ortogonales}. En ese caso general, es necesario aplicar previamente el proceso de ortogonalización de Gram-Schmidt.
+
+% =========================================================================
+% 5. DEFINICIÓN DE BASE ORTONORMAL (BON)
+% =========================================================================
+\subsection*{5. Definición de Base Ortonormal BON}
+
+Un conjunto $B = \{q_1, q_2, \dots, q_n\} \subset \mathbb{K}^n$ es una \emph{base ortonormal} (BON) si es una base de $\mathbb{K}^n$ y sus elementos forman un conjunto ortonormal.
+
+
+% =========================================================================
+% 6. PROPIEDADES DE UNA BASE ORTONORMAL Y MATRICES DE CAMBIO DE BASE
+% =========================================================================
+\subsection*{6. Coordenadas y Matrices de Cambio de Base en una BON}
+
+
+\textbf{Cálculo directo de coordenadas:} Dada una base ortonormal $B = \{q_1, \dots, q_n\}$ de $\mathbb{K}^n$, cualquier vector $w \in \mathbb{K}^n$ se expresa de forma única como:
+\[
+    w = \sum_{i=1}^n \alpha_i q_i
+    \]
+    Al multiplicar a izquierda por $q_j^*$, la ortonormalidad anula todos los términos con $i \neq j$:
+    \[
+        q_j^* w = \sum_{i=1}^n \alpha_i (q_j^* q_i) = \alpha_j
+        \]
+        Por lo tanto, las coordenadas en una base ortonormal se obtienen mediante productos internos directos, sin resolver sistemas de ecuaciones:
+        \[
+            (w)_B = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix} = \begin{pmatrix} q_1^* w \\ \vdots \\ q_n^* w \end{pmatrix} = Q^* w
+            \]
+            donde $Q = \begin{pmatrix} q_1 & \cdots & q_n \end{pmatrix}$. Además, se cumple la \emph{Identidad de Parseval}:
+            \[
+                \|w\|_2^2 = \sum_{i=1}^n |\alpha_i|^2
+                \]
+                
+    \vspace{0.6em}
+    \noindent
+    \textbf{Matrices de cambio de base e inversa (Inciso b):}
+                
+    Dada una base $B = \{v_1, v_2, \dots, v_n\}$ de $\mathbb{K}^n$ y la base canónica $E = \{e_1, \dots, e_n\}$:
+    
+    \begin{itemize}
+        \item \textbf{Matriz de cambio de $B$ a canónica ($C_{BE}$):} Sus columnas son directamente los vectores de la base $B$ expresados en la canónica:
+            \[
+                C_{BE} = \begin{pmatrix} v_1 & v_2 & \cdots & v_n \end{pmatrix}
+            \]
+        Esta matriz mapea coordenadas según $(v)_E = C_{BE} (v)_B$.
+    
+        \item \textbf{Matriz de cambio de canónica a $B$ ($C_{EB}$):} Efectúa el camino inverso:
+            \[
+                (v)_B = C_{EB} (v)_E \implies C_{EB} \cdot C_{BE} = I_n \iff C_{EB} = (C_{BE})^{-1}
+            \]
+        \begin{itemize}
+            \item En el caso general, hallar $C_{EB}$ requiere invertir la matriz mediante Gauss-Jordan.
+    
+            \item Si la base $B$ es \textbf{ortogonal}, su inversa se halla sin recurrir a Gauss-Jordan disponiendo los vectores como filas conjugadas divididos por su norma al cuadrado:
+                \[
+                    C_{EB} = \begin{pmatrix} \frac{v_1^*}{\|v_1\|_2^2} \\ \vdots \\ \frac{v_n^*}{\|v_n\|_2^2} \end{pmatrix}
+                \]
+        
+            \item Si la base $B$ es \textbf{ortonormal}, como $\|v_i\|_2^2 = 1$ para todo $i$, la matriz $C_{EB}$ colapsa a:
+                \[
+                    C_{EB} = \begin{pmatrix} v_1^* \\ \vdots \\ v_n^* \end{pmatrix} = \begin{pmatrix} v_1 & \cdots & v_n \end{pmatrix}^* = C_{BE}^*
+                \]
+            \item Demostrando que en toda base ortonormal, la inversa de la matriz de cambio de base es exactamente su adjunta: $C_{EB} = C_{BE}^*$.
+        \end{itemize}
+\end{itemize}
+
+% =========================================================================
+% 7. TEORÍA GENERAL DE PROYECTORES Y PROYECCIÓN ORTOGONAL
+% =========================================================================
+\subsection*{7. Teoría General de Proyectores y Proyección Ortogonal}
+
+\subsubsection*{A. Definición Formal y Caracterización de un Proyector}
+Una transformación lineal $f: V \to V$ (o su matriz asociada $P \in \mathbb{K}^{n \times n}$) se dice un \textbf{proyector} si es \emph{idempotente}:
+\[
+f \circ f = f \iff P^2 = P
+\]
+\textbf{Propiedades estructurales fundamentales:}
+\begin{enumerate}
+    \item \textbf{Invariancia sobre la imagen:} Si $x \in \operatorname{Im}(f)$, entonces $f(x) = x$. (Todo vector que ya pertenece a la imagen permanece idéntico).
+    \item \textbf{Anulación sobre el núcleo:} Si $y \in \operatorname{Nu}(f)$, por definición $f(y) = \mathbf{0}$.
+    \item \textbf{Descomposición en Suma Directa:} Todo proyector induce una partición única del espacio vectorial:
+    \[
+    V = \operatorname{Im}(f) \oplus \operatorname{Nu}(f)
+    \]
+    Por el Teorema de la Dimensión, $\dim(V) = \dim(\operatorname{Im}(f)) + \dim(\operatorname{Nu}(f))$. Todo vector $v \in V$ se descompone de forma \textbf{única} como:
+    \[
+    v = x + y, \quad \text{con } x \in \operatorname{Im}(f) \text{ e } y \in \operatorname{Nu}(f) \implies f(v) = f(x) + f(y) = x + \mathbf{0} = x
+    \]
+    \item \textbf{Proyector Complementario:} Si $P$ es un proyector, la transformación $I - P$ también es un proyector y cumple:
+    \[
+    \operatorname{Im}(I - P) = \operatorname{Nu}(P), \qquad \operatorname{Nu}(I - P) = \operatorname{Im}(P)
+    \]
+    \item \textbf{Espectro:} Los únicos autovalores posibles de un proyector son $\lambda \in \{0, 1\}$.
+\end{enumerate}
+
+\subsubsection*{B. Proyector Oblicuo vs. Proyector Ortogonal}
+\begin{itemize}
+    \item \textbf{Proyector Oblicuo:} Ocurre cuando la suma es directa pero los subespacios no son perpendiculares ($\operatorname{Nu}(f) \not\perp \operatorname{Im}(f)$).
+    \item \textbf{Proyector Ortogonal:} Ocurre cuando el núcleo es exactamente el \textbf{complemento ortogonal} de la imagen:
+    \[
+    \operatorname{Nu}(f) = (\operatorname{Im}(f))^\perp \iff \operatorname{Im}(f) \perp \operatorname{Nu}(f)
+    \]
+    \textbf{Teorema de Caracterización:} Para un proyector $P$, las siguientes afirmaciones son equivalentes:
+    \begin{enumerate}
+        \item $P$ es un proyector ortogonal.
+        \item $P$ es autoadjunto / simétrico: $P^* = P$ (o $P^T = P$ en los reales).
+        \item $\|v\|_2^2 = \|Pv\|_2^2 + \|(I - P)v\|_2^2$ para todo $v \in V$ (Teorema de Pitágoras).
+        \item $\|P\|_2 = 1$ (si $P \neq 0$).
+    \end{enumerate}
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1, >=stealth]
+    % Recta generada por v
+    \draw[thick, dashed, gray] (-1,-0.25) -- (5,1.25) node[right, black] {$\operatorname{Im}(P) = \langle v \rangle$};
+
+    % Vectores
+    \draw[->, very thick, black] (0,0) -- (4,1) node[below right] {$v$};
+    \draw[->, very thick, blue] (0,0) -- (2,2.8) node[above left] {$w$};
+
+    % Proyección ortogonal sobre v
+    \draw[->, very thick, red] (0,0) -- (2.54, 0.635) node[below right] {$P_v(w)$};
+
+    % Segmento perpendicular de error perteneciente al nucleo
+    \draw[thick, cyan, dashed] (2,2.8) -- (2.54, 0.635) node[midway, right] {$e = w - P_v(w) \in \operatorname{Nu}(P)$};
+
+    % Símbolo de perpendicularidad
+    \draw[thick] (2.42, 0.88) -- (2.16, 0.82) -- (2.28, 0.57);
+\end{tikzpicture}
+\end{center}
+
+\subsubsection*{C. Determinación de Subespacios: Ecuaciones Implícitas y Matrices}
+Para definir o construir proyectores se requiere extraer bases del núcleo y de la imagen:
+
+\paragraph{1. Subespacio dado por una Ecuación Implícita Homogénea:}
+Dado el hiperplano $S = \{x \in \mathbb{R}^n : a_1 x_1 + a_2 x_2 + \dots + a_n x_n = 0\}$:
+\begin{itemize}
+    \item La ecuación representa un producto escalar canónico: $n^T x = 0$, donde el vector normal es directamente el vector formado por los coeficientes:
+    \[
+    n = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix} \in S^\perp
+    \]
+    Por ende, el complemento ortogonal es la recta $S^\perp = \langle n \rangle$, de dimensión $1$.
+    \item Para hallar una base de $S$, se despeja una variable principal (ej. $x_1 = -\frac{1}{a_1}\sum_{k=2}^n a_k x_k$) y se separan las $n-1$ variables libres, obteniendo una base de $n-1$ vectores.
+\end{itemize}
+
+\paragraph{2. Subespacio asociado a una Matriz $A \in \mathbb{R}^{m \times n}$:}
+\begin{itemize}
+    \item \textbf{Espacio Imagen ($\operatorname{Im}(A) = \operatorname{col}(A)$):} Es el subespacio generado por las \textbf{columnas} de $A$:
+    \[
+    \operatorname{Im}(A) = \langle c_1, c_2, \dots, c_n \rangle \subseteq \mathbb{R}^m, \qquad \dim(\operatorname{Im}(A)) = \operatorname{rg}(A)
+    \]
+    \item \textbf{Espacio Núcleo ($\operatorname{Nu}(A) = \ker(A)$):} Es el conjunto de soluciones del sistema homogéneo $A x = \mathbf{0}$:
+    \[
+    \operatorname{Nu}(A) = \{x \in \mathbb{R}^n : A x = \mathbf{0}\} \subseteq \mathbb{R}^n, \qquad \dim(\operatorname{Nu}(A)) = n - \operatorname{rg}(A)
+    \]
+    \item \textbf{Ortogonalidad fundamental:} Se cumple rigurosamente que $(\operatorname{Im}(A))^\perp = \operatorname{Nu}(A^T)$ y $(\operatorname{Nu}(A))^\perp = \operatorname{Im}(A^T)$.
+\end{itemize}
+
+\subsubsection*{D. Construcción Práctica de Proyectores}
+
+\paragraph{1. A partir de una Base del Espacio (Teorema Fundamental de las TL):}
+Para construir un proyector $f: \mathbb{K}^n \to \mathbb{K}^n$ con imagen $S$ y núcleo $N$ ($S \oplus N = \mathbb{K}^n$):
+\begin{enumerate}
+    \item Se eligen bases de cada subespacio: $\{v_1, \dots, v_k\}$ de $S$ y $\{w_{k+1}, \dots, w_n\}$ de $N$.
+    \item Se define $f$ sobre la base completa $B = \{v_1, \dots, v_k, w_{k+1}, \dots, w_n\}$:
+    \[
+    f(v_i) = v_i \quad (1 \le i \le k), \qquad f(w_j) = \mathbf{0} \quad (k+1 \le j \le n)
+    \]
+    \item La matriz asociada en base $B$ es diagonal por bloques: $[f]_B = \begin{pmatrix} I_k & 0 \\ 0 & 0 \end{pmatrix}$.
+\end{enumerate}
+
+\paragraph{2. Fórmulas Explícitas para Proyectores Ortogonales:}
+\begin{itemize}
+    \item \textbf{Sobre una Recta ($\dim = 1$):} Proyección sobre la dirección de $v \neq 0$:
+    \[
+    P_v(w) = \frac{v^* w}{\|v\|_2^2} v = \left( \frac{v v^*}{\|v\|_2^2} \right) w
+    \]
+    \item \textbf{Sobre un Subespacio $S$ vía Base Ortonormal BON $\{q_1, \dots, q_k\}$:}
+    \[
+    P_S(w) = \sum_{i=1}^k P_{q_i}(w) = \sum_{i=1}^k (q_i^* w) q_i = Q Q^* w \implies P_S = Q Q^*
+    \]
+    donde $Q = \begin{pmatrix} q_1 & \cdots & q_k \end{pmatrix}$ cumple $Q^* Q = I_k$.
+    \item \textbf{Sobre la Imagen de una Matriz $A$ (sin ortonormalizar previamente):}
+    Si las columnas de $A \in \mathbb{K}^{m \times k}$ son LI, la matriz de proyección ortogonal sobre $\operatorname{Im}(A)$ es:
+    \[
+    P = A (A^* A)^{-1} A^*
+    \]
+    *(Si $A = QR$ es la factorización QR reducida, $P = QR(R^* Q^* Q R)^{-1} R^* Q^* = Q Q^*$).*
+    \item \textbf{Por Complemento Ortogonal (El camino más rápido cuando $\dim(S) = n - 1$):}
+    Si $S$ es un plano/hiperplano con vector normal unitario $n$ ($\|n\|_2 = 1$):
+    \[
+    P_S(w) = w - P_n(w) = w - (n^* w) n \implies P_S = I - n n^*
+    \]
+\end{itemize}
+
+% =========================================================================
+% FACTORIZACIÓN QR: GRAM-SCHMIDT Y REFLEXIONES DE HOUSEHOLDER
+% =========================================================================
+\subsection*{Factorización QR}
+
+Dada una matriz $A \in \mathbb{R}^{m \times n}$ con $m \ge n$ y columnas linealmente independientes, la factorización $QR$ descompone a la matriz como:
+\[
+A = Q R
+\]
+donde:
+\begin{itemize}
+    \item $Q \in \mathbb{R}^{m \times m}$ (o reducida en $\mathbb{R}^{m \times n}$) posee columnas ortonormales ($Q^T Q = I$).
+    \item $R \in \mathbb{R}^{m \times n}$ (o reducida cuadrada en $\mathbb{R}^{n \times n}$) es triangular superior ($r_{ij} = 0$ para todo $i > j$).
+\end{itemize}
+
+% -------------------------------------------------------------------------
+\subsubsection*{Método 1: Ortogonalización de Gram-Schmidt Modificado (MGS)}
+
+\paragraph{Procedimiento Práctico a Mano (en Papel)}
+Para una matriz $A = \begin{pmatrix} a_1 & a_2 & \cdots & a_n \end{pmatrix} \in \mathbb{R}^{n \times n}$:
+\begin{enumerate}
+    \item \textbf{Primera columna ($j = 1$):}
+    \begin{itemize}
+        \item Calcular la longitud: $r_{11} = \|a_1\|_2 = \sqrt{\sum_i a_{i1}^2}$.
+        \item Normalizar: $q_1 = \frac{a_1}{r_{11}}$.
+    \end{itemize}
+    
+    \item \textbf{Siguientes columnas ($j = 2, \dots, n$):}
+    \begin{itemize}
+        \item Inicializar el acumulador: $\tilde{q}_j = a_j$.
+        \item Para cada vector ortonormal previo $q_k$ ($k = 1, \dots, j - 1$):
+        \[
+        r_{kj} = q_k^T \tilde{q}_j \quad \text{(coeficiente de proyección)}
+        \]
+        \[
+        \tilde{q}_j \leftarrow \tilde{q}_j - r_{kj} q_k \quad \text{(restar la componente paralela)}
+        \]
+        \item Medir la norma del residuo ortogonal: $r_{jj} = \|\tilde{q}_j\|_2$.
+        \item Normalizar: $q_j = \frac{\tilde{q}_j}{r_{jj}}$.
+    \end{itemize}
+    
+    \item \textbf{Ensamblado:} Se colocan los vectores unitarios calculados en las columnas de $Q = \begin{pmatrix} q_1 & \cdots & q_n \end{pmatrix}$ y los escalares $r_{kj}$ y $r_{jj}$ en la matriz triangular superior $R$.
+\end{enumerate}
+
+\paragraph{Formulación Algorítmica (Python / Sin uso de \texttt{@})}
+El algoritmo opera sin recurrir a operadores prohibidos (\texttt{@}, \texttt{np.matmul}) y manteniendo los vectores en 1D para evitar discrepancias de dimensiones en las operaciones de normas:
+
+\begin{verbatim}
+def QR_con_GS(A, tol=1e-12):
+    n = A.shape[0]
+    Q = np.zeros((n, n), dtype=float)
+    R = np.zeros((n, n), dtype=float)
+
+    for j in range(n):
+        u_j = A[:, j].copy().astype(float)
+        
+        for k in range(j):
+            q_k = Q[:, k]
+            # r_kj = q_k^T * u_j (escalar)
+            r_kj = mult_matrices(traspuesta(q_k.reshape(n, 1)), u_j.reshape(n, 1))[0, 0]
+            R[k, j] = r_kj
+            # u_j = u_j - r_kj * q_k (ortogonalizacion)
+            u_j -= r_kj * q_k
+        
+        r_jj = norma(u_j, 2)
+        if r_jj > tol:
+            R[j, j] = r_jj
+            Q[:, j] = u_j / r_jj
+        else:
+            R[j, j] = 0.0
+            Q[:, j] = 0.0
+
+    return Q, R
+\end{verbatim}
+
+% -------------------------------------------------------------------------
+\subsubsection*{Método 2: Reflexiones de Householder}
+
+\paragraph{Procedimiento Práctico a Mano (en Papel)}
+Householder anula todos los elementos subdiagonales de cada columna de una sola vez aplicando matrices simétricas y ortogonales $H = I - 2 u u^T$ con $\|u\|_2 = 1$.
+
+\begin{enumerate}
+    \item Se parte de $R = A$ y $Q = I_m$.
+    \item \textbf{Para cada paso $k = 1, \dots, n$:}
+    \begin{itemize}
+        \item Extraer el vector de la columna actual desde la diagonal hacia abajo:
+        \[
+        x = R[k:m, \, k]
+        \]
+        \item Calcular su norma euclídea: $\|x\|_2 = \sqrt{x_1^2 + \dots + x_p^2}$.
+        \item Elegir el escalar $\alpha$ con signo opuesto a la primera componente $x_1$ (para evitar cancelación numérica por resta de valores similares):
+        \[
+        \alpha = -\operatorname{sign}(x_1) \|x\|_2 \quad (\text{si } x_1 = 0 \text{ se toma } \operatorname{sign}=1)
+        \]
+        \item Construir el vector reflector $u$:
+        \[
+        u = x - \alpha e_1 = \begin{pmatrix} x_1 - \alpha \\ x_2 \\ \vdots \end{pmatrix}
+        \]
+        \item Normalizar el vector $u$: $\hat{u} = \frac{u}{\|u\|_2}$.
+        \item Formar el reflector del bloque: $H_k = I - 2 \hat{u} \hat{u}^T$.
+        \item Expandir al tamaño global $m \times m$:
+        \[
+        \tilde{H}_k = \begin{pmatrix} I_{k-1} & 0 \\ 0 & H_k \end{pmatrix}
+        \]
+        \item Actualizar las matrices:
+        \[
+        R \leftarrow \tilde{H}_k R, \qquad Q \leftarrow Q \tilde{H}_k^T
+        \]
+        (Como $\tilde{H}_k$ es simétrica, $\tilde{H}_k^T = \tilde{H}_k$).
+    \end{itemize}
+    \item Al finalizar los $n$ pasos, la matriz $R$ tiene ceros exactos por debajo de su diagonal principal.
+\end{enumerate}
+
+\paragraph{Formulación Algorítmica (Python / Sin uso de \texttt{@})}
+Implementación que soporta matrices rectangulares $m \times n$ ($m \ge n$):
+
+\begin{verbatim}
+def QR_con_HH(A, tol=1e-12):
+    m, n = A.shape
+    R = A.copy().astype(float)
+    Q = np.eye(m, dtype=float)
+
+    for k in range(n):
+        x = R[k:m, k].copy()
+        norm_x = norma(x, 2)
+        if norm_x < tol:
+            continue
+
+        # alpha = -sign(x_1) * ||x||_2
+        signo = 1.0 if x[0] >= 0 else -1.0
+        alpha = -signo * norm_x
+
+        # Vector reflector u = x - alpha * e_1
+        u = x.copy()
+        u[0] -= alpha
+        norm_u = norma(u, 2)
+
+        if norm_u > tol:
+            u = u / norm_u
+            dim_bloque = m - k
+            u_col = u.reshape(dim_bloque, 1)
+
+            # Reflector local H_k = I - 2 * u * u^T
+            H_k = np.eye(dim_bloque) - 2.0 * mult_matrices(u_col, traspuesta(u_col))
+
+            # Reflector expandido H_tilde de m x m
+            H_tilde = np.eye(m, dtype=float)
+            H_tilde[k:m, k:m] = H_k
+
+            # R <- H_tilde * R  y  Q <- Q * H_tilde^T
+            R = mult_matrices(H_tilde, R)
+            Q = mult_matrices(Q, traspuesta(H_tilde))
+
+    R[np.abs(R) < tol] = 0.0
+    return Q, R
+\end{verbatim}
+
+% =========================================================================
+% 9. MATRICES ORTOGONALES
+% =========================================================================
+\subsection*{9. Matrices Ortogonales}
+
+\textbf{Definición:} Una matriz cuadrada $Q \in \mathbb{R}^{n \times n}$ es \emph{ortogonal} (unitaria en $\mathbb{C}^{n \times n}$) si satisface:
+\[
+Q^T Q = Q Q^T = I_n \iff Q^{-1} = Q^T
+\]
+
+\textbf{Propiedades Fundamentales:}
+\begin{enumerate}
+    \item Sus columnas forman una base ortonormal de $\mathbb{R}^n$.
+    \item Sus filas forman una base ortonormal de $\mathbb{R}^n$.
+    \item \textbf{Isometría (conservación de la norma):} $\|Qx\|_2 = \|x\|_2$ para todo vector $x \in \mathbb{R}^n$.
+    \item \textbf{Conservación de ángulos y producto escalar:} $\langle Qx, Qy \rangle = \langle x, y \rangle$.
+    \item \textbf{Norma matricial subordinada:} $\|Q\|_2 = 1$ y $\|Q^{-1}\|_2 = \|Q^T\|_2 = 1$.
+    \item \textbf{Número de condición óptimo:}
+    \[
+    \kappa_2(Q) = \|Q\|_2 \cdot \|Q^{-1}\|_2 = 1 \cdot 1 = 1
+    \]
+    lo que significa que multiplicar por una matriz ortogonal no amplifica errores de redondeo numérico.
+    \item \textbf{Invariancia de normas bajo transformaciones ortogonales:} Para cualquier matriz $A$,
+    \[
+    \|QA\|_2 = \|A\|_2 \quad \text{y} \quad \|QA\|_F = \|A\|_F
+    \]
+    \item \textbf{Determinante:} $\det(Q) = \pm 1$ (si $\det(Q) = 1$ es una rotación pura; si $\det(Q) = -1$ incluye una reflexión).
+    \item \textbf{Espectro:} Todos sus autovalores tienen módulo unitario ($|\lambda_i| = 1$).
+\end{enumerate}
+
+\end{document}
