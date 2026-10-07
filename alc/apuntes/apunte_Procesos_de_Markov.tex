@@ -1,0 +1,594 @@
+\documentclass[11pt,a4paper]{article}
+
+% --- Codificación estándar para pdflatex ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- Idioma sin opciones incompatibles con pdflatex ---
+\usepackage[spanish,es-noquoting]{babel}
+
+% --- Matemática y símbolos ---
+\usepackage{amsmath,amssymb,amsthm}
+
+% --- Geometría de página ---
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% --- Gráficos y TikZ (con compatibilidad de babel) ---
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows.meta, babel}
+
+% --- Tablas y colores ---
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{enumitem}
+
+% --- Hipervínculos (cargar siempre al final del preámbulo) ---
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    urlcolor=blue!80!black
+}
+\usepackage{bookmark}
+
+\setlist[itemize]{label=--, leftmargin=1.5em, itemsep=2pt, parsep=0pt}
+\setlist[enumerate]{leftmargin=1.5em, itemsep=2pt, parsep=0pt}
+
+% Definición de colores sobrios para bloques
+\definecolor{primaryblue}{RGB}{24, 43, 73}
+\definecolor{accentblue}{RGB}{41, 98, 153}
+\definecolor{graybg}{RGB}{246, 248, 250}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=accentblue,
+    urlcolor=accentblue
+}
+
+\theoremstyle{definition}
+\newtheorem{definicion}{Definición}
+\newtheorem{proposicion}{Proposición}
+\newtheorem{teorema}{Teorema}
+\newtheorem{ejemplo}{Ejemplo}
+\newtheorem{observacion}{Observación}
+\newtheorem{demostracion}{Demostración}
+\newtheorem{propiedades}{Propiedades}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{\color{primaryblue} Guía de Estudio: Procesos y Matrices de Markov}}\\[4pt]
+    {\large \textbf{Álgebra Lineal Computacional (ALC)}} \\[2pt]
+    \small Resumen teórico, herramientas prácticas para ejercicios y conexiones estructurales
+\end{center}
+\vspace{-0.5em}
+\hrule height 1.2pt
+\vspace{1em}
+
+\section*{Motivación: El Modelo Google PageRank y Caminatas Aleatorias}
+
+\subsection*{1. Planteo intuitivo: ¿Cómo ordenar la web por relevancia?}
+En los inicios de los motores de búsqueda, determinar la importancia relativa
+de una página web se convirtió en un desafío central. Una primera
+aproximación intuitiva consiste en contar la cantidad de hipervínculos que
+apuntan a cada sitio. Sin embargo, no todos los enlaces tienen el
+mismo peso: recibir una recomendación o enlace desde una página muy influyente
+(como Wikipedia) otorga más relevancia que recibirla desde un sitio
+desconocido.
+
+Para resolver esta aparente circularidad (''una página es importante si es
+referenciada por páginas importantes''), el algoritmo de Google PageRank modela
+la navegación web mediante un \textbf{caminante aleatorio} (\textit{random
+    surfer}):
+\begin{enumerate}
+    \item Imaginemos una población fija de internautas navegando por una red.
+    \item En el instante inicial $k = 0$, cada visitante elige una página departida.
+    \item En cada paso de tiempo discreto $k \to k+1$, si el navegante se encuentra en una página con $d$ enlaces salientes disponibles, elije al azar cualquiera de ellos de manera equiprobable con probabilidad $1/d$.
+    \item Nos preguntamos: tras navegar mucho tiempo ($k \to \infty$), ¿cuál es la probabilidad o proporción de visitantes que se encontrará en cada página
+\end{enumerate}
+
+\subsection*{2. Diagrama de Estados y Transiciones}
+Consideremos una subred compuesta por 4 sitios web interconectados: $A$,
+$B$, $C$ y $D$.
+\begin{itemize}
+    \item Desde la página $A$ hay enlaces hacia $B$ o puede quedarse en $A$ (2 enlaces disponibles).
+    \item Desde la página $B$ hay 3 enlaces salientes, hacia $A$, $C$ o puede quedarse en $B$ (3 enlaces disponibles).
+    \item Desde la página $C$ el internauta puede quedarse en $C$ (autoenlace) o pasar a $B$ (2 enlaces disponibles).
+    \item Desde la página $D$ hay enlaces salientes hacia $A$ y $C$ y puede quedarse en $D$ (autoenlace) (3 enlaces disponibles).
+\end{itemize}
+
+El siguiente diagrama de transiciones ilustra el sistema de estados discretos:
+
+\begin{center}
+    \begin{tikzpicture}[
+            node distance=3.2cm,
+            auto,
+            every state/.style={circle, draw=blue!70, fill=blue!10, thick, minimum size=1.1cm, font=\bfseries}
+        ]
+        % Estados / Páginas
+        \node[state] (A) {$A$};
+        \node[state] (B) [right of=A] {$B$};
+        \node[state] (C) [below of=B] {$C$};
+        \node[state] (D) [below of=A] {$D$};
+
+        % Flechas de transición con sus probabilidades
+        \path[->, >=stealth, thick]
+        (A) edge [bend left=15] node[above] {$1/4$} (B) 
+        (A) edge [loop left=15] node {$1/2$} (A)
+        (B) edge [bend left=15] node[below] {$1/4$} (A) 
+        (B) edge [bend left=15] node[right] {$1/4$} (C)
+        (B) edge [loop right=15] node {$1/2$} (B) 
+        (C) edge [bend left=15] node[left]  {$1/4$} (B)
+        (C) edge [loop right=15] node {$1/2$} (C) 
+        (D) edge [bend left=15] node[left]  {$1/4$} (A)
+        (D) edge [bend left=15] node[below]  {$1/4$} (C)
+        (D) edge [loop left=15] node {$1/2$} (D);
+    \end{tikzpicture}
+\end{center}
+
+\subsection*{3. Del Grafo a la Matriz de Transición de Markov}
+Este proceso se puede plantear matricialmente.
+
+Llamamos $v^{(0)}$ al estado inicial del sistema.
+
+\[
+    v^{(0)} = 
+        \begin{pmatrix} 
+            A{(0)} \\ 
+            B^{(0)} \\ 
+            C^{(0)} \\ 
+            D^{(0)} 
+        \end{pmatrix} = 
+        \begin{pmatrix} 
+            1000 \\ 
+            1000 \\ 
+            1000 \\ 
+            1000 
+        \end{pmatrix}
+\]
+
+Llamamos $v^{(1)}$ al estado del sistema al minuto. 
+
+\[ 
+    v^{(1)} =
+    \begin{pmatrix} 
+            A{(1)} \\ 
+            B^{(1)} \\ 
+            C^{(1)} \\ 
+            D^{(1)} 
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            1/2 & 1/4 & 0   & 1/4 \\
+            1/2 & 1/2 & 1/2 & 0   \\
+            0   & 1/4 & 1/2 & 1/4 \\
+            0   & 0   & 0   & 1/2
+        \end{pmatrix} 
+        \begin{pmatrix} 
+            A{(0)} \\ 
+            B^{(0)} \\ 
+            C^{(0)} \\ 
+            D^{(0)} 
+        \end{pmatrix}
+\]
+
+En general
+
+\[  
+    v^{(k+1)} =
+    \begin{pmatrix} 
+            A^{(k+1)} \\ 
+            B^{(k+1)} \\ 
+            C^{(k+1)} \\ 
+            D^{(k+1)} 
+        \end{pmatrix} = 
+        \begin{pmatrix}
+            1/2 & 1/4 & 0   & 1/4 \\
+            1/2 & 1/2 & 1/2 & 0   \\
+            0   & 1/4 & 1/2 & 1/4 \\
+            0   & 0   & 0   & 1/2
+        \end{pmatrix} 
+        \begin{pmatrix} 
+            A^{(k)} \\ 
+            B^{(k)} \\ 
+            C^{(k)} \\ 
+            D^{(k)} 
+        \end{pmatrix}
+\]
+
+% Para transformar este proceso en un modelo matricial, representamos la
+% distribución de navegantes en el instante $k$ mediante un vector de
+% probabilidades $v^{(k)} \in \mathbb{R}^4$, donde $v_j^{(k)} \ge 0$ y
+% $\sum_{j=1}^4 v_j^{(k)} = 1$:
+% \[
+%     v^{(k)} = \begin{pmatrix} v_1^{(k)} \\ v_2^{(k)} \\ v_3^{(k)} \\ v_4^{(k)} \end{pmatrix}
+% \]
+
+% La regla fundamental de balance de probabilidad indica que la masa de
+% probabilidad que llega al estado $i$ proviene de los estados $j$ que lo
+% enlazan:
+% \[
+%     v_i^{(k+1)} = \sum_{j=1}^n P_{ij} \, v_j^{(k)} \implies v^{(k+1)} = P \, v^{(k)}
+% \]
+% \textbf{Regla de construcción por columnas (Convención estándar en ALC):}
+% \begin{itemize}
+%     \item La casilla $P_{ij}$ representa la \textbf{probabilidad de saltar del estado $j$ (columna) al estado $i$ (fila)}.
+%     \item Por conservación de la probabilidad total, la suma de las componentes de cada columna debe ser exactamente igual a $1$: $\sum_{i=1}^n P_{ij} = 1$.
+% \end{itemize}
+
+% Construyendo la matriz $P \in \mathbb{R}^{4 \times 4}$ para nuestro grafo:
+% \[
+%     P = \begin{pmatrix}
+%         0   & 0 & 1/3 & 0   \\
+%         1/2 & 0 & 0   & 1/2 \\
+%         1/2 & 0 & 1/3 & 1/2 \\
+%         0   & 1 & 1/3 & 0
+%     \end{pmatrix}
+% \]
+
+% \subsection*{4. Evolución Temporal y Estado Límite}
+% Iterando recursivamente el proceso a partir de una distribución inicial
+% $v^{(0)}$:
+% \[
+%     v^{(1)} = P v^{(0)}, \quad v^{(2)} = P v^{(1)} = P^2 v^{(0)}, \quad \dots \quad v^{(k)} = P^k v^{(0)}
+% \]
+% Si el proceso converge a una distribución estable a largo plazo ($v^{(\infty)}
+%     = \lim_{k \to \infty} v^{(k)}$), este vector límite debe permanecer invariable
+% al aplicar la transición:
+% \[
+%     v^{(\infty)} = P v^{(\infty)} \iff P v^{(\infty)} = 1 \cdot v^{(\infty)}
+% \]
+% Esto demuestra que el vector de ranking final de las páginas web no es otra
+% cosa que un \textbf{autovector de $P$ asociado al autovalor $\lambda =
+%         1$}. Toda la teoría de matrices estocásticas, el método de la potencia
+% y la diagonalización que desarrollamos a continuación responden de manera
+% rigurosa a:
+% \begin{itemize}
+%     \item ¿Por qué siempre existe el autovalor $\lambda = 1$?
+%     \item ¿Por qué ningún autovalor puede tener módulo mayor a 1 ($|\lambda| \le 1$)?
+%     \item ¿Bajo qué condiciones sobre el grafo el vector límite $v^{(\infty)}$ existe y es único independiente del estado inicial?
+% \end{itemize}
+
+% =========================================================================
+\section{Definición del Proceso y Matrices de Markov}
+% =========================================================================
+
+\begin{definicion}[Matriz de Markov / Estocástica por Columnas]
+    Una matriz cuadrada $M = (m_{ij}) \in \mathbb{R}^{n \times n}$ se dice \textbf{matriz de Markov} (o estocástica) si cumple simultáneamente:
+    \begin{enumerate}
+        \item \textbf{No negatividad:} $m_{ij} \ge 0$ para todo $1 \le i, j \le n$.
+        \item \textbf{Suma unitaria por columnas:} Para cada columna $j \in \{1, \dots, n\}$,
+            \[
+                \sum_{i=1}^n m_{ij} = m_{1j} + m_{2j} + \cdots + m_{nj} = 1.
+            \]
+    \end{enumerate}
+    En notación matricial compacta con $\mathbf{1} = {(1, 1, \ldots, 1)}^{T}$, la condición de columnas equivale a $\mathbf{1}^T M = \mathbf{1}^T$.
+\end{definicion}
+
+\begin{observacion}
+    Si A es \textbf{matriz de Markov} entonces todas las entradas $a_{ij}$ $\in [0,1]$.
+\end{observacion}
+
+\begin{definicion} 
+    Un proceso dado iterativamente por $v^{(k+1)} = A v^{(k)}$ con $k \geq 0$ se llama \textbf{proceso de Markov}. A cada vector $v^{(k)}$ se lo llama $\textbf{estado}$ del sistema en tiempo $k$. A la matriz $A$ se la llama $\textbf{matriz de transición}$.
+\end{definicion}
+
+% =========================================================================
+\section{Autovalor de las Matrices de Markov}
+% =========================================================================
+
+\begin{proposicion}
+    Sea $A \in \mathbb{R}^{n \times n}$ $\textbf{matriz de Markov}$, entonces
+    \begin{enumerate}
+        \item \textbf{Existencia del autovalor 1:} $\lambda = 1$ es siempre autovalor de $A$.
+        \item Si $\lambda$ es $\textbf{autovalor}$ de $A$ $\rightarrow$ $\vert\vert \lambda \vert\vert$ $\leq$ 1. 
+    \end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+    \begin{itemize}
+        \item 1.  
+            \[
+                A 
+                = 
+                \begin{pmatrix}
+                    C_1(A) | \cdots | C_n (A) 
+                \end{pmatrix}
+            \] 
+            \[
+                \rightarrow A^t = 
+                    \left(
+                        \begin{array}{c}
+                            C_1(A) \\
+                            \midrule
+                            \vdots \\
+                            \midrule
+                            C_n(A)
+                        \end{array}
+                    \right) \text{los elementos de cada fila suman $1$}
+            \] 
+            \[
+                A^t 
+                \left(
+                    \begin{array}{c}
+                        1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        1
+                    \end{array}
+                \right)
+                =
+                \left(
+                    \begin{array}{c}
+                        1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        1
+                    \end{array}
+                \right)
+                \rightarrow \text{$1$ es autovalor de $A^t$ con }
+                \left(
+                    \begin{array}{c}
+                        1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        1
+                    \end{array}
+                \right)
+                \text{autovector asociado}
+            \]
+            \[
+                A^t.v = 1 . v
+            \]
+            Dado que $A$ y $A^T$ comparten el mismo polinomio característico ($\det(A^T - \lambda I) = \det({(A - \lambda I)}^T) = \det(A - \lambda I)$), tienen exactamente los mismos autovalores, concluyendo que $\lambda = 1$ es autovalor de $A$.
+        \item 2. \textbf{Cota espectral / Radio espectral $\lambda \le 1$:} Para todo autovalor $\lambda$ de $A$, se verifica:
+            \[
+                |\lambda| \le 1.
+            \]
+            Sea $v \neq \mathbf{0}$ autovector tal que $Mv = \lambda v$. 
+            \[
+                v = \left( \begin{array}{c}
+                        x_1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        x_n
+                \end{array}
+                \right)
+                \hspace*{2cm}
+                A \left( \begin{array}{c}
+                        x_1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        x_n
+                \end{array}
+                \right)
+                = 
+                \left( \begin{array}{c}
+                        x_1 \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        x_i \\
+                        \midrule
+                        \vdots \\
+                        \midrule
+                        x_n
+                \end{array}
+                \right)
+            \]
+            \[
+                \lambda x_i = F_i(A) X = \sum_{j=1}^{n} a_{ij} x_j
+            \]
+            Tomando módulo y desigualdad triangular para cada componente $i$:
+            \[
+                |\lambda x_i| \leq |\lambda| |x_i| = |\sum_{j=1}^{n} a_{ij} x_j| = \sum_{j=1}^{n} a_{ij} |x_j| \hspace{1cm} \text{(pues $a_{ij}$ $\geq$ $0$, A es matriz de Markov)}
+            \]
+            \[
+                \rightarrow 
+                    \sum_{i=1}^{n} |\lambda||x_i| 
+                \leq 
+                    \sum_{i=1}^{n} \sum_{j=1}^{n} a_{ij} |x_j| 
+                = 
+                    \sum_{j=1}^{n} \sum_{i=1}^{n} a_{ij} |x_j| 
+                = 
+                    \sum_{j=1}^{n} \left( \sum_{i=1}^{n} a_{ij} \right) |x_j|  
+                = 
+                    \sum_{j=1}^{n} \left( 1 \right) |x_j|  
+            \] 
+                \[
+                \rightarrow 
+                    \sum_{i=1}^{n} |\lambda||x_i| 
+                =
+                    |\lambda| \sum_{i=1}^{n} |x_i| 
+                \leq 
+                    \sum_{j=1}^{n} |x_j|  
+            \]
+            Como $v \neq \mathbf{0}$, $\|v\|_1 > 0$, dividiendo resulta $|\lambda| \le 1$.
+            \[
+                \rightarrow
+                    |\lambda| \frac{\sum_{i=1}^{n} |x_i|}{\sum_{i=1}^{n} |x_i|}
+                = 
+                    \frac{\sum_{j=1}^{n} |x_i|}{\sum_{i=1}^{n} |x_i|}
+            \]
+            \[
+                \rightarrow
+                    |\lambda|
+                \leq
+                    \frac{\sum_{j=1}^{n} |x_i|}{\sum_{i=1}^{n} |x_i|} \text{  (j, i recorren todo el vector X)}
+            \]
+                \[
+                \rightarrow
+                    |\lambda|
+                \leq
+                    1 
+            \]
+    \end{itemize}
+\end{demostracion}
+
+\begin{proposicion}
+    Sea $A$ una $\textbf{matriz de Markov}$ y $\lambda$ es autovalor de $A$, $\lambda \neq$ 1. 
+    \newline
+    Si $v = \left( 
+                \begin{array}{c}
+                    x_1 \\
+                    \midrule
+                    \vdots \\
+                    \midrule
+                    x_n
+                \end{array}
+            \right)$ es un autovector asociado a $\lambda \rightarrow x_1+\cdots+x_n = 0 $    
+\end{proposicion}
+
+\begin{demostracion}
+    Multiplicando la ecuación $Mv = \lambda v$ a izquierda por $\mathbf{1}^T$:
+    \[
+        \mathbf{1}^T (Mv) = (\mathbf{1}^T M)v = \mathbf{1}^T v = \lambda (\mathbf{1}^T v) \implies (1 - \lambda)(\mathbf{1}^T v) = 0.
+    \]
+    Como $\lambda \neq 1$, se deduce inmediatamente que $\mathbf{1}^T v = 0$.    
+\end{demostracion}
+
+% =========================================================================
+\section{Estados de Equilibrio y Convergencia a Largo Plazo}
+% =========================================================================
+
+\begin{definicion}[Estado de Equilibrio / Estacionario]
+    A \textbf{matriz de Markov}, $v$ es un \textbf{estado de equilibrio} si:
+    \[
+        A v = v \text{  ($v$ es autovector asociado al autovalor 1)}
+    \]
+    \begin{itemize}
+        \item Con coordenadas NO negativas
+        \item Con coordenadas que suman 1
+    \end{itemize}
+\end{definicion}
+\begin{observacion}
+    Si $v = \left( 
+                \begin{array}{c}
+                    x_1 \\
+                    \midrule
+                    \vdots \\
+                    \midrule
+                    x_n
+                \end{array}
+            \right)$ es un autovector asociado a $1$ 
+    \[
+        \rightarrow \frac{v}{\sum_{i=1}^{n}x_i} \text{  es autovector del autovalor 1 y sus coordenadas suman 1}
+    \]
+\end{observacion}
+\begin{propiedades} $A$ \textbf{matriz de Markov}
+    \begin{enumerate}
+        \item Existe al menos 1 equilibrio
+        \item \textbf{Propiedad clave del autoespacio $E_1$:}
+            El subespacio propio $E_1 = \operatorname{Nu}(M - I)$ tiene dimensión al menos 1.
+        \item No toda \textbf{matriz de Markov} es \textbf{diagonalizable}
+    \end{enumerate}
+\end{propiedades}
+
+
+
+\subsection*{Descomposición Espectral y Límite $M^k$}
+Supongamos que $M$ es diagonalizable: $M = C D C^{-1}$, donde $C = (w_1 \mid
+    w_2 \mid \dots \mid w_n)$ contiene los autovectores y $D =
+    \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ con $1 = \lambda_1 \ge
+    |\lambda_2| \ge \dots \ge |\lambda_n|$.
+
+Para cualquier estado inicial $\pi^{(0)} \in \mathcal{P}_n$, expresado en la
+base de autovectores $\pi^{(0)} = a_1 w_1 + \cdots + a_n w_n$:
+\[
+    \pi^{(k)} = M^k \pi^{(0)} = a_1 \lambda_1^k w_1 + a_2 \lambda_2^k w_2 + \cdots + a_n \lambda_n^k w_n.
+\]
+\begin{itemize}
+    \item Si $|\lambda_i| < 1$, entonces $\lim_{k \to \infty} \lambda_i^k = 0$.
+    \item Si $\lambda = 1$ es el \textbf{único} autovalor de módulo 1 con multiplicidad 1
+          (autovalor dominante estricto):
+          \[
+              \lim_{k \to \infty} \pi^{(k)} = a_1 w_1 = \pi^* \quad \text{independientemente del estado inicial } \pi^{(0)}.
+          \]
+    \item En tal caso, la matriz límite $M^\infty = \lim_{k \to \infty} M^k$ existe y
+          todas sus columnas son idénticas e iguales al vector de equilibrio
+          estacionario:
+          \[
+              M^\infty = \begin{pmatrix} \pi^* & \pi^* & \cdots & \pi^* \end{pmatrix}.
+          \]
+\end{itemize}
+
+\textbf{¿Cuándo NO converge el proceso?}
+Si la matriz tiene otros autovalores de módulo 1 (por ejemplo, $\lambda = -1$ o raíces de la unidad $e^{i\theta}$ con matrices periódicas o bloques cíclicos), el término $\lambda_i^k$ oscilará y el límite $\lim_{k \to \infty} \pi^{(k)}$ no existirá para ciertos estados iniciales.
+
+% =========================================================================
+\section{Conexiones con Otros Temas de ALC}
+% =========================================================================
+
+\begin{table}[h!]
+    \centering
+    \small
+    \begin{tabular}{lp{12cm}}
+        \toprule
+        \textbf{Tema de la Materia}          & \textbf{Conexión con Procesos de Markov}                                                                                                                                                                                                                                                                             \\
+        \midrule
+        \textbf{Normas Matriciales}          & $\|M\|_1 = \max_j \sum_i |m_{ij}| = 1$. Como el radio espectral verifica $\rho(M) \le \|M\|$ para toda norma inducida, esto prueba analíticamente en una sola línea que $\rho(M) \le 1$.                                                                                                                             \\
+        \midrule
+        \textbf{Círculos de Gershgorin}      & Para $M^T$, cada centro es $m_{jj}$ y el radio es $R_j = \sum_{i \neq j} m_{ij} = 1 - m_{jj}$. Cada disco de Gershgorin es $D(m_{jj}, 1 - m_{jj}) \subset \{z \in \mathbb{C} : |z| \le 1\}$ y toca tangencialmente al punto $z = 1$.                                                                                 \\
+        \midrule
+        \textbf{Método de la Potencia}       & La iteración de Markov $\pi^{(k)} = M \pi^{(k-1)}$ es \emph{exactamente} el método de la potencia aplicado a $M$ para converger al autovector dominante asociado a $\lambda_1 = 1$, con la ventaja de que no se requiere renormalizar por norma euclídea en cada paso porque la norma-1 se preserva automáticamente. \\
+        \midrule
+        \textbf{Teorema de Perron-Frobenius} & Para matrices regulares (o ergódicas, donde alguna potencia $M^k > 0$ es estrictamente positiva), el autovalor 1 es simple, todo otro autovalor cumple $|\lambda| < 1$, y el autovector estacionario $\pi^*$ tiene todas sus componentes estrictamente positivas ($\pi^*_i > 0$).                                    \\
+        \midrule
+        \textbf{Google PageRank}             & El algoritmo PageRank construye una matriz de Markov $M = d P + \frac{1-d}{n} \mathbf{1} \mathbf{1}^T$ con factor de amortiguación $d \in (0, 1)$, garantizando que la matriz sea estrictamente positiva y tenga un único vector de equilibrio calculable mediante iteraciones.                                      \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+% =========================================================================
+\section{Guía Práctica: Paso a Paso para Resolver Ejercicios}
+% =========================================================================
+
+\begin{enumerate}[label=\textbf{Paso \arabic*:}]
+    \item \textbf{Construir la Matriz de Transición $M$:}
+          \begin{itemize}
+              \item Identificar los estados $1, 2, \dots, n$.
+              \item Definir cada columna $j$: ubicar en la posición $(i, j)$ la probabilidad o tasa
+                    de pasaje del estado $j$ al estado $i$.
+              \item \emph{Checklist obligatorio:} verificar que $m_{ij} \ge 0$ y que la suma de cada columna sea exactamente 1 ($\sum_i m_{ij} = 1$).
+          \end{itemize}
+
+    \item \textbf{Hallar los Estados de Equilibrio:}
+          \begin{itemize}
+              \item Plantear el sistema homogéneo $(M - I)\pi = \mathbf{0}$.
+              \item Triangular la matriz $(M - I)$ mediante eliminación gaussiana para encontrar el
+                    núcleo $\operatorname{Nu}(M - I)$. (Recuerda que $\det(M - I) = 0$ siempre, por
+                    lo que al menos una fila se anulará).
+              \item Parametrizar las soluciones y normalizar el vector dividiendo por la suma de
+                    sus componentes: $\pi^* = \frac{v}{\sum_i v_i}$ para que $\pi^* \in
+                        \mathcal{P}_n$.
+          \end{itemize}
+
+    \item \textbf{Analizar la Existencia del Límite $\lim_{k \to \infty} \pi^{(k)}$:}
+          \begin{itemize}
+              \item Calcular las raíces del polinomio característico $\det(M - \lambda I) = 0$.
+              \item Si $\lambda = 1$ tiene multiplicidad 1 y todos los demás autovalores cumplen
+                    $|\lambda_i| < 1$, el proceso converge siempre al único $\pi^*$ para cualquier
+                    $\pi^{(0)}$.
+              \item Si existen autovalores complejos con $|\lambda| = 1$ o $\lambda = -1$, el
+                    límite dependerá del estado inicial (puede ciclar u oscilar).
+          \end{itemize}
+
+    \item \textbf{Cálculo en $k$ Pasos Finitos o Potencias Altas:}
+          \begin{itemize}
+              \item Si $k$ es pequeño (ej. $k=2$ o $4$): multiplicar recursivamente $\pi^{(1)} = M
+                        \pi^{(0)}$, $\pi^{(2)} = M \pi^{(1)}$, etc.
+              \item Si $k$ es general: diagonalizar $M = C D C^{-1}$, calcular $M^k = C D^k C^{-1}$
+                    y evaluar $\pi^{(k)} = M^k \pi^{(0)}$.
+          \end{itemize}
+\end{enumerate}
+
+\end{document}
