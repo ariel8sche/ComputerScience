@@ -1,0 +1,358 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2.2cm]{geometry}
+\usepackage[english, spanish, provide=*]{babel}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    urlcolor=blue!70!black
+}
+
+% Entornos matemáticos y teóricos
+\theoremstyle{definition}
+\newtheorem{definicion}{Definición}[section]
+\newtheorem{ejemplo}[definicion]{Ejemplo}
+
+\theoremstyle{plain}
+\newtheorem{teorema}[definicion]{Teorema}
+\newtheorem{proposicion}[definicion]{Proposición}
+\newtheorem{corolario}[definicion]{Corolario}
+\newtheorem{lema}[definicion]{Lema}
+
+\theoremstyle{remark}
+\newtheorem{observacion}[definicion]{Observación}
+
+% Comandos de conveniencia
+\newcommand{\classL}{\mathbf{L}}
+\newcommand{\classNL}{\mathbf{NL}}
+\newcommand{\classcoNL}{\mathbf{coNL}}
+\newcommand{\classP}{\mathbf{P}}
+\newcommand{\classNP}{\mathbf{NP}}
+\newcommand{\classcoNP}{\mathbf{coNP}}
+\newcommand{\classPSPACE}{\mathbf{PSPACE}}
+\newcommand{\classNPSPACE}{\mathbf{NPSPACE}}
+\newcommand{\classEXPTIME}{\mathbf{EXPTIME}}
+\newcommand{\SPACE}{\mathbf{SPACE}}
+\newcommand{\NSPACE}{\mathbf{NSPACE}}
+\newcommand{\DTIME}{\mathbf{DTIME}}
+\newcommand{\NTIME}{\mathbf{NTIME}}
+
+\newcommand{\PATH}{\text{PATH}}
+\newcommand{\coPATH}{\overline{\text{PATH}}}
+\newcommand{\leL}{\le_\ell}
+\newcommand{\leP}{\le_p}
+
+\title{\textbf{Guía Teórica de Repaso: Espacio Logarítmico ($\classL$ y $\classNL$)}\\\large Definiciones, Propiedades, Reducciones y Teoremas Demostrados}
+\author{Complejidad Computacional (FCEN --- UBA)}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\vspace{1em}
+\hrule
+\vspace{1.5em}
+
+\section{Modelo de Cómputo para Espacio Sublineal}
+
+Cuando se estudian recursos de espacio sublineales ($S(n) < n$, como $S(n) = O(\log n)$), el modelo estándar de Máquina de Turing de una sola cinta resulta inadecuado, ya que la sola presencia de la entrada de tamaño $n$ consumiría $n$ celdas de memoria. Por esta razón, se adopta formalmente el \textbf{modelo de cinta separada (off-line Turing Machine)}.
+
+\begin{definicion}[Modelo con Cintas Separadas]
+Una Máquina de Turing con espacio acotado se compone de:
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Cinta de entrada:} De \textit{solo lectura} (\textit{read-only}). Los cabezales pueden moverse bidireccionalmente, pero no pueden escribir en ella. El espacio ocupado por esta cinta no cuenta para la cota de memoria.
+    \item \textbf{$k$ cintas de trabajo:} De \textit{lectura y escritura} (\textit{read/write}) bidireccionales. El espacio utilizado por la máquina es el número total de celdas distintas visitadas en estas cintas a lo largo de todo el cómputo.
+    \item \textbf{Cinta de salida:} De \textit{solo escritura} (\textit{write-only}). El cabezal se mueve exclusivamente a la derecha cada vez que escribe un símbolo. No cuenta para la cota de espacio.
+\end{enumerate}
+\end{definicion}
+
+\begin{definicion}[Clases $\classL$ y $\classNL$]
+\begin{align*}
+    \classL &= \SPACE(\log n) = \bigcup_{c > 0} \SPACE(c \log n) \\
+    \classNL &= \NSPACE(\log n) = \bigcup_{c > 0} \NSPACE(c \log n)
+\end{align*}
+$\classL$ contiene los lenguajes decidibles por MT determinísticas en espacio de trabajo $O(\log n)$, y $\classNL$ aquellos decidibles por MT no-determinísticas en espacio de trabajo $O(\log n)$.
+\end{definicion}
+
+\begin{observacion}[\textquestiondown{Por qué espacio logarítmico?}]
+Una máquina con $c \log_2 n$ bits de memoria de trabajo puede mantener un número constante de \textbf{punteros} o \textbf{contadores} con valores hasta $n$, ya que cualquier índice entre $1$ y $n$ se codifica en binario con $\lceil \log_2 n \rceil$ bits. Esto permite referenciar posiciones arbitrarias de la cinta de entrada, contar pasos de algoritmos y almacenar identidades de vértices de un grafo.
+\end{observacion}
+
+\section{Configuraciones, Inclusiones y Jerarquía}
+
+\subsection{Cota de Configuraciones para Espacio Sublineal}
+
+\begin{proposicion}[Tamaño y Cantidad de Configuraciones]
+Sea $M$ una MT (determinística o no) que corre sobre una entrada $x$ de longitud $n$ utilizando a lo sumo $S(n)$ celdas de trabajo. Una configuración completa $C$ almacena:
+\begin{itemize}
+    \item El estado interno actual $q \in Q$ ($O(1)$ bits).
+    \item La posición del cabezal de entrada $i \in \{1, \dots, n\}$ ($\lceil \log_2 n \rceil$ bits).
+    \item El contenido de las celdas utilizadas en las $k$ cintas de trabajo ($S(n) \cdot \log |\Gamma|$ bits).
+    \item Las posiciones de los cabezales en las cintas de trabajo ($k \cdot \lceil \log_2 S(n) \rceil$ bits).
+\end{itemize}
+Por lo tanto, la longitud en bits de $C$ es:
+\[
+|C| \le O(1) + \log n + O(S(n))
+\]
+Para $S(n) \ge \log n$, se tiene $|C| \le c \cdot S(n)$. En consecuencia, el número total de configuraciones distintas posibles está acotado por:
+\[
+|\text{Configs}(M, x)| \le 2^{c \cdot S(n)} = 2^{O(S(n))}
+\]
+Para espacio logarítmico ($S(n) = O(\log n)$):
+\[
+|\text{Configs}(M, x)| \le 2^{O(\log n)} = n^{O(1)} \quad \text{(un polinomio en $n$)}
+\]
+\end{proposicion}
+
+\subsection{Inclusiones Fundamentales}
+
+\begin{teorema}[Inclusión \texorpdfstring{$\classL \subseteq \classNL \subseteq \classP$}{L en NL en P}]
+Se cumple:
+\[
+\classL \subseteq \classNL \subseteq \classP
+\]
+\begin{proof}
+La inclusión $\classL \subseteq \classNL$ es directa por definición, dado que toda MT determinística es un caso particular de MT no-determinística.
+
+Para $\classNL \subseteq \classP$, sea $L \in \classNL$ decidido por una MT no-determinística $N$ en espacio $c \log n$. Construimos el grafo de configuraciones $G_{N,x} = (V, E)$ donde cada vértice es una configuración y existe una arista $(C_1, C_2)$ si $C_2$ es alcanzable desde $C_1$ en un paso válido de transición de $N$. 
+\begin{itemize}
+    \item El número de vértices es $|V| \le n^c$, por lo que el grafo tiene tamaño polinomial en $n$.
+    \item Determinar si $x \in L$ equivale a resolver alcanzabilidad (\textit{st-connectivity}) en $G_{N,x}$ desde la configuración inicial $C_0$ hacia alguna configuración aceptadora $C_{\text{acepta}}$.
+    \item Como el problema de caminos en un grafo se resuelve en tiempo polinomial determinístico (por ejemplo, mediante BFS o DFS en tiempo $O(|V| + |E|) = O(n^{2c})$), se sigue que $L \in \classP$.
+\end{itemize}
+\end{proof}
+\end{teorema}
+
+\begin{corolario}[Mapa de Inclusiones Globales]
+\[
+\mathbf{NC^1 \subseteq L \subseteq NL \subseteq P \subseteq NP \subseteq PSPACE \subseteq EXPTIME}
+\]
+Por el Teorema de Jerarquía de Espacio se demuestra que $\classL \subsetneq \classPSPACE$, lo que garantiza que al menos una de las inclusiones intermedias debe ser estricta.
+\end{corolario}
+
+\section{Reducibilidad Logarítmica y \texorpdfstring{$\classNL$}{NL}-completitud}
+
+\subsection{Insuficiencia de la Reducción Polinomial de Karp}
+
+\begin{proposicion}
+Si utilizáramos la reducción de Karp ($\leP$), cualquier lenguaje no trivial $L \in \classNL$ ($L \ne \emptyset$ y $L \ne \Sigma^*$) resultaría $\classNL$-hard.
+\begin{proof}
+Como $\classNL \subseteq \classP$, para reducir cualquier $A \in \classNL$ a $L$, una MT en tiempo polinomial simplemente decide si $x \in A$. Si $x \in A$, devuelve una cadena fija $y_{\text{sí}} \in L$; si $x \notin A$, devuelve $y_{\text{no}} \notin L$. 
+\end{proof}
+Por lo tanto, la reducción de Karp carece de poder discriminatorio dentro de $\classP$. Se requiere una noción de reducción más restrictiva: la reducción en espacio logarítmico.
+\end{proposicion}
+
+\subsection{Funciones Computables en Espacio Logarítmico}
+
+\begin{definicion}[Función Computable Implícitamente en $\classL$]
+Una función $f: {\{0,1\}}^* \to {\{0,1\}}^*$ es \textbf{computable implícitamente en $\classL$} si satisface:
+\begin{enumerate}
+    \item Crecimiento acotado polinomialmente: existe un polinomio $p$ tal que $|f(x)| \le p(|x|)$ para todo $x$.
+    \item El lenguaje $L_{\text{bit}} = \{\langle x, i \rangle : {f(x)}_i = 1\}$ pertenece a $\classL$.
+    \item El lenguaje $L_{\text{len}} = \{\langle x, i \rangle : i \le |f(x)|\}$ pertenece a $\classL$.
+\end{enumerate}
+Equivalentemente, existe una MT con cinta de salida \textit{write-only} que escribe $f(x)$ usando a lo sumo $O(\log |x|)$ celdas en sus cintas de trabajo.
+\end{definicion}
+
+\begin{definicion}[Reducción $\leL$ y $\classNL$-completitud]
+\begin{itemize}
+    \item Decimos que $A \leL B$ si existe una función $f$ computable en espacio logarítmico tal que $x \in A \iff f(x) \in B$.
+    \item La reducción $\leL$ es \textbf{transitiva} y \textbf{cerrada hacia abajo}:
+    \[
+    A \leL B \land B \in \classL \implies A \in \classL
+    \]
+    \item Un lenguaje $B$ es $\classNL$-completo si $B \in \classNL$ y para todo $A \in \classNL$, $A \leL B$.
+\end{itemize}
+\end{definicion}
+
+\section{Teoremas para Demostrar en el Parcial}
+
+\subsection{Teorema 1: \texorpdfstring{$\PATH$}{PATH} es \texorpdfstring{$\classNL$}{NL}-completo}
+
+\begin{definicion}[Problema $\PATH$]
+\[
+\PATH = \{\langle G, s, t \rangle : G \text{ es un dígrafo y existe un camino dirigido de } s \text{ a } t\}
+\]
+\end{definicion}
+
+\begin{teorema}
+$\PATH$ es $\classNL$-completo bajo reducciones en espacio logarítmico $\leL$.
+\end{teorema}
+
+\begin{proof}
+La demostración consta de dos partes: pertenencia a $\classNL$ y dureza ($\classNL$-hardness).
+
+\vspace{0.5em}
+\noindent\textbf{1. Pertenencia ($\PATH \in \classNL$):}\\
+Diseñamos un algoritmo no-determinístico $N$ que decide $\PATH$ en espacio $O(\log n)$, donde $n = |V|$:
+\begin{enumerate}
+    \item Inicializar un registro de nodo actual $u \leftarrow s$ y un contador de pasos $k \leftarrow 0$.
+    \item Mientras $k < n$:
+    \begin{enumerate}[label=\roman*.]
+        \item Si $u = t$, \textbf{aceptar}.
+        \item Adivinar no-determinísticamente un vértice sucesor $v \in V$.
+        \item Verificar si la arista $(u, v) \in E(G)$ leyendo la entrada. Si $(u,v) \notin E(G)$, la rama se descarta y \textbf{rechaza}.
+        \item Actualizar $u \leftarrow v$ e incrementar $k \leftarrow k + 1$.
+    \end{enumerate}
+    \item Si $k = n$ y $u \neq t$, \textbf{rechazar}.
+\end{enumerate}
+\textit{Análisis de espacio:} Almacenar los identificadores de los vértices $u$ y $v$ requiere $\lceil \log_2 n \rceil$ bits cada uno. El contador $k \le n$ ocupa $\lceil \log_2 n \rceil$ bits. El espacio total de trabajo es $O(\log n)$. Por lo tanto, $\PATH \in \classNL$.
+
+\vspace{0.5em}
+\noindent\textbf{2. Dureza ($\forall A \in \classNL, A \leL \PATH$):}\\
+Sea $A \in \classNL$ un lenguaje decidido por una MT no-determinística $M$ en espacio $c \log |x|$. Sin pérdida de generalidad, asumimos que $M$ tiene una única configuración inicial $C_0$ y una única configuración de aceptación $C_{\text{acepta}}$, y que no efectúa pasos posteriores a la aceptación.
+
+Fijada la entrada $x$ con $n = |x|$, cada configuración de trabajo de $M$ tiene longitud $m \le d \log n$ para una constante $d$. El grafo de configuraciones $G_{M,x}$ posee a lo sumo $N = 2^{d \log n} = n^d$ vértices. Definimos la función de reducción:
+\[
+f(x) = \langle G_{M,x}, C_0, C_{\text{acepta}} \rangle
+\]
+Por definición de cómputo aceptador:
+\[
+x \in A \iff \text{existe un camino dirigido de } C_0 \text{ a } C_{\text{acepta}} \text{ en } G_{M,x} \iff f(x) \in \PATH
+\]
+\textit{Computabilidad de $f$ en espacio logarítmico:} Para demostrar que $f$ es implícitamente computable en $\classL$, se debe verificar que una MT determinística puede decidir si el par $(C_p, C_q)$ es una arista en $G_{M,x}$ usando solo $O(\log n)$ espacio:
+\begin{itemize}
+    \item Dadas las codificaciones binarias de dos configuraciones $C_p$ y $C_q$ (cada una de longitud $O(\log n)$), la máquina determinística simula la función de transición $\delta$ de $M$ en un único paso a partir de $C_p$.
+    \item Revisa si el estado, la celda leída de la entrada en la posición indicada por $C_p$ y las celdas de trabajo permiten transicionar a $C_q$ según alguna de las opciones no-determinísticas.
+    \item Esta verificación requiere comparar cadenas de longitud $O(\log n)$, lo cual consume $O(\log n)$ espacio de trabajo.
+\end{itemize}
+Por ende, $f$ es computable en espacio logarítmico y $A \leL \PATH$.
+\end{proof}
+
+\begin{corolario}
+$\classL = \classNL \iff \PATH \in \classL$.
+\end{corolario}
+
+\subsection{Teorema 2: Caracterización de \texorpdfstring{$\classNL$}{NL} con Certificados Read-Once}
+
+\begin{teorema}
+Un lenguaje $L \in \classNL$ si y solo si existen un polinomio $p$ y una MT determinística $V$ (verificador) que corre en espacio de trabajo $O(\log |x|)$, equipada con una cinta especial de certificado de \textbf{lectura hacia adelante únicamente (\textit{read-once})}, tal que:
+\[
+x \in L \iff \exists u \in {\{0,1\}}^{p(|x|)} \text{ tal que } V(x, u) = 1
+\]
+\end{teorema}
+
+\begin{proof}
+\textbf{Dirección ($\implies$):}\\
+Sea $L \in \classNL$ decidido por una MT no-determinística $N$ en espacio $c \log |x|$. En cada paso, $N$ tiene a lo sumo 2 ramas no-determinísticas. Como $N$ se detiene en a lo sumo $T(n) = 2^{O(\log n)} = p(n)$ pasos, cualquier cómputo se puede codificar mediante una secuencia de elecciones binarias $u \in {\{0,1\}}^{p(n)}$.
+
+El verificador determinístico $V$ simula a $N$ sobre la entrada $x$. Cada vez que $N$ debe tomar una decisión no-determinística, $V$ lee el siguiente bit de la cinta del certificado $u$ y avanza el cabezal hacia la derecha. $V$ nunca necesita retroceder el cabezal de certificado ni almacenar elecciones previas; únicamente conserva la configuración actual de trabajo de $N$ ($O(\log n)$ bits). Si $N$ acepta, $V$ acepta.
+
+\vspace{0.8em}
+\noindent\textbf{Dirección ($\impliedby$):}\\
+Sea $V$ un verificador que utiliza espacio de trabajo $O(\log |x|)$ y lee $u$ en modo \textit{read-once}. Construimos una MT no-determinística $N$ que simula a $V$. Cuando $V$ solicita leer el siguiente bit del certificado $u$, $N$ genera dicho bit de manera no-determinística sobre la marcha. Como $V$ nunca retrocede su cabezal sobre $u$, $N$ no requiere memorizar los bits adivinados en el pasado. El espacio de trabajo utilizado por $N$ es idéntico al de $V$, es decir, $O(\log |x|)$.
+\end{proof}
+
+\begin{observacion}
+Si se permitiera que el cabezal de la cinta del certificado se mueva hacia la izquierda (acceso bidireccional), el verificador podría releer el certificado tantas veces como deseara, lo cual definiría la clase $\classNP$ y no $\classNL$. La restricción \textit{read-once} es la que preserva la cota de memoria logarítmica.
+\end{observacion}
+
+\subsection{Teorema 3: Teorema de Immerman-Szelepcsényi (\texorpdfstring{$\classNL = \classcoNL$}{NL = coNL})}
+
+\begin{definicion}[Problema del Complemento de Conectividad]
+\[
+\coPATH = \{\langle G, s, t \rangle : G \text{ es un dígrafo y no existe camino dirigido de } s \text{ a } t\}
+\]
+\end{definicion}
+
+\begin{teorema}[Immerman-Szelepcsényi, 1987--1988]
+$\classNL = \classcoNL$.
+\end{teorema}
+
+\begin{proof}
+Dado que $\PATH$ es $\classNL$-completo bajo $\leL$, su complemento $\coPATH$ es $\classcoNL$-completo. Basta demostrar que $\coPATH \in \classNL$.
+
+Sea $G = (V, E)$ un dígrafo con $n = |V|$ vértices y un nodo origen $s$.
+Definimos para cada $i \in \{0, 1, \dots, n\}$:
+\[
+A_i = \{v \in V : \text{existe un camino en } G \text{ desde } s \text{ hasta } v \text{ de longitud a lo sumo } i\}
+\]
+y denotamos $c_i = |A_i|$ a la cantidad de vértices alcanzables en hasta $i$ pasos.
+
+\vspace{0.5em}
+\noindent\textbf{Estrategia de Conteo Inductivo (\textit{Inductive Counting}):}
+
+\vspace{0.5em}
+\noindent\textbf{Paso 1: Testigo de alcanzabilidad ($v \in A_i$).}\\
+Para verificar de forma no-determinística que $v \in A_i$, una máquina simplemente adivina un camino de longitud $\le i$ desde $s$ a $v$. Esto se realiza en espacio $O(\log n)$ guardando el vértice actual y un contador de pasos.
+
+\vspace{0.5em}
+\noindent\textbf{Paso 2: Testigo de no alcanzabilidad conociendo $c_i$ ($v \notin A_i$).}\\
+Asumiendo que la máquina conoce el número exacto $c_i$, puede verificar no-determinísticamente que $v \notin A_i$ de la siguiente manera:
+\begin{enumerate}[label=\alph*.]
+    \item Inicializar un contador $k \leftarrow 0$.
+    \item Para cada vértice $u \in V$ en orden lexicográfico estricto $u_1 < u_2 < \cdots < u_n$:
+    \begin{itemize}
+        \item Adivinar no-determinísticamente si $u \in A_i$ o $u \notin A_i$.
+        \item Si adivina $u \in A_i$, verifica dicha afirmación encontrando un camino de $s$ a $u$ de longitud $\le i$. Si el camino es válido, comprueba que $u \neq v$ (si $u = v$, la rama rechaza de inmediato) e incrementa $k \leftarrow k + 1$.
+        \item Si adivina $u \notin A_i$, no hace nada y continúa con el siguiente vértice.
+    \end{itemize}
+    \item Al finalizar los $n$ vértices, comprobar si $k = c_i$. Si $k = c_i$, la máquina concluye que efectivamente se certificaron todos los vértices de $A_i$ y ninguno de ellos fue $v$; por lo tanto, $v \notin A_i$. Si $k \neq c_i$, la rama de cómputo descarta la ejecución y rechaza.
+\end{enumerate}
+\textit{Espacio del Paso 2:} Solo se mantienen el índice $u$, el contador $k$ y el camino de prueba actual, consumiendo $O(\log n)$ memoria.
+
+\vspace{0.5em}
+\noindent\textbf{Paso 3: Cálculo inductivo de la secuencia $c_0, c_1, \dots, c_n$.}
+\begin{itemize}
+    \item \textbf{Base:} $c_0 = 1$ (únicamente el conjunto $\{s\}$).
+    \item \textbf{Paso inductivo (calcular $c_{i+1}$ a partir de $c_i$):}
+    Inicializar $c_{i+1} \leftarrow 0$. Para cada vértice $w \in V$:
+    \begin{enumerate}[label=\arabic*.]
+        \item Adivinar no-determinísticamente si $w \in A_{i+1}$ o $w \notin A_{i+1}$.
+        \item Si adivina $w \in A_{i+1}$, adivina un predecesor $u \in V$ tal que $(u, w) \in E$ (o $w = s$), y prueba que $u \in A_i$ mediante un camino de longitud $\le i$. Si es exitoso, incrementa $c_{i+1} \leftarrow c_{i+1} + 1$.
+        \item Si adivina $w \notin A_{i+1}$, debe verificar que para todo predecesor $u$ con $(u, w) \in E$, se cumple $u \notin A_i$. Para ello, enumera todos los $c_i$ elementos de $A_i$ (utilizando el procedimiento del Paso 2) y verifica que ninguno de ellos sea adyacente hacia $w$.
+    \end{enumerate}
+    Al terminar de recorrer los $n$ vértices, se descarta el valor de $c_i$ y se conserva únicamente $c_{i+1}$.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Conclusión del Algoritmo para $\coPATH$:}\\
+Una vez obtenido $c_n$ (el número total de vértices alcanzables desde $s$ en cualquier cantidad de pasos), la máquina ejecuta el Paso 2 sobre el vértice de destino $t$ verificando que $t \notin A_n$. Si la verificación es exitosa, la máquina \textbf{acepta}.
+
+Como el algoritmo almacena únicamente un número constante de contadores y punteros de vértices en cada momento, el espacio total utilizado es $O(\log n)$. Por ende, $\coPATH \in \classNL$, lo que concluye que $\classNL = \classcoNL$.
+\end{proof}
+
+\begin{corolario}[Generalización para Espacios Mayores]
+Para toda función construible en espacio $S(n) \ge \log n$:
+\[
+\NSPACE(S(n)) = \mathbf{coNSPACE}(S(n))
+\]
+\end{corolario}
+
+\begin{observacion}[Contraste Fundamental: Espacio vs. Tiempo]
+Mientras que en espacio el no-determinismo colapsa con su complemento ($\classNL = \classcoNL$ y $\classNPSPACE = \classPSPACE = \mathbf{coPSPACE}$), en tiempo computacional la pregunta equivalente:
+\[
+\classNP \stackrel{?}{=} \classcoNP
+\]
+permanece abierta y se conjetura ampliamente que $\classNP \ne \classcoNP$.
+\end{observacion}
+
+\section{Problemas Representativos en \texorpdfstring{$\classL$}{L} y \texorpdfstring{$\classNL$}{NL}}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}l p{4.2cm} l X@{}}
+\toprule
+\textbf{Problema} & \textbf{Definición} & \textbf{Complejidad} & \textbf{Técnica / Algoritmo} \\ \midrule
+$\text{EVEN}$ & Cantidad par de unos en $x \in {\{0,1\}}^*$ & $\classL$ & Un bit de memoria de trabajo que invierte con cada bit '1'. \\
+$\text{PALINDROME}$ & Cadenas capicúa: $w = w^R$ & $\classL$ & Dos contadores de índices $i, j$ de $O(\log n)$ bits. \\
+$\text{BALANCED}$ & Igual cantidad de 0s y 1s en $x$ & $\classL$ & Contador binario de balance acotado por $n$. \\
+$\text{PATH}$ & Conectividad dirigida de $s$ a $t$ & $\classNL$-completo & Adivinar no-determinísticamente vértices sucesores. \\
+$\text{2-SAT}$ & Satisfacibilidad con cláusulas de tamaño 2 & $\classNL$-completo & Grafo de implicaciones: $x \rightsquigarrow \neg x \rightsquigarrow x$ vía $\PATH$. \\
+$\text{STRONG-CONN}$ & Grafo dirigido fuertemente conexo & $\classNL$-completo & Verificación de alcanzabilidad entre todos los pares. \\
+$\text{BIPARTITE}$ & Detección de grafos bipartitos & $\classNL$-completo & Equivalente a no poseer ciclos dirigidos impares. \\ \bottomrule
+\end{tabularx}
+\caption{Problemas canónicos en $\classL$ y $\classNL$.}
+\end{table}
+
+\end{document}
