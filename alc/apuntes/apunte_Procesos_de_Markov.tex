@@ -457,7 +457,7 @@ En general
 \end{demostracion}
 
 % =========================================================================
-\section{Estados de Equilibrio y Convergencia a Largo Plazo}
+\section{Estados de Equilibrio}
 % =========================================================================
 
 \begin{definicion}[Estado de Equilibrio / Estacionario]
@@ -493,60 +493,139 @@ En general
     \end{enumerate}
 \end{propiedades}
 
+% =========================================================================
+\section{Estado Limite}
+% =========================================================================
+\subsection*{1. Definición y Elementos de la Dinámica}
 
+Consideremos un proceso discreto homogéneo definido sobre un espacio de $n$ estados finitos:
 
-\subsection*{Descomposición Espectral y Límite $M^k$}
-Supongamos que $M$ es diagonalizable: $M = C D C^{-1}$, donde $C = (w_1 \mid
-    w_2 \mid \dots \mid w_n)$ contiene los autovectores y $D =
-    \operatorname{diag}(\lambda_1, \dots, \lambda_n)$ con $1 = \lambda_1 \ge
-    |\lambda_2| \ge \dots \ge |\lambda_n|$.
-
-Para cualquier estado inicial $\pi^{(0)} \in \mathcal{P}_n$, expresado en la
-base de autovectores $\pi^{(0)} = a_1 w_1 + \cdots + a_n w_n$:
-\[
-    \pi^{(k)} = M^k \pi^{(0)} = a_1 \lambda_1^k w_1 + a_2 \lambda_2^k w_2 + \cdots + a_n \lambda_n^k w_n.
-\]
 \begin{itemize}
-    \item Si $|\lambda_i| < 1$, entonces $\lim_{k \to \infty} \lambda_i^k = 0$.
-    \item Si $\lambda = 1$ es el \textbf{único} autovalor de módulo 1 con multiplicidad 1
-          (autovalor dominante estricto):
-          \[
-              \lim_{k \to \infty} \pi^{(k)} = a_1 w_1 = \pi^* \quad \text{independientemente del estado inicial } \pi^{(0)}.
-          \]
-    \item En tal caso, la matriz límite $M^\infty = \lim_{k \to \infty} M^k$ existe y
-          todas sus columnas son idénticas e iguales al vector de equilibrio
-          estacionario:
-          \[
-              M^\infty = \begin{pmatrix} \pi^* & \pi^* & \cdots & \pi^* \end{pmatrix}.
-          \]
+    \item \textbf{Vector de estado inicial ($v^{(0)}$ o $\pi^{(0)}$):} 
+    Es la distribución inicial de probabilidades (o de cantidades) en el instante $k = 0$. Pertenece al conjunto de estados $\mathcal{P}_n$, lo que exige:
+    \[
+    v_i^{(0)} \ge 0 \quad (\forall i = 1, \dots, n) \quad \text{y} \quad \sum_{i=1}^n v_i^{(0)} = 1 \iff \|v^{(0)}\|_1 = 1
+    \]
+
+    \item \textbf{Vector de estado tras $k$ pasos ($v^{(k)}$):} 
+    Representa la distribución de probabilidades o cantidades del sistema luego de haber transcurrido $k$ transiciones o unidades de tiempo ($k \in \mathbb{N}$).
+
+    \item \textbf{Ecuación de recurrencia ($v^{(k+1)}$):} 
+    La transición de un paso al siguiente se rige linealmente a través de la matriz de transición $A$:
+    \[
+    v^{(k+1)} = A v^{(k)}
+    \]
+    donde la componente $i$-ésima viene dada por el balance de probabilidades:
+    \[
+    v_i^{(k+1)} = \sum_{j=1}^n A_{ij} \, v_j^{(k)}
+    \]
 \end{itemize}
 
-\textbf{¿Cuándo NO converge el proceso?}
-Si la matriz tiene otros autovalores de módulo 1 (por ejemplo, $\lambda = -1$ o raíces de la unidad $e^{i\theta}$ con matrices periódicas o bloques cíclicos), el término $\lambda_i^k$ oscilará y el límite $\lim_{k \to \infty} \pi^{(k)}$ no existirá para ciertos estados iniciales.
+% =========================================================================
+% 2. DEDUCCIÓN DE LA FÓRMULA DE POTENCIAS
+% =========================================================================
+\subsection*{2. Deducción de $v^{(k)} = A^k v^{(0)}$}
+
+Aplicando de forma sucesiva la regla de transición en cada paso temporal:
+\begin{align*}
+    v^{(1)} &= A v^{(0)} \\
+    v^{(2)} &= A v^{(1)} = A \left( A v^{(0)} \right) = A^2 v^{(0)} \\
+    v^{(3)} &= A v^{(2)} = A \left( A^2 v^{(0)} \right) = A^3 v^{(0)} \\
+    &\;\;\vdots \\
+    v^{(k)} &= A^k v^{(0)}
+\end{align*}
 
 % =========================================================================
-\section{Conexiones con Otros Temas de ALC}
+% 3. DEDUCCIÓN DE LA FÓRMULA DE POTENCIAS
 % =========================================================================
+\subsection*{3. Relación con el estado de equilibrio}
 
-\begin{table}[h!]
-    \centering
-    \small
-    \begin{tabular}{lp{12cm}}
-        \toprule
-        \textbf{Tema de la Materia}          & \textbf{Conexión con Procesos de Markov}                                                                                                                                                                                                                                                                             \\
-        \midrule
-        \textbf{Normas Matriciales}          & $\|M\|_1 = \max_j \sum_i |m_{ij}| = 1$. Como el radio espectral verifica $\rho(M) \le \|M\|$ para toda norma inducida, esto prueba analíticamente en una sola línea que $\rho(M) \le 1$.                                                                                                                             \\
-        \midrule
-        \textbf{Círculos de Gershgorin}      & Para $M^T$, cada centro es $m_{jj}$ y el radio es $R_j = \sum_{i \neq j} m_{ij} = 1 - m_{jj}$. Cada disco de Gershgorin es $D(m_{jj}, 1 - m_{jj}) \subset \{z \in \mathbb{C} : |z| \le 1\}$ y toca tangencialmente al punto $z = 1$.                                                                                 \\
-        \midrule
-        \textbf{Método de la Potencia}       & La iteración de Markov $\pi^{(k)} = M \pi^{(k-1)}$ es \emph{exactamente} el método de la potencia aplicado a $M$ para converger al autovector dominante asociado a $\lambda_1 = 1$, con la ventaja de que no se requiere renormalizar por norma euclídea en cada paso porque la norma-1 se preserva automáticamente. \\
-        \midrule
-        \textbf{Teorema de Perron-Frobenius} & Para matrices regulares (o ergódicas, donde alguna potencia $M^k > 0$ es estrictamente positiva), el autovalor 1 es simple, todo otro autovalor cumple $|\lambda| < 1$, y el autovector estacionario $\pi^*$ tiene todas sus componentes estrictamente positivas ($\pi^*_i > 0$).                                    \\
-        \midrule
-        \textbf{Google PageRank}             & El algoritmo PageRank construye una matriz de Markov $M = d P + \frac{1-d}{n} \mathbf{1} \mathbf{1}^T$ con factor de amortiguación $d \in (0, 1)$, garantizando que la matriz sea estrictamente positiva y tenga un único vector de equilibrio calculable mediante iteraciones.                                      \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+El \textbf{estado límite} (también denominado \textbf{estado infinito}, $v^{(\infty)}$ o $\pi^*$) se define formalmente como el límite de la sucesión de vectores cuando el número de pasos temporales tiende a infinito:
+\[
+v^{(\infty)} = \lim_{k \to \infty} v^{(k)} = \lim_{k \to \infty} A^k v^{(0)}
+\]
+Si este límite existe, por continuidad de la multiplicación matricial podemos aplicar la transformación $A$ sobre la igualdad:
+\[
+v^{(\infty)} = \lim_{k \to \infty} v^{(k+1)} = \lim_{k \to \infty} \left( A v^{(k)} \right) = A \left( \lim_{k \to \infty} v^{(k)} \right) = A v^{(\infty)}
+\]
+De aquí se deduce inmediatamente que:
+\[
+A v^{(\infty)} = 1 \cdot v^{(\infty)} \iff (A - I) v^{(\infty)} = \mathbf{0}
+\]
+Por lo tanto, \textbf{todo estado límite es necesariamente un estado de equilibrio} (un autovector de $A$ asociado al autovalor $\lambda = 1$ normalizado en norma 1).
+
+% =========================================================================
+% 4. DESCOMPOSICIÓN EN BASE DE AUTOVECTORES
+% =========================================================================
+\subsection*{4. Análisis Espectral mediante una Base de Autovectores}
+
+Supongamos que la matriz $A \in \mathbb{R}^{n \times n}$ es diagonalizable en $\mathbb{C}$. Entonces existe una base $\mathcal{B} = \{w_1, w_2, \dots, w_n\}$ de $\mathbb{C}^n$ formada por autovectores de $A$, con autovalores asociados $\lambda_1, \lambda_2, \dots, \lambda_n$:
+\[
+A w_i = \lambda_i w_i \quad (i = 1, \dots, n)
+\]
+Ordenamos los autovalores de manera decreciente según sus módulos:
+\[
+1 = |\lambda_1| \ge |\lambda_2| \ge \dots \ge |\lambda_n| \ge 0
+\]
+
+\subsubsection*{A. Descomposición del vector inicial $v^{(0)}$}
+Como $\mathcal{B}$ es base del espacio, el vector inicial $v^{(0)}$ se puede escribir de forma única como combinación lineal de los autovectores:
+\[
+v^{(0)} = \alpha_1 w_1 + \alpha_2 w_2 + \dots + \alpha_n w_n = \sum_{i=1}^n \alpha_i w_i
+\]
+
+Al aplicar la matriz $A$ sobre el estado inicial, por linealidad del producto matriz-vector[cite: 4]:
+\begin{align*}
+    v^{(1)} = A v^{(0)} &= A \left( \sum_{i=1}^n \alpha_i w_i \right) \\
+    &= \sum_{i=1}^n \alpha_i (A w_i) \\
+    &= \sum_{i=1}^n \alpha_i \lambda_i w_i
+\end{align*}
+
+Multiplicando nuevamente por $A$ de forma iterativa[cite: 4]:
+\begin{align*}
+    v^{(2)} = A v^{(1)} &= A \left( \sum_{i=1}^n \alpha_i \lambda_i w_i \right) = \sum_{i=1}^n \alpha_i \lambda_i (A w_i) = \sum_{i=1}^n \alpha_i \lambda_i^2 w_i \\
+    &\;\;\vdots \\
+    v^{(k)} = A^k v^{(0)} &= A^k \left( \sum_{i=1}^n \alpha_i w_i \right) = \sum_{i=1}^n \alpha_i (A^k w_i) = \sum_{i=1}^n \alpha_i \lambda_i^k w_i
+\end{align*}
+
+Desglosando término a término[cite: 4]:
+\begin{equation}
+    v^{(k)} = A^k v^{(0)} = \alpha_1 (\lambda_1)^k w_1 + \alpha_2 (\lambda_2)^k w_2 + \dots + \alpha_n (\lambda_n)^k w_n
+\end{equation}
+
+% =========================================================================
+% 5. CONDICIONES DE CONVERGENCIA Y MATRIZ LÍMITE A^\infty
+% =========================================================================
+\subsection*{5. Criterios de Existencia del Límite y Matriz $A^\infty$}
+
+Sabemos que $|\lambda_i| \leq 1 $. El limite depende de si $\lambda_i = 1$, $\lambda_i = -1$ o tiene modulo $\leq 1$. 
+
+\begin{enumerate}
+    \item \textbf{Condición de convergencia independiente del vector inicial:}
+    El límite $\lim_{k \to \infty} v^{(k)}$ existe para cualquier vector inicial $v^{(0)}$ si y solo si $\lambda = 1$ es el \textbf{único autovalor de módulo 1} de la matriz $A$.
+    
+    \item \textbf{Caso periódico / Oscilatorio (no convergencia):}
+    Si la matriz posee otros autovalores con $|\lambda| = 1$ y $\lambda \neq 1$ (por ejemplo, $\lambda = -1$ o raíces complejas de la unidad $e^{i\theta}$), el término $(-1)^k$ u oscilatorio no converge en el límite, por lo que el proceso presentará oscilaciones periódicas a largo plazo (salvo que la condición inicial no proyecte sobre dichos modos).
+
+    \item \textbf{La matriz límite $A^\infty$:}
+    Bajo la condición de que $\lambda = 1$ es único con módulo 1, existe el límite de las potencias de la matriz:
+    \[
+    A^\infty = \lim_{k \to \infty} A^k
+    \]
+    Si además $\lambda = 1$ tiene multiplicidad 1 y su estado de equilibrio normalizado es $w \in \mathcal{P}_n$, todas las columnas de la matriz límite son copias idénticas del vector $w$:
+    \[
+    A^\infty = \begin{pmatrix}
+        \vert & \vert & & \vert \\
+        w & w & \cdots & w \\
+        \vert & \vert & & \vert
+    \end{pmatrix}
+    \]
+    En consecuencia, para todo vector de estados inicial $v^{(0)}$:
+    \[
+    v^{(\infty)} = A^\infty v^{(0)} = w \left( \sum_{j=1}^n v_j^{(0)} \right) = w \cdot 1 = w
+    \]
+    lo que asegura que el sistema siempre converge al mismo estado de equilibrio independientemente del punto de partida.
+\end{enumerate}
 
 % =========================================================================
 \section{Guía Práctica: Paso a Paso para Resolver Ejercicios}
