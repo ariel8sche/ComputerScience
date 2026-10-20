@@ -1,4 +1,10 @@
-from moduloALC import calculaLU, res_tri, inversa, calculaLDV, esSDP
+import sys
+from pathlib import Path
+
+# Agrega la carpeta 'labo' (un nivel arriba del archivo actual)
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+
+from alc import *
 import numpy as np
 
 # TESTS L04-LU
