@@ -1323,7 +1323,7 @@ def reflexionHouseHolder(v):
     H = I - 2.0 * (U_tilde / norma_u_cuadrada)
     return H
 
-def diagRH(A, tol=1e-8, K=1000):
+def diagRH(A, tol=1e-8, K=1000, escala=None):
     """
     A una matriz simetrica de nxn
     tol la tolerancia en la diferencia entre un paso y el siguiente autovector.
@@ -1335,7 +1335,18 @@ def diagRH(A, tol=1e-8, K=1000):
     
     m, n = A.shape
     
-    autovector, autovalor, _, _ = metpot2k(A, tol=tol, K=K)
+    maximo = max(abs(A[i, j]) for i in range(n) for j in range(n))
+    if escala is None:
+        escala = maximo                # escala de la matriz original (primer llamado)
+
+    # bloque casi nulo respecto de la matriz original: todos sus autovalores son ~0
+    if maximo <= 1e-10 * escala:
+        return np.eye(n), np.zeros((n, n))
+
+    res = metpot2k(A, tol=tol, K=K)
+    if res is None:
+        return None, None
+    autovector, autovalor, _, _ = res
     
     if (autovector is None or autovalor is None):
         return None, None
@@ -1353,7 +1364,7 @@ def diagRH(A, tol=1e-8, K=1000):
             
         A_tilde = B[1:n, 1:n].copy()
         
-        S_tilde, D_tilde = diagRH(A_tilde, tol=tol, K=K)
+        S_tilde, D_tilde = diagRH(A_tilde, tol=tol, K=K, escala=escala)
         if S_tilde is None or D_tilde is None:
             return None, None
         
@@ -1370,13 +1381,6 @@ def diagRH(A, tol=1e-8, K=1000):
         S = mult_matrices(H, S_bloque)
     
     return S, D
-
-# A3 = np.array([[1, 3, 5],[3, 2, 7],[5, 7, 3]])
-# S, D = diagRH(A3)
-
-# print(f"S = {S}\n")
-# print(f"D = {D}\n")
-# print(matricesIguales(A3, mult_matrices(S, mult_matrices(D, traspuesta(S)))))
 
 ############################################################################################
 #                                       LABO 07                                            #
@@ -1404,7 +1408,7 @@ def transiciones_al_azar_continuas(n):
     return T
 
 
-def transiciones_al_azar_uniforme(n, thres):
+def transiciones_al_azar_uniformes(n, thres):
     """
     n: la cantidad de filas (columnas) de la matriz de transicion.
     thres: probabilidad de que una entrada sea distinta de cero.
@@ -1432,10 +1436,11 @@ def transiciones_al_azar_uniforme(n, thres):
             columna_j = columna_j/norma_col_j
             
             T[:, j] = columna_j
+            
+        if T[:, j].sum() == 0:              
+            T[np.random.default_rng().integers(n), j] = 1.0 
 
     return T
-
-# print(transiciones_al_azar_uniforme(6, 0.50))
 
 def nucleo(A, tol=1e-15):
     """
@@ -1450,33 +1455,26 @@ def nucleo(A, tol=1e-15):
     
     if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
         return None
-    
-    m, n = A.shape
-    
-    # 1. Calculamos A_T_A = A^T * A (matriz cuadrada de n x n, simétrica real)
-    A_T_A = mult_matrices(traspuesta(A), A)
-    
-    S, D = diagRH(A_T_A, tol=tol)
-    
-    if (S is None or D is None):
-        return None
-    
-    columnas_nucleo = []
-    for i in range (n):
-        if (abs(D[i, i]) <= tol):
-            columnas_nucleo.append(S[:,i])
-    
-    k = len(columnas_nucleo)
-    
-    if k == 0:
-        return np.zeros((n, 0), dtype=np.float64)
-    
-    res_nucleo = np.zeros((n,k))
-    for j in range(k):
-        v = columnas_nucleo[j]
-        for i in range(n):
-            res_nucleo[i, j] = v[i]
 
+    m, n = A.shape
+    A_T_A = mult_matrices(traspuesta(A), A)
+
+    S, D = diagRH(A_T_A, tol=1e-12, K=5000)
+    if S is None or D is None:
+        return None
+
+    maximo = max(abs(D[i, i]) for i in range(n))
+    umbral = max(tol, 1e-10 * maximo)
+
+    columnas_nucleo = [S[:, i] for i in range(n) if abs(D[i, i]) <= umbral]
+    k = len(columnas_nucleo)
+    if k == 0:
+        return np.array([])   
+
+    res_nucleo = np.zeros((n, k))
+    for j in range(k):
+        for i in range(n):
+            res_nucleo[i, j] = columnas_nucleo[j][i]
     return res_nucleo
 
 def punto_fijo(T, tol=1e-15):
@@ -1496,7 +1494,7 @@ def punto_fijo(T, tol=1e-15):
     
     return autovectores
 
-def crear_ala(listado, m_filas, n_columnas, tol=1e-15):
+def crea_rala(listado, m_filas, n_columnas, tol=1e-15):
     """
     Recibe una lista listado, con tres elementos: lista con indices i, lista con indices
     j, y lista con valores Aij de la matriz A. Tambien las dimensiones de la matriz a
@@ -1507,27 +1505,29 @@ def crear_ala(listado, m_filas, n_columnas, tol=1e-15):
     elementos con modulo menor a tol deben descartarse por default.
     - Tupla (m_filas, n_columnas) que permita conocer las dimensiones de la matriz.
     """
+    if m_filas is None or m_filas <= 0 or not isinstance(m_filas, int) or n_columnas is None or n_columnas <= 0 or not isinstance(n_columnas, int):
+        return {}, (0,0)
+    
+    dimension = (m_filas, n_columnas)
+    
     if listado is None or len(listado) != 3:
-        return None
+        return {}, dimension
     
     filas, columnas, valores = listado
     
-    dict = {(int,int):np.float64}
+    dict = {}
     
     for k in range (len(valores)):
         i = filas[k]
         j = columnas[k]
         valor = valores[k]
         
-        if (abs(valor) >= tol):
+        if (abs(valor) > tol):
             dict[(i,j)]=valor
-    
-    dimension = (m_filas, n_columnas)
     
     return [dict, dimension]
 
-
-def multiplicar_ala_vector(A, v):
+def multiplica_rala_vector(A, v):
     """
     Recibe una matriz rala creada con crear_ala y un vector v.
     Retorna un vector w resultado de multiplicar A con v.
@@ -1552,10 +1552,231 @@ def multiplicar_ala_vector(A, v):
     
     for (i, j), val in dict_A.items():
         w[i] += val * v[j]
-        
+    
     return w
 
+############################################################################################
+#                                       LABO 07                                            #
+############################################################################################ 
 
+def ordenar_indices_desc(valores):
+    """Devuelve la lista de índices que ordena `valores` de mayor a menor."""
+    pendientes = list(range(len(valores)))
+    orden = []
+    while len(pendientes) > 0:
+        mejor = pendientes[0]
+        for i in pendientes:
+            if valores[i] > valores[mejor]:
+                mejor = i
+        orden.append(mejor)
+        pendientes.remove(mejor)
+    return orden
 
+def svd_reducida(A,k="max",tol=1e-15):
+    """
+    A la matriz de interes (de m x n)
+    k el numero de valores singulares (y vectores) a retener.
+    tol la tolerancia para considerar un valor singular igual a cero
+    Retorna hatU (matriz de m x k), hatSig (vector de k valores singulares) y hatV (matriz de n x k)
+    """
+    if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
+        return None
+    
+    m,n = A.shape
+    
+    # Calculo cual matriz me conviene encontrar primero si hatU o hatV, dependiendo de m y n
+    M = traspuesta(A) if (m < n) else (A)
+    
+    A_t_A = mult_matrices(traspuesta(M),M)
+    q = A_t_A.shape[0]  # min(m,n)
+    
+    S, D = None, None
+    for t in (1e-13, 1e-12, 1e-10, 1e-8):
+        try:
+            S, D = diagRH(A_t_A, tol=t, K=5000)
+        except TypeError:
+            S, D = None, None
+        if S is not None and D is not None:
+            break
+            break
+    
+    # Veo que sean no valores None
+    if S is None or D is None:
+        return None, None, None
+    
+    # Me guardo los autovalores de A*A en un vectores para limpiarlos y ordenarlos
+    lambdas = np.array([D[i,i] for i in range (q)])
+    
+    # Limpio los autovalores menores a la tolerancia
+    umbral = max(tol, 1e-12 * max(lambdas))
+    for i in range(q):
+        if lambdas[i] < umbral:
+            lambdas[i] = 0
+    
+    # Ordeno los indices de los autovalores de A*A
+    orden = ordenar_indices_desc(lambdas)
 
+    # Reordenar los autovalores
+    lambdas_ord = np.zeros(len(lambdas))
+    for j in range(len(orden)):
+        lambdas_ord[j] = lambdas[orden[j]]
 
+    # Reordenar las columnas de S con la MISMA permutación
+    S_ord = np.zeros(S.shape)
+    for j in range(len(orden)):
+        for i in range(S.shape[0]):
+            S_ord[i, j] = S[i, orden[j]]
+    
+    # Obtengo el rango
+    r = 0
+    while r < len(lambdas_ord) and lambdas_ord[r] > 0: 
+        r += 1
+    if (k != "max"):
+        r = min(r, k)
+    
+    # Creo el vector hatSigma de tamaño (r)
+    hatSigma = np.zeros(r) # type: ignore
+    
+    # Calculo y guardo los valores singulares en hatSigma
+    for i in range (r): # type: ignore
+        valor_singular = np.sqrt(lambdas_ord[i])
+        hatSigma[i] = valor_singular
+        
+    if (m < n):
+        # Armo hatU obteniendo las primeras r columnas de S_ord
+        hatU = S_ord[:,:r]
+        
+        # Armo hatV
+        
+        # M = A^t es n x m, hatU (m x r) son los autovectores de M^t M
+        B = mult_matrices(M, hatU)          # n x r  (= hatV * Sigma)
+        
+        hatV = np.zeros((n, r)) # type: ignore
+        for i in range(r): # type: ignore
+            hatV[:, i] = B[:, i] / norma(B[:, i], 2)
+        
+    else:
+        # Armo hatV tamaño (n x r) obteniendo las primeras r columnas de S_ord
+        hatV = S_ord[:,:r]
+        
+        # M = A (m x n), hatV (n x r)  ->  B = hatU * Sigma  (m x r)
+        B = mult_matrices(M, hatV)          # m x r  (= hatU * Sigma)
+        
+        hatU= np.zeros((m, r)) # type: ignore
+        
+        for i in range(r): # type: ignore
+            hatU[:, i] = B[:, i] / norma(B[:, i], 2)
+    
+    return hatU, hatSigma, hatV       
+
+def _completar_base_ortonormal(Q, p, tol=1e-10):
+    """
+    Q: matriz de p x s con columnas ortonormales (s <= p).
+    Completa hasta p columnas ortonormales con Gram-Schmidt sobre e_1, e_2, ...
+    Retorna una matriz de p x p.
+    """
+    columnas = [Q[:, j].copy() for j in range(Q.shape[1])]
+
+    i = 0
+    while len(columnas) < p and i < p:
+        v = np.zeros(p)
+        v[i] = 1.0
+        i += 1
+
+        for _ in range(2):                  # dos pasadas: reduce el error numerico
+            for q_j in columnas:
+                v = v - proyeccion(q_j, v)
+
+        norma_v = norma(v, 2)
+        if norma_v > tol:                   # si quedo ~0, e_i ya estaba en el espacio generado
+            columnas.append(v / norma_v)
+
+    res = np.zeros((p, len(columnas)))
+    for j in range(len(columnas)):
+        res[:, j] = columnas[j]
+    return res
+
+def svd_completa(A,tol=1e-15):
+    if A is None or not isinstance(A, np.ndarray) or A.ndim != 2:
+        return None, None, None
+    
+    m,n = A.shape
+    
+    # Calculo cual matriz me conviene encontrar primero si hatU o hatV, dependiendo de m y n
+    M = traspuesta(A) if (m < n) else (A)
+    p, q = M.shape # type: ignore
+    
+    A_t_A = mult_matrices(traspuesta(M),M)
+    
+    S, D = None, None
+    for t in (1e-13, 1e-12, 1e-10, 1e-8):
+        try:
+            S, D = diagRH(A_t_A, tol=t, K=5000)
+        except TypeError:
+            S, D = None, None
+        if S is not None and D is not None:
+            break
+    
+    # Veo que sean no valores None
+    if S is None or D is None:
+        return None, None, None
+    
+    # Me guardo los autovalores de A*A en un vectores para limpiarlos y ordenarlos
+    lambdas = np.array([D[i,i] for i in range (q)])
+    
+    # Limpio los autovalores menores a la tolerancia
+    umbral = max(tol, 1e-12 * max(lambdas))
+    for i in range(q):
+        if lambdas[i] < umbral:
+            lambdas[i] = 0
+    
+    # Ordeno los indices de los autovalores de A*A
+    orden = ordenar_indices_desc(lambdas)
+
+    # Reordenar los autovalores
+    lambdas_ord = np.zeros(len(lambdas))
+    for j in range(len(orden)):
+        lambdas_ord[j] = lambdas[orden[j]]
+    
+    # Reordenar las columnas de S con la MISMA permutación
+    S_ord = np.zeros(S.shape)
+    for j in range(len(orden)):
+        for i in range(S.shape[0]):
+            S_ord[i, j] = S[i, orden[j]]
+    
+    # Obtengo el rango
+    r = 0
+    while r < len(lambdas_ord) and lambdas_ord[r] > 0: 
+        r += 1
+    
+    # Armo Sigma (m x n)
+    Sigma_completa = np.zeros(A.shape)
+    
+    for i in range (r): 
+        valor_singular = np.sqrt(lambdas_ord[i])
+        Sigma_completa[i,i] = valor_singular
+    
+    # Armo V (n x n)
+    V_completa=S_ord
+    
+    # Calculo AV = B (m x n)
+    
+    B = mult_matrices(M,V_completa)
+    
+    U_parcial = np.zeros((p,r))
+    for i in range(r):
+        norma2 = norma(B[:, i], 2)
+        if (norma2 != 0):
+            U_parcial[:, i] = B[:, i] / norma2
+    
+    _, s = U_parcial.shape
+    
+    if (s == p):
+        U_completa = U_parcial
+    else:
+        # completar con m-s vectores ortogonales
+        U_completa = _completar_base_ortonormal(U_parcial, p)
+    
+    if (m < n):
+        return V_completa, Sigma_completa, U_completa
+    return U_completa, Sigma_completa, V_completa
