@@ -1,0 +1,93 @@
+// Ejercicio 2
+// Inciso a y c
+
+sem nueva_medicion;
+sem mutex_driver;
+int esperando;
+
+int driver_init(){
+    nueva_medicion.sem(0);
+    mutex_driver.sem(1);
+    esperando = 0;
+    request_irq(IRQ_SENSE_FINISHED, &handler_nueva_medicion);
+
+    return IO_OK
+}
+
+void handler_nueva_medicion(){
+    mutex_driver.wait();
+        if (esperando > 0){
+            esperando --;
+            nueva_medicion.signal();
+        }
+    mutex_driver.signal();
+}
+
+int driver_remove(){
+    nueva_medicion.destroy();
+    mutex_driver.destroy();
+    free_irq(IRQ_SENSE_FINISHED);
+
+    return IO_OK
+}
+
+int driver_read(){
+    mutex_driver.wait();
+    esperando ++;
+    mutex_driver.signal();
+
+    nueva_medicion.wait();
+
+    mutex_driver.wait()
+    int distancia = IN(PROX_DIST);
+    mutex_driver.signal()
+
+    copy_to_user(data, &dist, sizeof(int));
+
+    return IO_OK
+}
+
+int driver_write(char* data){
+
+    int color;
+
+    copy_from_user(&color, data, sizeof(int));
+
+    mutex_driver.wait();
+
+    OUT(LED_COLOR, color);
+    OUT(LED_CTRL, LED_UPDATE);
+
+    mutex_driver.signal();
+
+    return IO_OK
+
+}
+
+// Inciso b
+
+int main(){
+    while(1){
+        int valor_usuario;
+
+        scanf(&valor_usuario, sizeof(int))
+
+        fd_sensor = open("/dev/sensor")
+
+        int medicion;
+
+        read(fd_sensor, &medicion);
+
+        int color;
+        if (medicion <= valor_usuario){
+            color = LED_RED;
+        }
+        else{
+            color = LED_GREEN;
+        }
+
+        write(fd_sensor, color)
+    }
+    
+    close(fd_sensor)
+}

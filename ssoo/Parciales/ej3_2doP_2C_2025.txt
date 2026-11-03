@@ -1,0 +1,28 @@
+// Ejercicio 3
+
+#define BUF_SIZE 1024
+
+void wrapper_cat(const char * filename){
+    char cmd[BUF_SIZE];
+    snprintf(cmd, BUF_SIZE, "cat %s", filename);
+    system(cmd)
+}
+
+// Inciso a
+
+// Un valor de filename puede sensor
+
+// filename = ". ; rm -rf /tmp/important"
+
+// Inciso b
+
+#define BUF_SIZE 1024
+
+void wrapper_cat(const char * filename){
+    char cmd[BUF_SIZE];
+    snprintf(cmd, BUF_SIZE, "cat \"%s\"", filename);
+    system(cmd)
+}
+
+// El problema no se soluciona pq igualmente se pueden concatenar otros comandos, no limita el uso de
+// ;, ||, |, && etc
