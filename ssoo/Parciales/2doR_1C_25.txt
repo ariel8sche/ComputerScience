@@ -1,0 +1,157 @@
+// Ejercicio 2
+
+int procesos_activos[5];
+semaphore mutex_open;
+semaphore mutex_write;
+
+int driver_init(){
+    mutex_open.sem(1);
+    mutex_write.sem(1);
+}
+
+int driver_remove(){
+    mutex_open.destroy();
+    mutex_write.destroy();
+}
+
+int driver_open(pid_t pid) {
+    sema_wait(&mutex_open); // Protección para concurrencia
+
+    // 1. Verificar si el proceso ya estaba registrado previa/abierto
+    for (int i = 0; i < MAX_PROCESOS; i++) {
+        if (procesos_activos[i] == pid) {
+            sema_signal(&mutex_open);
+            return IO_OK; // Ya estaba activo
+        }
+    }
+
+    // 2. Buscar una ranura libre para el nuevo proceso
+    for (int i = 0; i < MAX_PROCESOS; i++) {
+        if (procesos_activos[i] == 0) { // 0 representa libre
+            procesos_activos[i] = pid;
+
+            // Aquí se asignaría/notificaría el hardware si corresponde
+            
+            sema_signal(&mutex_open);
+            return IO_OK; // Conexión exitosa -> Devuelve IO_OK al Administrador de E/S
+        }
+    }
+
+    // 3. Si no hay vacantes (ya hay 5 procesos), se falla[cite: 2]
+    sema_signal(&mutex_open);
+    return IO_ERROR; // Devuelve error -> el SO le devolverá -1/error al usuario
+}
+
+int driver_close(pid_t pid) {
+    sema_wait(&mutex_open);
+
+    for (int i = 0; i < MAX_PROCESOS; i++) {
+        if (procesos_activos[i] == pid) {
+            procesos_activos[i] = 0; // Liberar ranura
+
+            // Aquí se apagarían recursos/LEDs asociados a este PID si aplica
+
+            sema_signal(&mutex_open);
+            return IO_OK; // Desconexión exitosa
+        }
+    }
+
+    sema_signal(&mutex_open);
+    return IO_ERROR; // El proceso no estaba registrado
+}
+
+int driver_write(char* data, int size, pidt_t){
+    
+    if (data == NULL){
+        return IO_ERROR;
+    }
+    
+    struct datos nuevos_datos;
+    copy_from_user(&nuevos_datos, data, sizeof(struct datos));
+
+    mutex_write.wait();
+
+    OUT(RTSA_NUM_LED, nuevos_datos.led);
+    OUT(RTSA_NUM_LED, nuevos_datos.status);
+
+    mutex_write.signal();
+
+    return IO_OK
+}
+
+int driver_read(){
+    
+}
+
+// Ejericio 3
+
+#define BUFFER_MAX 1024 
+
+void vuln1(){
+    char buffer[BUFFER_MAX];
+    printf("Ingrese su nombre: ");
+    fgets(buffer, BUFFER_MAX, STDIN);
+    printf(buffer);
+    return;
+}
+
+unsigned int vuln2(){
+    unsigned int len;
+    char buffer[BUFFER_MAX];
+    printf("Ingrese su nombre: ");
+    gets(buffer);
+    len = strkb(buffer);
+    return len;
+}
+
+// Inciso a
+
+// vuln1 tiene un problema en el printf, no se le pasan formatos a printf, esto lleva a que un atacante
+// puedo hacer una serie de ataques, como sobreescribir la direccion de retorno usando unos especificadores
+// como %n 
+
+// vuln2 tiene un  problema en el gets, gets es una funcion que no recibe un parametro para que limite la
+// cantidad de caracteres a leer y guardar en buffer, esto provoca problemas como stack based buffer overflow
+// el cual podria reescribir la direccion de retorno de la funcion o alterar el curso normal de ejecicion del
+// problema
+
+// Inciso b
+
+Pila de vuln2
+
+Direcciones ALTAS (0xFFFF....)
++------------------------------------+
+|               :                    |
++------------------------------------+
+|  Return Address (Saved RIP)        |  <- 8 bytes (Dirección de retorno)
++------------------------------------+
+|  Saved RBP / EBP                   |  <- 8 bytes (Base Pointer anterior)
++------------------------------------+
+|  unsigned int len (+ padding)      |  <- 8 bytes (4 bytes de 'len' + 4 bytes padding)
++------------------------------------+
+|  char buffer[1016..1023]           |  <- 8 bytes (Dirección más ALTA del búfer)
+|               :                    |
+|  char buffer[0..7]                 |  <- 8 bytes (Dirección más BAJA del búfer)
++------------------------------------+
+|               :                    |
++------------------------------------+
+ Direcciones BAJAS (0x0000....) <- Stack Pointer (RSP)
+
+ // Inciso c
+
+ // En vuln1 habria que agregar especificadores de formato en el printf
+
+ // En vuln2 habira que usar la funcion fgets, que tiene como parametro del tamaño a leer
+
+ // Inciso d
+
+ // En el vuln1 el uso directo de printf(buffer) permite pasar especificadores de formato 
+ // dentro de la cadena ingresada por el usuario.   
+ // Bypass del Canario: Se puede utilizar el especificador %n. 
+ // Este especificador escribe la cantidad de caracteres impresos hasta ese punto 
+ // directamente en una dirección de memoria apuntada por la pila.
+ // Por lo tanto en vuln1, todavia puede modificar posiciones de memoria en el stack
+ // a pesar del Canario
+
+ // Mientras que en el vuln2, al ser un buffer overflow va a pisar el canario de cualquier forma
+ // por lo tanto si el compilador detecta que el canario fue modificado, terminara la ejecucion.
